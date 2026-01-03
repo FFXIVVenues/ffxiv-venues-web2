@@ -1,4 +1,4 @@
-import {Day} from "../../../model/day.ts";
+import {Day} from "@/model/day.ts";
 import type {TimeDto} from "./timeDto.ts";
 import type {IntervalDto} from "./intervalDto.ts";
 import type {LocationDto} from "./locationDto.ts";
@@ -11,7 +11,7 @@ export interface ScheduleDto {
     start: TimeDto;
     end?: TimeDto;
     interval: IntervalDto;
-    location: LocationDto;
+    location?: LocationDto;
     resolution?: OpeningDto;
     utc?: ScheduleDto;
 }

@@ -1,0 +1,2 @@
+[serve.static]
+env = "FFXIV_VENUES_WEB_*"

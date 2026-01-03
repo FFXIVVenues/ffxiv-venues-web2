@@ -16,7 +16,7 @@ class FlagService {
                 description: description
             })
         };
-        return fetch(import.meta.env.VITE_FFXIV_VENUES_API_ROOT + `/v1.0/venue/${venueId}/flag`, requestOptions);
+        return fetch(process.env.FFXIV_VENUES_WEB_API_ROOT + `/v1.0/venue/${venueId}/flag`, requestOptions);
     }
 
 }

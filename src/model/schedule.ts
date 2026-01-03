@@ -14,7 +14,7 @@ class Schedule {
     start: Time;
     end?: Time;
     interval: Interval;
-    location: Location;
+    location?: Location;
     resolution?: Opening;
     utc?: Schedule;
 
@@ -22,8 +22,8 @@ class Schedule {
         this.day = scheduleDto.day;
         this.start = scheduleDto.start;
         this.interval = scheduleDto.interval;
-        this.location = new Location(scheduleDto.location);
 
+        this.location = scheduleDto.location ? new Location(scheduleDto.location) : undefined;
         this.end = scheduleDto.end ? new Time(scheduleDto.end) : undefined;
         this.utc = scheduleDto.utc ? new Schedule(scheduleDto.utc) : undefined;
         this.commencing = scheduleDto.commencing ? new Date(scheduleDto.commencing) : undefined;
