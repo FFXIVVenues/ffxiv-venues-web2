@@ -4,7 +4,7 @@ import {Venue} from "@/model/venue.ts";
 import type {Opening} from "@/model/opening.ts";
 import type {VenueFilter} from "./venueFilter.ts";
 
-export interface VenueViewModel {
+export interface ScheduleItem {
     venue: Venue;
     opening?: Opening;
 }

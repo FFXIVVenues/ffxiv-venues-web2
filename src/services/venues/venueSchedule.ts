@@ -1,10 +1,10 @@
-import type {VenueViewModel} from "./venueService.ts";
+import type {ScheduleItem} from "./venueService.ts";
 
 export interface VenueSchedule {
-    favourites: VenueViewModel[];
-    newest: VenueViewModel[];
-    open: VenueViewModel[];
-    scheduled: VenueViewModel[][];
-    future: VenueViewModel[];
-    unscheduled: VenueViewModel[];
+    favourites: ScheduleItem[];
+    newest: ScheduleItem[];
+    open: ScheduleItem[];
+    scheduled: ScheduleItem[][];
+    future: ScheduleItem[];
+    unscheduled: ScheduleItem[];
 }

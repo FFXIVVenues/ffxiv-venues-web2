@@ -25,6 +25,21 @@ class Location {
         this.override = locationDto.override;
     }
 
+    toString(shorten: boolean = false): string {
+
+        if (this.override) {
+            if (shorten && this.override.length > 50)
+                return `${this.override.substring(0, 50)}...`
+            else
+                return this.override
+        }
+
+        if (this.apartment)
+            return `${this.dataCenter}, ${this.world}, ${this.district}, Ward ${this.ward}${this.subdivision ? " Sub" : ''}, Apt ${this.apartment}`
+
+        return `${this.dataCenter}, ${this.world}, ${this.district}, Ward ${this.ward}, Plot ${this.plot}${this.room ? `, Room ${this.room}` : ''}`
+    }
+
 }
 
 export { Location };

@@ -1,0 +1,37 @@
+Server Side Public License (SSPL) Version 1.0 with Mandatory Attribution
+
+Copyright (c) [2026] [Kana Ki / FFXIV Venues]
+
+All rights reserved.
+
+1. Grant of Rights
+
+You are granted the right to:
+- Use, copy, modify, and redistribute this software,
+- Under the condition that all deployments and distributions comply with the terms below.
+
+2. Copyleft for Service Use
+
+If you offer this software as a service, you **must release the complete source code of your service stack** under this license. “Service stack” means all components you control that are necessary to provide the service functionality, excluding independent third-party dependencies.
+
+3. Attribution Requirement
+
+Any redistribution, public deployment, or service offering using this software must include **prominent attribution** to the original author and project. This must appear at minimum:
+- In the README and documentation
+- In the user interface (if one exists)
+
+Attribution text should read:
+"FFXIV Venues © Kana Ki"
+
+4. Non-Commercial Restriction
+
+You may **not sell** this software or offer it as a paid service. This includes:
+- Paid hosting
+- Paid SaaS offerings
+- Bundling into commercial products
+
+Free redistribution for non-commercial purposes is permitted under the above conditions.
+
+5. Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
