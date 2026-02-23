@@ -1,4 +1,4 @@
-export const Weekly = (d: number) : string => {
+export const weekly = (d: number) : string => {
   switch (d) {
     case 1:
       return "Weekly";

@@ -1,60 +1,35 @@
 import { useVenueSchedule } from '@/services/venues/useVenueSchedule.ts';
-import {AppShell, Burger, Combobox, Group, Space, TextInput, Title} from '@mantine/core';
-import { useDisclosure } from "@mantine/hooks";
-import days from '@/model/consts/days.json';
-import {ScheduleRow} from "@/components/scheduleRow/scheduleRow.tsx";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import {Item, ItemContent, ItemMedia, ItemTitle} from "@/components/ui/item.tsx";
+import {Spinner} from "@/components/ui/spinner.tsx";
 
 export function App() {
-  const [ opened, { toggle }] = useDisclosure();
   const [ venues, error, setFilters ] = useVenueSchedule([]);
-  const spacerHeight = "xl";
 
+    return <main style={{color: 'var(--destructive-foreground)' }}>
+        <Item variant="muted" className="m-auto max-w-xs my-6 rounded-md">
+          <ItemMedia>
+            <Spinner />
+          </ItemMedia>
+          <ItemContent className="line-clamp-1 grow">
+            <ItemTitle>Fetching venues...</ItemTitle>
+          </ItemContent>
+        </Item>
 
-  if (!venues) return null;
+        <section className="grid grid-cols-3 grid-flow-row gap-12 w-4/5 m-auto ">
+          <Skeleton className="aspect-square w-full rounded-2xl bg-muted/50" />
+          <Skeleton className="aspect-square w-full rounded-2xl bg-muted/50" />
+          <Skeleton className="aspect-square w-full rounded-2xl bg-muted/50" />
+          <Skeleton className="aspect-square w-full rounded-2xl bg-muted/50" />
+          <Skeleton className="aspect-square w-full rounded-2xl bg-muted/50" />
+        </section>
+    </main>
 
   return (
-    <AppShell
-      padding="xl"
-      navbar={{
-        width: 250,
-        breakpoint: 'md',
-        collapsed: { mobile: !opened, desktop: !opened }
-      }}
-    >
-      <AppShell.Navbar>
-        Cock
-      </AppShell.Navbar>
-
-      <AppShell.Main>
-        <Group justify="space-between">
-          <Burger opened={opened} onClick={toggle} />
-          <TextInput autoFocus w={300} aria-label="Search venues" placeholder={"Search..."} />
-        </Group>
-
-        <Space h={spacerHeight}/>
-
-        { !!venues.open?.length &&
-          <ScheduleRow title="Open now" venues={venues.open} />
-        }
-        <Space h={spacerHeight}/>
-        { !!venues.newest?.length &&
-          <ScheduleRow title="Newest" venues={venues.newest} />
-        }
-        <Space h={spacerHeight}/>
-        { !!venues.favourites?.length &&
-          <ScheduleRow title="Favorites" venues={venues.favourites} />
-        }
-        { !!venues.scheduled?.length &&
-            venues.scheduled.map((day, i) => <>
-              <Space h={spacerHeight}/>
-              <ScheduleRow title={days[i]!} venues={day} />
-            </>)
-        }
-        <Space h={spacerHeight}/>
-        { !!venues.unscheduled?.length &&
-            <ScheduleRow title="Unscheduled" venues={venues.unscheduled} />
-        }
-      </AppShell.Main>
-    </AppShell>
+   <>
+     <Button>Click me</Button>
+     <Button variant="destructive">Click me</Button>
+   </>
   )
 }

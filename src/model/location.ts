@@ -26,7 +26,6 @@ class Location {
     }
 
     toString(shorten: boolean = false): string {
-
         if (this.override) {
             if (shorten && this.override.length > 50)
                 return `${this.override.substring(0, 50)}...`

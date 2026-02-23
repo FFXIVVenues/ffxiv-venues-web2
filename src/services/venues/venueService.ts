@@ -3,20 +3,19 @@ import type {VenueSchedule} from "./venueSchedule.ts";
 import {Venue} from "@/model/venue.ts";
 import type {Opening} from "@/model/opening.ts";
 import type {VenueFilter} from "./venueFilter.ts";
+import {useConfig} from "@/utils/useConfig.ts";
 
 export interface ScheduleItem {
     venue: Venue;
     opening?: Opening;
 }
 
-
 class VenueService {
     private _fetchPromise?: Promise<Venue[]> = undefined;
 
     getVenues(): Promise<Venue[]> {
-        const venuesUrl = process.env.FFXIV_VENUES_WEB_API_ROOT + "/v1.0/venue";
+        const venuesUrl = useConfig("FFXIV_VENUES_API_ROOT") + "/v1.0/venue";
         return this._fetchPromise ??= new Promise((resolve, reject) => {
-            console.time('venueService.getVenues');
             fetch(venuesUrl)
                 .then(response => response.json() as Promise<VenueDto[]>)
                 .then(venues => venues.map(v => new Venue(v)))
@@ -32,8 +31,6 @@ class VenueService {
     }
 
     async getVenueSchedule(filters?: VenueFilter[]): Promise<VenueSchedule> {
-        console.time('venueService.getVenueSchedule');
-
         const venueViewModels: VenueSchedule = {
             favourites: [],
             newest: [],
@@ -92,7 +89,6 @@ class VenueService {
         || new Date(one.opening!.start).getMinutes() - new Date(another.opening!.start).getMinutes()));
         venueViewModels.newest = venueViewModels.newest.sort((a, b) => ((b.venue.added && (new Date(b.venue.added).getTime())) || 0) - ((a.venue.added && (new Date(a.venue.added).getTime())) || 0));
 
-        console.timeEnd('venueService.getVenueSchedule');
         return venueViewModels;
     }
     

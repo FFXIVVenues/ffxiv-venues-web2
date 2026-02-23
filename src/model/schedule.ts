@@ -1,4 +1,4 @@
-import {nth} from "../utility/nth";
+import {nth} from "@/utils/nth";
 import days from "./consts/days.json";
 import type {ScheduleDto} from "../services/venues/dtos/scheduleDto.ts";
 import {Opening} from "./opening.ts";
