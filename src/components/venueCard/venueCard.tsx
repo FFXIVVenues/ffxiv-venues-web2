@@ -29,7 +29,7 @@ export function VenueCard({ venue }: VenueCardProps) {
                 />
 
                 {isOpen && (
-                    <div className="absolute inset-0 rounded-t-xl shadow-[inset_0_0_0_3px_rgba(232,121,249,1),_0_0_20px_rgba(232,121,249,0.6)]" />
+                    <div className="absolute inset-0 rounded-t-xl shadow-[inset_0_0_0_3px_rgba(232,121,249,1),0_0_20px_rgba(232,121,249,0.6)]" />
                 )}
 
                 {isOpen && (
