@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+
 export enum VenueStatus {
     None = "none",
     Open = "open",
@@ -25,13 +26,16 @@ export function VenueCard({ venue }: VenueCardProps) {
 
     return (
         <Card className="group rounded-xl overflow-visible pt-0 transition hover:-translate-y-0.5 hover:shadow-xl">
-            <div className="relative">
+            <div className="w-full relative">
                 <img
                     src={venue.imageUrl}
                     alt={venue.name}
                     loading="lazy"
-                    className="block w-full object-cover rounded-t-xl"
+                    className="w-full object-cover rounded-t-xl brightness-[1.06] contrast-[1.04] saturate-[0.96]"
                 />
+
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-20 rounded-t-xl bg-linear-to-b from-white/20 via-white/5 to-transparent" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-black/60 to-transparent" />
 
                 {glowClass && (
                     <div className={`pointer-events-none absolute inset-0 rounded-t-xl ${glowClass}`} />
@@ -45,9 +49,9 @@ export function VenueCard({ venue }: VenueCardProps) {
                 )}
             </div>
 
-            <CardContent className="pt-1 py-0 text-right">
-                <div className="text-lg font-semibold leading-none">{venue.name}</div>
-                <div className="text-sm font-medium text-muted-foreground">{venue.timeText}</div>
+            <CardContent className="py-0 text-right">
+                <div className="text-xl font-semibold leading-none">{venue.name}</div>
+                <div className="text-base font-medium text-muted-foreground">{venue.timeText}</div>
             </CardContent>
         </Card>
     );
