@@ -33,10 +33,12 @@ export const VenueDirectoryPage = () => {
             Cock!
         </DefaultPageLayout.Panel>
         <DefaultPageLayout.Page>
-            <div className="grid grid-cols-3">
+            <div className="mx-auto w-full max-w-7xl py-6">
+                <div className="grid gap-6 grid-cols-3">
                 {venues.map(venue => (
                     <VenueCard venue={venue} />
                 ))}
+                </div>
             </div>
         </DefaultPageLayout.Page>
     </DefaultPageLayout>;
