@@ -1,11 +1,11 @@
 import type { VenueDto } from "../services/venues/dtos/venueDto.ts";
 
-import { favouritesService } from "../services/favouritesService";
-import { visitedService } from "../services/visitedService";
+import { favouritesService } from "../services/favouritesService.ts";
+import { visitedService } from "../services/visitedService.ts";
 
-import { Location } from "./location";
-import { Schedule } from "./schedule";
-import { ScheduleOverride } from "./scheduleOverride"
+import { Location } from "./location.ts";
+import { Schedule } from "./schedule.ts";
+import { ScheduleOverride } from "./scheduleOverride.ts"
 import { Opening } from "./opening.ts";
 
 class Venue {

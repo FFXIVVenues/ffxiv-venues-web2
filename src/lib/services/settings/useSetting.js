@@ -1,4 +1,4 @@
-import { settingsService } from "./settingsService";
+import { settingsService } from "./settingsService.js";
 import {useEffect, useState} from "react";
 
 
