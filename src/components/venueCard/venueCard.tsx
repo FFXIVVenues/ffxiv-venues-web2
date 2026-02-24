@@ -33,13 +33,13 @@ export function VenueCard({ venue }: VenueCardProps) {
             : "";
 
     const pingInner = isOpen
-        ? "bg-fuchsia-400"
+        ? "bg-fuchsia-400 shadow-[0_0_10px_rgba(232,121,249,0.75)]"
         : isNew
-            ? "bg-green-400"
+            ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]"
             : "";
 
     return (
-        <Card className="rounded-xl overflow-visible pt-0">
+        <Card className="group rounded-xl overflow-visible pt-0 transition hover:-translate-y-0.5 hover:shadow-xl">
             <div className="relative">
                 <img
                     src={venue.imageUrl}
@@ -54,7 +54,7 @@ export function VenueCard({ venue }: VenueCardProps) {
 
                 {(isOpen || isNew) && (
                     <span className="absolute left-3 top-3 flex h-3 w-3">
-                        <span className={`absolute inline-flex h-full w-full animate-ping rounded-full, ${pingOuter} opacity-75`} />
+                        <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
                         <span className={`relative inline-flex h-3 w-3 rounded-full ${pingInner}`} />
                     </span>
                 )}
