@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 export enum VenueStatus {
     None = "none",
     Open = "open",
@@ -60,12 +60,9 @@ export function VenueCard({ venue }: VenueCardProps) {
                 )}
             </div>
 
-            <CardHeader className="pb-1 text-right">
-                <div className="text-xl font-semibold leading-tight">{venue.name}</div>
-            </CardHeader>
-
-            <CardContent className="pt-0 text-right">
-                <div className="text-base text-muted-foreground">{venue.timeText}</div>
+            <CardContent className="pt-1 py-0 text-right">
+                <div className="text-lg font-semibold leading-none">{venue.name}</div>
+                <div className="text-sm font-medium text-muted-foreground">{venue.timeText}</div>
             </CardContent>
         </Card>
     );
