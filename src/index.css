@@ -4,10 +4,11 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  font-synthesis-weight: none;
+  font-variation-settings: normal;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
