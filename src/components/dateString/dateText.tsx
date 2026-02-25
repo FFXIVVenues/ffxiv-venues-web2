@@ -1,7 +1,7 @@
 import React, {type ReactElement} from "react";
-import {nth} from "@/utils/nth.ts";
-import {daysOfWeek} from "@/utils/daysOfWeek.ts";
-import {monthsOfYear} from "@/utils/monthsOfYear.ts";
+import {nth} from "@/lib/utils/nth.ts";
+import {daysOfWeek} from "@/lib/utils/daysOfWeek.ts";
+import {monthsOfYear} from "@/lib/utils/monthsOfYear.ts";
 
 const today = new Date();
 const dayOfWeek = today.getDay();

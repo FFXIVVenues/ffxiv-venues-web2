@@ -1,9 +1,9 @@
 import type {VenueDto} from "./dtos/venueDto.ts";
 import type {VenueSchedule} from "./venueSchedule.ts";
-import {Venue} from "@/model/venue.ts";
-import type {Opening} from "@/model/opening.ts";
+import {Venue} from "@/lib/model/venue.ts";
+import type {Opening} from "@/lib/model/opening.ts";
 import type {VenueFilter} from "./venueFilter.ts";
-import {useConfig} from "@/utils/useConfig.ts";
+import {useEnv} from "@/lib/utils/hooks/useEnv.ts";
 
 export interface ScheduleItem {
     venue: Venue;
@@ -14,7 +14,7 @@ class VenueService {
     private _fetchPromise?: Promise<Venue[]> = undefined;
 
     getVenues(): Promise<Venue[]> {
-        const venuesUrl = useConfig("FFXIV_VENUES_API_ROOT") + "/v1.0/venue";
+        const venuesUrl = useEnv("FFXIV_VENUES_API_ROOT") + "/v1.0/venue";
         return this._fetchPromise ??= new Promise((resolve, reject) => {
             fetch(venuesUrl)
                 .then(response => response.json() as Promise<VenueDto[]>)

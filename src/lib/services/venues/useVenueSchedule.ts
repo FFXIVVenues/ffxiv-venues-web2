@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {venueService} from "./venueService";
-import {favouritesService} from "../favouritesService";
+import {venueService} from "./venueService.ts";
+import {favouritesService} from "../favouritesService.ts";
 import type {VenueFilter} from "./venueFilter.ts";
 import type {VenueSchedule} from "./venueSchedule.ts";
 

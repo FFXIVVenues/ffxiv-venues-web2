@@ -1,4 +1,4 @@
-import {Day} from "@/model/day.ts";
+import {Day} from "@/lib/model/day.ts";
 import type {TimeDto} from "./timeDto.ts";
 import type {IntervalDto} from "./intervalDto.ts";
 import type {LocationDto} from "./locationDto.ts";

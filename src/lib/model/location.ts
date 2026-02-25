@@ -1,4 +1,4 @@
-import type { LocationDto } from "../services/venues/dtos/locationDto";
+import type { LocationDto } from "../services/venues/dtos/locationDto.ts";
 
 class Location {
     dataCenter: string;

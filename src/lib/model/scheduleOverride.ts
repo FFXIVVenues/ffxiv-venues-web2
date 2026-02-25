@@ -1,4 +1,4 @@
-import type { ScheduleOverrideDto } from "../services/venues/dtos/scheduleOverrideDto";
+import type { ScheduleOverrideDto } from "../services/venues/dtos/scheduleOverrideDto.ts";
 
 class ScheduleOverride implements Omit<ScheduleOverrideDto, 'start' | 'end'> {
     open!: boolean;

@@ -1,4 +1,12 @@
 import {Children, type FC, isValidElement, type ReactElement, type ReactHTMLElement, type ReactNode} from "react";
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarGroup,
+    SidebarHeader,
+    SidebarProvider, SidebarTrigger
+} from "@/components/ui/sidebar.tsx";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -12,7 +20,7 @@ type CompoundComponent<P = {}> = FC<P> & {
 
 export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({ children, className }) => {
     const compounds = Children.toArray(children);
-    const panelContent = compounds.find(
+    const sidebarContent = compounds.find(
         (c): c is ReactElement => isValidElement(c) && c.type === DefaultPageLayout.Panel
     );
     const pageContent = compounds.find(
@@ -20,8 +28,23 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({ child
     );
 
     return <>
-        {panelContent}
-        {pageContent}
+        <SidebarProvider>
+            <Sidebar variant="floating">
+                <SidebarHeader />
+                <SidebarContent>
+                    <SidebarGroup>
+                        {sidebarContent}
+                    </SidebarGroup>
+                </SidebarContent>
+                <SidebarFooter/>
+            </Sidebar>
+
+            <main className="px-2 py-4">
+                <SidebarTrigger />
+                {pageContent}
+            </main>
+
+        </SidebarProvider>
     </>
 }
 
