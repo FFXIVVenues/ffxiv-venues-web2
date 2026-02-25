@@ -25,6 +25,14 @@ const venues = [
         status: VenueStatus.None,
         tags: ["Lounge", "Gambling", "Drink", "Twitch DJ"]
     },
+    {
+        id: "4",
+        name: "Oreo's Bad Venue",
+        imageUrl: "../../assets/default-banner.jpg",
+        timeText: "Never 8:00pm - 1:00am",
+        status: VenueStatus.None,
+        tags: ["Snuggle Den"]
+    },
 ];
 
 export const VenueDirectoryPage = () => {
