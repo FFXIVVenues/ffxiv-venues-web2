@@ -4,7 +4,7 @@ const venues = [
     {
         id: "1",
         name: "Really super long title that's annoying",
-        imageUrl: "../../assets/default-banner.jpg",
+        imageUrl: "../../assets/Venue1.webp",
         timeText: "Today 7:00pm - 11:00pm",
         status: VenueStatus.Open,
         tags: ["Lounge", "Other", "Photography", "LGBTQIA+", "RP Heavy", "SuperDuperReallyLongAnnoyingTag"]
@@ -12,7 +12,7 @@ const venues = [
     {
         id: "2",
         name: "Liquid Hero Pub",
-        imageUrl: "../../assets/default-banner.jpg",
+        imageUrl: "../../assets/Venue2.webp",
         timeText: "Saturday 12:00am - 4:00am",
         status: VenueStatus.New,
         tags: ["Tavern", "Lounge", "Bar", "RP Heavy"]
@@ -20,18 +20,10 @@ const venues = [
     {
         id: "3",
         name: "Moonlight Lounge",
-        imageUrl: "../../assets/default-banner.jpg",
+        imageUrl: "../../assets/Venue3.webp",
         timeText: "Sunday 8:00pm - 1:00am",
         status: VenueStatus.None,
         tags: ["Lounge", "Gambling", "Drink", "Twitch DJ"]
-    },
-    {
-        id: "4",
-        name: "Oreo's Bad Venue",
-        imageUrl: "../../assets/default-banner.jpg",
-        timeText: "Never 8:00pm - 1:00am",
-        status: VenueStatus.None,
-        tags: ["Snuggle Den"]
     },
 ];
 
