@@ -1,9 +1,11 @@
-import { Card, CardContent } from "@/components/ui/card";
+import {Card, CardContent, CardHeader, CardFooter, CardTitle, CardAction, CardDescription} from "@/components/ui/card";
+import {Badge} from "@/components/ui/badge.tsx";
+import {Button} from "@/components/ui/button.tsx";
 
 export enum VenueStatus {
-    None = "none",
-    Open = "open",
-    New  = "new"
+    None = "Closed",
+    Open = "Open",
+    New  = "New"
 }
 type Venue = {
     id: string;
@@ -26,30 +28,32 @@ export function VenueCard({ venue }: VenueCardProps) {
 
     return (
         <Card className="group rounded-xl overflow-visible pt-0 transition hover:-translate-y-0.5 hover:shadow-xl">
-            <div className="w-full relative">
+            <div className="relative w-full aspect-[2/1] overflow-hidden rounded-t-xl">
                 <img
                     src={venue.imageUrl}
                     alt={venue.name}
                     loading="lazy"
-                    className="w-full object-cover rounded-t-xl brightness-[1.06] contrast-[1.04] saturate-[0.96]"
+                    className="h-full w-full object-cover"
                 />
-
-                {glowClass && (
-                    <div className={`pointer-events-none absolute inset-0 rounded-t-xl ${glowClass}`} />
-                )}
-
-                {(isOpen || isNew) && (
-                    <span className="absolute left-3 top-3 flex h-3 w-3">
-                        <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
-                        <span className={`relative inline-flex h-3 w-3 rounded-full ${pingInner}`} />
-                    </span>
-                )}
             </div>
 
-            <CardContent className="py-0 text-right">
-                <div className="text-xl font-semibold leading-none">{venue.name}</div>
-                <div className="text-base font-medium text-muted-foreground">{venue.timeText}</div>
-            </CardContent>
+            <CardHeader className="">
+                {(isOpen || isNew) && (
+                    <CardAction>
+                        <Badge variant="secondary" className="relative pr-6">
+                            {venue.status}
+                            <span className="absolute right-2 top-1/2 -translate-y-1/2 flex h-2.5 w-2.5">
+                            <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
+                            <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${pingInner}`} />
+                        </span>
+                        </Badge>
+                    </CardAction>
+                )}
+                <CardTitle className="text-xl">{venue.name}</CardTitle>
+                <CardDescription className="text-base">
+                    {venue.timeText}
+                </CardDescription>
+            </CardHeader>
         </Card>
     );
 }
