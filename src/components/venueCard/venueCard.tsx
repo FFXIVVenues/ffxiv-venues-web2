@@ -43,11 +43,8 @@ export function VenueCard({ venue }: VenueCardProps) {
                 <CardDescription className="text-base">
                     {time}
                 </CardDescription>
-                <CardDescription className="text-base text-left ml-0 pl-0 line-clamp-1">
-                    {venue.location.toString()}
-                </CardDescription>
             </CardHeader>
-
+            <div className="flex-1"></div>
             <CardContent>
                 {venue.tags && venue.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 pt-0.5">
@@ -80,7 +77,7 @@ export function VenueCard({ venue }: VenueCardProps) {
                 )}
             </CardContent>
 
-            <CardFooter className="py-4 border-t shrink-0">
+            <CardFooter className="pb-6 border-t">
                 <Button className="w-full">View Venue</Button>
             </CardFooter>
         </Card>
