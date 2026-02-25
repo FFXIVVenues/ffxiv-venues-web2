@@ -1,4 +1,4 @@
-import {Card, CardContent, CardHeader, CardFooter, CardTitle, CardAction, CardDescription} from "@/components/ui/card";
+import {Card, CardHeader, CardFooter, CardTitle, CardAction, CardDescription} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge.tsx";
 import {Button} from "@/components/ui/button.tsx";
 
@@ -54,7 +54,15 @@ export function VenueCard({ venue }: VenueCardProps) {
                 </CardDescription>
             </CardHeader>
 
-            <CardFooter>
+            <CardFooter className="flex flex-col gap-3">
+                <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 1</Badge>
+                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 2</Badge>
+                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 3</Badge>
+                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 4</Badge>
+                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 5</Badge>
+                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 6</Badge>
+                </div>
                 <Button className="w-full">View Venue</Button>
             </CardFooter>
         </Card>
