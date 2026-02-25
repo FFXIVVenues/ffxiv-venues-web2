@@ -13,6 +13,7 @@ type Venue = {
     imageUrl: string;
     timeText: string;
     status?: VenueStatus;
+    tags?: string[];
 }
 
 type VenueCardProps = {
@@ -55,14 +56,13 @@ export function VenueCard({ venue }: VenueCardProps) {
             </CardHeader>
 
             <CardFooter className="flex flex-col gap-3">
-                <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 1</Badge>
-                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 2</Badge>
-                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 3</Badge>
-                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 4</Badge>
-                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 5</Badge>
-                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">Tag 6</Badge>
-                </div>
+                {venue.tags && venue.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                        {venue.tags.map(tag => (
+                            <Badge key={tag} variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">{tag}</Badge>
+                        ))}
+                    </div>
+                )}
                 <Button className="w-full">View Venue</Button>
             </CardFooter>
         </Card>
