@@ -12,6 +12,7 @@ import logo from "@/assets/logo-300.webp";
 import {ChevronDown} from "lucide-react";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
 import {Input} from "@/components/ui/input.tsx";
+import {FieldLabel} from "@/components/ui/field.tsx";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -43,7 +44,8 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
                         </h1>
                     </SidebarGroup>
                     <SidebarGroup>
-                        <Input type="text" placeholder="Search venues"/>
+                        <FieldLabel htmlFor="search-venues" className="sr-only">Search venues</FieldLabel>
+                        <Input id="search-venues" type="text" placeholder="Search venues"/>
                     </SidebarGroup>
                     <SidebarGroup>
                         <SidebarMenu>
@@ -132,6 +134,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
 
             <main className="px-2 py-4">
                 <SidebarTrigger/>
+                {pageContent}
             </main>
 
         </SidebarProvider>
