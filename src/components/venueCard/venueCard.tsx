@@ -22,13 +22,12 @@ type VenueCardProps = {
 export function VenueCard({ venue }: VenueCardProps) {
     const isOpen = venue.status === VenueStatus.Open;
     const isNew  = venue.status === VenueStatus.New;
-    const glowClass = isOpen ? "shadow-[inset_0_0_0_2px_rgba(232,121,249,1),0_0_20px_rgba(232,121,249,0.6)]" : isNew ? "shadow-[inset_0_0_0_2px_rgba(34,197,94,1),0_0_18px_rgba(34,197,94,0.6)]" : ""
     const pingOuter = isOpen ? "bg-fuchsia-500" : isNew ? "bg-green-500" : "";
     const pingInner = isOpen ? "bg-fuchsia-400 shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
 
     return (
         <Card className="group rounded-xl overflow-visible pt-0 transition hover:-translate-y-0.5 hover:shadow-xl">
-            <div className="relative w-full aspect-[2/1] overflow-hidden rounded-t-xl">
+            <div className="relative w-full aspect-2/1 overflow-hidden rounded-t-xl">
                 <img
                     src={venue.imageUrl}
                     alt={venue.name}
@@ -54,6 +53,10 @@ export function VenueCard({ venue }: VenueCardProps) {
                     {venue.timeText}
                 </CardDescription>
             </CardHeader>
+
+            <CardFooter>
+                <Button className="w-full">View Venue</Button>
+            </CardFooter>
         </Card>
     );
 }
