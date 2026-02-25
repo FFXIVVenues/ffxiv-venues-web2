@@ -3,11 +3,11 @@ import {VenueCard, VenueStatus} from "@/components/venueCard/venueCard.tsx";
 const venues = [
     {
         id: "1",
-        name: "The Cozy Leaf",
+        name: "Really super long title that's annoying",
         imageUrl: "../../assets/default-banner.jpg",
         timeText: "Today 7:00pm - 11:00pm",
         status: VenueStatus.Open,
-        tags: ["Lounge", "Other", "Photography", "LGBTQIA+", "RP Heavy"]
+        tags: ["Lounge", "Other", "Photography", "LGBTQIA+", "RP Heavy", "SuperDuperReallyLongAnnoyingTag"]
     },
     {
         id: "2",

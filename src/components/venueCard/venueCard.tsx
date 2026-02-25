@@ -1,7 +1,7 @@
 import {Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
+import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
 
 export enum VenueStatus {
     None = "Closed",
@@ -28,7 +28,7 @@ export function VenueCard({ venue }: VenueCardProps) {
     const pingInner = isOpen ? "bg-fuchsia-400 shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
 
     return (
-        <Card className="rounded-xl overflow-hidden py-0">
+        <Card className="rounded-xl overflow-hidden py-0 h-full flex flex-col">
             <div className="relative w-full aspect-2/1 overflow-hidden rounded-t-xl">
                 <img
                     src={venue.imageUrl}
@@ -40,7 +40,7 @@ export function VenueCard({ venue }: VenueCardProps) {
 
             <CardHeader className="">
                 <div className="flex items-start justify-between gap-3">
-                    <CardTitle className="text-xl leading-tight">{venue.name}</CardTitle>
+                    <CardTitle className="text-xl leading-tight line-clamp-1">{venue.name}</CardTitle>
                     {(isOpen || isNew) && (
                         <Badge variant="secondary" className="relative pr-6 shrink-0 mt-0.5">
                             {venue.status}
@@ -75,7 +75,7 @@ export function VenueCard({ venue }: VenueCardProps) {
                                     hover:scale-[1.06] hover:bg-accent hover:text-accent-foreground hover:border-accent hover:shadow-sm">+{venue.tags.length - 3} more</Badge>
                                 </TooltipTrigger>
 
-                                <TooltipContent className="rounded-md border bg-popover text-popover-foreground shadow-md px-3 py-2 text-xs max-w-[260px]">
+                                <TooltipContent className="rounded-md border bg-popover text-popover-foreground shadow-md px-3 py-2 text-xs max-w-65">
                                     <div className="flex flex-wrap gap-1">
                                         {venue.tags.slice(3).map((tag) => (
                                             <span key={tag} className="rounded-sm bg-muted px-1.5 py-0.5 text-muted-foreground">{tag}</span>
@@ -88,7 +88,7 @@ export function VenueCard({ venue }: VenueCardProps) {
                 )}
             </CardContent>
 
-            <CardFooter className="py-4 border-t">
+            <CardFooter className="py-4 border-t shrink-0">
                 <Button className="w-full">View Venue</Button>
             </CardFooter>
         </Card>
