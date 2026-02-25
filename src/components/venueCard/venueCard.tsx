@@ -1,6 +1,7 @@
 import {Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge.tsx";
 import {Button} from "@/components/ui/button.tsx";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 
 export enum VenueStatus {
     None = "Closed",
@@ -67,9 +68,21 @@ export function VenueCard({ venue }: VenueCardProps) {
                         ))}
 
                         {venue.tags.length > 3 && (
-                            <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5 whitespace-nowrap rounded-sm
-                            transition duration-200 ease-out hover:-translate-y-0.5
-                             hover:scale-[1.06] hover:bg-accent hover:text-accent-foreground hover:border-accent hover:shadow-sm">+{venue.tags.length - 3} more</Badge>
+                            <Tooltip>
+                                <TooltipTrigger>
+                                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5 whitespace-nowrap rounded-sm
+                                    transition duration-200 ease-out hover:-translate-y-0.5
+                                    hover:scale-[1.06] hover:bg-accent hover:text-accent-foreground hover:border-accent hover:shadow-sm">+{venue.tags.length - 3} more</Badge>
+                                </TooltipTrigger>
+
+                                <TooltipContent className="rounded-md border bg-popover text-popover-foreground shadow-md px-3 py-2 text-xs max-w-[260px]">
+                                    <div className="flex flex-wrap gap-1">
+                                        {venue.tags.slice(3).map((tag) => (
+                                            <span key={tag} className="rounded-sm bg-muted px-1.5 py-0.5 text-muted-foreground">{tag}</span>
+                                        ))}
+                                    </div>
+                                </TooltipContent>
+                            </Tooltip>
                         )}
                     </div>
                 )}

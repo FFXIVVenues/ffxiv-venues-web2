@@ -7,6 +7,7 @@ import {
     SidebarHeader,
     SidebarProvider, SidebarTrigger
 } from "@/components/ui/sidebar.tsx";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -28,23 +29,25 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({ child
     );
 
     return <>
-        <SidebarProvider>
-            <Sidebar variant="floating">
-                <SidebarHeader />
-                <SidebarContent>
-                    <SidebarGroup>
-                        {sidebarContent}
-                    </SidebarGroup>
-                </SidebarContent>
-                <SidebarFooter/>
-            </Sidebar>
+        <TooltipProvider>
+            <SidebarProvider>
+                <Sidebar variant="floating">
+                    <SidebarHeader />
+                    <SidebarContent>
+                        <SidebarGroup>
+                            {sidebarContent}
+                        </SidebarGroup>
+                    </SidebarContent>
+                    <SidebarFooter/>
+                </Sidebar>
 
-            <main className="px-2 py-4">
-                <SidebarTrigger />
-                {pageContent}
-            </main>
+                <main className="px-2 py-4">
+                    <SidebarTrigger />
+                    {pageContent}
+                </main>
 
-        </SidebarProvider>
+            </SidebarProvider>
+        </TooltipProvider>
     </>
 }
 
