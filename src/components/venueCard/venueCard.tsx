@@ -2,28 +2,17 @@ import {Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent} f
 import {Badge} from "@/components/ui/badge.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
-
-export enum VenueStatus {
-    None = "Closed",
-    Open = "Open",
-    New  = "New"
-}
-type Venue = {
-    id: string;
-    name: string;
-    imageUrl: string;
-    timeText: string;
-    status?: VenueStatus;
-    tags?: string[];
-}
+import type { Venue } from "@/lib/model/venue.ts";
 
 type VenueCardProps = {
     venue: Venue;
 }
 
 export function VenueCard({ venue }: VenueCardProps) {
-    const isOpen = venue.status === VenueStatus.Open;
-    const isNew  = venue.status === VenueStatus.New;
+    const isOpen = venue.resolution?.isNow === true;
+    const isNew  = venue.isNew();
+    const time = venue.resolution ? formatOpening(venue.resolution) : venue.resolution;
+    const status = isOpen ? "Open" : isNew ? "New" : null;
     const pingOuter = isOpen ? "bg-fuchsia-500" : isNew ? "bg-green-500" : "";
     const pingInner = isOpen ? "bg-fuchsia-400 shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
 
@@ -31,7 +20,7 @@ export function VenueCard({ venue }: VenueCardProps) {
         <Card className="rounded-xl overflow-hidden py-0 h-full flex flex-col">
             <div className="relative w-full aspect-2/1 overflow-hidden rounded-t-xl">
                 <img
-                    src={venue.imageUrl}
+                    src={venue.bannerUri}
                     alt={venue.name}
                     loading="lazy"
                     className="h-full w-full object-cover"
@@ -43,7 +32,7 @@ export function VenueCard({ venue }: VenueCardProps) {
                     <CardTitle className="text-xl leading-tight line-clamp-1">{venue.name}</CardTitle>
                     {(isOpen || isNew) && (
                         <Badge variant="secondary" className="relative pr-6 shrink-0 mt-0.5">
-                            {venue.status}
+                            {status}
                             <span className="absolute right-2 top-1/2 -translate-y-1/2 flex h-1.5 w-1.5">
                                 <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
                                 <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${pingInner}`} />
@@ -52,7 +41,10 @@ export function VenueCard({ venue }: VenueCardProps) {
                     )}
                 </div>
                 <CardDescription className="text-base">
-                    {venue.timeText}
+                    {time}
+                </CardDescription>
+                <CardDescription className="text-base text-left ml-0 pl-0 line-clamp-1">
+                    {venue.location.toString()}
                 </CardDescription>
             </CardHeader>
 
@@ -93,4 +85,12 @@ export function VenueCard({ venue }: VenueCardProps) {
             </CardFooter>
         </Card>
     );
+}
+
+function formatOpening(o: { start: Date; end: Date; isNow?: boolean }) {
+    const day = o.start.toLocaleDateString(undefined, { weekday: "short" });
+    const start = o.start.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+    const end = o.end.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+
+    return o.isNow ? `Open until ${end}` : `${day} ${start} – ${end}`;
 }
