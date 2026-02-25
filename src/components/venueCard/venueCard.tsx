@@ -38,18 +38,18 @@ export function VenueCard({ venue }: VenueCardProps) {
             </div>
 
             <CardHeader className="">
-                {(isOpen || isNew) && (
-                    <CardAction>
-                        <Badge variant="secondary" className="relative pr-6">
+                <div className="flex items-start justify-between gap-3">
+                    <CardTitle className="text-xl leading-tight">{venue.name}</CardTitle>
+                    {(isOpen || isNew) && (
+                        <Badge variant="secondary" className="relative pr-6 shrink-0 mt-0.5">
                             {venue.status}
                             <span className="absolute right-2 top-1/2 -translate-y-1/2 flex h-2.5 w-2.5">
                                 <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
                                 <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${pingInner}`} />
                             </span>
                         </Badge>
-                    </CardAction>
-                )}
-                <CardTitle className="text-xl">{venue.name}</CardTitle>
+                    )}
+                </div>
                 <CardDescription className="text-base">
                     {venue.timeText}
                 </CardDescription>
@@ -58,7 +58,7 @@ export function VenueCard({ venue }: VenueCardProps) {
             <CardContent>
                 {venue.tags && venue.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 pt-0.5">
-                        {venue.tags.slice(0,3).map((tag, i) => (
+                        {venue.tags.slice(0,3).map((tag) => (
                             <Badge key={tag} variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5 whitespace-nowrap rounded-sm
                                 transition duration-200 ease-out hover:-translate-y-0.5
                                 hover:scale-[1.06] hover:bg-accent hover:text-accent-foreground hover:border-accent hover:shadow-sm">
