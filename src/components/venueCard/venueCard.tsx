@@ -1,4 +1,4 @@
-import {Card, CardHeader, CardFooter, CardTitle, CardAction, CardDescription, CardContent} from "@/components/ui/card";
+import {Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge.tsx";
 import {Button} from "@/components/ui/button.tsx";
 
@@ -43,9 +43,9 @@ export function VenueCard({ venue }: VenueCardProps) {
                     {(isOpen || isNew) && (
                         <Badge variant="secondary" className="relative pr-6 shrink-0 mt-0.5">
                             {venue.status}
-                            <span className="absolute right-2 top-1/2 -translate-y-1/2 flex h-2.5 w-2.5">
+                            <span className="absolute right-2 top-1/2 -translate-y-1/2 flex h-1.5 w-1.5">
                                 <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
-                                <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${pingInner}`} />
+                                <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${pingInner}`} />
                             </span>
                         </Badge>
                     )}
