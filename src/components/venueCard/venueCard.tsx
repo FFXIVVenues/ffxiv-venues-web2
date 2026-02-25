@@ -58,9 +58,13 @@ export function VenueCard({ venue }: VenueCardProps) {
             <CardFooter className="flex flex-col gap-3">
                 {venue.tags && venue.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2">
-                        {venue.tags.map(tag => (
+                        {venue.tags.slice(0,3).map(tag => (
                             <Badge key={tag} variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">{tag}</Badge>
                         ))}
+
+                        {venue.tags.length > 3 && (
+                            <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5">+{venue.tags.length - 3} more</Badge>
+                        )}
                     </div>
                 )}
                 <Button className="w-full">View Venue</Button>
