@@ -44,8 +44,7 @@ export function VenueCard({ venue }: VenueCardProps) {
                     {time}
                 </CardDescription>
             </CardHeader>
-            <div className="flex-1"></div>
-            <CardContent>
+            <CardContent className="flex-1">
                 {venue.tags && venue.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 pt-0.5">
                         {venue.tags.slice(0,3).map((tag) => (
