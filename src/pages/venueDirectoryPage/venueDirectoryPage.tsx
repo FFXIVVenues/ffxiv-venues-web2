@@ -5,9 +5,8 @@ import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
 export const VenueDirectoryPage = () => {
     const [venues, error, setFilters] = useVenueSchedule([]);
 
-    console.log(venues);
-    console.log(error)
-    if (error) { return(
+    if (error) {
+        return(
             <DefaultPageLayout>
                 <DefaultPageLayout.Panel>
                     Cock!

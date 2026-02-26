@@ -27,7 +27,7 @@ export function VenueCard({ venue }: VenueCardProps) {
                 />
             </div>
 
-            <CardHeader className="">
+            <CardHeader>
                 <div className="flex items-start justify-between gap-3">
                     <CardTitle className="text-xl leading-tight line-clamp-1">{venue.name}</CardTitle>
                     {(isOpen || isNew) && (
@@ -48,9 +48,7 @@ export function VenueCard({ venue }: VenueCardProps) {
                 {venue.tags && venue.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 pt-0.5">
                         {venue.tags.slice(0,3).map((tag) => (
-                            <Badge key={tag} variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5 whitespace-nowrap rounded-sm
-                                transition duration-200 ease-out hover:-translate-y-0.5
-                                hover:scale-[1.06] hover:bg-accent hover:text-accent-foreground hover:border-accent hover:shadow-sm">
+                            <Badge key={tag} variant="outline" className="bg-muted text-muted-foreground border-muted whitespace-nowrap rounded-sm">
                                 {tag}
                             </Badge>
                         ))}
@@ -58,9 +56,7 @@ export function VenueCard({ venue }: VenueCardProps) {
                         {venue.tags.length > 3 && (
                             <Tooltip>
                                 <TooltipTrigger>
-                                    <Badge variant="outline" className="text-xs bg-muted text-muted-foreground border-muted py-0.5 whitespace-nowrap rounded-sm
-                                    transition duration-200 ease-out hover:-translate-y-0.5
-                                    hover:scale-[1.06] hover:bg-accent hover:text-accent-foreground hover:border-accent hover:shadow-sm">+{venue.tags.length - 3} more</Badge>
+                                    <Badge variant="outline" className="bg-muted text-muted-foreground border-muted whitespace-nowrap rounded-sm">+{venue.tags.length - 3} more</Badge>
                                 </TooltipTrigger>
 
                                 <TooltipContent className="rounded-md border bg-popover text-popover-foreground shadow-md px-3 py-2 text-xs max-w-65">
