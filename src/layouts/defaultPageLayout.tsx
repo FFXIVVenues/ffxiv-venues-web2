@@ -4,6 +4,7 @@ import {
     Sidebar, SidebarContent, SidebarFooter,
     SidebarHeader, SidebarProvider, SidebarRail, SidebarTrigger
 } from "@/components/ui/sidebar.tsx";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -25,16 +26,17 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
     );
 
     return <>
-        <SidebarProvider>
+        <TooltipProvider>
+          <SidebarProvider>
             <Sidebar variant="floating">
-                <SidebarHeader>
-                    <h1><img src={logo} alt="FFXIV Venues" className="mx-auto p-2"/></h1>
-                </SidebarHeader>
-                <SidebarContent className="px-2">
-                    {sidebarContent}
-                </SidebarContent>
-                <SidebarFooter/>
-                <SidebarRail />
+              <SidebarHeader>
+                  <h1><img src={logo} alt="FFXIV Venues" className="mx-auto p-2"/></h1>
+              </SidebarHeader>
+              <SidebarContent className="px-2">
+                  {sidebarContent}
+              </SidebarContent>
+              <SidebarFooter/>
+              <SidebarRail />
             </Sidebar>
 
             <main className="px-2 py-4">
@@ -43,6 +45,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
             </main>
 
         </SidebarProvider>
+      </TooltipProvider>
     </>
 }
 
