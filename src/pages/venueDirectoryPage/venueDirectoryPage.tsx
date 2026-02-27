@@ -10,7 +10,7 @@ export const VenueDirectoryPage = () => {
         return(
             <DefaultPageLayout>
                 <DefaultPageLayout.Panel>
-                    <FilterMenu onFilter={(filters) => {console.log(filters)}} />
+                    <FilterMenu onFilter={setFilters} />
                 </DefaultPageLayout.Panel>
                 <DefaultPageLayout.Page>
                     <div className="mx-auto w-full max-w-7xl py-6">
@@ -23,7 +23,7 @@ export const VenueDirectoryPage = () => {
     return (
         <DefaultPageLayout>
             <DefaultPageLayout.Panel>
-                <FilterMenu onFilter={(filters) => {console.log(filters)}} />
+                <FilterMenu onFilter={setFilters} />
             </DefaultPageLayout.Panel>
             <DefaultPageLayout.Page>
                 <div className="mx-auto w-full max-w-7xl py-6">
