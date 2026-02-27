@@ -29,10 +29,10 @@ export const FilterMenu = ({ onFilter }: FilterMenuProps) => {
             ...filterRef.current.categoryFilters,
             ...filterRef.current.featureFilters
         ]
-        const searchText = filterRef.current.search;
+        const searchText = filterRef.current.search?.toLowerCase();
         if (searchText && searchText.length > 0)
             filters.push((v : Venue) =>
-                v.name.toLowerCase().includes(searchText.toLowerCase()));
+                v.name.toLowerCase().includes(searchText));
         onFilter(filters);
     }
 
