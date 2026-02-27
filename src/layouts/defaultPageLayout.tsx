@@ -3,9 +3,10 @@ import {
     Sidebar,
     SidebarContent,
     SidebarFooter,
-    SidebarGroup,
-    SidebarHeader,
-    SidebarProvider, SidebarTrigger
+    SidebarGroup, SidebarGroupAction, SidebarGroupContent, SidebarGroupLabel,
+    SidebarHeader, SidebarMenuButton, SidebarMenuItem,
+    SidebarProvider, SidebarTrigger, SidebarMenu, SidebarMenuSubButton,
+    SidebarMenuSubItem, SidebarMenuSub
 } from "@/components/ui/sidebar.tsx";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -19,7 +20,7 @@ type CompoundComponent<P = {}> = FC<P> & {
     Page: FC<{ children: ReactNode }>;
 };
 
-export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({ children, className }) => {
+export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({children, className}) => {
     const compounds = Children.toArray(children);
     const sidebarContent = compounds.find(
         (c): c is ReactElement => isValidElement(c) && c.type === DefaultPageLayout.Panel
@@ -51,5 +52,5 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({ child
     </>
 }
 
-DefaultPageLayout.Panel = ({ children }) => <>{children}</>;
-DefaultPageLayout.Page = ({ children }) => <>{children}</>;
+DefaultPageLayout.Panel = ({children}) => <>{children}</>;
+DefaultPageLayout.Page = ({children}) => <>{children}</>;
