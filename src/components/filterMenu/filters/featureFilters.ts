@@ -1,11 +1,10 @@
 import { hasTag } from "./filterFunctions/hasTag.ts";
-import { hasProp } from "./filterFunctions/hasProp.ts";
-import { propNotNull } from "./filterFunctions/propNotNull.ts";
+import { hasPropValue } from "@/components/filterMenu/filters/filterFunctions/hasPropValue.ts";
 import type { FilterOption } from "./categoryFilters.ts";
 
 export const featureFilters: FilterOption[] = [
-  { name: "Has SyncShell", filter: propNotNull("mareCode") },
-  { name: "SFW", filter: hasProp("sfw", true) },
+  { name: "SFW on entry", filter: hasPropValue("sfw", true) },
+  { name: "NSFW on entry", filter: hasPropValue("sfw", false) },
   { name: "Gambling", filter: hasTag("gambling") },
   { name: "Artists", filter: hasTag("artists") },
   { name: "Dancers", filter: hasTag("dancers") },
@@ -22,5 +21,5 @@ export const featureFilters: FilterOption[] = [
   { name: "VIP available", filter: hasTag("vip") },
   { name: "Triple triad", filter: hasTag("triple triad") },
   { name: "Courtesans", filter: hasTag("courtesans") },
-  { name: "RP Heavily Encouraged", filter: hasTag("rp heavy", "ic rp only") }
+  { name: "RP Heavy", filter: hasTag("rp heavy", "ic rp only") }
 ];
