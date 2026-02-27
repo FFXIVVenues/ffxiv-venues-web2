@@ -21,7 +21,7 @@ export function VenueCard({ venue }: VenueCardProps) {
         <Card className="rounded-xl overflow-hidden py-0 h-full flex flex-col">
             <div className="relative w-full aspect-2/1 overflow-hidden rounded-t-xl">
                 <img
-                    src={venue.bannerUri}
+                    src={venue.bannerUri ?? "../assets/default-banner.jpg"}
                     alt={venue.name}
                     loading="lazy"
                     className="h-full w-full object-cover"
@@ -44,15 +44,21 @@ export function VenueCard({ venue }: VenueCardProps) {
                 <CardDescription className="text-base">
                     {venue.resolution?.isNow? (
                         <>
-                            Open until <TimeText date={venue.resolution.end} />
+                            <span className="flex items-center gap-1">
+                                <span className="text-muted-foreground">Open until</span>
+                                <TimeText date={venue.resolution.end} />
+                            </span>
                         </>
                     ): venue.resolution ? (
                          <>
-                             <DateText date={venue.resolution.start} />{" "}
-                             <TimeText date={venue.resolution.start} /> –{" "}
-                             <TimeText date={venue.resolution.end} />
+                             <span className="flex items-center gap-1">
+                                 <DateText date={venue.resolution.start} />
+                                 <TimeText date={venue.resolution.start} />
+                                 <span className="text-muted-foreground">-</span>
+                                 <TimeText date={venue.resolution.end} />
+                             </span>
                          </>
-                    ) : null
+                    ) : <span className="invisible">No Hours Set</span>
                     }
                 </CardDescription>
             </CardHeader>
