@@ -55,7 +55,7 @@
   --color-chart-5: light-dark(oklch(0.769 0.188 70.08), oklch(0.645 0.246 16.439));
   --color-sidebar: light-dark(oklch(0.985 0 0), oklch(0.205 0 0));
   --color-sidebar-foreground: light-dark(oklch(0.145 0 0), oklch(0.985 0 0));
-  --color-sidebar-primary: light-dark(oklch(0.598 0.237 28.536), oklch(0.488 0.243 264.376));
+  --color-sidebar-primary: light-dark(oklch(0.205 0 0), oklch(0.488 0.243 264.376));
   --color-sidebar-primary-foreground: light-dark(oklch(0.985 0 0), oklch(0.985 0 0));
   /*--color-sidebar-accent: light-dark(oklch(0.525 0.214 357.899 / 0.5), oklch(0.513 0.204 10.241 / 0.8));*/
   --color-sidebar-accent: light-dark(oklch(0.97 0 0), oklch(0.269 0 0));
