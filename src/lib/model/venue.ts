@@ -19,6 +19,7 @@ class Venue {
     website?: string;
     discord?: string;
     sfw: boolean;
+    mareCode?: string;
     schedule: Schedule[];
     scheduleOverrides: ScheduleOverride[];
     tags: string[];
@@ -32,6 +33,7 @@ class Venue {
         this.website = venueDto.website;
         this.discord = venueDto.discord;
         this.sfw = venueDto.sfw;
+        this.mareCode = venueDto.mareCode;
         this.tags = venueDto.tags;
 
         this.added = new Date(venueDto.added);
