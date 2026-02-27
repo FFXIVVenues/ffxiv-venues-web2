@@ -8,9 +8,10 @@ import {DateText} from "@/components/dateString/dateText.tsx";
 
 type VenueCardProps = {
     venue: Venue;
+    onClick: () => void;
 }
 
-export function VenueCard({ venue }: VenueCardProps) {
+export function VenueCard({ venue, onClick }: VenueCardProps) {
     const isOpen = venue.resolution?.isNow === true;
     const isNew  = venue.isNew();
     const status = isOpen ? "Open" : isNew ? "New" : null;
@@ -91,7 +92,7 @@ export function VenueCard({ venue }: VenueCardProps) {
             </CardContent>
 
             <CardFooter className="pb-6 border-t">
-                <Button className="w-full">View Venue</Button>
+                <Button className="w-full" onClick={onClick}>View Venue</Button>
             </CardFooter>
         </Card>
     );

@@ -2,8 +2,13 @@ import {DefaultPageLayout} from "@/layouts/defaultPageLayout.tsx";
 import {FilterMenu} from "@/components/filterMenu/filterMenu.tsx";
 import {VenueCard} from "@/components/venueCard/venueCard.tsx";
 import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
+import {useState} from "react";
+import type {Venue} from "@/lib/model/venue.ts";
+import {Sheet} from "@/components/ui/sheet.tsx";
+import {VenueSheet} from "@/components/venueSheet/venueSheet.tsx";
 
 export const VenueDirectoryPage = () => {
+    const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
     const [venues, error, setFilters] = useVenueSchedule([]);
 
     if (error) {
@@ -26,14 +31,15 @@ export const VenueDirectoryPage = () => {
                 <FilterMenu onFilter={setFilters} />
             </DefaultPageLayout.Panel>
             <DefaultPageLayout.Page>
+                { selectedVenue && (<VenueSheet venue={selectedVenue} onClose={() => setSelectedVenue(null)} />)}
                 <div className="mx-auto w-full max-w-7xl py-6">
                     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         {(venues?.open ?? []).map((venue) => (
-                            <VenueCard key={venue.venue.id} venue={venue.venue} />
+                            <VenueCard key={venue.venue.id} venue={venue.venue} onClick={() => setSelectedVenue(venue.venue)} />
                         ))}
                     </div>
                 </div>
             </DefaultPageLayout.Page>
-    </DefaultPageLayout>
+        </DefaultPageLayout>
     );
 }
