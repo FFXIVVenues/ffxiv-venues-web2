@@ -47,17 +47,20 @@ export const FilterMenu = ({ onFilter }: FilterMenuProps) => {
 
         <FilterGroup
             heading="Regions"
+            defaultOpen={true}
             options={worldFilters}
             singleSelect={true}
             onFilter={e => updateFilters({ locationFilters: e.map(o => o) })} />
 
         <FilterGroup
-            heading="Categories"
+            heading="Scenes"
+            defaultOpen={false}
             options={categoryFilters}
             onFilter={e => updateFilters({ categoryFilters: e.map(o => o) })} />
 
         <FilterGroup
             heading="Features"
+            defaultOpen={false}
             options={featureFilters}
             onFilter={e => updateFilters({ featureFilters: e.map(o => o) })} />
     </>

@@ -16,10 +16,11 @@ export type FilterGroupProps = {
     heading: string;
     options: FilterOption[];
     singleSelect?: boolean;
+    defaultOpen?: boolean;
     onFilter: (e: Filter[]) => void;
 }
 
-export const FilterGroup = ({heading, options, onFilter, singleSelect = false}: FilterGroupProps) => {
+export const FilterGroup = ({heading, options, onFilter, singleSelect = false, defaultOpen = true}: FilterGroupProps) => {
     const [enabledFilters, setEnabledFilters] = useState<Filter[]>([]);
 
     const addFilter = (filter: Filter) => {
@@ -92,7 +93,7 @@ export const FilterGroup = ({heading, options, onFilter, singleSelect = false}: 
 
     return <SidebarGroup>
         <SidebarMenu>
-            <Collapsible defaultOpen className="group">
+            <Collapsible defaultOpen={defaultOpen} className="group">
                 <CollapsibleTrigger
                     className="w-full cursor-pointer">
                         <SidebarGroupLabel className="w-full uppercase font-bold flex justify-between">
