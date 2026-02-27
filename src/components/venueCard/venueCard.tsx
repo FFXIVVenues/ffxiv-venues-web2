@@ -3,6 +3,8 @@ import {Badge} from "@/components/ui/badge.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
 import type { Venue } from "@/lib/model/venue.ts";
+import {TimeText} from "@/components/dateString/timeText.tsx";
+import {DateText} from "@/components/dateString/dateText.tsx";
 
 type VenueCardProps = {
     venue: Venue;
@@ -11,7 +13,6 @@ type VenueCardProps = {
 export function VenueCard({ venue }: VenueCardProps) {
     const isOpen = venue.resolution?.isNow === true;
     const isNew  = venue.isNew();
-    const time = venue.resolution ? formatOpening(venue.resolution) : venue.resolution;
     const status = isOpen ? "Open" : isNew ? "New" : null;
     const pingOuter = isOpen ? "bg-fuchsia-500" : isNew ? "bg-green-500" : "";
     const pingInner = isOpen ? "bg-fuchsia-400 shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
@@ -41,7 +42,18 @@ export function VenueCard({ venue }: VenueCardProps) {
                     )}
                 </div>
                 <CardDescription className="text-base">
-                    {time}
+                    {venue.resolution?.isNow? (
+                        <>
+                            Open until <TimeText date={venue.resolution.end} />
+                        </>
+                    ): venue.resolution ? (
+                         <>
+                             <DateText date={venue.resolution.start} />{" "}
+                             <TimeText date={venue.resolution.start} /> –{" "}
+                             <TimeText date={venue.resolution.end} />
+                         </>
+                    ) : null
+                    }
                 </CardDescription>
             </CardHeader>
             <CardContent className="flex-1">
@@ -77,12 +89,4 @@ export function VenueCard({ venue }: VenueCardProps) {
             </CardFooter>
         </Card>
     );
-}
-
-function formatOpening(o: { start: Date; end: Date; isNow?: boolean }) {
-    const day = o.start.toLocaleDateString(undefined, { weekday: "short" });
-    const start = o.start.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
-    const end = o.end.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
-
-    return o.isNow ? `Open until ${end}` : `${day} ${start} – ${end}`;
 }
