@@ -1,4 +1,5 @@
 import {DefaultPageLayout} from "@/layouts/defaultPageLayout.tsx";
+import {FilterMenu} from "@/components/filterMenu/filterMenu.tsx";
 import {VenueCard} from "@/components/venueCard/venueCard.tsx";
 import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
 
@@ -9,7 +10,7 @@ export const VenueDirectoryPage = () => {
         return(
             <DefaultPageLayout>
                 <DefaultPageLayout.Panel>
-                    Cock!
+                    <FilterMenu onFilter={setFilters} />
                 </DefaultPageLayout.Panel>
                 <DefaultPageLayout.Page>
                     <div className="mx-auto w-full max-w-7xl py-6">
@@ -22,7 +23,7 @@ export const VenueDirectoryPage = () => {
     return (
         <DefaultPageLayout>
             <DefaultPageLayout.Panel>
-                Cock!
+                <FilterMenu onFilter={setFilters} />
             </DefaultPageLayout.Panel>
             <DefaultPageLayout.Page>
                 <div className="mx-auto w-full max-w-7xl py-6">

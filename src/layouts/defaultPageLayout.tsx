@@ -1,12 +1,8 @@
-import {Children, type FC, isValidElement, type ReactElement, type ReactHTMLElement, type ReactNode} from "react";
+import {Children, type FC, isValidElement, type ReactElement, type ReactNode} from "react";
+import logo from "@/assets/logo-300.webp";
 import {
-    Sidebar,
-    SidebarContent,
-    SidebarFooter,
-    SidebarGroup, SidebarGroupAction, SidebarGroupContent, SidebarGroupLabel,
-    SidebarHeader, SidebarMenuButton, SidebarMenuItem,
-    SidebarProvider, SidebarTrigger, SidebarMenu, SidebarMenuSubButton,
-    SidebarMenuSubItem, SidebarMenuSub
+    Sidebar, SidebarContent, SidebarFooter,
+    SidebarHeader, SidebarProvider, SidebarRail, SidebarTrigger
 } from "@/components/ui/sidebar.tsx";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -31,24 +27,25 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
 
     return <>
         <TooltipProvider>
-            <SidebarProvider>
-                <Sidebar variant="floating">
-                    <SidebarHeader />
-                    <SidebarContent>
-                        <SidebarGroup>
-                            {sidebarContent}
-                        </SidebarGroup>
-                    </SidebarContent>
-                    <SidebarFooter/>
-                </Sidebar>
+          <SidebarProvider>
+            <Sidebar variant="floating">
+              <SidebarHeader>
+                  <h1><img src={logo} alt="FFXIV Venues" className="mx-auto p-2"/></h1>
+              </SidebarHeader>
+              <SidebarContent className="px-2">
+                  {sidebarContent}
+              </SidebarContent>
+              <SidebarFooter/>
+              <SidebarRail />
+            </Sidebar>
 
-                <main className="px-2 py-4">
-                    <SidebarTrigger />
-                    {pageContent}
-                </main>
+            <main className="px-2 py-4">
+                <SidebarTrigger/>
+                {pageContent}
+            </main>
 
-            </SidebarProvider>
-        </TooltipProvider>
+        </SidebarProvider>
+      </TooltipProvider>
     </>
 }
 
