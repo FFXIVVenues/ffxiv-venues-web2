@@ -21,7 +21,7 @@ export function VenueCard({ venue }: VenueCardProps) {
         <Card className="rounded-xl overflow-hidden py-0 h-full flex flex-col">
             <div className="relative w-full aspect-2/1 overflow-hidden rounded-t-xl">
                 <img
-                    src={venue.bannerUri ?? "../assets/default-banner.jpg"}
+                    src={venue.bannerUri ?? "../assets/default-banner.webp"}
                     alt={venue.name}
                     loading="lazy"
                     className="h-full w-full object-cover"
