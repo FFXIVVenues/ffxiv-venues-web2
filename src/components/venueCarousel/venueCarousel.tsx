@@ -21,6 +21,7 @@ export function VenueCarousel({ title, venues }: VenueCarouselSectionProps) {
                     <ChevronRightIcon className={["h-4 w-4 transition-transform duration-200 group-hover:text-[rgb(227,120,255)] ", open ? "rotate-90" : "rotate-0",].join(" ")} />
                     <h2 className="text-lg font-semibold tracking-wide uppercase text-foreground/90 transition-colors duration-200 group-hover:text-[rgb(227,120,255)]">{title}</h2>
                 </CollapsibleTrigger>
+
                 <CollapsibleContent>
                     <Carousel opts={{ align: "start", loop: false, dragFree: true }} className="w-full mt-3">
                         <div className="grid grid-cols-[30px_1fr_30px] items-center gap-2 w-full min-w-0">
@@ -48,6 +49,7 @@ export function VenueCarousel({ title, venues }: VenueCarouselSectionProps) {
                         </div>
                     </Carousel>
                 </CollapsibleContent>
+
             </section>
         </Collapsible>
     );
