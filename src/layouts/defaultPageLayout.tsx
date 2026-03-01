@@ -39,7 +39,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
               <SidebarRail />
             </Sidebar>
 
-            <main className="px-2 py-4">
+            <main className="flex-1 px-2 py-4 overflow-x-hidden">
                 <SidebarTrigger/>
                 {pageContent}
             </main>
@@ -50,4 +50,4 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
 }
 
 DefaultPageLayout.Panel = ({children}) => <>{children}</>;
-DefaultPageLayout.Page = ({children}) => <>{children}</>;
+DefaultPageLayout.Page = ({children}) => <div className="max-w-full min-w-0">{children}</div>;

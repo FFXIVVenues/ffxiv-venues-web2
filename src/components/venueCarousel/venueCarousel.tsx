@@ -34,7 +34,7 @@ export function VenueCarousel({ title, venues }: VenueCarouselSectionProps) {
                             {venues.map((v) => (
                                 <CarouselItem
                                     key={v.id}
-                                    className="grow-0 shrink-0 xs:basis-[220px] basis-[300px] sm:basis-[380px] lg:basis-[400px]"
+                                    className="grow-0 shrink-0 basis-75 sm:basis-95 lg:basis-100"
                                 >
                                     <VenueCard venue={v} />
                                 </CarouselItem>
