@@ -1,22 +1,25 @@
 import React, { type ReactNode } from "react";
 import type { Venue } from "@/lib/model/venue";
 import { VenueCard } from "@/components/venueCard/venueCard";
+import type { ScheduleItem } from "@/lib/services/venues/venueService";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
 import {ChevronRightIcon} from "lucide-react";
 
-type VenueCarouselSectionProps = {
+type VenueCarouselProps = {
     title: ReactNode;
-    venues: Venue[];
+    venues?: Venue[];
+    items?: ScheduleItem[];
 };
 
-export function VenueCarousel({ title, venues }: VenueCarouselSectionProps) {
-    if (!venues || venues.length === 0) return null;
+export function VenueCarousel({ title, venues, items }: VenueCarouselProps) {
+    const list = items ?? venues ?? [];
+    if (!list || list.length === 0) return null;
     const [open, setOpen] = React.useState(true)
 
     return (
         <Collapsible open={open} onOpenChange={setOpen}>
-            <section className="w-full min-w-0">
+            <section className="w-full min-w-0 pt-3">
                 <CollapsibleTrigger className="group flex w-full items-center gap-5 transition-colors duration-200 hover:text-[rgb(227,120,255)] hover:drop-shadow-[0_0_6px_rgba(227,120,255,0.6)]">
                     <ChevronRightIcon className={["h-4 w-4 transition-transform duration-200 group-hover:text-[rgb(227,120,255)] ", open ? "rotate-90" : "rotate-0",].join(" ")} />
                     <h2 className="text-lg font-semibold tracking-wide uppercase text-foreground/90 transition-colors duration-200 group-hover:text-[rgb(227,120,255)]">{title}</h2>
@@ -32,14 +35,17 @@ export function VenueCarousel({ title, venues }: VenueCarouselSectionProps) {
 
                             <div className="relative min-w-0 overflow-hidden">
                                 <CarouselContent className="gap-4">
-                                    {venues.map((v) => (
-                                        <CarouselItem
-                                            key={v.id}
-                                            className="grow-0 shrink-0 basis-75 sm:basis-95 lg:basis-100"
-                                        >
-                                            <VenueCard venue={v} />
-                                        </CarouselItem>
-                                    ))}
+                                    {(items ?? []).length > 0
+                                        ? items!.map(({ venue, opening }) => (
+                                            <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}`} className="grow-0 shrink-0 basis-75 sm:basis-95 lg:basis-100">
+                                                <VenueCard venue={venue} opening={opening} />
+                                            </CarouselItem>
+                                        ))
+                                        : (venues ?? []).map((v) => (
+                                            <CarouselItem key={v.id} className="grow-0 shrink-0 basis-75 sm:basis-95 lg:basis-100">
+                                                <VenueCard venue={v} />
+                                            </CarouselItem>
+                                        ))}
                                 </CarouselContent>
                             </div>
 

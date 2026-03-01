@@ -5,13 +5,17 @@ import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
 import type { Venue } from "@/lib/model/venue.ts";
 import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
+import type {Opening} from "@/lib/model/opening.ts";
 
 type VenueCardProps = {
     venue: Venue;
+    opening?: Opening;
 }
 
-export function VenueCard({ venue }: VenueCardProps) {
-    const isOpen = venue.resolution?.isNow === true;
+export function VenueCard({ venue, opening }: VenueCardProps) {
+    const displayOpening = opening ?? venue.resolution;
+
+    const isOpen = displayOpening?.isNow === true;
     const isNew  = venue.isNew();
     const status = isOpen ? "Open" : isNew ? "New" : null;
     const pingOuter = isOpen ? "bg-fuchsia-500" : isNew ? "bg-green-500" : "";
@@ -30,7 +34,7 @@ export function VenueCard({ venue }: VenueCardProps) {
 
             <CardHeader>
                 <div className="flex items-start justify-between gap-3">
-                    <CardTitle className="text-xl leading-tight line-clamp-1">{venue.name}</CardTitle>
+                    <CardTitle className="text-lg leading-tight line-clamp-1">{venue.name}</CardTitle>
                     {(isOpen || isNew) && (
                         <Badge variant="secondary" className="relative pr-6 shrink-0 mt-0.5">
                             {status}
@@ -41,21 +45,21 @@ export function VenueCard({ venue }: VenueCardProps) {
                         </Badge>
                     )}
                 </div>
-                <CardDescription className="text-base">
-                    {venue.resolution?.isNow? (
+                <CardDescription className="text-sm">
+                    {displayOpening?.isNow? (
                         <>
                             <span className="flex items-center gap-1">
                                 <span className="text-muted-foreground">Open until</span>
-                                <TimeText date={venue.resolution.end} />
+                                <TimeText date={displayOpening.end} />
                             </span>
                         </>
-                    ): venue.resolution ? (
+                    ): displayOpening ? (
                          <>
                              <span className="flex items-center gap-1">
-                                 <DateText date={venue.resolution.start} />
-                                 <TimeText date={venue.resolution.start} />
+                                 <DateText date={displayOpening.start} />
+                                 <TimeText date={displayOpening.start} />
                                  <span className="text-muted-foreground">-</span>
-                                 <TimeText date={venue.resolution.end} />
+                                 <TimeText date={displayOpening.end} />
                              </span>
                          </>
                     ) : <span className="invisible">No Hours Set</span>
