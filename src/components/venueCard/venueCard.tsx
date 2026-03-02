@@ -69,7 +69,7 @@ export function VenueCard({ venue, opening }: VenueCardProps) {
             <CardContent className="flex-1">
                 {venue.tags && venue.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 pt-0.5">
-                        {venue.tags.slice(0,3).map((tag) => (
+                        {venue.tags.slice(0,2).map((tag) => (
                             <Badge key={tag} variant="outline" className="bg-muted text-muted-foreground border-muted whitespace-nowrap rounded-sm">
                                 {tag}
                             </Badge>
@@ -78,12 +78,12 @@ export function VenueCard({ venue, opening }: VenueCardProps) {
                         {venue.tags.length > 3 && (
                             <Tooltip>
                                 <TooltipTrigger>
-                                    <Badge variant="outline" className="bg-muted text-muted-foreground border-muted whitespace-nowrap rounded-sm">+{venue.tags.length - 3} more</Badge>
+                                    <Badge variant="outline" className="bg-muted text-muted-foreground border-muted whitespace-nowrap rounded-sm">+{venue.tags.length - 2} more</Badge>
                                 </TooltipTrigger>
 
                                 <TooltipContent className="rounded-md border bg-popover text-popover-foreground shadow-md px-3 py-2 text-xs max-w-65">
                                     <div className="flex flex-wrap gap-1">
-                                        {venue.tags.slice(3).map((tag) => (
+                                        {venue.tags.slice(2).map((tag) => (
                                             <span key={tag} className="rounded-sm bg-muted px-1.5 py-0.5 text-muted-foreground">{tag}</span>
                                         ))}
                                     </div>
