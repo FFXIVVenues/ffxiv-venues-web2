@@ -22,8 +22,8 @@ export function VenueCard({ venue, opening }: VenueCardProps) {
     const pingInner = isOpen ? "bg-fuchsia-400 shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
 
     return (
-        <Card className="rounded-xl overflow-hidden py-0 h-full flex flex-col">
-            <div className="relative w-full aspect-2/1 overflow-hidden rounded-t-xl">
+        <Card className="py-0 h-full flex flex-col">
+            <div className="relative aspect-2/1">
                 <img
                     src={venue.bannerUri ?? "../assets/default-banner.webp"}
                     alt={venue.name}
@@ -34,9 +34,9 @@ export function VenueCard({ venue, opening }: VenueCardProps) {
 
             <CardHeader>
                 <div className="flex items-start justify-between gap-3">
-                    <CardTitle className="text-lg leading-tight line-clamp-1">{venue.name}</CardTitle>
+                    <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>
                     {(isOpen || isNew) && (
-                        <Badge variant="secondary" className="relative pr-6 shrink-0 mt-0.5">
+                        <Badge variant="secondary" className="relative pr-6 mt-0.5">
                             {status}
                             <span className="absolute right-2 top-1/2 -translate-y-1/2 flex h-1.5 w-1.5">
                                 <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
@@ -45,7 +45,7 @@ export function VenueCard({ venue, opening }: VenueCardProps) {
                         </Badge>
                     )}
                 </div>
-                <CardDescription className="text-sm">
+                <CardDescription className="min-h-6">
                     {displayOpening?.isNow? (
                         <span className="flex items-center gap-1">
                             <span className="text-muted-foreground">Open until</span>
@@ -55,7 +55,7 @@ export function VenueCard({ venue, opening }: VenueCardProps) {
                          <span className="flex items-center gap-1">
                              <DateText date={displayOpening.start} />
                              <TimeText date={displayOpening.start} />
-                             <span className="text-muted-foreground">-</span>
+                             <span>-</span>
                              <TimeText date={displayOpening.end} />
                          </span>
                     )
@@ -66,7 +66,7 @@ export function VenueCard({ venue, opening }: VenueCardProps) {
                 {venue.tags && venue.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 pt-0.5">
                         {venue.tags.slice(0,2).map((tag) => (
-                            <Badge key={tag} variant="outline" className="bg-muted text-muted-foreground border-muted whitespace-nowrap rounded-sm">
+                            <Badge key={tag} variant="outline" className="bg-muted text-muted-foreground border-muted rounded-sm">
                                 {tag}
                             </Badge>
                         ))}
@@ -74,13 +74,13 @@ export function VenueCard({ venue, opening }: VenueCardProps) {
                         {venue.tags.length > 2 && (
                             <Tooltip>
                                 <TooltipTrigger>
-                                    <Badge variant="outline" className="bg-muted text-muted-foreground border-muted whitespace-nowrap rounded-sm">+{venue.tags.length - 2} more</Badge>
+                                    <Badge variant="outline" className="bg-muted text-muted-foreground border-muted rounded-sm">+{venue.tags.length - 2} more</Badge>
                                 </TooltipTrigger>
 
                                 <TooltipContent className="rounded-md border bg-popover text-popover-foreground shadow-md px-3 py-2 text-xs max-w-65">
                                     <div className="flex flex-wrap gap-1">
                                         {venue.tags.slice(2).map((tag) => (
-                                            <span key={tag} className="rounded-sm bg-muted px-1.5 py-0.5 text-muted-foreground">{tag}</span>
+                                            <span key={tag} className="bg-muted px-1.5 py-0.5 text-muted-foreground rounded-sm">{tag}</span>
                                         ))}
                                     </div>
                                 </TooltipContent>

@@ -50,4 +50,4 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
 }
 
 DefaultPageLayout.Panel = ({children}) => <>{children}</>;
-DefaultPageLayout.Page = ({children}) => <div className="max-w-full min-w-0">{children}</div>;
+DefaultPageLayout.Page = ({children}) => <div className="min-w-0">{children}</div>;

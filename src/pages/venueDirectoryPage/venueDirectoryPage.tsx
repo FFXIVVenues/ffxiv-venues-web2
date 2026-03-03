@@ -15,7 +15,7 @@ export const VenueDirectoryPage = () => {
                     <FilterMenu onFilter={setFilters} />
                 </DefaultPageLayout.Panel>
                 <DefaultPageLayout.Page>
-                    <div className="mx-auto w-full max-w-7xl py-6">
+                    <div className="mx-auto max-w-7xl py-6">
                         <p className="text-red-600">Error: {error?.message}</p>
                     </div>
                 </DefaultPageLayout.Page>
@@ -35,7 +35,7 @@ export const VenueDirectoryPage = () => {
                     const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
 
                     return(
-                        <VenueCarousel title={title} venues={dayVenues} />
+                        <VenueCarousel key={day} title={title} venues={dayVenues} />
                     )
                 })}
                 <VenueCarousel title="Future Openings" venues={venues?.future ?? []} />
