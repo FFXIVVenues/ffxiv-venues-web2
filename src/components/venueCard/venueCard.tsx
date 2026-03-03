@@ -47,16 +47,16 @@ export function VenueCard({ venue, onClick }: VenueCardProps) {
                         <>
                             <span className="flex items-center gap-1">
                                 <span className="text-muted-foreground">Open until</span>
-                                <TimeText date={venue.resolution.end} />
+                                <TimeText time={venue.resolution.end} />
                             </span>
                         </>
                     ): venue.resolution ? (
                          <>
                              <span className="flex items-center gap-1">
                                  <DateText date={venue.resolution.start} />
-                                 <TimeText date={venue.resolution.start} />
+                                 <TimeText time={venue.resolution.start} />
                                  <span className="text-muted-foreground">-</span>
-                                 <TimeText date={venue.resolution.end} />
+                                 <TimeText time={venue.resolution.end} />
                              </span>
                          </>
                     ) : <span className="invisible">No Hours Set</span>

@@ -4,7 +4,6 @@ import {VenueCard} from "@/components/venueCard/venueCard.tsx";
 import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
 import {useState} from "react";
 import type {Venue} from "@/lib/model/venue.ts";
-import {Sheet} from "@/components/ui/sheet.tsx";
 import {VenueSheet} from "@/components/venueSheet/venueSheet.tsx";
 
 export const VenueDirectoryPage = () => {
