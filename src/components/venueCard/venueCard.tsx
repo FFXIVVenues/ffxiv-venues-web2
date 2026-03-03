@@ -47,22 +47,18 @@ export function VenueCard({ venue, opening }: VenueCardProps) {
                 </div>
                 <CardDescription className="text-sm">
                     {displayOpening?.isNow? (
-                        <>
-                            <span className="flex items-center gap-1">
-                                <span className="text-muted-foreground">Open until</span>
-                                <TimeText date={displayOpening.end} />
-                            </span>
-                        </>
-                    ): displayOpening ? (
-                         <>
-                             <span className="flex items-center gap-1">
-                                 <DateText date={displayOpening.start} />
-                                 <TimeText date={displayOpening.start} />
-                                 <span className="text-muted-foreground">-</span>
-                                 <TimeText date={displayOpening.end} />
-                             </span>
-                         </>
-                    ) : <span className="invisible">No Hours Set</span>
+                        <span className="flex items-center gap-1">
+                            <span className="text-muted-foreground">Open until</span>
+                            <TimeText date={displayOpening.end} />
+                        </span>
+                    ): displayOpening && (
+                         <span className="flex items-center gap-1">
+                             <DateText date={displayOpening.start} />
+                             <TimeText date={displayOpening.start} />
+                             <span className="text-muted-foreground">-</span>
+                             <TimeText date={displayOpening.end} />
+                         </span>
+                    )
                     }
                 </CardDescription>
             </CardHeader>
@@ -75,7 +71,7 @@ export function VenueCard({ venue, opening }: VenueCardProps) {
                             </Badge>
                         ))}
 
-                        {venue.tags.length > 3 && (
+                        {venue.tags.length > 2 && (
                             <Tooltip>
                                 <TooltipTrigger>
                                     <Badge variant="outline" className="bg-muted text-muted-foreground border-muted whitespace-nowrap rounded-sm">+{venue.tags.length - 2} more</Badge>

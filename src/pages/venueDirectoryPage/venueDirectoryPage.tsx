@@ -2,10 +2,11 @@ import {DefaultPageLayout} from "@/layouts/defaultPageLayout.tsx";
 import {FilterMenu} from "@/components/filterMenu/filterMenu.tsx";
 import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
 import {VenueCarousel} from "@/components/venueCarousel/venueCarousel.tsx";
-import {getDay} from "@/components/dateString/dayText.tsx";
+import {Day} from "@/lib/model/day.ts";
 
 export const VenueDirectoryPage = () => {
     const [venues, error, setFilters] = useVenueSchedule([]);
+    const currentDay = new Date().getDay() - 1 % 7
 
     if (error) {
         return(
@@ -27,15 +28,18 @@ export const VenueDirectoryPage = () => {
                 <FilterMenu onFilter={setFilters} />
             </DefaultPageLayout.Panel>
             <DefaultPageLayout.Page>
-                <VenueCarousel title="Open Now" venues={(venues?.open ?? []).map(x => x.venue)} />
-                <VenueCarousel title="Newest" venues={(venues?.newest ?? []).map(x => x.venue)} />
-                {(venues?.scheduled ?? []).map((dayItems, i) =>
-                    dayItems.length ? (
-                        <VenueCarousel key={i} title={getDay(i)} items={dayItems}/>
-                    ) : null
-                )}
-                <VenueCarousel title="Future Openings" venues={(venues?.future ?? []).map(x => x.venue)} />
-                <VenueCarousel title="Unscheduled" venues={(venues?.unscheduled ?? []).map(x => x.venue)} />
+                <VenueCarousel title="Open Now" venues={venues?.open ?? []} />
+                <VenueCarousel title="Newest" venues={venues?.newest ?? []} />
+                {(venues?.scheduled ?? []).map((dayVenues, i) => {
+                    const day = Day[(currentDay+i)%7];
+                    const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
+
+                    return(
+                        <VenueCarousel title={title} venues={dayVenues} />
+                    )
+                })}
+                <VenueCarousel title="Future Openings" venues={venues?.future ?? []} />
+                <VenueCarousel title="Unscheduled" venues={venues?.unscheduled ?? []} />
             </DefaultPageLayout.Page>
     </DefaultPageLayout>
     );
