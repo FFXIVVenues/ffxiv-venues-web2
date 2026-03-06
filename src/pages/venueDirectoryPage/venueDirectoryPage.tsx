@@ -4,7 +4,7 @@ import {VenueCard} from "@/components/venueCard/venueCard.tsx";
 import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
 import {useState} from "react";
 import type {Venue} from "@/lib/model/venue.ts";
-import {VenueSheet} from "@/components/venueSheet/venueSheet.tsx";
+import {VenueDrawer} from "@/components/venueSheet/venueDrawer.tsx";
 
 export const VenueDirectoryPage = () => {
     const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
@@ -30,7 +30,7 @@ export const VenueDirectoryPage = () => {
                 <FilterMenu onFilter={setFilters} />
             </DefaultPageLayout.Panel>
             <DefaultPageLayout.Page>
-                { selectedVenue && (<VenueSheet venue={selectedVenue} onClose={() => setSelectedVenue(null)} />)}
+                { selectedVenue && (<VenueDrawer venue={selectedVenue} onClose={() => setSelectedVenue(null)} />)}
                 <div className="mx-auto w-full max-w-7xl py-6">
                     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         {(venues?.open ?? []).map((venue) => (
