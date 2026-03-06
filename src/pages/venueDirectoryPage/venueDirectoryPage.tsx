@@ -3,6 +3,8 @@ import {FilterMenu} from "@/components/filterMenu/filterMenu.tsx";
 import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
 import {VenueCarousel} from "@/components/venueCarousel/venueCarousel.tsx";
 import {Day} from "@/lib/model/day.ts";
+import {Skeleton} from "@/components/ui/skeleton.tsx";
+import {Spinner} from "@/components/ui/spinner.tsx";
 
 export const VenueDirectoryPage = () => {
     const [venues, error, setFilters] = useVenueSchedule([]);
@@ -21,6 +23,33 @@ export const VenueDirectoryPage = () => {
                 </DefaultPageLayout.Page>
             </DefaultPageLayout>
         );
+    }
+
+    if (!venues){
+        return(
+            <DefaultPageLayout>
+                <DefaultPageLayout.Panel>
+                    <FilterMenu onFilter={setFilters} />
+                </DefaultPageLayout.Panel>
+                <DefaultPageLayout.Page>
+                    <div className="flex items-center justify-center gap-3 py-6 text-muted-foreground">
+                        <Spinner className="size-5" />
+                        <span>Getting venues...</span>
+                    </div>
+
+                    <div className="mx-auto max-w-7xl py-6 space-y-10">
+                        {Array.from({ length: 4 }).map((_, i) => (
+                            <section key={i} className="space-y-3">
+                                <div>
+                                    <Skeleton className="h-7 w-48" />
+                                </div>
+                                <Skeleton className="h-64 w-full rounded-xl" />
+                            </section>
+                        ))}
+                    </div>
+                </DefaultPageLayout.Page>
+            </DefaultPageLayout>
+            )
     }
     return (
         <DefaultPageLayout>
