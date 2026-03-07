@@ -21,7 +21,9 @@ export function VenueCardCompact({ venue, opening, onClick }: VenueCardProps) {
     const pingInner = isOpen ? "bg-fuchsia-400 shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
 
     return (
-        <Card className="p-3 cursor-pointer hover:bg-muted/50 transition-colors" onClick={onClick}>
+        <Card className="py-5 cursor-pointer hover:bg-muted/50 transition-colors gap-5 max-w-[350px]" onClick={onClick}>
+            <img src={venue.bannerUri ?? "../assets/default-banner.webp"} alt={venue.name} loading="lazy" className="aspect-2/1"/>
+
             <CardHeader>
                 <div className="flex items-start justify-between gap-3">
                     <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>
@@ -35,7 +37,7 @@ export function VenueCardCompact({ venue, opening, onClick }: VenueCardProps) {
                         </Badge>
                     )}
                 </div>
-                <CardDescription className="min-h-6">
+                <CardDescription className="min-h-4">
                     {displayOpening?.isNow? (
                         <span className="flex items-center gap-1">
                             <span className="text-muted-foreground">Open until</span>

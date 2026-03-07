@@ -1,7 +1,6 @@
 import {Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
 import type { Venue } from "@/lib/model/venue.ts";
 import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
@@ -23,7 +22,7 @@ export function VenueCard({ venue, opening, onClick }: VenueCardProps) {
     const pingInner = isOpen ? "bg-fuchsia-400 shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
 
     return (
-        <Card className="py-0 h-full flex flex-col">
+        <Card className="p-0 h-full flex flex-col max-w-[400px]">
             <img src={venue.bannerUri ?? "../assets/default-banner.webp"} alt={venue.name} loading="lazy" className="aspect-2/1"/>
 
             <CardHeader>
@@ -40,48 +39,31 @@ export function VenueCard({ venue, opening, onClick }: VenueCardProps) {
                     )}
                 </div>
                 <CardDescription className="min-h-6">
-                    {displayOpening?.isNow? (
+                    {displayOpening?.isNow ? (
                         <span className="flex items-center gap-1">
                             <span className="text-muted-foreground">Open until</span>
                             <TimeText date={displayOpening.end} />
                         </span>
-                    ): displayOpening && (
+                    ) : displayOpening && (
                         <span className="flex items-center gap-1">
-                             <DateText date={displayOpening.start} />
-                             <TimeText date={displayOpening.start} />
-                             <span>-</span>
-                             <TimeText date={displayOpening.end} />
-                         </span>
-                    )
-                    }
+                            <DateText date={displayOpening.start} />
+                            <TimeText date={displayOpening.start} />
+                            <span className="hidden md:inline">- <TimeText date={displayOpening.end} /></span>
+                        </span>
+                    )}
                 </CardDescription>
             </CardHeader>
+
             <CardContent className="flex-1">
-                {venue.tags && venue.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 pt-0.5">
-                        {venue.tags.slice(0,2).map((tag) => (
-                            <Badge key={tag} variant="outline" className="bg-muted text-muted-foreground border-muted rounded-sm">
+                <div className="flex items-center gap-2 pt-0.5">
+                    <div className="flex items-center gap-2 overflow-hidden flex-1" style={{ maskImage: "linear-gradient(to right, black 70%, transparent 100%)" }}>
+                        {venue.tags.map((tag) => (
+                            <Badge key={tag} variant="outline" className="bg-muted text-muted-foreground border-muted rounded-sm shrink-0">
                                 {tag}
                             </Badge>
                         ))}
-
-                        {venue.tags.length > 2 && (
-                            <Tooltip>
-                                <TooltipTrigger>
-                                    <Badge variant="outline" className="bg-muted text-muted-foreground border-muted rounded-sm">+{venue.tags.length - 2} more</Badge>
-                                </TooltipTrigger>
-
-                                <TooltipContent className="rounded-md border bg-popover text-popover-foreground shadow-md px-3 py-2 text-xs max-w-65">
-                                    <div className="flex flex-wrap gap-1">
-                                        {venue.tags.slice(2).map((tag) => (
-                                            <span key={tag} className="bg-muted px-1.5 py-0.5 text-muted-foreground rounded-sm">{tag}</span>
-                                        ))}
-                                    </div>
-                                </TooltipContent>
-                            </Tooltip>
-                        )}
                     </div>
-                )}
+                </div>
             </CardContent>
 
             <CardFooter className="pb-6 border-t">
