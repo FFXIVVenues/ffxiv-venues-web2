@@ -25,28 +25,20 @@ export function VenueCarousel({ title, venues}: VenueCarouselProps) {
                 </CollapsibleTrigger>
 
                 <CollapsibleContent>
-                    <Carousel opts={{ align: "start", loop: false, dragFree: true }} className="mt-3 pb-3">
-                        <div className="grid grid-cols-[30px_1fr_30px] items-center gap-2 min-w-0">
+                    <div className="relative px-12">
+                        <Carousel opts={{ align: "start", loop: false, dragFree: true }} className="mt-3 pb-3">
+                            <CarouselContent>
+                                {venues!.map(({ venue, opening }) => (
+                                    <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-70 md:basis-80 lg:basis-100">
+                                        <VenueCard venue={venue} opening={opening} onClick={() => console.log(`click! Welcome to ${venue.name}`)}/>
+                                    </CarouselItem>
+                                ))}
+                            </CarouselContent>
 
-                            <div className="flex justify-center">
-                                <CarouselPrevious className="relative h-8 w-8 ml-24" />
-                            </div>
-
-                            <div className="relative min-w-0 overflow-hidden">
-                                <CarouselContent>
-                                    {venues!.map(({ venue, opening }) => (
-                                            <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="grow-0 shrink-0 basis-75 sm:basis-95 lg:basis-100">
-                                                <VenueCardCompact venue={venue} opening={opening} onClick={() => console.log(`click! Welcome to ${venue.name}`)}/>
-                                            </CarouselItem>
-                                    ))}
-                                </CarouselContent>
-                            </div>
-
-                            <div className="flex justify-center">
-                                <CarouselNext className="relative h-8 w-8 mr-24" />
-                            </div>
-                        </div>
-                    </Carousel>
+                            <CarouselPrevious />
+                            <CarouselNext />
+                        </Carousel>
+                    </div>
                 </CollapsibleContent>
         </Collapsible>
     );
