@@ -5,6 +5,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
 import {ChevronRightIcon} from "lucide-react";
 import {cn} from "@/lib/utils";
+import {VenueCardCompact} from "@/components/venueCard/venueCardCompact.tsx";
 
 type VenueCarouselProps = {
     title: ReactNode;
@@ -18,34 +19,26 @@ export function VenueCarousel({ title, venues}: VenueCarouselProps) {
 
     return (
         <Collapsible open={open} onOpenChange={setOpen}>
-                <CollapsibleTrigger className="ml-9 group flex w-full items-center gap-2 hover:text-accent">
+                <CollapsibleTrigger className="ml-12 group flex w-full items-center gap-2 hover:text-accent">
                     <ChevronRightIcon className={cn("h-4 w-4 transition-transform", open ? "rotate-90" : "rotate-0")} />
                     <h2 className="text-lg font-semibold tracking-wide uppercase text-foreground/90 group-hover:text-accent">{title}</h2>
                 </CollapsibleTrigger>
 
                 <CollapsibleContent>
-                    <Carousel opts={{ align: "start", loop: false, dragFree: true }} className="mt-3 pb-3">
-                        <div className="grid grid-cols-[30px_1fr_30px] items-center gap-2 min-w-0">
+                    <div className="relative px-12">
+                        <Carousel opts={{ align: "start", loop: false, dragFree: true }} className="mt-3 pb-3">
+                            <CarouselContent>
+                                {venues!.map(({ venue, opening }) => (
+                                    <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-65 sm:basis-70 md:basis-90 lg:basis-auto">
+                                        <VenueCard venue={venue} opening={opening} onClick={() => console.log(`click! Welcome to ${venue.id}`)}/>
+                                    </CarouselItem>
+                                ))}
+                            </CarouselContent>
 
-                            <div className="flex justify-center">
-                                <CarouselPrevious className="relative h-8 w-8 ml-24" />
-                            </div>
-
-                            <div className="relative min-w-0 overflow-hidden">
-                                <CarouselContent>
-                                    {venues!.map(({ venue, opening }) => (
-                                            <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="grow-0 shrink-0 basis-75 sm:basis-95 lg:basis-100">
-                                                <VenueCard venue={venue} opening={opening} />
-                                            </CarouselItem>
-                                    ))}
-                                </CarouselContent>
-                            </div>
-
-                            <div className="flex justify-center">
-                                <CarouselNext className="relative h-8 w-8 mr-24" />
-                            </div>
-                        </div>
-                    </Carousel>
+                            <CarouselPrevious />
+                            <CarouselNext />
+                        </Carousel>
+                    </div>
                 </CollapsibleContent>
         </Collapsible>
     );
