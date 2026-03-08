@@ -110,7 +110,7 @@ const Tags = ({ tags } : { tags: string[] }) =>
 const Schedule = ({ venue }: { venue: Venue }) => {
   return <>
     { venue.resolution?.isNow &&
-      <p className="font-bold py-2 px-3 mx-4 bg-accent text-accent-foreground border border- rounded-md">Open now until <TimeText time={venue.resolution?.end} /></p> }
+      <p className="font-bold py-2 px-3 mx-4 bg-accent text-accent-foreground border rounded-md">Open now until <TimeText time={venue.resolution?.end} /></p> }
     { venue.resolution?.isNow === false &&
       <p className="text-lg py-2 px-3 bg-muted text-accent-foreground border rounded-md">Next open <DateText date={venue.resolution?.start} /></p> }
 
