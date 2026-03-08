@@ -3,7 +3,7 @@ import type { Location } from "@/lib/model/location.ts";
 type LocationProps = {
     location: Location;
     shorten?: boolean;
-    className: string;
+    className?: string;
 };
 
 export function LocationText({ location, shorten, className }: LocationProps) {

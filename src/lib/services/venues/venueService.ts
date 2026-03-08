@@ -20,7 +20,6 @@ class VenueService {
                 .then(response => response.json() as Promise<VenueDto[]>)
                 .then(venues => venues.map(v => new Venue(v)))
                 .then(resolve)
-                .then(() => console.timeEnd('venueService.getVenues'))
                 .catch(reject);
         });
     }

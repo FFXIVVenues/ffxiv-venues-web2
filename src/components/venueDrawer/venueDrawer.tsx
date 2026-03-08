@@ -10,11 +10,12 @@ import {DateText} from "@/components/dateString/dateText.tsx";
 import {Table, TableBody, TableCell, TableRow} from "@/components/ui/table.tsx";
 import {RecurringDayText} from "@/components/dateString/recurringDayText.tsx";
 import {Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle} from "@/components/ui/drawer.tsx";
-import {Button} from "@/components/ui/button.tsx";
+import {Button, buttonVariants} from "@/components/ui/button.tsx";
 import {DiscordFillIcon} from "@/components/icons/akar-icons-discord-fill.tsx";
 import {CopyIcon, LinkIcon, XIcon} from "lucide-react";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
 import {useCallback} from "react";
+import {cn} from "@/lib/utils";
 
 type VenueSheetProps = {
   open: boolean,
@@ -32,17 +33,18 @@ export const VenueDrawer = ({ open, venue, onClose }: VenueSheetProps) => {
                   <DrawerClose className="absolute right-4 top-3 bg-background/25 p-1 rounded hover:bg-background/75 cursor-pointer">
                     <XIcon />
                   </DrawerClose>
-                  <img className="w-full max-w-full mb-4" src={venue.bannerUri} alt={venue.name} />
+                  <img className="w-full max-w-full" src={venue.bannerUri} alt={venue.name} />
+                  <DrawerTitle className="text-2xl m-8 mb-0">{venue.name}</DrawerTitle>
+                  <DrawerDescription className="text-muted-foreground text-md mx-8 mb-2">
+                    <LocationText location={venue.location} />
+                  </DrawerDescription>
                 </DrawerHeader>
-                <DrawerDescription className="px-4">
-                  <DrawerTitle className="text-2xl m-4 mb-0">{venue.name}</DrawerTitle>
-                  <LocationText className="text-muted-foreground text-md m-4" location={venue.location} />
-                  <CopyButtons location={venue.location} />
-                  <Description description={venue.description} />
-                  <Tags tags={venue.tags} />
-                  <Schedule venue={venue} />
-                </DrawerDescription>
-
+                <div className="mx-8">
+                    <CopyButtons location={venue.location} />
+                    <Description description={venue.description} />
+                    <Tags tags={venue.tags} />
+                    <Schedule venue={venue} />
+                </div>
                 <DrawerFooter>
                   <div className="flex justify-content-end gap-4">
                     <WebsiteButton website={venue.website} />
@@ -64,14 +66,14 @@ const CopyButtons = ({ location }: { location: Location }) => {
   const copyLifestreamToClipboard = useCallback(() =>
     navigator.clipboard.writeText("/li " + location.toString()), [location]);
 
-  return <div className="pt-2 px-4 flex gap-1">
+  return <div className="flex gap-1">
     <Tooltip>
       <TooltipTrigger>
-        <Button size="icon-sm"
-                className="cursor-pointer bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground"
-                onClick={copyLocationToClipboard}>
-          <CopyIcon className="size-3"/>
-        </Button>
+        <a className={cn(buttonVariants({ variant: "secondary", size: "sm" }),
+                      "cursor-pointer size-7.5 bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground")}
+           onClick={copyLocationToClipboard}>
+          <CopyIcon className="size-3.5"/>
+        </a>
       </TooltipTrigger>
       <TooltipContent side="left" className="bg-muted text-muted-foreground">
         Copy location
@@ -80,11 +82,11 @@ const CopyButtons = ({ location }: { location: Location }) => {
 
     <Tooltip>
       <TooltipTrigger>
-        <Button size="icon-sm"
-                className="cursor-pointer bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground"
+        <a className={cn(buttonVariants({ variant: "secondary", size: "sm" }),
+          "cursor-pointer size-7.5 bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground")}
                 onClick={copyLifestreamToClipboard}>
-          <CopyIcon className="size-3"/>
-        </Button>
+          <CopyIcon className="size-3.5"/>
+        </a>
       </TooltipTrigger>
       <TooltipContent side="left" className="bg-muted text-muted-foreground">
         Copy lifestream command
@@ -95,12 +97,12 @@ const CopyButtons = ({ location }: { location: Location }) => {
 
 const Description = ({ description }: { description: string[] }) =>
   description && description.length > 0 &&
-    <article className="mt-4 p-4">
+    <article className="mt-8">
     <Markdown remarkPlugins={[remarkGfm]}>{description.join("\n\n")}</Markdown>
     </article>
 
 const Tags = ({ tags } : { tags: string[] }) =>
-  <div className="flex flex-wrap gap-2 p-4 my-4">
+  <div className="flex flex-wrap gap-2 my-8">
     {tags && tags.length &&
       tags.map((tag, i) =>
         <Badge variant="secondary" className="p-3 text-md rounded-sm" key={i}>{tag}</Badge>
@@ -110,17 +112,17 @@ const Tags = ({ tags } : { tags: string[] }) =>
 const Schedule = ({ venue }: { venue: Venue }) => {
   return <>
     { venue.resolution?.isNow &&
-      <p className="font-bold py-2 px-3 mx-4 bg-accent text-accent-foreground border rounded-md">Open now until <TimeText time={venue.resolution?.end} /></p> }
+      <p className="font-bold px-3 py-2 bg-accent text-accent-foreground border rounded-md">Open now until <TimeText time={venue.resolution?.end} /></p> }
     { venue.resolution?.isNow === false &&
-      <p className="text-lg py-2 px-3 bg-muted text-accent-foreground border rounded-md">Next open <DateText date={venue.resolution?.start} /></p> }
+      <p className="font-bold px-3 py-2 bg-muted text-accent-foreground border rounded-md">Next open <DateText date={venue.resolution?.start} /></p> }
 
     { venue.scheduleOverrides.some(s =>  s.end > new Date()) &&
-      <div className="p-4 mt-4">
+      <div className="mt-8">
         <h2 className="uppercase font-bold"> Schedule { venue.schedule && <>Ammendments</>}</h2>
         <Table className="mt-4">
           <TableBody>
-            { venue.scheduleOverrides.filter(o => new Date() < o.end).map(o =>
-              <TableRow>
+            { venue.scheduleOverrides.filter(o => new Date() < o.end).map((o, i) =>
+              <TableRow key={i}>
                 <TableCell className="w-full">{o.open ? 'Open' : 'Closed'}</TableCell>
                 <TableCell className="text-right w-fit"><DateText date={o.start} /></TableCell>
                 <TableCell className="text-right"><TimeText time={o.start} /></TableCell>
@@ -134,12 +136,12 @@ const Schedule = ({ venue }: { venue: Venue }) => {
     }
 
     { venue.schedule &&
-      <div className="p-4 mt-4">
+      <div className="mt-8">
         <h2 className="uppercase font-bold">Usual Schedule</h2>
         <Table className="mt-4">
           <TableBody>
-            {venue.schedule.map(s => s.resolution &&
-              <TableRow>
+            {venue.schedule.map((s, i) => s.resolution &&
+              <TableRow key={i}>
                 <TableCell><RecurringDayText date={s.resolution.start} interval={s.interval} /></TableCell>
                 <TableCell className="text-right w-fit"><TimeText time={s.resolution.start} /></TableCell>
                 <TableCell className="w-4">-</TableCell>
