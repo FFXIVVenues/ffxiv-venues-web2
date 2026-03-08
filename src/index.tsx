@@ -2,12 +2,13 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./components/app/app.tsx";
 import "./index.css";
-import {ThemeProvider} from "@/lib/utils/hooks/useTheme.ts";
+import { provideTheme } from "@/lib/services/settings/usetheme";
+
+provideTheme();
 
 const elem = document.getElementById("app-root")!;
 const app = (
   <StrictMode>
-      <ThemeProvider />
       <App />
   </StrictMode>
 );

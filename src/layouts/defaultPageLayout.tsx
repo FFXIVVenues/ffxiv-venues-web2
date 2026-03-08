@@ -28,7 +28,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
         (c): c is ReactElement => isValidElement(c) && c.type === DefaultPageLayout.Page
     );
     const [settingsOpen, setSettingsOpen] = useState(false);
-    const sidebarDefault = useSetting('sidebar') ?? true;
+    const sidebarDefault = useSetting('sidebar');
 
     return <>
         <TooltipProvider>

@@ -1,3 +1,10 @@
+const DEFAULTS = {
+    theme: 'system',
+    view: 'card',
+    sidebar: true,
+    drawerSide: 'right',
+};
+
 class SettingsService {
     constructor() {
         let data = localStorage.getItem("aether-venues-settings");
@@ -6,7 +13,8 @@ class SettingsService {
     }
 
     getSetting(settingId) {
-        return this._settings[settingId];
+        const value = this._settings[settingId];
+        return value !== undefined ? value : DEFAULTS[settingId];
     }
 
     setSetting(settingId, value) {

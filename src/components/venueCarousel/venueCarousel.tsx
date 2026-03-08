@@ -17,7 +17,7 @@ export function VenueCarousel({ title, venues}: VenueCarouselProps) {
     const list = venues ?? [];
     if (list.length === 0) return null;
     const [open, setOpen] = React.useState(true)
-    const view = useSetting('view') ?? 'card';
+    const view = useSetting('view');
 
     return (
         <Collapsible open={open} onOpenChange={setOpen}>

@@ -12,10 +12,10 @@ type SettingsDialogProps = {
 };
 
 export const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
-    const theme = useSetting('theme') ?? 'system';
-    const view = useSetting('view') ?? 'card';
-    const sidebarOpen = useSetting('sidebar') ?? true;
-    const drawerSide = useSetting('drawerSide') ?? 'right';
+    const theme = useSetting('theme');
+    const view = useSetting('view');
+    const sidebarOpen = useSetting('sidebar');
+    const drawerSide = useSetting('drawerSide');
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
