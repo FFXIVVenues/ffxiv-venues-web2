@@ -1,11 +1,12 @@
 import React, { type ReactNode } from "react";
 import { VenueCard } from "@/components/venueCard/venueCard";
+import {VenueCardCompact} from "@/components/venueCard/venueCardCompact.tsx";
 import type { ScheduleItem } from "@/lib/services/venues/venueService";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
 import {ChevronRightIcon} from "lucide-react";
 import {cn} from "@/lib/utils";
-import {VenueCardCompact} from "@/components/venueCard/venueCardCompact.tsx";
+import {useSetting} from "@/lib/services/settings/useSetting";
 
 type VenueCarouselProps = {
     title: ReactNode;
@@ -16,6 +17,7 @@ export function VenueCarousel({ title, venues}: VenueCarouselProps) {
     const list = venues ?? [];
     if (list.length === 0) return null;
     const [open, setOpen] = React.useState(true)
+    const view = useSetting('view') ?? 'card';
 
     return (
         <Collapsible open={open} onOpenChange={setOpen}>
@@ -30,7 +32,9 @@ export function VenueCarousel({ title, venues}: VenueCarouselProps) {
                             <CarouselContent>
                                 {venues!.map(({ venue, opening }) => (
                                     <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-65 sm:basis-70 md:basis-90 lg:basis-auto">
-                                        <VenueCard venue={venue} opening={opening} onClick={() => console.log(`click! Welcome to ${venue.id}`)}/>
+                                        {view === 'compact'
+                                            ? <VenueCardCompact venue={venue} opening={opening} onClick={() => console.log(`click! Welcome to ${venue.id}`)}/>
+                                            : <VenueCard venue={venue} opening={opening} onClick={() => console.log(`click! Welcome to ${venue.id}`)}/>}
                                     </CarouselItem>
                                 ))}
                             </CarouselContent>

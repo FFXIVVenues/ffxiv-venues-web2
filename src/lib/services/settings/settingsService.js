@@ -2,7 +2,7 @@ class SettingsService {
     constructor() {
         let data = localStorage.getItem("aether-venues-settings");
         this._settings = data ? JSON.parse(data) : {};
-        this._observers = [];
+        this._observers = {};
     }
 
     getSetting(settingId) {
@@ -12,12 +12,15 @@ class SettingsService {
     setSetting(settingId, value) {
         this._settings[settingId] = value;
         localStorage.setItem("aether-venues-settings", JSON.stringify(this._settings));
-        this._observers.forEach(o => o());
+        this._observers[settingId]?.forEach(o => o());
     }
 
-    observe(observer) {
-        this._observers.push(observer);
-        return () => this._observers = this._observers.filter(o => o === observer);
+    observe(settingId, observer) {
+        if (!this._observers[settingId])
+            this._observers[settingId] = [];
+        this._observers[settingId].push(observer);
+        return () => this._observers[settingId] =
+            this._observers[settingId].filter(o => o !== observer);
     }
 }
 
