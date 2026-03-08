@@ -3,6 +3,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Sun, Moon, Monitor, LayoutGrid, List, LayoutList } from "lucide-react";
 import { useSetting } from "@/lib/services/settings/useSetting";
 import { settingsService } from "@/lib/services/settings/settingsService";
+import {Switch} from "@/components/ui/switch.tsx";
 
 type SettingsDialogProps = {
     open: boolean;
@@ -12,6 +13,7 @@ type SettingsDialogProps = {
 export const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
     const theme = useSetting('theme') ?? 'system';
     const view = useSetting('view') ?? 'card';
+    const sidebarOpen = useSetting('sidebar') ?? true;
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
@@ -41,6 +43,14 @@ export const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
                         <ToggleGroupItem value="compact" aria-label="Compact"><LayoutList className="h-4 w-4"/></ToggleGroupItem>
                         <ToggleGroupItem value="list" aria-label="List View"><List className="h-4 w-4"></List></ToggleGroupItem>
                     </ToggleGroup>
+                </div>
+
+                <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium">Show Sidebar by Default</span>
+                    <Switch
+                        checked={sidebarOpen}
+                        onCheckedChange={value => settingsService.setSetting('sidebar', value)}
+                    />
                 </div>
             </DialogContent>
         </Dialog>

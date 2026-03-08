@@ -7,6 +7,7 @@ import {
 import { TooltipProvider } from "@/components/ui/tooltip";
 import {SettingsButton} from "@/components/settingsMenu/settingsButton.tsx";
 import {SettingsDialog} from "@/components/settingsMenu/settingsDialog.tsx";
+import {useSetting} from "@/lib/services/settings/useSetting";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -27,10 +28,11 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
         (c): c is ReactElement => isValidElement(c) && c.type === DefaultPageLayout.Page
     );
     const [settingsOpen, setSettingsOpen] = useState(false);
+    const sidebarDefault = useSetting('sidebar') ?? true;
 
     return <>
         <TooltipProvider>
-          <SidebarProvider>
+          <SidebarProvider defaultOpen={sidebarDefault}>
             <Sidebar variant="floating">
               <SidebarHeader>
                   <h1><img src={logo} alt="FFXIV Venues" className="mx-auto p-2"/></h1>
