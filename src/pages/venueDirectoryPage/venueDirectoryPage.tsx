@@ -4,11 +4,16 @@ import {VenueCard} from "@/components/venueCard/venueCard.tsx";
 import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
 import {useState} from "react";
 import type {Venue} from "@/lib/model/venue.ts";
-import {VenueDrawer} from "@/components/venueSheet/venueDrawer.tsx";
+import {VenueDrawer} from "@/components/venueDrawer/venueDrawer.tsx";
 
 export const VenueDirectoryPage = () => {
+    const [showVenuePanel, setShowVenuePanel] = useState<boolean>(false);
     const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
     const [venues, error, setFilters] = useVenueSchedule([]);
+
+    const activateVenuePanel = (venue: Venue) => {
+      setShowVenuePanel(true); setSelectedVenue(venue);
+    }
 
     if (error) {
         return(
@@ -30,11 +35,13 @@ export const VenueDirectoryPage = () => {
                 <FilterMenu onFilter={setFilters} />
             </DefaultPageLayout.Panel>
             <DefaultPageLayout.Page>
-                { selectedVenue && (<VenueDrawer venue={selectedVenue} onClose={() => setSelectedVenue(null)} />)}
+                <VenueDrawer open={showVenuePanel} venue={selectedVenue} onClose={() => setShowVenuePanel(false)} />
                 <div className="mx-auto w-full max-w-7xl py-6">
                     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         {(venues?.open ?? []).map((venue) => (
-                            <VenueCard key={venue.venue.id} venue={venue.venue} onClick={() => setSelectedVenue(venue.venue)} />
+                            <VenueCard key={venue.venue.id}
+                                       venue={venue.venue}
+                                       onClick={() => activateVenuePanel(venue.venue)} />
                         ))}
                     </div>
                 </div>
