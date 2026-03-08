@@ -1,10 +1,13 @@
-import {Children, type FC, isValidElement, type ReactElement, type ReactNode} from "react";
+import {Children, type FC, isValidElement, type ReactElement, type ReactNode, useState} from "react";
 import logo from "@/assets/logo-300.webp";
 import {
     Sidebar, SidebarContent, SidebarFooter,
     SidebarHeader, SidebarProvider, SidebarRail, SidebarTrigger
 } from "@/components/ui/sidebar.tsx";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import {SettingsButton} from "@/components/settingsMenu/settingsButton.tsx";
+import {SettingsDialog} from "@/components/settingsMenu/settingsDialog.tsx";
+import {useSetting} from "@/lib/services/settings/useSetting";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -24,10 +27,12 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
     const pageContent = compounds.find(
         (c): c is ReactElement => isValidElement(c) && c.type === DefaultPageLayout.Page
     );
+    const [settingsOpen, setSettingsOpen] = useState(false);
+    const sidebarDefault = useSetting('sidebar');
 
     return <>
         <TooltipProvider>
-          <SidebarProvider>
+          <SidebarProvider defaultOpen={sidebarDefault}>
             <Sidebar variant="floating">
               <SidebarHeader>
                   <h1><img src={logo} alt="FFXIV Venues" className="mx-auto p-2"/></h1>
@@ -35,7 +40,10 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
               <SidebarContent className="px-2">
                   {sidebarContent}
               </SidebarContent>
-              <SidebarFooter/>
+                <SidebarFooter>
+                    <SettingsButton onClick={() => setSettingsOpen(true)} />
+                    <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
+                </SidebarFooter>
               <SidebarRail />
             </Sidebar>
 
@@ -44,8 +52,8 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
                 {pageContent}
             </main>
 
-        </SidebarProvider>
-      </TooltipProvider>
+            </SidebarProvider>
+          </TooltipProvider>
     </>
 }
 
