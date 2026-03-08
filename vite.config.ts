@@ -11,6 +11,9 @@ export default defineConfig({
       "@": resolve(__dirname, "src"),
     },
   },
+  build: {
+    outDir: "../dist",
+  },
   plugins: [
     react(),
     tailwindcss(),
