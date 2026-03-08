@@ -156,7 +156,7 @@ const Schedule = ({ venue }: { venue: Venue }) => {
 
 const WebsiteButton = ({ website }: { website: Nullable<string> }) =>
   website &&
-    <Button asChild className="cursor-pointer h-10 px-4 grow">
+    <Button className="cursor-pointer h-10 px-4 grow">
       <a href={website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-bold!">
         <LinkIcon className="size-5" strokeWidth={3} stroke="black" /> Website
       </a>
@@ -164,7 +164,7 @@ const WebsiteButton = ({ website }: { website: Nullable<string> }) =>
 
 const DiscordButton = ({ discordLink }: { discordLink: Nullable<string> }) =>
   discordLink &&
-    <Button asChild className="cursor-pointer h-10 px-4 grow">
+    <Button className="cursor-pointer h-10 px-4 grow">
       <a href={discordLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-bold!">
         <DiscordFillIcon className="size-5" stroke="var(--color-primary-foreground)" fill="var(--color-primary-foreground)" /> Discord
       </a>

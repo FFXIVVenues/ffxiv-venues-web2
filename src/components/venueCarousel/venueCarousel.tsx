@@ -6,13 +6,15 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components
 import {ChevronRightIcon} from "lucide-react";
 import {cn} from "@/lib/utils";
 import {VenueCardCompact} from "@/components/venueCard/venueCardCompact.tsx";
+import type {Venue} from "@/lib/model/venue.ts";
 
 type VenueCarouselProps = {
     title: ReactNode;
     venues?: ScheduleItem[];
+    onVenueClick: (venue: Venue) => void;
 };
 
-export function VenueCarousel({ title, venues}: VenueCarouselProps) {
+export function VenueCarousel({ title, venues, onVenueClick}: VenueCarouselProps) {
     const list = venues ?? [];
     if (list.length === 0) return null;
     const [open, setOpen] = React.useState(true)
@@ -30,7 +32,7 @@ export function VenueCarousel({ title, venues}: VenueCarouselProps) {
                             <CarouselContent>
                                 {venues!.map(({ venue, opening }) => (
                                     <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-65 sm:basis-70 md:basis-90 lg:basis-auto">
-                                        <VenueCard venue={venue} opening={opening} onClick={() => console.log(`click! Welcome to ${venue.id}`)}/>
+                                        <VenueCard venue={venue} opening={opening} onClick={() => onVenueClick(venue)}/>
                                     </CarouselItem>
                                 ))}
                             </CarouselContent>
