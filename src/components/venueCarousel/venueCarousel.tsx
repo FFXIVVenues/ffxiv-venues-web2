@@ -28,18 +28,18 @@ export function VenueCarousel({ title, venues, onVenueClick}: VenueCarouselProps
                 <h2 className="text-lg font-semibold tracking-wide uppercase text-foreground/90 group-hover:text-accent">{title}</h2>
             </CollapsibleTrigger>
 
-                <CollapsibleContent>
-                    <div className="relative px-12">
-                         <Carousel opts={{ containScroll: "trimSnaps", align: "start", loop: false, dragFree: true }} className="mt-3 pb-3">
-                            <CarouselContent>
-                                {venues!.map(({ venue, opening }) => (
-                                    <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-65 sm:basis-70 md:basis-90 lg:basis-auto">
-                                        {view === 'compact'
-                                            ? <VenueCardCompact venue={venue} opening={opening} onClick={() => onClick={() => onVenueClick(venue)}/>
-                                            : <VenueCard venue={venue} opening={opening} onClick={() => onClick={() => onVenueClick(venue)}/>}
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
+            <CollapsibleContent>
+                <div className="relative px-12">
+                    <Carousel opts={{ containScroll: "trimSnaps", align: "start", loop: false, dragFree: true }} className="mt-3 pb-3">
+                        <CarouselContent>
+                            {venues!.map(({ venue, opening }) => (
+                                <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-65 sm:basis-70 md:basis-90 lg:basis-auto">
+                                    {view === 'compact'
+                                        ? <VenueCardCompact venue={venue} opening={opening} onClick={() => onVenueClick(venue)}/>
+                                        : <VenueCard venue={venue} opening={opening} onClick={() => onVenueClick(venue)}/>}
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
 
                         <CarouselPrevious />
                         <CarouselNext />

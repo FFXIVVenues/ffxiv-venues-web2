@@ -41,13 +41,13 @@ export function VenueCardCompact({ venue, opening, onClick }: VenueCardProps) {
                     {displayOpening?.isNow? (
                         <span className="flex items-center gap-1">
                             <span className="text-muted-foreground">Open until</span>
-                            <TimeText date={displayOpening.end} />
+                            <TimeText time={displayOpening.end} />
                         </span>
                     ): displayOpening && (
                         <span className="flex items-center gap-1">
                              <DateText date={displayOpening.start} />
-                             <TimeText date={displayOpening.start} />
-                             <span className="hidden md:inline">- <TimeText date={displayOpening.end} /></span>
+                             <TimeText time={displayOpening.start} />
+                             <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
                          </span>
                     )}
                 </CardDescription>
