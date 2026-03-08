@@ -67,7 +67,7 @@ export function VenueCard({ venue, opening, onClick }: VenueCardProps) {
             </CardContent>
 
             <CardFooter className="pb-6 border-t">
-                <Button className="w-full" onClick={onClick}>View Venue</Button>
+                <Button className="w-full cursor-pointer" onClick={onClick}>View Venue</Button>
             </CardFooter>
         </Card>
     );
