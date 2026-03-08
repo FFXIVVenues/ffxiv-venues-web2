@@ -5,6 +5,7 @@ import type { Venue } from "@/lib/model/venue.ts";
 import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
+import defaultBanner from "@/assets/default-banner.webp";
 
 type VenueCardProps = {
     venue: Venue;
@@ -23,7 +24,7 @@ export function VenueCard({ venue, opening, onClick }: VenueCardProps) {
 
     return (
         <Card className="p-0 h-full flex flex-col max-w-[400px]">
-            <img src={venue.bannerUri ?? "../assets/default-banner.webp"} alt={venue.name} loading="lazy" className="aspect-2/1"/>
+            <img src={venue.bannerUri ?? defaultBanner} alt={venue.name} loading="lazy" className="aspect-2/1"/>
 
             <CardHeader>
                 <div className="flex items-start justify-between gap-3">
@@ -42,13 +43,13 @@ export function VenueCard({ venue, opening, onClick }: VenueCardProps) {
                     {displayOpening?.isNow ? (
                         <span className="flex items-center gap-1">
                             <span className="text-muted-foreground">Open until</span>
-                            <TimeText date={displayOpening.end} />
+                            <TimeText time={displayOpening.end} />
                         </span>
                     ) : displayOpening && (
                         <span className="flex items-center gap-1">
                             <DateText date={displayOpening.start} />
-                            <TimeText date={displayOpening.start} />
-                            <span className="hidden md:inline">- <TimeText date={displayOpening.end} /></span>
+                            <TimeText time={displayOpening.start} />
+                            <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
                         </span>
                     )}
                 </CardDescription>
