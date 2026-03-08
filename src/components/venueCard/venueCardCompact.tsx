@@ -1,6 +1,5 @@
-import {Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent} from "@/components/ui/card";
+import {Card, CardHeader, CardTitle, CardDescription} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge.tsx";
-import {Button} from "@/components/ui/button.tsx";
 import type { Venue } from "@/lib/model/venue.ts";
 import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
@@ -12,17 +11,17 @@ type VenueCardProps = {
     onClick: () => void;
 }
 
-export function VenueCard({ venue, opening, onClick }: VenueCardProps) {
+export function VenueCardCompact({ venue, opening, onClick }: VenueCardProps) {
     const displayOpening = opening ?? venue.resolution;
-
     const isOpen = displayOpening?.isNow === true;
     const isNew  = venue.isNew();
     const status = isOpen ? "Open" : isNew ? "New" : null;
+
     const pingOuter = isOpen ? "bg-fuchsia-500" : isNew ? "bg-green-500" : "";
     const pingInner = isOpen ? "bg-fuchsia-400 shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
 
     return (
-        <Card className="p-0 h-full flex flex-col max-w-[400px]">
+        <Card className="py-5 cursor-pointer hover:bg-muted/50 transition-colors gap-5 max-w-[350px]" onClick={onClick}>
             <img src={venue.bannerUri ?? "../assets/default-banner.webp"} alt={venue.name} loading="lazy" className="aspect-2/1"/>
 
             <CardHeader>
@@ -38,37 +37,21 @@ export function VenueCard({ venue, opening, onClick }: VenueCardProps) {
                         </Badge>
                     )}
                 </div>
-                <CardDescription className="min-h-6">
-                    {displayOpening?.isNow ? (
+                <CardDescription className="min-h-4">
+                    {displayOpening?.isNow? (
                         <span className="flex items-center gap-1">
                             <span className="text-muted-foreground">Open until</span>
-                            <TimeText time={displayOpening.end} />
+                            <TimeText date={displayOpening.end} />
                         </span>
-                    ) : displayOpening && (
+                    ): displayOpening && (
                         <span className="flex items-center gap-1">
-                            <DateText date={displayOpening.start} />
-                            <TimeText time={displayOpening.start} />
-                            <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
-                        </span>
+                             <DateText date={displayOpening.start} />
+                             <TimeText date={displayOpening.start} />
+                             <span className="hidden md:inline">- <TimeText date={displayOpening.end} /></span>
+                         </span>
                     )}
                 </CardDescription>
             </CardHeader>
-
-            <CardContent className="flex-1">
-                <div className="flex items-center gap-2 pt-0.5">
-                    <div className="flex items-center gap-2 overflow-hidden flex-1" style={{ maskImage: "linear-gradient(to right, black 70%, transparent 100%)" }}>
-                        {venue.tags.map((tag) => (
-                            <Badge key={tag} variant="outline" className="bg-muted text-muted-foreground border-muted rounded-sm shrink-0">
-                                {tag}
-                            </Badge>
-                        ))}
-                    </div>
-                </div>
-            </CardContent>
-
-            <CardFooter className="pb-6 border-t">
-                <Button className="w-full cursor-pointer" onClick={onClick}>View Venue</Button>
-            </CardFooter>
         </Card>
     );
 }
