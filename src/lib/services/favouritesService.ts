@@ -30,6 +30,7 @@ class FavouritesService {
 
     removeFavourite(id:string) {
         const favourites = this.getFavourites().filter(i => i !== id);
+        this._favouritesCache = favourites;
         localStorage.setItem("aether-venues-favourites", JSON.stringify(favourites));
         this._observers.forEach(o => o());
         return favourites;
