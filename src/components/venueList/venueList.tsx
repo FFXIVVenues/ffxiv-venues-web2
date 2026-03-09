@@ -31,13 +31,7 @@ export function VenueList({ title, venues, onVenueClick, future = false }: Venue
                 <div className="px-12 mt-2 mb-4">
                     <table className="w-full [&_td]:border-none [&_tr]:border-none">
                         {list.map(({ venue, opening }) => (
-                            <VenueCardList
-                                key={`${venue.id}-${opening?.start ?? "x"}`}
-                                venue={venue}
-                                opening={opening}
-                                onClick={() => onVenueClick(venue)}
-                                future={future}
-                            />
+                            <VenueCardList key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={() => onVenueClick(venue)} future={future} />
                         ))}
                     </table>
                 </div>
