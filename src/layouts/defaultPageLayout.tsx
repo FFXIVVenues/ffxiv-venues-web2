@@ -41,7 +41,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
                   {sidebarContent}
               </SidebarContent>
                 <SidebarFooter>
-                    <SettingsButton onClick={() => setSettingsOpen(true)} />
+                    <SettingsButton className="cursor-pointer" onClick={() => setSettingsOpen(true)} />
                     <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
                 </SidebarFooter>
               <SidebarRail />
