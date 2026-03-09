@@ -17,12 +17,7 @@
   color-scheme: dark light;
 }
 
-@custom-variant dark {
-  @media (prefers-color-scheme: dark) {
-    /*noinspection CssInvalidAtRule */
-    @slot;
-  }
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --radius-sm: calc(0.625rem - 4px);

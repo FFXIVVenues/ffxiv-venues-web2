@@ -1,5 +1,6 @@
 import {Children, type FC, isValidElement, type ReactElement, type ReactNode, useState} from "react";
-import logo from "@/assets/logo-300.webp";
+import logoLight from "@/assets/logo-light-300.webp";
+import logoDark from "@/assets/logo-dark-300.webp";
 import {
     Sidebar, SidebarContent, SidebarFooter,
     SidebarHeader, SidebarProvider, SidebarRail, SidebarTrigger
@@ -35,7 +36,10 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
           <SidebarProvider defaultOpen={sidebarDefault}>
             <Sidebar variant="floating">
               <SidebarHeader>
-                  <h1><img src={logo} alt="FFXIV Venues" className="mx-auto p-2"/></h1>
+                  <h1>
+                    <img src={logoLight} alt="FFXIV Venues" className="hidden dark:block mx-auto p-2"/>
+                    <img src={logoDark} alt="FFXIV Venues" className="block dark:hidden mx-auto p-2"/>
+                  </h1>
               </SidebarHeader>
               <SidebarContent className="px-2">
                   {sidebarContent}

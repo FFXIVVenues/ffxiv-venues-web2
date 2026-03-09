@@ -32,7 +32,7 @@ export const VenueSchedule = ({venue, className}: { venue: Venue, className?: st
 
     {venue.scheduleOverrides.some(s => s.end > new Date()) &&
       <div className="mt-8">
-        <h2 className="uppercase font-bold"> Schedule {venue.schedule && <>Ammendments</>}</h2>
+        <h2 className="uppercase font-bold"> Schedule {venue.schedule && <>Amendments</>}</h2>
         <Table className="mt-4">
           <TableBody>
             {venue.scheduleOverrides.filter(o => new Date() < o.end).map((o, i) =>
