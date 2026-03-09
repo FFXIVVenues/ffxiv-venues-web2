@@ -3,7 +3,7 @@ import type { Opening } from "@/lib/model/opening.ts";
 import { TimeText } from "@/components/dateString/timeText.tsx";
 import { LocationText } from "@/components/locationText/locationText.tsx";
 import { Badge } from "@/components/ui/badge.tsx";
-import { TableCell, TableRow } from "@/components/ui/table.tsx";
+import {TableBody, TableCell, TableRow} from "@/components/ui/table.tsx";
 import { DateText } from "@/components/dateString/dateText.tsx";
 
 type VenueCardListProps = {
@@ -13,12 +13,12 @@ type VenueCardListProps = {
     future?: boolean;
 };
 
-export function VenueCardList({ venue, opening, onClick, future = false }: VenueCardListProps) {
+export function VenueListItem({ venue, opening, onClick, future = false }: VenueCardListProps) {
     const displayOpening = opening ?? venue.resolution;
     const isNew = venue.isNew();
 
     return (
-        <tbody className="group cursor-pointer" onClick={onClick}>
+        <TableBody className="group cursor-pointer" onClick={onClick}>
         {displayOpening && !displayOpening.isNow && future && (
             <TableRow className="border-none hover:bg-transparent">
                 <TableCell colSpan={3} className="sm:table-cell pb-0 pt-3 text-muted-foreground group-hover:bg-muted/50">
@@ -53,10 +53,10 @@ export function VenueCardList({ venue, opening, onClick, future = false }: Venue
                 </div>
             </TableCell>
 
-            <TableCell className="hidden lg:table-cell text-muted-foreground pt-0 pb-0 sm:pb-4 group-hover:bg-muted/50">
+            <TableCell className="hidden xl:table-cell text-muted-foreground pt-0 pb-0 sm:pb-4 group-hover:bg-muted/50">
                 <LocationText location={venue.location} />
             </TableCell>
         </TableRow>
-        </tbody>
+        </TableBody>
     );
 }

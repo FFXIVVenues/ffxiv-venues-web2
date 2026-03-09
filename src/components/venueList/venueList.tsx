@@ -4,7 +4,8 @@ import type { Venue } from "@/lib/model/venue.ts";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible.tsx";
 import { ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { VenueCardList } from "@/components/venueCard/venueCardList.tsx";
+import { VenueListItem } from "@/components/venueCard/venueListItem.tsx";
+import {Table} from "@/components/ui/table.tsx";
 
 type VenueListProps = {
     title: ReactNode;
@@ -29,11 +30,11 @@ export function VenueList({ title, venues, onVenueClick, future = false }: Venue
 
             <CollapsibleContent>
                 <div className="px-12 mt-2 mb-4">
-                    <table className="w-full [&_td]:border-none [&_tr]:border-none">
+                    <Table className="w-full [&_td]:border-none [&_tr]:border-none">
                         {list.map(({ venue, opening }) => (
-                            <VenueCardList key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={() => onVenueClick(venue)} future={future} />
+                            <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={() => onVenueClick(venue)} future={future} />
                         ))}
-                    </table>
+                    </Table>
                 </div>
             </CollapsibleContent>
         </Collapsible>
