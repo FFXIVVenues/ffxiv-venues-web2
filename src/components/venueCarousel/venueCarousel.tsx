@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react";
+import React, { type ReactNode, memo, useCallback } from "react";
 import { VenueCard } from "@/components/venueCard/venueCard";
 import {VenueCardCompact} from "@/components/venueCard/venueCardCompact.tsx";
 import type { ScheduleItem } from "@/lib/services/venues/venueService";
@@ -16,11 +16,15 @@ type VenueCarouselProps = {
     className?: string;
 };
 
-export function VenueCarousel({ title, venues, onVenueClick, className }: VenueCarouselProps) {
+export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: VenueCarouselProps) => {
     const list = venues ?? [];
     if (list.length === 0) return null;
     const [open, setOpen] = React.useState(true)
     const view = useSetting('view');
+
+    const handleVenueClick = useCallback((venue: Venue) => {
+        onVenueClick(venue);
+    }, [onVenueClick]);
 
     return (
         <Collapsible open={open} onOpenChange={setOpen} className={className}>
@@ -36,8 +40,8 @@ export function VenueCarousel({ title, venues, onVenueClick, className }: VenueC
                             {venues!.map(({ venue, opening }) => (
                                 <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-65 sm:basis-70 md:basis-90 lg:basis-auto m-0.5">
                                     {view === 'compact'
-                                        ? <VenueCardCompact venue={venue} opening={opening} onClick={() => onVenueClick(venue)}/>
-                                        : <VenueCard venue={venue} opening={opening} onClick={() => onVenueClick(venue)}/>}
+                                        ? <VenueCardCompact venue={venue} opening={opening} onClick={() => handleVenueClick(venue)}/>
+                                        : <VenueCard venue={venue} opening={opening} onClick={() => handleVenueClick(venue)}/>}
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
@@ -49,4 +53,4 @@ export function VenueCarousel({ title, venues, onVenueClick, className }: VenueC
             </CollapsibleContent>
         </Collapsible>
     );
-}
+});

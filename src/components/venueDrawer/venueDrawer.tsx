@@ -22,7 +22,7 @@ type VenueSheetProps = {
   onClose?: () => void
 }
 
-export const VenueDrawer = ({ open, venue, onClose }: VenueSheetProps) => {
+export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
   if (!venue) return null;
   const positionSetting = settingsService.getSetting("drawerSide");
   const bannerStyle = cva(
@@ -83,7 +83,7 @@ export const VenueDrawer = ({ open, venue, onClose }: VenueSheetProps) => {
           </DrawerFooter>
       </DrawerContent>
   </Drawer>
-}
+})
 
 const UtcOffset = ({className}: {className?: string})=> {
     const offsetMinutes = -new Date().getTimezoneOffset(); // flip sign to match UTC±
