@@ -1,3 +1,4 @@
+import {useState, useCallback} from "react";
 import {DefaultPageLayout} from "@/layouts/defaultPageLayout.tsx";
 import {FilterMenu} from "@/components/filterMenu/filterMenu.tsx";
 import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
@@ -5,7 +6,6 @@ import {VenueCarousel} from "@/components/venueCarousel/venueCarousel.tsx";
 import {Day} from "@/lib/model/day.ts";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
 import {Spinner} from "@/components/ui/spinner.tsx";
-import {useState} from "react";
 import type {Venue} from "@/lib/model/venue.ts";
 import {VenueDrawer} from "@/components/venueDrawer/venueDrawer.tsx";
 
@@ -15,9 +15,13 @@ export const VenueDirectoryPage = () => {
     const [venues, error, setFilters] = useVenueSchedule([]);
     const currentDay = (new Date().getDay() + 6) % 7
 
-    const activateVenuePanel = (venue: Venue) => {
+    const activateVenuePanel = useCallback((venue: Venue) => {
         setShowVenuePanel(true); setSelectedVenue(venue);
-    }
+    }, []);
+
+    const closeVenuePanel = useCallback(() => {
+        setShowVenuePanel(false);
+    }, []);
 
     return(
         <DefaultPageLayout>
@@ -46,7 +50,7 @@ export const VenueDirectoryPage = () => {
                 </>
             ):
               <>
-                <VenueDrawer open={showVenuePanel} venue={selectedVenue} onClose={() => setShowVenuePanel(false)} />
+                <VenueDrawer open={showVenuePanel} venue={selectedVenue} onClose={closeVenuePanel} />
                 <VenueCarousel title="Open Now" venues={venues?.open ?? []} onVenueClick={activateVenuePanel} />
                 <VenueCarousel title="Newest" venues={venues?.newest ?? []} onVenueClick={activateVenuePanel} />
                 {(venues?.scheduled ?? []).map((dayVenues, i) => {

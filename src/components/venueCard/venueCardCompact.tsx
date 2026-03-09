@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {Card, CardHeader, CardTitle, CardDescription} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge.tsx";
 import type { Venue } from "@/lib/model/venue.ts";
@@ -11,7 +12,7 @@ type VenueCardProps = {
     onClick: () => void;
 }
 
-export function VenueCardCompact({ venue, opening, onClick }: VenueCardProps) {
+export const VenueCardCompact = memo(function VenueCardCompact({ venue, opening, onClick }: VenueCardProps) {
     const displayOpening = opening ?? venue.resolution;
     const isOpen = displayOpening?.isNow === true;
     const isNew  = venue.isNew();
@@ -54,4 +55,4 @@ export function VenueCardCompact({ venue, opening, onClick }: VenueCardProps) {
             </CardHeader>
         </Card>
     );
-}
+});
