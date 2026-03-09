@@ -20,7 +20,7 @@ export type FilterGroupProps = {
     onFilter: (e: Filter[]) => void;
 }
 
-export const FilterGroup = memo(function FilterGroup({heading, options, onFilter, singleSelect = false, defaultOpen = true}: FilterGroupProps){
+export const FilterGroup = memo(({heading, options, onFilter, singleSelect = false, defaultOpen = true}: FilterGroupProps) => {
     const [enabledFilters, setEnabledFilters] = useState<Filter[]>([]);
 
     const addFilter = (filter: Filter) => {

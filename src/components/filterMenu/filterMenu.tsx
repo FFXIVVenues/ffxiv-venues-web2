@@ -14,7 +14,7 @@ export type FilterMenuProps = {
     onFilter: (filters: Filter[]) => void;
 }
 
-export const FilterMenu = memo(function FilterMenu({ onFilter }: FilterMenuProps){
+export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
     const filterRef = useRef({
         search: null as string | null,
         locationFilters: [] as Filter[],

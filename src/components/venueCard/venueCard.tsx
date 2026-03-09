@@ -14,7 +14,7 @@ type VenueCardProps = {
     onClick: () => void;
 }
 
-export const VenueCard = memo(function VenueCard({ venue, opening, onClick }: VenueCardProps) {
+export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
     const displayOpening = opening ?? venue.resolution;
 
     const isOpen = displayOpening?.isNow === true;

@@ -15,7 +15,7 @@ type VenueCarouselProps = {
     onVenueClick: (venue: Venue) => void;
 };
 
-export const VenueCarousel = memo(function VenueCarousel({ title, venues, onVenueClick}: VenueCarouselProps) {
+export const VenueCarousel = memo(({ title, venues, onVenueClick}: VenueCarouselProps) => {
     const list = venues ?? [];
     if (list.length === 0) return null;
     const [open, setOpen] = React.useState(true)

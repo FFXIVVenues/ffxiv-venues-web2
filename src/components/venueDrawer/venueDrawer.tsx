@@ -23,7 +23,7 @@ type VenueSheetProps = {
   onClose?: () => void
 }
 
-export const VenueDrawer = memo(function VenueDrawer({ open, venue, onClose }: VenueSheetProps){
+export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
   if (!venue) return null;
 
   return (
