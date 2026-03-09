@@ -1,4 +1,4 @@
-import {useCallback} from "react";
+import {memo, useCallback} from "react";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {CopyIcon, CopySlashIcon, HeartIcon} from "lucide-react";
@@ -8,7 +8,7 @@ import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {Toggle} from "@/components/ui/toggle.tsx";
 import type {Venue} from "@/lib/model/venue.ts";
 
-const VenueToolbar = ({venue, className }: { venue: Venue, className?: string }) => {
+const VenueToolbar = memo(({venue, className }: { venue: Venue, className?: string }) => {
   const location = venue.location;
   const copyLocationToClipboard = useCallback(() =>
     navigator.clipboard.writeText(location.toString()), [location]);
@@ -52,6 +52,6 @@ const VenueToolbar = ({venue, className }: { venue: Venue, className?: string })
     </Toggle>
   </div>
 
-}
+})
 
 export default VenueToolbar
