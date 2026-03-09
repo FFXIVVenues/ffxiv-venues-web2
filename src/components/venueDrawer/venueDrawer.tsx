@@ -2,7 +2,7 @@ import type {Nullable} from "@/lib/utils/nullable";
 import type {Venue} from "@/lib/model/venue.ts";
 import {LocationText} from "@/components/locationText/locationText.tsx";
 import {Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle} from "@/components/ui/drawer.tsx";
-import {HeartIcon, XIcon} from "lucide-react";
+import {XIcon} from "lucide-react";
 import VenueToolbar from "@/components/venueDrawer/venueToolbar.tsx";
 import {VenueDescription} from "@/components/venueDrawer/venueDescription.tsx";
 import {VenueNsfwText} from "@/components/venueDrawer/venueNsfwText.tsx";
@@ -11,10 +11,9 @@ import {VenueWebsiteButton} from "@/components/venueDrawer/venueWebsiteButton.ts
 import {VenueSchedule} from "@/components/venueDrawer/venueSchedule.tsx";
 import {VenueTags} from "@/components/venueDrawer/venueTags.tsx";
 import defaultBanner from "@/assets/default-banner.webp";
-import {Toggle} from "@/components/ui/toggle.tsx";
-import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {settingsService} from "@/lib/services/settings/settingsService";
 import {cva} from "class-variance-authority";
+import {memo} from "react";
 
 type VenueSheetProps = {
   open: boolean,
