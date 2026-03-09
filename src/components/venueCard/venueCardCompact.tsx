@@ -4,6 +4,8 @@ import type { Venue } from "@/lib/model/venue.ts";
 import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
+import {HeartIcon} from "lucide-react";
+import {favouritesService} from "@/lib/services/favouritesService.ts";
 
 type VenueCardProps = {
     venue: Venue;
@@ -13,6 +15,7 @@ type VenueCardProps = {
 
 export function VenueCardCompact({ venue, opening, onClick }: VenueCardProps) {
     const displayOpening = opening ?? venue.resolution;
+    const isFavorite = favouritesService.isFavourite(venue.id);
     const isOpen = displayOpening?.isNow === true;
     const isNew  = venue.isNew();
     const status = isOpen ? "Open" : isNew ? "New" : null;
@@ -28,7 +31,7 @@ export function VenueCardCompact({ venue, opening, onClick }: VenueCardProps) {
                 <div className="flex items-start justify-between gap-3">
                     <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>
                     {(isOpen || isNew) && (
-                        <Badge variant="secondary" className="relative pr-6 mt-0.5">
+                        <Badge variant="secondary" className="relative pr-6 -mt-0.5">
                             {status}
                             <span className="absolute right-2 top-1/2 -translate-y-1/2 flex h-1.5 w-1.5">
                                 <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
@@ -37,10 +40,10 @@ export function VenueCardCompact({ venue, opening, onClick }: VenueCardProps) {
                         </Badge>
                     )}
                 </div>
-                <CardDescription className="min-h-4">
+                <CardDescription className="min-h-4 flex justify-between">
                     {displayOpening?.isNow? (
-                        <span className="flex items-center gap-1">
-                            <span className="text-muted-foreground">Open until</span>
+                        <span className="flex items-center gap-1 text-accent font-bold">
+                            <span>Open until</span>
                             <TimeText time={displayOpening.end} />
                         </span>
                     ): displayOpening && (
@@ -50,6 +53,7 @@ export function VenueCardCompact({ venue, opening, onClick }: VenueCardProps) {
                              <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
                          </span>
                     )}
+                    { isFavorite && <HeartIcon size={16} className="mr-1 stroke-accent  fill-accent" /> }
                 </CardDescription>
             </CardHeader>
         </Card>
