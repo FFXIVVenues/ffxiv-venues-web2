@@ -16,9 +16,6 @@ type VenueCardListProps = {
 export function VenueCardList({ venue, opening, onClick, future = false }: VenueCardListProps) {
     const displayOpening = opening ?? venue.resolution;
     const isNew = venue.isNew();
-    const isOpen = displayOpening?.isNow === true;
-    const status = isOpen ? "Open" : isNew ? "New" : null;
-    const statusColor = isOpen ? "text-fuchsia-500 border-fuchsia-500/30 bg-fuchsia-500/10" : isNew ? "text-green-500 border-green-500/30 bg-green-500/10" : "";
 
     return (
         <tbody className="group cursor-pointer" onClick={onClick}>
@@ -51,8 +48,8 @@ export function VenueCardList({ venue, opening, onClick, future = false }: Venue
             <TableCell colSpan={displayOpening ? 1 : 2} className="block sm:table-cell font-semibold pt-0 pb-0 sm:pb-4 group-hover:bg-muted/50">
                     <span className="flex items-center gap-2">
                         {venue.name}
-                        {(isOpen || isNew) && (
-                            <Badge variant="secondary" className={`text-[10px] px-1.5 py-0 ${statusColor}`}>{status}</Badge>
+                        {isNew && (
+                            <Badge variant="secondary" className="text-[10px] px-1.5 py-0 text-green-500 border-green-500/30 bg-green-500/10">New</Badge>
                         )}
                     </span>
             </TableCell>
