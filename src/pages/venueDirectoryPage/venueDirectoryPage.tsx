@@ -81,18 +81,6 @@ export const VenueDirectoryPage = () => {
                           <VenueCarousel title="Unscheduled" venues={venues?.unscheduled ?? []} onVenueClick={activateVenuePanel} />
                       </>
                   )}
-                  <VenueList title="Open Now" venues={venues?.open ?? []} onVenueClick={activateVenuePanel} />
-                  <VenueList title="Newest" venues={venues?.newest ?? []} onVenueClick={activateVenuePanel} />
-                  {(venues?.scheduled ?? []).map((dayVenues, i) => {
-                      const day = Day[(currentDay+i)%7];
-                      const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
-
-                      return(
-                          <VenueList key={day} title={title} venues={dayVenues} onVenueClick={activateVenuePanel} />
-                      )
-                  })}
-                  <VenueList title="Future Openings" venues={venues?.future ?? []} onVenueClick={activateVenuePanel} future={true}/>
-                  <VenueList title="Unscheduled" venues={venues?.unscheduled ?? []} onVenueClick={activateVenuePanel} />
               </>
             }
             </DefaultPageLayout.Page>

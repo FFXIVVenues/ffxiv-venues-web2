@@ -21,17 +21,18 @@ export function VenueCardList({ venue, opening, onClick, future = false }: Venue
     const statusColor = isOpen ? "text-fuchsia-500 border-fuchsia-500/30 bg-fuchsia-500/10" : isNew ? "text-green-500 border-green-500/30 bg-green-500/10" : "";
 
     return (
-        <>
-            {displayOpening && !displayOpening.isNow && future &&(
-                <TableRow className="border-none hover:bg-transparent">
-                    <TableCell colSpan={3} className="block sm:table-cell pb-0 pt-3 text-muted-foreground">
-                        <DateText date={displayOpening.start} />
-                    </TableCell>
-                </TableRow>
-            )}
+        <tbody className="group cursor-pointer" onClick={onClick}>
+        {displayOpening && !displayOpening.isNow && future && (
+            <TableRow className="border-none hover:bg-transparent">
+                <TableCell colSpan={3} className="block sm:table-cell pb-0 pt-3 text-muted-foreground group-hover:bg-muted/50">
+                    <DateText date={displayOpening.start} />
+                </TableCell>
+            </TableRow>
+        )}
 
-            <TableRow onClick={onClick} className="cursor-pointer border-none">
-                <TableCell className="block sm:table-cell w-44 text-muted-foreground tabular-nums whitespace-nowrap pt-0 pb-0 sm:pb-4">
+        <TableRow className="border-none hover:bg-transparent">
+            {displayOpening && (
+                <TableCell className="block sm:table-cell w-44 text-muted-foreground tabular-nums whitespace-nowrap pt-0 pb-0 sm:pb-4 group-hover:bg-muted/50">
                     {displayOpening?.isNow ? (
                         <span className="flex items-center gap-1">
                             <span>Open until</span>
@@ -45,20 +46,21 @@ export function VenueCardList({ venue, opening, onClick, future = false }: Venue
                         </span>
                     )}
                 </TableCell>
+            )}
 
-                <TableCell className="block sm:table-cell font-semibold pt-0 pb-0 sm:pb-4">
+            <TableCell colSpan={displayOpening ? 1 : 2} className="block sm:table-cell font-semibold pt-0 pb-0 sm:pb-4 group-hover:bg-muted/50">
                     <span className="flex items-center gap-2">
                         {venue.name}
                         {(isOpen || isNew) && (
                             <Badge variant="secondary" className={`text-[10px] px-1.5 py-0 ${statusColor}`}>{status}</Badge>
                         )}
                     </span>
-                </TableCell>
+            </TableCell>
 
-                <TableCell className="hidden lg:table-cell text-muted-foreground pt-0 pb-0 sm:pb-4">
-                    <LocationText location={venue.location} />
-                </TableCell>
-            </TableRow>
-        </>
+            <TableCell className="hidden lg:table-cell text-muted-foreground pt-0 pb-0 sm:pb-4 group-hover:bg-muted/50">
+                <LocationText location={venue.location} />
+            </TableCell>
+        </TableRow>
+        </tbody>
     );
 }
