@@ -1,4 +1,4 @@
-import {useState, type ElementType} from "react";
+import {memo, useState, type ElementType} from "react";
 import {
     SidebarGroup,
     SidebarGroupLabel,
@@ -20,7 +20,7 @@ export type FilterGroupProps = {
     onFilter: (e: Filter[]) => void;
 }
 
-export const FilterGroup = ({heading, options, onFilter, singleSelect = false, defaultOpen = true}: FilterGroupProps) => {
+export const FilterGroup = memo(function FilterGroup({heading, options, onFilter, singleSelect = false, defaultOpen = true}: FilterGroupProps){
     const [enabledFilters, setEnabledFilters] = useState<Filter[]>([]);
 
     const addFilter = (filter: Filter) => {
@@ -107,4 +107,4 @@ export const FilterGroup = ({heading, options, onFilter, singleSelect = false, d
             </Collapsible>
         </SidebarMenu>
     </SidebarGroup>
-}
+});

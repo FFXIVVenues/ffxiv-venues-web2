@@ -14,7 +14,7 @@ import {Button, buttonVariants} from "@/components/ui/button.tsx";
 import {DiscordFillIcon} from "@/components/icons/akar-icons-discord-fill.tsx";
 import {CopyIcon, LinkIcon, XIcon} from "lucide-react";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
-import {useCallback} from "react";
+import {memo, useCallback} from "react";
 import {cn} from "@/lib/utils";
 
 type VenueSheetProps = {
@@ -23,7 +23,7 @@ type VenueSheetProps = {
   onClose?: () => void
 }
 
-export const VenueDrawer = ({ open, venue, onClose }: VenueSheetProps) => {
+export const VenueDrawer = memo(function VenueDrawer({ open, venue, onClose }: VenueSheetProps){
   if (!venue) return null;
 
   return (
@@ -58,7 +58,7 @@ export const VenueDrawer = ({ open, venue, onClose }: VenueSheetProps) => {
             </DrawerContent>
         </Drawer>
     );
-}
+});
 
 const CopyButtons = ({ location }: { location: Location }) => {
   const copyLocationToClipboard = useCallback(() =>

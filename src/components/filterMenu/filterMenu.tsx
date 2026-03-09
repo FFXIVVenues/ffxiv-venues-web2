@@ -1,4 +1,4 @@
-import {useRef} from "react";
+import {useRef, useCallback, memo} from "react";
 import type {Venue} from "@/lib/model/venue.ts";
 import {SidebarGroup} from "@/components/ui/sidebar.tsx";
 import {FieldLabel} from "@/components/ui/field.tsx";
@@ -14,7 +14,7 @@ export type FilterMenuProps = {
     onFilter: (filters: Filter[]) => void;
 }
 
-export const FilterMenu = ({ onFilter }: FilterMenuProps) => {
+export const FilterMenu = memo(function FilterMenu({ onFilter }: FilterMenuProps){
     const filterRef = useRef({
         search: null as string | null,
         locationFilters: [] as Filter[],
@@ -22,8 +22,8 @@ export const FilterMenu = ({ onFilter }: FilterMenuProps) => {
         featureFilters: [] as Filter[]
     });
 
-    const updateFilters = (update: Partial<typeof filterRef.current>) => {
-        filterRef.current = { ... filterRef.current, ...update };
+    const updateFilters = useCallback((update: Partial<typeof filterRef.current>) => {
+        filterRef.current = { ...filterRef.current, ...update };
         const filters = [
             ...filterRef.current.locationFilters,
             ...filterRef.current.categoryFilters,
@@ -31,10 +31,10 @@ export const FilterMenu = ({ onFilter }: FilterMenuProps) => {
         ]
         const searchText = filterRef.current.search?.toLowerCase();
         if (searchText && searchText.length > 0)
-            filters.push((v : Venue) =>
+            filters.push((v: Venue) =>
                 v.name.toLowerCase().includes(searchText));
         onFilter(filters);
-    }
+    }, [onFilter]);
 
     return <>
         <SidebarGroup>
@@ -65,4 +65,4 @@ export const FilterMenu = ({ onFilter }: FilterMenuProps) => {
             onFilter={e => updateFilters({ featureFilters: e.map(o => o) })} />
     </>
 
-}
+});
