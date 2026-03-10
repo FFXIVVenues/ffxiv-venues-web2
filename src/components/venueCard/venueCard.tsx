@@ -7,8 +7,9 @@ import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
 import defaultBanner from "@/assets/default-banner.webp";
-import {HeartIcon} from "lucide-react";
+import {CheckIcon, HeartIcon} from "lucide-react";
 import {favouritesService} from "@/lib/services/favouritesService.ts";
+import {visitedService} from "@/lib/services/visitedService.ts";
 
 type VenueCardProps = {
     venue: Venue;
@@ -18,8 +19,8 @@ type VenueCardProps = {
 
 export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
     const displayOpening = opening ?? venue.resolution;
-
     const isOpen = displayOpening?.isNow === true;
+    const isVisited = visitedService.isVisited(venue.id);
     const isFavorite = favouritesService.isFavourite(venue.id);
     const isNew  = venue.isNew();
     const status = isOpen ? "Open" : isNew ? "New" : null;
@@ -44,19 +45,22 @@ export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
                     )}
                 </div>
                 <CardDescription className="min-h-6 flex justify-between">
-                    {displayOpening?.isNow ? (
-                        <span className="flex items-center gap-1">
-                            <span className="text-muted-foreground">Open until</span>
-                            <TimeText time={displayOpening.end} />
-                        </span>
-                    ) : displayOpening && (
-                        <span className="flex items-center gap-1">
-                            <DateText date={displayOpening.start} />
-                            <TimeText time={displayOpening.start} />
-                            <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
-                        </span>
-                    )}
-                  { isFavorite && <HeartIcon size={16} className="mr-1 stroke-accent  fill-accent" /> }
+                  {displayOpening?.isNow ? (
+                      <span className="flex items-center gap-1">
+                          <span className="text-muted-foreground">Open until</span>
+                          <TimeText time={displayOpening.end} />
+                      </span>
+                  ) : displayOpening && (
+                      <span className="flex items-center gap-1">
+                          <DateText date={displayOpening.start} />
+                          <TimeText time={displayOpening.start} />
+                          <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
+                      </span>
+                  )}
+                  <div className="flex">
+                    { isVisited && <CheckIcon size={16} className="mr-1 stroke-green-600  " /> }
+                    { isFavorite && <HeartIcon size={16} className="mr-1 stroke-accent  fill-accent" /> }
+                  </div>
                 </CardDescription>
             </CardHeader>
 

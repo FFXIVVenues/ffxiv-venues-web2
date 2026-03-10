@@ -5,8 +5,9 @@ import type { Venue } from "@/lib/model/venue.ts";
 import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
-import {HeartIcon} from "lucide-react";
+import {CheckIcon, HeartIcon} from "lucide-react";
 import {favouritesService} from "@/lib/services/favouritesService.ts";
+import {visitedService} from "@/lib/services/visitedService.ts";
 
 type VenueCardProps = {
     venue: Venue;
@@ -17,6 +18,7 @@ type VenueCardProps = {
 export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProps) => {
     const displayOpening = opening ?? venue.resolution;
     const isFavorite = favouritesService.isFavourite(venue.id);
+    const isVisited = visitedService.isVisited(venue.id);
     const isOpen = displayOpening?.isNow === true;
     const isNew  = venue.isNew();
     const status = isOpen ? "Open" : isNew ? "New" : null;
@@ -43,7 +45,7 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
                 </div>
                 <CardDescription className="min-h-4 flex justify-between">
                     {displayOpening?.isNow? (
-                        <span className="flex items-center gap-1 text-accent font-bold">
+                        <span className="flex items-center gap-1 font-bold">
                             <span>Open until</span>
                             <TimeText time={displayOpening.end} />
                         </span>
@@ -54,7 +56,10 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
                              <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
                          </span>
                     )}
-                    { isFavorite && <HeartIcon size={16} className="mr-1 stroke-accent  fill-accent" /> }
+                    <div className="flex">
+                        { isVisited && <CheckIcon size={16} className="mr-1 stroke-green-600  " /> }
+                        { isFavorite && <HeartIcon size={16} className="mr-1 stroke-accent  fill-accent" /> }
+                    </div>
                 </CardDescription>
             </CardHeader>
         </Card>
