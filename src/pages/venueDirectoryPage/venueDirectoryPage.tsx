@@ -8,12 +8,15 @@ import {Skeleton} from "@/components/ui/skeleton.tsx";
 import {Spinner} from "@/components/ui/spinner.tsx";
 import type {Venue} from "@/lib/model/venue.ts";
 import {VenueDrawer} from "@/components/venueDrawer/venueDrawer.tsx";
+import {VenueList} from "@/components/venueList/venueList.tsx";
+import {useSetting} from "@/lib/services/settings/useSetting";
 
 export const VenueDirectoryPage = () => {
     const [showVenuePanel, setShowVenuePanel] = useState<boolean>(false);
     const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
     const [venues, error, setFilters] = useVenueSchedule([]);
     const currentDay = (new Date().getDay() + 6) % 7
+    const view = useSetting('view');
 
     const activateVenuePanel = useCallback((venue: Venue) => {
         setShowVenuePanel(true); setSelectedVenue(venue);
@@ -46,20 +49,40 @@ export const VenueDirectoryPage = () => {
                 </>
             ):
               <>
-                <VenueDrawer open={showVenuePanel} venue={selectedVenue} onClose={() => setShowVenuePanel(false)} />
-                <VenueCarousel title="Favorites" venues={venues?.favourites ?? []} onVenueClick={activateVenuePanel} className="mb-4" />
-                <VenueCarousel title="Open Now" venues={venues?.open ?? []} onVenueClick={activateVenuePanel} className="mb-4"  />
-                <VenueCarousel title="Newest" venues={venues?.newest ?? []} onVenueClick={activateVenuePanel}  className="mb-4" />
-                {(venues?.scheduled ?? []).map((dayVenues, i) => {
-                    const day = Day[(currentDay+i)%7];
-                    const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
+                  <VenueDrawer open={showVenuePanel} venue={selectedVenue} onClose={() => setShowVenuePanel(false)} />
+                  {view === 'list' ? (
+                      <>
+                          <VenueList title="Favorites" venues={venues?.favourites ?? []} onVenueClick={activateVenuePanel} className="mb-4" />
+                          <VenueList title="Open Now" venues={venues?.open ?? []} onVenueClick={activateVenuePanel} />
+                          <VenueList title="Newest" venues={venues?.newest ?? []} onVenueClick={activateVenuePanel} />
+                          {(venues?.scheduled ?? []).map((dayVenues, i) => {
+                              const day = Day[(currentDay+i)%7];
+                              const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
 
-                    return(
-                        <VenueCarousel key={day} title={title} venues={dayVenues} onVenueClick={activateVenuePanel} className="mb-4"  />
-                    )
-                })}
-                <VenueCarousel title="Future Openings" venues={venues?.future ?? []} onVenueClick={activateVenuePanel} className="mb-4"  />
-                <VenueCarousel title="Unscheduled" venues={venues?.unscheduled ?? []} onVenueClick={activateVenuePanel} className="mb-4"  />
+                              return(
+                                  <VenueList key={day} title={title} venues={dayVenues} onVenueClick={activateVenuePanel} />
+                              )}
+                          )}
+                          <VenueList title="Future Openings" venues={venues?.future ?? []} onVenueClick={activateVenuePanel} future={true}/>
+                          <VenueList title="Unscheduled" venues={venues?.unscheduled ?? []} onVenueClick={activateVenuePanel} />
+                      </>
+                  ) : (
+                      <>
+                          <VenueCarousel title="Favorites" venues={venues?.favourites ?? []} onVenueClick={activateVenuePanel} className="mb-4" />
+                          <VenueCarousel title="Open Now" venues={venues?.open ?? []} onVenueClick={activateVenuePanel} />
+                          <VenueCarousel title="Newest" venues={venues?.newest ?? []} onVenueClick={activateVenuePanel} />
+                          {(venues?.scheduled ?? []).map((dayVenues, i) => {
+                              const day = Day[(currentDay+i)%7];
+                              const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
+
+                              return(
+                                  <VenueCarousel key={day} title={title} venues={dayVenues} onVenueClick={activateVenuePanel} />
+                              )
+                          })}
+                          <VenueCarousel title="Future Openings" venues={venues?.future ?? []} onVenueClick={activateVenuePanel} />
+                          <VenueCarousel title="Unscheduled" venues={venues?.unscheduled ?? []} onVenueClick={activateVenuePanel} />
+                      </>
+                  )}
               </>
             }
             </DefaultPageLayout.Page>
