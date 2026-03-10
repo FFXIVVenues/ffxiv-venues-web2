@@ -1,3 +1,4 @@
+import {useState, useCallback} from "react";
 import {DefaultPageLayout} from "@/layouts/defaultPageLayout.tsx";
 import {FilterMenu} from "@/components/filterMenu/filterMenu.tsx";
 import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
@@ -5,7 +6,6 @@ import {VenueCarousel} from "@/components/venueCarousel/venueCarousel.tsx";
 import {Day} from "@/lib/model/day.ts";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
 import {Spinner} from "@/components/ui/spinner.tsx";
-import {useState} from "react";
 import type {Venue} from "@/lib/model/venue.ts";
 import {VenueDrawer} from "@/components/venueDrawer/venueDrawer.tsx";
 import {VenueList} from "@/components/venueList/venueList.tsx";
@@ -18,9 +18,9 @@ export const VenueDirectoryPage = () => {
     const currentDay = (new Date().getDay() + 6) % 7
     const view = useSetting('view');
 
-    const activateVenuePanel = (venue: Venue) => {
+    const activateVenuePanel = useCallback((venue: Venue) => {
         setShowVenuePanel(true); setSelectedVenue(venue);
-    }
+    }, []);
 
     return(
         <DefaultPageLayout>
@@ -52,6 +52,7 @@ export const VenueDirectoryPage = () => {
                   <VenueDrawer open={showVenuePanel} venue={selectedVenue} onClose={() => setShowVenuePanel(false)} />
                   {view === 'list' ? (
                       <>
+                          <VenueList title="Favorites" venues={venues?.favourites ?? []} onVenueClick={activateVenuePanel} className="mb-4" />
                           <VenueList title="Open Now" venues={venues?.open ?? []} onVenueClick={activateVenuePanel} />
                           <VenueList title="Newest" venues={venues?.newest ?? []} onVenueClick={activateVenuePanel} />
                           {(venues?.scheduled ?? []).map((dayVenues, i) => {
@@ -67,6 +68,7 @@ export const VenueDirectoryPage = () => {
                       </>
                   ) : (
                       <>
+                          <VenueCarousel title="Favorites" venues={venues?.favourites ?? []} onVenueClick={activateVenuePanel} className="mb-4" />
                           <VenueCarousel title="Open Now" venues={venues?.open ?? []} onVenueClick={activateVenuePanel} />
                           <VenueCarousel title="Newest" venues={venues?.newest ?? []} onVenueClick={activateVenuePanel} />
                           {(venues?.scheduled ?? []).map((dayVenues, i) => {

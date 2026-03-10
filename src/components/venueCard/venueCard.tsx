@@ -1,3 +1,4 @@
+import {memo} from "react";
 import {Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge.tsx";
 import {Button} from "@/components/ui/button.tsx";
@@ -6,6 +7,9 @@ import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
 import defaultBanner from "@/assets/default-banner.webp";
+import {CheckIcon, HeartIcon} from "lucide-react";
+import {favouritesService} from "@/lib/services/favouritesService.ts";
+import {visitedService} from "@/lib/services/visitedService.ts";
 
 type VenueCardProps = {
     venue: Venue;
@@ -13,10 +17,11 @@ type VenueCardProps = {
     onClick: () => void;
 }
 
-export function VenueCard({ venue, opening, onClick }: VenueCardProps) {
+export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
     const displayOpening = opening ?? venue.resolution;
-
     const isOpen = displayOpening?.isNow === true;
+    const isVisited = visitedService.isVisited(venue.id);
+    const isFavorite = favouritesService.isFavourite(venue.id);
     const isNew  = venue.isNew();
     const status = isOpen ? "Open" : isNew ? "New" : null;
     const pingOuter = isOpen ? "bg-fuchsia-500" : isNew ? "bg-green-500" : "";
@@ -30,7 +35,7 @@ export function VenueCard({ venue, opening, onClick }: VenueCardProps) {
                 <div className="flex items-start justify-between gap-3">
                     <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>
                     {(isOpen || isNew) && (
-                        <Badge variant="secondary" className="relative pr-6 mt-0.5">
+                        <Badge variant="secondary" className="relative pr-6 -mt-0.5">
                             {status}
                             <span className="absolute right-2 top-1/2 -translate-y-1/2 flex h-1.5 w-1.5">
                                 <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
@@ -39,19 +44,23 @@ export function VenueCard({ venue, opening, onClick }: VenueCardProps) {
                         </Badge>
                     )}
                 </div>
-                <CardDescription className="min-h-6">
-                    {displayOpening?.isNow ? (
-                        <span className="flex items-center gap-1">
-                            <span className="text-muted-foreground">Open until</span>
-                            <TimeText time={displayOpening.end} />
-                        </span>
-                    ) : displayOpening && (
-                        <span className="flex items-center gap-1">
-                            <DateText date={displayOpening.start} />
-                            <TimeText time={displayOpening.start} />
-                            <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
-                        </span>
-                    )}
+                <CardDescription className="min-h-6 flex justify-between">
+                  {displayOpening?.isNow ? (
+                      <span className="flex items-center gap-1">
+                          <span className="text-muted-foreground">Open until</span>
+                          <TimeText time={displayOpening.end} />
+                      </span>
+                  ) : displayOpening && (
+                      <span className="flex items-center gap-1">
+                          <DateText date={displayOpening.start} />
+                          <TimeText time={displayOpening.start} />
+                          <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
+                      </span>
+                  )}
+                  <div className="flex">
+                    { isVisited && <CheckIcon size={16} className="mr-1 stroke-green-600  " /> }
+                    { isFavorite && <HeartIcon size={16} className="mr-1 stroke-accent  fill-accent" /> }
+                  </div>
                 </CardDescription>
             </CardHeader>
 
@@ -72,4 +81,4 @@ export function VenueCard({ venue, opening, onClick }: VenueCardProps) {
             </CardFooter>
         </Card>
     );
-}
+});

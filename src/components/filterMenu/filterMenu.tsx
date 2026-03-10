@@ -1,4 +1,4 @@
-import {useRef} from "react";
+import {useRef, useCallback, memo} from "react";
 import type {Venue} from "@/lib/model/venue.ts";
 import {SidebarGroup} from "@/components/ui/sidebar.tsx";
 import {FieldLabel} from "@/components/ui/field.tsx";
@@ -8,33 +8,36 @@ import {FilterGroup} from "@/components/filterMenu/filterGroup.tsx";
 import {categoryFilters} from "./filters/categoryFilters.ts";
 import {featureFilters} from "./filters/featureFilters.ts";
 import {worldFilters} from "@/components/filterMenu/filters/worldFilters.ts";
+import {ratingFilters} from "@/components/filterMenu/filters/ratingFilters.ts";
 
 export type Filter = (venue: Venue) => boolean;
 export type FilterMenuProps = {
     onFilter: (filters: Filter[]) => void;
 }
 
-export const FilterMenu = ({ onFilter }: FilterMenuProps) => {
+export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
     const filterRef = useRef({
         search: null as string | null,
         locationFilters: [] as Filter[],
         categoryFilters: [] as Filter[],
-        featureFilters: [] as Filter[]
+        featureFilters: [] as Filter[],
+        ratingFilters: [] as Filter[]
     });
 
-    const updateFilters = (update: Partial<typeof filterRef.current>) => {
-        filterRef.current = { ... filterRef.current, ...update };
+    const updateFilters = useCallback((update: Partial<typeof filterRef.current>) => {
+        filterRef.current = { ...filterRef.current, ...update };
         const filters = [
             ...filterRef.current.locationFilters,
             ...filterRef.current.categoryFilters,
-            ...filterRef.current.featureFilters
+            ...filterRef.current.featureFilters,
+            ...filterRef.current.ratingFilters
         ]
         const searchText = filterRef.current.search?.toLowerCase();
         if (searchText && searchText.length > 0)
-            filters.push((v : Venue) =>
+            filters.push((v: Venue) =>
                 v.name.toLowerCase().includes(searchText));
         onFilter(filters);
-    }
+    }, [onFilter]);
 
     return <>
         <SidebarGroup>
@@ -63,6 +66,13 @@ export const FilterMenu = ({ onFilter }: FilterMenuProps) => {
             defaultOpen={false}
             options={featureFilters}
             onFilter={e => updateFilters({ featureFilters: e.map(o => o) })} />
+
+        <FilterGroup
+          heading="Rating"
+          defaultOpen={false}
+          options={ratingFilters}
+          onFilter={e => updateFilters({ ratingFilters: e.map(o => o) })} />
+
     </>
 
-}
+});
