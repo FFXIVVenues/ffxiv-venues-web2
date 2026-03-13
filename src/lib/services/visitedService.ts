@@ -18,6 +18,7 @@ class VisitedService {
     }
 
     setVisited(id: string): string[] {
+        this.removeVisited(id);
         const visited = this.getVisited();
         visited.push(id);
         localStorage.setItem("aether-venues-visited", JSON.stringify(visited));

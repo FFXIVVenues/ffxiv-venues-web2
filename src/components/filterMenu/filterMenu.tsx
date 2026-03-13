@@ -8,7 +8,7 @@ import {FilterGroup} from "@/components/filterMenu/filterGroup.tsx";
 import {categoryFilters} from "./filters/categoryFilters.ts";
 import {featureFilters} from "./filters/featureFilters.ts";
 import {worldFilters} from "@/components/filterMenu/filters/worldFilters.ts";
-import {ratingFilters} from "@/components/filterMenu/filters/ratingFilters.ts";
+import {ratingFilters} from "@/components/filterMenu/filters/ratingFilters.tsx";
 
 export type Filter = (venue: Venue) => boolean;
 export type FilterMenuProps = {
@@ -70,6 +70,7 @@ export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
         <FilterGroup
           heading="Rating"
           defaultOpen={false}
+          singleSelect={true}
           options={ratingFilters}
           onFilter={e => updateFilters({ ratingFilters: e.map(o => o) })} />
 

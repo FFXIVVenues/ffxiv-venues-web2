@@ -21,6 +21,7 @@ class FavouritesService {
     }
 
     setFavourite(id:string) {
+        this.removeFavourite(id);
         const favourites = this.getFavourites();
         favourites.push(id);
         localStorage.setItem("aether-venues-favourites", JSON.stringify(favourites));

@@ -7,7 +7,7 @@ import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
 import defaultBanner from "@/assets/default-banner.webp";
-import {CheckIcon, HeartIcon} from "lucide-react";
+import {CheckIcon, HeartIcon, StarIcon} from "lucide-react";
 import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 
@@ -24,8 +24,8 @@ export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
     const isFavorite = favouritesService.isFavourite(venue.id);
     const isNew  = venue.isNew();
     const status = isOpen ? "Open" : isNew ? "New" : null;
-    const pingOuter = isOpen ? "bg-fuchsia-500" : isNew ? "bg-green-500" : "";
-    const pingInner = isOpen ? "bg-fuchsia-400 shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
+    const pingOuter = isOpen ? "bg-accent" : isNew ? "bg-green-500" : "";
+    const pingInner = isOpen ? "bg-accent shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
 
     return (
         <Card className="p-0 h-full flex flex-col max-w-[400px]">
@@ -57,9 +57,10 @@ export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
                           <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
                       </span>
                   )}
-                  <div className="flex">
-                    { isVisited && <CheckIcon size={16} className="mr-1 stroke-green-600  " /> }
-                    { isFavorite && <HeartIcon size={16} className="mr-1 stroke-accent  fill-accent" /> }
+                  <div className="flex gap-2">
+                    { rating > 0 && <span className="flex gap-0.5 text-xs font-bold text-muted-foreground">{rating}<StarIcon size={14} fill="currentColor" /></span>}
+                    { isVisited && <CheckIcon size={16} className="mr-1 text-muted-foreground  " /> }
+                    { isFavorite && <HeartIcon size={14} className="mr-1 stroke-muted-foreground fill-muted-foreground" /> }
                   </div>
                 </CardDescription>
             </CardHeader>
