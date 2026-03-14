@@ -1,4 +1,4 @@
-import React, {type ReactElement} from "react";
+import React, {memo, type ReactElement} from "react";
 import {nth} from "@/lib/utils/nth.ts";
 import {daysOfWeek} from "@/lib/utils/daysOfWeek.ts";
 import {monthsOfYear} from "@/lib/utils/monthsOfYear.ts";
@@ -6,7 +6,8 @@ import {monthsOfYear} from "@/lib/utils/monthsOfYear.ts";
 const today = new Date();
 const dayOfWeek = today.getDay();
 
-export function DateText({ date }: { date: Date }) : ReactElement {
+export const DateText = memo(({ date }: { date: Date }) : ReactElement =>
+{
     const inputDay = date.getDay();
     const inputDate = date.getDate();
     const inputMonth = date.getMonth();
@@ -16,4 +17,4 @@ export function DateText({ date }: { date: Date }) : ReactElement {
         {daysUntil > 21 && `${monthsOfYear[inputMonth]} `}
         {daysUntil > 7 && ` ${inputDate}${daysUntil > 7 && nth(inputDate)} `}
     </React.Fragment>
-}
+})

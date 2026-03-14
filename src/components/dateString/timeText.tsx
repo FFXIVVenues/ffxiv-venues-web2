@@ -1,11 +1,11 @@
-import React, {type ReactElement} from "react";
+import React, {memo, type ReactElement} from "react";
 
 type Props = {
     time: Date;
     format24?: boolean;
 }
 
-export function TimeText({ time, format24 = false}: Props) : ReactElement {
+export const TimeText = memo(({ time, format24 = false}: Props) : ReactElement  => {
     return <React.Fragment>
         { format24
             ? <React.Fragment>{time.getHours().toString().padStart(2, "0")}:{time.getMinutes().toString().padStart(2, "0")}</React.Fragment>
@@ -15,4 +15,4 @@ export function TimeText({ time, format24 = false}: Props) : ReactElement {
             </React.Fragment>
         }
     </React.Fragment>
-}
+})
