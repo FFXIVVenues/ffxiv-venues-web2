@@ -26,25 +26,27 @@ class RatingsService {
     }
 
     setRating(id:string, rating: number) {
-        this.removeRating(id);
-        const ratings = this.getRatings();
+        const ratings = this.getRatings().filter(r => r.id !== id);
         ratings.push({id, rating});
-        localStorage.setItem("aether-venues-ratings", JSON.stringify(ratings));
-        this._observers.forEach(o => o());
+        this._setRatings(ratings);
         return ratings;
     }
 
     removeRating(id:string) {
         const ratings = this.getRatings().filter(r => r.id !== id);
-        this._ratingCache = ratings;
-        localStorage.setItem("aether-venues-ratings", JSON.stringify(ratings));
-        this._observers.forEach(o => o());
+        this._setRatings(ratings);
         return ratings;
     }
 
     observe(observer: () => void) {
         this._observers.push(observer);
-        return () => this._observers = this._observers.filter(o => o === observer);
+        return () => this._observers = this._observers.filter(o => o !== observer);
+    }
+
+    private _setRatings(ratings: Rating[]) {
+        this._ratingCache = ratings;
+        localStorage.setItem("aether-venues-ratings", JSON.stringify(ratings));
+        this._observers.forEach(o => o());
     }
 
 }

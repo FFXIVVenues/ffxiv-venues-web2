@@ -10,6 +10,7 @@ import defaultBanner from "@/assets/default-banner.webp";
 import {CheckIcon, HeartIcon, StarIcon} from "lucide-react";
 import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
+import {ratingsService} from "@/lib/services/ratingsService.ts";
 
 type VenueCardProps = {
     venue: Venue;
@@ -20,6 +21,7 @@ type VenueCardProps = {
 export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
     const displayOpening = opening ?? venue.resolution;
     const isOpen = displayOpening?.isNow === true;
+    const rating = ratingsService.getRating(venue.id);
     const isVisited = visitedService.isVisited(venue.id);
     const isFavorite = favouritesService.isFavourite(venue.id);
     const isNew  = venue.isNew();
