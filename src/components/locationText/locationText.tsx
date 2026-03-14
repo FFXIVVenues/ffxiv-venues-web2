@@ -1,4 +1,5 @@
 import type { Location } from "@/lib/model/location.ts";
+import {memo} from "react";
 
 type LocationProps = {
     location: Location;
@@ -6,7 +7,8 @@ type LocationProps = {
     className?: string;
 };
 
-export function LocationText({ location, shorten, className }: LocationProps) {
+export const LocationText = memo(({ location, shorten, className }: LocationProps) =>
+{
     if (location.override) {
         if (shorten && location.override.length > 50)
             return <span className={className}>{ `${location.override.substring(0, 50)}...` }</span>
@@ -18,4 +20,4 @@ export function LocationText({ location, shorten, className }: LocationProps) {
         return <span className={className}>{`${location.dataCenter}, ${location.world}, ${location.district}, Ward ${location.ward}${location.subdivision ? " Sub" : ''}, Apt ${location.apartment}`}</span>
 
     return <span className={className}>{`${location.dataCenter}, ${location.world}, ${location.district}, Ward ${location.ward}, Plot ${location.plot}${location.room ? `, Room ${location.room}` : ''}`}</span>
-}
+})

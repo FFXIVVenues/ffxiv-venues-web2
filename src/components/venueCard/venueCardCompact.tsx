@@ -13,7 +13,7 @@ import {ratingsService} from "@/lib/services/ratingsService.ts";
 type VenueCardProps = {
     venue: Venue;
     opening?: Opening;
-    onClick: () => void;
+    onClick: (venue: Venue) => void;
 }
 
 export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProps) => {
@@ -29,7 +29,7 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
     const pingInner = isOpen ? "bg-accent shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
 
     return (
-        <Card className="py-5 cursor-pointer hover:bg-muted/50 transition-colors gap-5 w-[350px]" onClick={onClick}>
+        <Card className="py-5 cursor-pointer hover:bg-muted/50 transition-colors gap-5 w-[350px]" onClick={_ => onClick(venue)}>
             <img src={venue.bannerUri ?? "../assets/default-banner.webp"} alt={venue.name} loading="lazy" className="aspect-2/1"/>
 
             <CardHeader>

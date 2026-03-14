@@ -22,10 +22,6 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
     const [open, setOpen] = React.useState(true)
     const view = useSetting('view');
 
-    const handleVenueClick = useCallback((venue: Venue) => {
-        onVenueClick(venue);
-    }, [onVenueClick]);
-
     return (
         <Collapsible open={open} onOpenChange={setOpen} className={className}>
             <CollapsibleTrigger className="ml-12 flex w-full items-center gap-2  cursor-pointer" >
@@ -40,8 +36,8 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
                             {venues!.map(({ venue, opening }) => (
                                 <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-65 sm:basis-70 md:basis-90 lg:basis-auto m-0.5">
                                     {view === 'compact'
-                                        ? <VenueCardCompact venue={venue} opening={opening} onClick={() => handleVenueClick(venue)}/>
-                                        : <VenueCard venue={venue} opening={opening} onClick={() => handleVenueClick(venue)}/>}
+                                        ? <VenueCardCompact venue={venue} opening={opening} onClick={onVenueClick}/>
+                                        : <VenueCard venue={venue} opening={opening} onClick={onVenueClick}/>}
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
