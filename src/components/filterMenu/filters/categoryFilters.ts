@@ -1,8 +1,10 @@
 import { hasTag } from "./filterFunctions/hasTag.ts";
 import type { VenueFilter } from "@/lib/services/venues/venueFilter.ts";
+import type {ReactNode} from "react";
 
 export type FilterOption = {
-  name: string;
+  icon?: ReactNode;
+  name: string | ReactNode;
 } & (
   | { filter: VenueFilter; options?: FilterOption[] }
   | { filter?: VenueFilter; options: FilterOption[] }

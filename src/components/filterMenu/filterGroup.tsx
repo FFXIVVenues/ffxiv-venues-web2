@@ -64,7 +64,9 @@ export const FilterGroup = memo(({heading, options, onFilter, singleSelect = fal
                             isActive={isActive}
                             className={cn(roundingStyle, "cursor-pointer py-4 flex justify-between items-center relative")}
                             onClick={() => isActive ? removeFilter(option.filter!) : addFilter(option.filter!)}>
-                            {option.name}
+                            <span className="flex gap-3 items-center [&>svg]:size-3 [&>svg]:mb-[0.1lh]">
+                              {option.icon} {option.name}
+                            </span>
                             {isActive &&
                               <span className="inline-block size-1 mr-1 rounded-full bg-accent shadow-[0_0_4px_var(--color-accent)]" />}
                         </ButtonElement>

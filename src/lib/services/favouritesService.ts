@@ -22,25 +22,29 @@ class FavouritesService {
 
     setFavourite(id:string) {
         const favourites = this.getFavourites();
+        if (favourites.indexOf(id) !== -1)
+            return favourites;
         favourites.push(id);
-        localStorage.setItem("aether-venues-favourites", JSON.stringify(favourites));
-        this._observers.forEach(o => o());
+        this._setFavourites(favourites);
         return favourites;
     }
 
     removeFavourite(id:string) {
         const favourites = this.getFavourites().filter(i => i !== id);
-        this._favouritesCache = favourites;
-        localStorage.setItem("aether-venues-favourites", JSON.stringify(favourites));
-        this._observers.forEach(o => o());
+        this._setFavourites(favourites);
         return favourites;
     }
 
     observe(observer: () => void) {
         this._observers.push(observer);
-        return () => this._observers = this._observers.filter(o => o === observer);
+        return () => this._observers = this._observers.filter(o => o !== observer);
     }
 
+    private _setFavourites(favourites: string[])  {
+        this._favouritesCache = favourites;
+        localStorage.setItem("aether-venues-favourites", JSON.stringify(favourites));
+        this._observers.forEach(o => o());
+    }
 }
 
 const favouritesService = new FavouritesService();

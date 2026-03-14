@@ -1,4 +1,4 @@
-import {useRef, useCallback, memo} from "react";
+import {useRef, useCallback, memo, type ChangeEvent} from "react";
 import type {Venue} from "@/lib/model/venue.ts";
 import {SidebarGroup} from "@/components/ui/sidebar.tsx";
 import {FieldLabel} from "@/components/ui/field.tsx";
@@ -8,7 +8,7 @@ import {FilterGroup} from "@/components/filterMenu/filterGroup.tsx";
 import {categoryFilters} from "./filters/categoryFilters.ts";
 import {featureFilters} from "./filters/featureFilters.ts";
 import {worldFilters} from "@/components/filterMenu/filters/worldFilters.ts";
-import {ratingFilters} from "@/components/filterMenu/filters/ratingFilters.ts";
+import {ratingFilters} from "@/components/filterMenu/filters/ratingFilters.tsx";
 
 export type Filter = (venue: Venue) => boolean;
 export type FilterMenuProps = {
@@ -18,7 +18,7 @@ export type FilterMenuProps = {
 export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
     const filterRef = useRef({
         search: null as string | null,
-        locationFilters: [] as Filter[],
+        regionFilters: [] as Filter[],
         categoryFilters: [] as Filter[],
         featureFilters: [] as Filter[],
         ratingFilters: [] as Filter[]
@@ -27,7 +27,7 @@ export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
     const updateFilters = useCallback((update: Partial<typeof filterRef.current>) => {
         filterRef.current = { ...filterRef.current, ...update };
         const filters = [
-            ...filterRef.current.locationFilters,
+            ...filterRef.current.regionFilters,
             ...filterRef.current.categoryFilters,
             ...filterRef.current.featureFilters,
             ...filterRef.current.ratingFilters
@@ -39,13 +39,19 @@ export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
         onFilter(filters);
     }, [onFilter]);
 
+    const searchFilter = useCallback((e: ChangeEvent<HTMLInputElement>) => updateFilters({ search: e.target.value }), []);
+    const regionsFilter = useCallback((filters: Filter[]) => updateFilters({ regionFilters: filters }), []);
+    const categorryFilter = useCallback((filters: Filter[]) => updateFilters({ categoryFilters: filters }), []);
+    const featuresFilter = useCallback((filters: Filter[]) => updateFilters({ featureFilters: filters }), []);
+    const ratingFilter = useCallback((filters: Filter[]) => updateFilters({ ratingFilters: filters }), []);
+
     return <>
         <SidebarGroup>
             <FieldLabel htmlFor="search-venues" className="sr-only">Search venues</FieldLabel>
             <Input id="search-venues"
                    type="text"
                    placeholder="Search venues"
-                   onChange={e => updateFilters({ search: e.target.value })} />
+                   onChange={searchFilter} />
         </SidebarGroup>
 
         <FilterGroup
@@ -53,25 +59,26 @@ export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
             defaultOpen={true}
             options={worldFilters}
             singleSelect={true}
-            onFilter={e => updateFilters({ locationFilters: e.map(o => o) })} />
+            onFilter={regionsFilter} />
 
         <FilterGroup
             heading="Scenes"
             defaultOpen={false}
             options={categoryFilters}
-            onFilter={e => updateFilters({ categoryFilters: e.map(o => o) })} />
+            onFilter={categorryFilter} />
 
         <FilterGroup
             heading="Features"
             defaultOpen={false}
             options={featureFilters}
-            onFilter={e => updateFilters({ featureFilters: e.map(o => o) })} />
+            onFilter={featuresFilter} />
 
         <FilterGroup
           heading="Rating"
           defaultOpen={false}
+          singleSelect={true}
           options={ratingFilters}
-          onFilter={e => updateFilters({ ratingFilters: e.map(o => o) })} />
+          onFilter={ratingFilter} />
 
     </>
 
