@@ -33,7 +33,7 @@ export const VenueList = memo(({ title, venues, onVenueClick, future = false, cl
                 <div className="px-12 mt-2 mb-4">
                     <Table className="w-full [&_td]:border-none [&_tr]:border-none">
                         {list.map(({ venue, opening }) => (
-                            <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={() => onVenueClick(venue)} future={future} />
+                            <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={onVenueClick} future={future} />
                         ))}
                     </Table>
                 </div>
