@@ -11,5 +11,6 @@ export const ratingFilters: FilterOption[] = [
   { icon: <StarIcon fill="currentColor" />, name: "4+ Stars", filter: (v) => ratingsService.getRating(v.id) >= 4 },
   { icon: <StarIcon fill="currentColor" />, name: "3+ Stars", filter: (v) => ratingsService.getRating(v.id) >= 3 },
   { icon: <StarIcon fill="currentColor" />, name: "2+ Stars", filter: (v) => ratingsService.getRating(v.id) >= 2 },
-  { icon: <StarIcon fill="currentColor" />, name: "1+ Stars", filter: (v) => ratingsService.getRating(v.id) >= 1 }
+  { icon: <StarIcon fill="currentColor" />, name: "1+ Stars", filter: (v) => ratingsService.getRating(v.id) >= 1 },
+  { icon: <StarIcon fill="currentColor" />, name: "Unrated", filter: (v) => ratingsService.getRating(v.id) === 0 }
 ];
