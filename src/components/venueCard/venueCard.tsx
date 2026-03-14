@@ -15,7 +15,7 @@ import {ratingsService} from "@/lib/services/ratingsService.ts";
 type VenueCardProps = {
     venue: Venue;
     opening?: Opening;
-    onClick: () => void;
+    onClick: (venue: Venue) => void;
 }
 
 export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
@@ -80,7 +80,7 @@ export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
             </CardContent>
 
             <CardFooter className="pb-6 border-t">
-                <Button className="w-full cursor-pointer" onClick={onClick}>View Venue</Button>
+                <Button className="w-full cursor-pointer" onClick={_ => onClick(venue)}>View Venue</Button>
             </CardFooter>
         </Card>
     );

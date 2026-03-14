@@ -24,7 +24,7 @@ const VenueToolbar = memo(({venue, className }: { venue: Venue, className?: stri
     <div className={cn("flex gap-1", className)}>
       <ButtonGroup>
         <Tooltip>
-          <TooltipTrigger  onClick={copyLocationToClipboard} render={(props) =>
+          <TooltipTrigger onClick={copyLocationToClipboard} render={(props) =>
             <Button size="icon" variant="secondary" className="cursor-pointer" {...props}>
               <CopyIcon className="size-3.5"/>
             </Button>}

@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react";
+import React, { type ReactNode, memo } from "react";
 import type { ScheduleItem } from "@/lib/services/venues/venueService";
 import type { Venue } from "@/lib/model/venue.ts";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible.tsx";
@@ -12,15 +12,16 @@ type VenueListProps = {
     venues?: ScheduleItem[];
     onVenueClick: (venue: Venue) => void;
     future?: boolean;
+    className?: string;
 };
 
-export function VenueList({ title, venues, onVenueClick, future = false }: VenueListProps) {
+export const VenueList = memo(({ title, venues, onVenueClick, future = false, className }: VenueListProps) => {
     const list = venues ?? [];
     if (list.length === 0) return null;
     const [open, setOpen] = React.useState(true);
 
     return (
-        <Collapsible open={open} onOpenChange={setOpen}>
+        <Collapsible open={open} onOpenChange={setOpen} className={className}>
             <CollapsibleTrigger className="ml-12 group flex w-full items-center gap-2 hover:text-accent cursor-pointer">
                 <ChevronRightIcon className={cn("h-4 w-4 transition-transform", open ? "rotate-90" : "rotate-0")} />
                 <h2 className="text-lg font-semibold tracking-wide uppercase text-foreground/90 group-hover:text-accent">
@@ -39,4 +40,4 @@ export function VenueList({ title, venues, onVenueClick, future = false }: Venue
             </CollapsibleContent>
         </Collapsible>
     );
-}
+});
