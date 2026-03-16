@@ -9,6 +9,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import {SettingsButton} from "@/components/settingsMenu/settingsButton.tsx";
 import {SettingsDialog} from "@/components/settingsMenu/settingsDialog.tsx";
 import {useSetting} from "@/lib/services/settings/useSetting";
+import {CreateVenueButton} from "@/components/createVenueModal/createVenueButton.tsx";
+import {CreateVenueDialog} from "@/components/createVenueModal/createVenueDialog.tsx";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -29,6 +31,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
         (c): c is ReactElement => isValidElement(c) && c.type === DefaultPageLayout.Page
     );
     const [settingsOpen, setSettingsOpen] = useState(false);
+    const [createVenueOpen, setCreateVenueOpen] = useState( false);
     const sidebarDefault = useSetting('sidebar');
 
     return <>
@@ -45,7 +48,9 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
                   {sidebarContent}
               </SidebarContent>
                 <SidebarFooter>
+                    <CreateVenueButton className="cursor-pointer" onClick={() => setCreateVenueOpen(true)} />
                     <SettingsButton className="cursor-pointer" onClick={() => setSettingsOpen(true)} />
+                    <CreateVenueDialog open={createVenueOpen} onOpenChange={setCreateVenueOpen} />
                     <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
                 </SidebarFooter>
               <SidebarRail />
