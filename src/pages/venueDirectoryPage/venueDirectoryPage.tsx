@@ -52,7 +52,7 @@ export const VenueDirectoryPage = () => {
                   <VenueDrawer open={showVenuePanel} venue={selectedVenue} onClose={() => setShowVenuePanel(false)} />
                   {view === 'list' ? (
                       <>
-                          <VenueList title="Favorites" venues={venues?.favourites ?? []} onVenueClick={activateVenuePanel} className="mb-4" />
+                          <VenueList title="Favorites" venues={venues?.favourites ?? []} onVenueClick={activateVenuePanel} />
                           <VenueList title="Open Now" venues={venues?.open ?? []} onVenueClick={activateVenuePanel} />
                           <VenueList title="Newest" venues={venues?.newest ?? []} onVenueClick={activateVenuePanel} />
                           {(venues?.scheduled ?? []).map((dayVenues, i) => {

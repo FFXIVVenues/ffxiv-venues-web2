@@ -4,7 +4,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import {buttonVariants} from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import veni from "@/assets/veni.webp";
@@ -37,7 +37,7 @@ export const CreateVenueDialog = ({ open, onOpenChange } : createVenueDialogProp
                             <li>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit!
                                 <div className="mt-2">
-                                    <Button variant="outline" size="sm"><a href="https://discord.gg/gTP65VYcMj">Join the discord!</a></Button>
+                                    <a href="https://discord.gg/gTP65VYcMj" className={buttonVariants({ variant: "outline", size: "sm" })}>Join the discord!</a>
                                 </div>
                             </li>
                             <li>
@@ -46,7 +46,7 @@ export const CreateVenueDialog = ({ open, onOpenChange } : createVenueDialogProp
                                 <span> or type </span>
                                 <code className="text-xs bg-muted px-1 py-0.5 rounded">/create</code>!
                                 <div className="mt-2">
-                                    <Button variant="outline" size="sm"><a href="https://discordapp.com/users/906248123951775774">Lorem ipsum dolor!</a></Button>
+                                    <a href="https://discordapp.com/users/906248123951775774" className={buttonVariants({ variant: "outline", size: "sm" })}>Lorem ipsum dolor!</a>
                                 </div>
                             </li>
                         </ol>
