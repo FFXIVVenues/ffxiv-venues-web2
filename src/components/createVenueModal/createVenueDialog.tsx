@@ -17,7 +17,7 @@ type createVenueDialogProps = {
 export const CreateVenueDialog = ({ open, onOpenChange } : createVenueDialogProps) => {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-4xl">
+            <DialogContent className="sm:max-w-2xl">
                 <DialogHeader>
                     <div className="flex items-center gap-3">
                         <Avatar>
@@ -27,26 +27,26 @@ export const CreateVenueDialog = ({ open, onOpenChange } : createVenueDialogProp
                         <DialogTitle className="text-xl">Join via Veni!</DialogTitle>
                     </div>
                 </DialogHeader>
-                <DialogDescription className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8">
+                <DialogDescription className="grid grid-cols-1 md:grid-cols-[1.2fr_auto_0.8fr] gap-8">
                     <div className="flex flex-col gap-4">
-                        <p className="text-sm text-muted-foreground">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            <span className="text-foreground font-bold"> Veni Ki</span>, sed do eiusmod tempor incididunt.
+                        <p className="text-sm text-muted-foreground">The easiest way to get your venue listed is through
+                            <span className="text-foreground font-bold"> Veni Ki</span> 🥰 - our cute bot for managing your venue!
                         </p>
 
                         <ol className="list-decimal list-inside flex flex-col gap-4 text-sm text-muted-foreground">
                             <li>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit!
+                                Veni's home; the FFXIV Venues Discord!
                                 <div className="mt-2">
                                     <a href="https://discord.gg/gTP65VYcMj" className={buttonVariants({ variant: "outline", size: "sm" })}>Join the discord!</a>
                                 </div>
                             </li>
                             <li>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit </span>
+                                <span>Then simply DM Veni and ask to </span>
                                 <span className="text-foreground font-bold">Create a venue</span>
                                 <span> or type </span>
                                 <code className="text-xs bg-muted px-1 py-0.5 rounded">/create</code>!
                                 <div className="mt-2">
-                                    <a href="https://discordapp.com/users/906248123951775774" className={buttonVariants({ variant: "outline", size: "sm" })}>Lorem ipsum dolor!</a>
+                                    <a href="https://discordapp.com/users/906248123951775774" className={buttonVariants({ variant: "outline", size: "sm" })}>Meet Veni Ki!</a>
                                 </div>
                             </li>
                         </ol>
@@ -56,13 +56,11 @@ export const CreateVenueDialog = ({ open, onOpenChange } : createVenueDialogProp
 
                     <div className="flex flex-col gap-4 text-sm text-muted-foreground">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                            To keep your venue indexed, we ask that you stay in the FFXIV Venues Discord - it's how Veni stays in touch with you.
+                            Don't worry, the server will never notify you unless you subscribe to a topic, and Veni will DM you regularly to keep things up to date. 🥰
                         </p>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore magna {" "}
-                            <a href="https://discordapp.com/users/236852510688542720" className="text-primary underline underline-offset-4">Kana Ki</a>.
+                            If you have any questions or need help, just make a <a href="https://discord.com/channels/942536163959406632/1188579990271434883" className="text-primary underline underline-offset-4">Venue Ticket</a> in the discord.
                         </p>
                     </div>
                 </DialogDescription>
