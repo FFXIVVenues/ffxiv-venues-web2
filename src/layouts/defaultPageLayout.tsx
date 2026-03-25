@@ -12,7 +12,6 @@ import {CreateVenueDialog} from "@/components/createVenueModal/createVenueDialog
 import {DiscordFillIcon} from "@/components/icons/akar-icons-discord-fill.tsx";
 import {Button, buttonVariants} from "@/components/ui/button.tsx";
 import {Plus, Settings} from "lucide-react";
-import {cn} from "@/lib/utils";
 
 type DefaultLayoutProps = {
     children: ReactNode;
