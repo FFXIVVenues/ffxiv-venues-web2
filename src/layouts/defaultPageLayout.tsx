@@ -12,6 +12,7 @@ import {CreateVenueDialog} from "@/components/createVenueModal/createVenueDialog
 import {DiscordFillIcon} from "@/components/icons/akar-icons-discord-fill.tsx";
 import {Button, buttonVariants} from "@/components/ui/button.tsx";
 import {Plus, Settings} from "lucide-react";
+import {cn} from "@/lib/utils";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -52,7 +53,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
                     <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4" onClick={() => setCreateVenueOpen(true)}>
                         <Plus className="size-4"/> <span className="mt-0.5">Add your venue</span>
                     </Button>
-                    <a href="https://discord.gg/gTP65VYcMj" className={buttonVariants({ variant: "ghost", className: "w-full justify-start items-center gap-2 py-4 cursor-pointer" })}>
+                    <a href="https://discord.gg/gTP65VYcMj" rel="noopener noreferrer" target="_blank" className={cn(buttonVariants({ variant: "ghost"}), "w-full justify-start items-center gap-2 py-4 cursor-pointer" )}>
                         <DiscordFillIcon className="size-4"/> <span className="mt-0.5">Join the discord!</span>
                     </a>
                     <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4" onClick={() => setSettingsOpen(true)}>
