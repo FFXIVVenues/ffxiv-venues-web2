@@ -6,6 +6,7 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { cn } from "@/lib/utils/index"
 import { Button } from "@/components/ui/button"
 import { XIcon } from "lucide-react"
+import type {Ref, RefObject} from "react";
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />
@@ -39,16 +40,21 @@ function DialogOverlay({
   )
 }
 
+type DialogContentProps =
+  DialogPrimitive.Popup.Props & {
+  showCloseButton?: boolean
+  container?: RefObject<HTMLDivElement | null>
+}
+
 function DialogContent({
   className,
   children,
   showCloseButton = true,
+  container,
   ...props
-}: DialogPrimitive.Popup.Props & {
-  showCloseButton?: boolean
-}) {
+}: DialogContentProps) {
   return (
-    <DialogPortal>
+    <DialogPortal container={container}>
       <DialogOverlay />
       <DialogPrimitive.Popup
         data-slot="dialog-content"

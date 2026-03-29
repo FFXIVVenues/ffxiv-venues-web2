@@ -13,7 +13,7 @@ import {VenueTags} from "@/components/venueDrawer/venueTags.tsx";
 import defaultBanner from "@/assets/default-banner.webp";
 import {settingsService} from "@/lib/services/settings/settingsService";
 import {cva} from "class-variance-authority";
-import {memo} from "react";
+import {memo, type Ref, type RefObject, useRef} from "react";
 
 type VenueSheetProps = {
   open: boolean,
@@ -23,6 +23,8 @@ type VenueSheetProps = {
 
 export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
   if (!venue) return null;
+
+  const container: RefObject<HTMLDivElement | null> = useRef(null);
   const positionSetting = settingsService.getSetting("drawerSide");
   const bannerStyle = cva(
     "w-full max-w-full",
@@ -51,14 +53,14 @@ export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
       },
     });
 
-  return <Drawer open={open} onClose={onClose} direction={positionSetting}>
-      <DrawerContent className="max-w-150">
+  return <Drawer open={open} onClose={onClose} direction={positionSetting} modal={true}>
+      <DrawerContent className="max-w-150" ref={container}>
           <DrawerHeader className="p-0">
             <DrawerClose className={exitButtonStyle({ side: positionSetting })}>
               <XIcon />
             </DrawerClose>
             <img className={bannerStyle({ side: positionSetting })} src={venue.bannerUri ?? defaultBanner } alt={venue.name} />
-            <VenueToolbar venue={venue} />
+            <VenueToolbar venue={venue} container={container} />
             <DrawerTitle className="text-2xl mx-8 mt-4 mb-0">{venue.name}</DrawerTitle>
             <DrawerDescription className="text-muted-foreground text-md mx-8 mb-2">
               <LocationText location={venue.location} />

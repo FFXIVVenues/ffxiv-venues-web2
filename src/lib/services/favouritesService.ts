@@ -1,3 +1,5 @@
+import {toast} from "sonner";
+
 class FavouritesService {
 
     private _favouritesCache: string[] | null;
@@ -26,12 +28,23 @@ class FavouritesService {
             return favourites;
         favourites.push(id);
         this._setFavourites(favourites);
+
+
+        toast.success("Venue favourited", {
+            description: "It'll appear the top of the index for you.",
+        })
+
         return favourites;
     }
 
     removeFavourite(id:string) {
         const favourites = this.getFavourites().filter(i => i !== id);
         this._setFavourites(favourites);
+
+        toast.success("Venue unfavourited", {
+            description: "It'll no longer appear in your favourites.",
+        })
+
         return favourites;
     }
 

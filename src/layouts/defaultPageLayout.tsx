@@ -9,6 +9,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import {SettingsButton} from "@/components/settingsMenu/settingsButton.tsx";
 import {SettingsDialog} from "@/components/settingsMenu/settingsDialog.tsx";
 import {useSetting} from "@/lib/services/settings/useSetting";
+import {Toaster} from "@/components/ui/sonner.tsx";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -32,6 +33,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
     const sidebarDefault = useSetting('sidebar');
 
     return <>
+        <Toaster />
         <TooltipProvider>
           <SidebarProvider defaultOpen={sidebarDefault}>
             <Sidebar variant="floating">
