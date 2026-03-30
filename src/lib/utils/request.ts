@@ -4,8 +4,7 @@ export interface RetryContext {
   url: string;
   status: number | "NETWORK_ERROR";
   retry: number;
-  delayMs: number;
-  retryAfter?: string | null;
+  retryAfter: number;
   error?: string;
 }
 
@@ -29,8 +28,8 @@ export async function request(
 ): Promise<Response> {
   const {
     maxRetries = 5,
-    baseDelayMs = 1250,
-    maxDelayMs = 15_000,
+    baseDelayMs = 2000,
+    maxDelayMs = 30_000,
     retryOnStatuses = new Set([429]),
     retryOnNetworkError = true,
     cancellationSignal = requestOptions.signal, // Abort signal
@@ -115,8 +114,7 @@ async function backOff({
       url,
       status: response?.status ?? "NETWORK_ERROR",
       retry: retry,
-      delayMs: retryDelayMs,
-      retryAfter: response?.headers?.get("retry-after"),
+      retryAfter: retryDelayMs,
       error: exception?.toString() ?? undefined
     });
   }

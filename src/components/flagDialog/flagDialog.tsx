@@ -28,7 +28,6 @@ export const FlagDialog = ({ venue, open, onOpenChange, dialogContainer }: FlagD
 
   const [flagSending, setFlagSending] = useState(false);
   const [flagSent, setFlagSent] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const selectedReason = React.useRef<FlagCategory | undefined>(undefined);
   const additionalDetail = React.useRef<string | undefined>(undefined);
@@ -45,11 +44,6 @@ export const FlagDialog = ({ venue, open, onOpenChange, dialogContainer }: FlagD
       setFlagSent(true);
     } catch (e) {
       setFlagSending(false);
-      if (e instanceof Response && e.status === 429) {
-        setError("Please wait and try your flag again (Rate limit exceeded).");
-      } else {
-        setError("Please wait and try your flag again.");
-      }
     }
   }, [ flagService, venue.id, selectedReason, additionalDetail ])
 

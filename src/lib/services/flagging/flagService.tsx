@@ -1,5 +1,6 @@
 import {request, useEnv} from "@/lib/utils";
 import { toast } from "sonner"
+import type {RetryContext} from "@/lib/utils/request.ts";
 
 export enum FlagCategory {
     VenueEmpty = "VenueEmpty",
@@ -19,9 +20,18 @@ class FlagService {
                 description: description
             })
         };
-        const response = await request(useEnv("FFXIV_VENUES_API_ROOT") + `/v1.0/venue/${venueId}/flag`, requestOptions);
+        const backOffOptions = {
+            onRetry: (context: RetryContext) => {
+                const retry = Math.round(context.retryAfter / 1000);
+                toast.error("Failed to flag venue", {
+                    description: "Retrying in " + retry + " seconds.",
+                    duration: context.retryAfter
+                })
+            },
+        };
+        const response = await request(useEnv("FFXIV_VENUES_API_ROOT") + `/v1.0/venue/${venueId}/flag`, requestOptions, backOffOptions);
         if (!response.ok) {
-            throw new Error("Response status code not OK");
+            throw response;
         }
 
         toast.success("Flag accepted", {

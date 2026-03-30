@@ -31,7 +31,7 @@ class FavouritesService {
 
 
         toast.success("Venue favourited", {
-            description: "It'll appear the top of the index for you.",
+            description: "It'll appear at the top of the index for you.",
         })
 
         return favourites;
