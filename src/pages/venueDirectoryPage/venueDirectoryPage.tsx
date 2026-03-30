@@ -1,4 +1,4 @@
-import {useCallback} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {useParams, useNavigate, useLocation} from "react-router";
 import {DefaultPageLayout} from "@/layouts/defaultPageLayout.tsx";
 import {FilterMenu} from "@/components/filterMenu/filterMenu.tsx";
@@ -13,11 +13,11 @@ import {VenueList} from "@/components/venueList/venueList.tsx";
 import {useSetting} from "@/lib/services/settings/useSetting";
 import type {ScheduleItem} from "@/lib/services/venues/venueService.ts";
 import {venueService} from "@/lib/services/venues/venueService.ts";
-import {useState, useEffect} from "react";
 
 const EMPTY_ARRAY: ScheduleItem[] = [];
 
 export const VenueDirectoryPage = () => {
+    const { venueId } = useParams();
     const venue = useVenueFromRoute();
     const navigate = useNavigate();
     useVenueHashRedirect();
@@ -61,7 +61,7 @@ export const VenueDirectoryPage = () => {
                         </>
                     ):
                     <>
-                        <VenueDrawer open={venue != null} venue={venue} onClose={closeVenue} />
+                        <VenueDrawer open={venueId !== undefined} venue={venue} onClose={closeVenue} />
                         {view === 'list' ? (
                             <>
                                 <VenueList title="Favorites" venues={venues.favourites} onVenueClick={openVenue} className="mb-4" />
@@ -104,10 +104,7 @@ function useVenueFromRoute() {
     const { venueId } = useParams();
     const [venue, setVenue] = useState<Venue | null>(null);
     useEffect(() => {
-        if (venueId == null) {
-            setVenue(null);
-            return;
-        }
+        if (venueId == null) return;
         venueService.getVenueById(venueId).then(v => setVenue(v ?? null));
     }, [venueId]);
     return venue;
