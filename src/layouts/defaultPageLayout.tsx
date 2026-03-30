@@ -52,7 +52,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
             </Sidebar>
 
             <main className="flex-1 px-2 py-4 overflow-x-hidden">
-                <SidebarTrigger/>
+                <SidebarTrigger className="cursor-pointer"/>
                 {pageContent}
             </main>
 
