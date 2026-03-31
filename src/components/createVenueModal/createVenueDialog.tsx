@@ -4,9 +4,9 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import {buttonVariants} from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import {Button} from "@/components/ui/button.tsx";
 import veni from "@/assets/veni.webp";
 
 type CreateVenueDialogProps = {
@@ -37,7 +37,9 @@ export const CreateVenueDialog = ({ open, onOpenChange } : CreateVenueDialogProp
                             <li>
                                 Veni's home; the FFXIV Venues Discord!
                                 <div className="mt-2">
-                                    <a href="https://discord.gg/gTP65VYcMj" rel="noopener noreferrer" target="_blank" className={buttonVariants({ variant: "outline", size: "sm" })}>Join the discord!</a>
+                                    <Button variant="outline" size="sm" render={<a href="https://discord.gg/gTP65VYcMj" rel="noopener noreferrer" target="_blank" />}>
+                                        Join the discord!
+                                    </Button>
                                 </div>
                             </li>
                             <li>
@@ -46,7 +48,9 @@ export const CreateVenueDialog = ({ open, onOpenChange } : CreateVenueDialogProp
                                 <span> or type </span>
                                 <code className="text-xs bg-muted px-1 py-0.5 rounded">/create</code>!
                                 <div className="mt-2">
-                                    <a href="https://discordapp.com/users/906248123951775774" rel="noopener noreferrer" target="_blank" className={buttonVariants({ variant: "outline", size: "sm" })}>Meet Veni Ki!</a>
+                                    <Button variant="outline" size="sm" render={<a href="https://discordapp.com/users/906248123951775774" rel="noopener noreferrer" target="_blank" />}>
+                                        Meet Veni Ki!
+                                    </Button>
                                 </div>
                             </li>
                         </ol>
