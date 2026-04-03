@@ -8,4 +8,18 @@ import {weekly} from "@/lib/utils/weekly.ts";
 import {useEnv} from "@/lib/utils/hooks/useEnv.ts";
 import {useIsMobile} from "@/lib/utils/hooks/useMobile.ts";
 
-export { cn, daysOfWeek, monthsOfYear, getCurrentLocalDay, nth, weekly, useEnv, useIsMobile }
+import { request }  from "@/lib/utils/request.ts";
+import { sleep } from "@/lib/utils/sleep.ts";
+
+export {
+  cn,
+  daysOfWeek,
+  monthsOfYear,
+  getCurrentLocalDay,
+  nth,
+  weekly,
+  useEnv,
+  useIsMobile,
+  request,
+  sleep
+}

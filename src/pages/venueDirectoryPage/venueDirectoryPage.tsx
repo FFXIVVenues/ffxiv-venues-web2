@@ -5,7 +5,6 @@ import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
 import {VenueCarousel} from "@/components/venueCarousel/venueCarousel.tsx";
 import {Day} from "@/lib/model/day.ts";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
-import {Spinner} from "@/components/ui/spinner.tsx";
 import type {Venue} from "@/lib/model/venue.ts";
 import {VenueDrawer} from "@/components/venueDrawer/venueDrawer.tsx";
 import {VenueList} from "@/components/venueList/venueList.tsx";
@@ -37,10 +36,6 @@ export const VenueDirectoryPage = () => {
                 </div>
             ): !venues ? (
                 <>
-                    <div className="flex items-center justify-center gap-3 py-6 text-muted-foreground">
-                        <Spinner className="size-5" />
-                        <span>Getting venues...</span>
-                    </div>
                     <div className="mx-auto max-w-7xl py-6 space-y-10">
                         {Array.from({ length: 4 }).map((_, i) => (
                             <section key={i} className="space-y-3">

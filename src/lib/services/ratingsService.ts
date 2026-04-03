@@ -1,3 +1,5 @@
+import {toast} from "sonner";
+
 type Rating = {
     id: string;
     rating: number;
@@ -29,6 +31,11 @@ class RatingsService {
         const ratings = this.getRatings().filter(r => r.id !== id);
         ratings.push({id, rating});
         this._setRatings(ratings);
+
+        toast.success("Venue rated", {
+            description: "You can filter to venues of a certain rating later via the sidebar.",
+        })
+
         return ratings;
     }
 
