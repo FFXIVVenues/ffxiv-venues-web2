@@ -108,7 +108,7 @@ function useVenueFromRoute() {
         else{
             venueService.getVenueById(venueId).then(v => {
                 setVenue(v ?? null);
-                setOpenDrawer(true);
+                setOpenDrawer(v != null);
             });
         }
     }, [venueId]);
