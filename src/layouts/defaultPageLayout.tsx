@@ -12,6 +12,7 @@ import {CreateVenueDialog} from "@/components/createVenueModal/createVenueDialog
 import {DiscordFillIcon} from "@/components/icons/akar-icons-discord-fill.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Plus, Settings} from "lucide-react";
+import {Toaster} from "@/components/ui/sonner.tsx";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -36,6 +37,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
     const sidebarDefault = useSetting('sidebar');
 
     return <>
+        <Toaster />
         <TooltipProvider>
           <SidebarProvider defaultOpen={sidebarDefault}>
             <Sidebar variant="floating">

@@ -2,8 +2,9 @@ import days from "@/lib/model/consts/days.json";
 import {nth} from "@/lib/utils";
 import {Interval} from "@/lib/model/interval.ts";
 import {IntervalType} from "@/lib/model/intervalType.ts";
+import {memo} from "react";
 
-export const RecurringDayText = ({ date, interval }: {date: Date, interval: Interval}) => {
+export const RecurringDayText = memo(({ date, interval }: {date: Date, interval: Interval}) => {
 
   const day = (date.getDay() + 6) % 7;
   const dayNoun = days[day];
@@ -29,4 +30,4 @@ export const RecurringDayText = ({ date, interval }: {date: Date, interval: Inte
     return <>{Math.abs(interval.intervalArgument)}{nth(Math.abs(interval.intervalArgument))} last {dayNoun} of the month</>
   }
 
-}
+})

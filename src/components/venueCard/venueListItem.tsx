@@ -9,7 +9,7 @@ import { DateText } from "@/components/dateString/dateText.tsx";
 type VenueCardListProps = {
     venue: Venue;
     opening?: Opening;
-    onClick: () => void;
+    onClick: (venue: Venue) => void;
     future?: boolean;
 };
 
@@ -18,7 +18,7 @@ export function VenueListItem({ venue, opening, onClick, future = false }: Venue
     const isNew = venue.isNew();
 
     return (
-        <TableBody className="group cursor-pointer" onClick={onClick}>
+        <TableBody className="group cursor-pointer" onClick={_ => onClick(venue)}>
         {displayOpening && !displayOpening.isNow && future && (
             <TableRow className="border-none hover:bg-transparent">
                 <TableCell colSpan={3} className="sm:table-cell pb-0 pt-3 text-muted-foreground group-hover:bg-muted/50">

@@ -1,3 +1,5 @@
+import {toast} from "sonner";
+
 class VisitedService {
     private _visitedCache: string[] | null;
 
@@ -19,16 +21,32 @@ class VisitedService {
 
     setVisited(id: string): string[] {
         const visited = this.getVisited();
+        if (visited.indexOf(id) !== -1)
+            return visited;
         visited.push(id);
-        localStorage.setItem("aether-venues-visited", JSON.stringify(visited));
+        this._setVisited(visited);
+
+        toast.success("Venue marked as visited", {
+            description: "You can filter to venues you have or haven't visited later via the sidebar.",
+        })
+
         return visited;
     }
 
     removeVisited(id: string): string[] {
         const visited = this.getVisited().filter(i => i !== id);
+        this._setVisited(visited);
+
+        toast.success("Venue unmarked as visited", {
+            description: "You can filter to venues you have or haven't visited later via the sidebar.",
+        })
+
+        return visited;
+    }
+
+    private _setVisited(visited: string[]) {
         this._visitedCache = visited;
         localStorage.setItem("aether-venues-visited", JSON.stringify(visited));
-        return visited;
     }
 }
 
