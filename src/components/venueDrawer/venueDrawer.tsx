@@ -16,9 +16,9 @@ import {cva} from "class-variance-authority";
 import {memo, type Ref, type RefObject, useRef} from "react";
 
 type VenueSheetProps = {
-  open: boolean,
-  venue: Nullable<Venue>,
-  onClose?: () => void
+    open: boolean,
+    venue: Nullable<Venue>,
+    onClose?: () => void
 }
 
 export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
@@ -77,23 +77,20 @@ export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
             <VenueNsfwText className="mt-8" hasCourts={venue.tags.indexOf('Courtesans') >= 0} openlyNsfw={!venue.sfw} />
           </div>
           <DrawerFooter>
-            <div className="flex justify-content-end gap-4 m-4">
-              <VenueWebsiteButton website={venue.website} />
-              <VenueDiscordButton discordLink={venue.discord} />
-            </div>
+              <div className="flex justify-content-end gap-4 m-4">
+                  <VenueWebsiteButton website={venue.website} />
+                  <VenueDiscordButton discordLink={venue.discord} />
+              </div>
           </DrawerFooter>
-      </DrawerContent>
-  </Drawer>
+        </DrawerContent>
+    </Drawer>
 })
 
 const UtcOffset = ({className}: {className?: string})=> {
-    const offsetMinutes = -new Date().getTimezoneOffset(); // flip sign to match UTC±
+    const offsetMinutes = -new Date().getTimezoneOffset();
     const sign = offsetMinutes >= 0 ? "+" : "-";
     const abs = Math.abs(offsetMinutes);
     const hh = String(Math.floor(abs / 60)).padStart(2, "0");
     const mm = String(abs % 60).padStart(2, "0");
     return <span className={className}>UTC{sign}{hh}:{mm}</span>
 }
-
-
-

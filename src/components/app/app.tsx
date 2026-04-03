@@ -7,6 +7,7 @@ export const App = () =>
     <BrowserRouter>
         <Routes>
             <Route index element={<VenueDirectoryPage />} />
+            <Route path="/venue/:venueId" element={<VenueDirectoryPage />} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     </BrowserRouter>
