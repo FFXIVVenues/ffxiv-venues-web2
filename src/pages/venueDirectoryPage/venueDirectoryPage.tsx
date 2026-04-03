@@ -11,14 +11,10 @@ import type {Venue} from "@/lib/model/venue.ts";
 import {VenueDrawer} from "@/components/venueDrawer/venueDrawer.tsx";
 import {VenueList} from "@/components/venueList/venueList.tsx";
 import {useSetting} from "@/lib/services/settings/useSetting";
-import type {ScheduleItem} from "@/lib/services/venues/venueService.ts";
 import {venueService} from "@/lib/services/venues/venueService.ts";
 
-const EMPTY_ARRAY: ScheduleItem[] = [];
-
 export const VenueDirectoryPage = () => {
-    const { venueId } = useParams();
-    const venue = useVenueFromRoute();
+    const { venue, openDrawer } = useVenueFromRoute();
     const navigate = useNavigate();
     useVenueHashRedirect();
 
@@ -61,7 +57,7 @@ export const VenueDirectoryPage = () => {
                         </>
                     ):
                     <>
-                        <VenueDrawer open={venueId !== undefined} venue={venue} onClose={closeVenue} />
+                        <VenueDrawer open={openDrawer} venue={venue} onClose={closeVenue} />
                         {view === 'list' ? (
                             <>
                                 <VenueList title="Favorites" venues={venues.favourites} onVenueClick={openVenue} className="mb-4" />
@@ -103,11 +99,21 @@ export const VenueDirectoryPage = () => {
 function useVenueFromRoute() {
     const { venueId } = useParams();
     const [venue, setVenue] = useState<Venue | null>(null);
+    const [openDrawer, setOpenDrawer] = useState(false);
+
     useEffect(() => {
-        if (venueId == null) return;
-        venueService.getVenueById(venueId).then(v => setVenue(v ?? null));
+        if (venueId == null){
+            setOpenDrawer(false);
+        }
+        else{
+            venueService.getVenueById(venueId).then(v => {
+                setVenue(v ?? null);
+                setOpenDrawer(true);
+            });
+        }
     }, [venueId]);
-    return venue;
+
+    return { venue, openDrawer };
 }
 
 function useVenueHashRedirect() {
