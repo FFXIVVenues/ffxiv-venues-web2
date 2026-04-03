@@ -6,9 +6,13 @@ import {
     SidebarHeader, SidebarProvider, SidebarRail, SidebarTrigger
 } from "@/components/ui/sidebar.tsx";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import {SettingsButton} from "@/components/settingsMenu/settingsButton.tsx";
 import {SettingsDialog} from "@/components/settingsMenu/settingsDialog.tsx";
 import {useSetting} from "@/lib/services/settings/useSetting";
+import {CreateVenueDialog} from "@/components/createVenueModal/createVenueDialog.tsx";
+import {DiscordFillIcon} from "@/components/icons/akar-icons-discord-fill.tsx";
+import {Button} from "@/components/ui/button.tsx";
+import {Plus, Settings} from "lucide-react";
+import {Toaster} from "@/components/ui/sonner.tsx";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -29,9 +33,11 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
         (c): c is ReactElement => isValidElement(c) && c.type === DefaultPageLayout.Page
     );
     const [settingsOpen, setSettingsOpen] = useState(false);
+    const [createVenueOpen, setCreateVenueOpen] = useState( false);
     const sidebarDefault = useSetting('sidebar');
 
     return <>
+        <Toaster />
         <TooltipProvider>
           <SidebarProvider defaultOpen={sidebarDefault}>
             <Sidebar variant="floating">
@@ -45,7 +51,16 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
                   {sidebarContent}
               </SidebarContent>
                 <SidebarFooter>
-                    <SettingsButton className="cursor-pointer" onClick={() => setSettingsOpen(true)} />
+                    <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4" onClick={() => setCreateVenueOpen(true)}>
+                        <Plus className="size-4"/> <span className="mt-0.5">Add your venue</span>
+                    </Button>
+                    <Button variant="ghost" render={<a href="https://discord.gg/gTP65VYcMj" rel="noopener noreferrer" target="_blank"></a>} className="cursor-pointer w-full justify-start items-center gap-2 py-4">
+                        <DiscordFillIcon className="size-4"/> <span className="mt-0.5">Join the discord!</span>
+                    </Button>
+                    <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4" onClick={() => setSettingsOpen(true)}>
+                        <Settings className="size-4"/> <span className="mt-0.5">Settings</span>
+                    </Button>
+                    <CreateVenueDialog open={createVenueOpen} onOpenChange={setCreateVenueOpen} />
                     <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
                 </SidebarFooter>
               <SidebarRail />

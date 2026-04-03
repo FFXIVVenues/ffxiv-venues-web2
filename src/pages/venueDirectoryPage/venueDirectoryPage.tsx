@@ -6,7 +6,6 @@ import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
 import {VenueCarousel} from "@/components/venueCarousel/venueCarousel.tsx";
 import {Day} from "@/lib/model/day.ts";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
-import {Spinner} from "@/components/ui/spinner.tsx";
 import type {Venue} from "@/lib/model/venue.ts";
 import {VenueDrawer} from "@/components/venueDrawer/venueDrawer.tsx";
 import {VenueList} from "@/components/venueList/venueList.tsx";

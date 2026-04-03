@@ -1,3 +1,5 @@
+import {toast} from "sonner";
+
 class VisitedService {
     private _visitedCache: string[] | null;
 
@@ -23,12 +25,22 @@ class VisitedService {
             return visited;
         visited.push(id);
         this._setVisited(visited);
+
+        toast.success("Venue marked as visited", {
+            description: "You can filter to venues you have or haven't visited later via the sidebar.",
+        })
+
         return visited;
     }
 
     removeVisited(id: string): string[] {
         const visited = this.getVisited().filter(i => i !== id);
         this._setVisited(visited);
+
+        toast.success("Venue unmarked as visited", {
+            description: "You can filter to venues you have or haven't visited later via the sidebar.",
+        })
+
         return visited;
     }
 
