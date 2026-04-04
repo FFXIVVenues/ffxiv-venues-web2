@@ -13,7 +13,7 @@ import {VenueTags} from "@/components/venueDrawer/venueTags.tsx";
 import defaultBanner from "@/assets/default-banner.webp";
 import {settingsService} from "@/lib/services/settings/settingsService";
 import {cva} from "class-variance-authority";
-import {memo, type Ref, type RefObject, useRef} from "react";
+import {memo, type RefObject, useRef} from "react";
 
 type VenueSheetProps = {
     open: boolean,
@@ -22,9 +22,11 @@ type VenueSheetProps = {
 }
 
 export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
-  if (!venue) return null;
+    const container: RefObject<HTMLDivElement | null> = useRef(null);
+    const closeRef: RefObject<HTMLButtonElement | null> = useRef(null);
 
-  const container: RefObject<HTMLDivElement | null> = useRef(null);
+    if (!venue) return null;
+
   const positionSetting = settingsService.getSetting("drawerSide");
   const bannerStyle = cva(
     "w-full max-w-full",
@@ -54,9 +56,9 @@ export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
     });
 
   return <Drawer open={open} onClose={onClose} direction={positionSetting} modal={true}>
-      <DrawerContent className="max-w-150" ref={container}>
+      <DrawerContent className="max-w-150" ref={container} onOpenAutoFocus={e => { e.preventDefault(); closeRef.current?.focus(); }}>
           <DrawerHeader className="p-0">
-            <DrawerClose className={exitButtonStyle({ side: positionSetting })}>
+            <DrawerClose ref={closeRef} className={exitButtonStyle({ side: positionSetting })}>
               <XIcon />
             </DrawerClose>
             <img className={bannerStyle({ side: positionSetting })} src={venue.bannerUri ?? defaultBanner } alt={venue.name} />
