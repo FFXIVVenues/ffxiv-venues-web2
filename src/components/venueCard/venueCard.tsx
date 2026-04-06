@@ -1,4 +1,4 @@
-import {memo} from "react";
+import {memo, useCallback, type MouseEvent} from "react";
 import {Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge.tsx";
 import {Button} from "@/components/ui/button.tsx";
@@ -15,7 +15,7 @@ import {ratingsService} from "@/lib/services/ratingsService.ts";
 type VenueCardProps = {
     venue: Venue;
     opening?: Opening;
-    onClick: (venue: Venue) => void;
+    onClick: (venue: Venue, newTab?: boolean) => void;
 }
 
 export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
@@ -28,6 +28,23 @@ export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
     const status = isOpen ? "Open" : isNew ? "New" : null;
     const pingOuter = isOpen ? "bg-accent" : isNew ? "bg-green-500" : "";
     const pingInner = isOpen ? "bg-accent shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
+
+    const onClickCallback = useCallback((e: MouseEvent) => {
+      if (e.button === 0) onClick(venue, false);
+    }, [onClick, venue]);
+
+    const onMiddleMouseDown = useCallback((e: MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+    }, [onClick, venue]);
+
+    const onMiddleClick = useCallback((e: MouseEvent) => {
+      if (e.button !== 1)
+        return;
+      e.preventDefault();
+      e.stopPropagation();
+      onClick(venue, true);
+    }, [onClick, venue]);
 
     return (
         <Card className="p-0 h-full flex flex-col max-w-[400px]">
@@ -80,7 +97,7 @@ export const VenueCard = memo(({ venue, opening, onClick }: VenueCardProps) => {
             </CardContent>
 
             <CardFooter className="pb-6 border-t">
-                <Button className="w-full cursor-pointer" onClick={_ => onClick(venue)}>View Venue</Button>
+                <Button className="w-full cursor-pointer" onMouseDown={onMiddleMouseDown} onClick={onClickCallback} onMouseUp={onMiddleClick}>View Venue</Button>
             </CardFooter>
         </Card>
     );

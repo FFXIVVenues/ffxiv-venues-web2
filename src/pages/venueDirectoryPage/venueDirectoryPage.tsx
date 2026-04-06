@@ -21,8 +21,12 @@ export const VenueDirectoryPage = () => {
     const currentDay = (new Date().getDay() + 6) % 7;
     const view = useSetting('view');
 
-    const openVenue = useCallback((venue: Venue) => {
-        navigate(`/venue/${venue.id}`);
+    const openVenue = useCallback((venue: Venue, newTab?: boolean) => {
+        if (newTab) {
+            window.open(`/venue/${venue.id}`, '_blank');
+        } else {
+            navigate(`/venue/${venue.id}`);
+        }
     }, [navigate]);
 
     const closeVenue = useCallback(() => {

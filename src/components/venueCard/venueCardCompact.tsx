@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback, type MouseEvent } from 'react';
 import {Card, CardHeader, CardTitle, CardDescription} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge.tsx";
 import type { Venue } from "@/lib/model/venue.ts";
@@ -13,7 +13,7 @@ import {ratingsService} from "@/lib/services/ratingsService.ts";
 type VenueCardProps = {
     venue: Venue;
     opening?: Opening;
-    onClick: (venue: Venue) => void;
+    onClick: (venue: Venue, newTab?: boolean) => void;
 }
 
 export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProps) => {
@@ -28,8 +28,25 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
     const pingOuter = isOpen ? "bg-accent" : isNew ? "bg-green-500" : "";
     const pingInner = isOpen ? "bg-accent shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
 
+    const onClickCallback = useCallback((e: MouseEvent) => {
+        if (e.button === 0) onClick(venue, false);
+    }, [onClick, venue]);
+
+    const onMiddleMouseDown = useCallback((e: MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+    }, [onClick, venue]);
+
+    const onMiddleClick = useCallback((e: MouseEvent) => {
+        if (e.button !== 1)
+            return;
+        e.preventDefault();
+        e.stopPropagation();
+        onClick(venue, true);
+    }, [onClick, venue]);
+
     return (
-        <Card className="py-5 cursor-pointer hover:bg-muted/50 transition-colors gap-5 max-w-[350px]" onClick={_ => onClick(venue)}>
+        <Card className="py-5 cursor-pointer hover:bg-muted/50 transition-colors gap-5 max-w-[350px]" onMouseDown={onMiddleMouseDown} onClick={onClickCallback} onMouseUp={onMiddleClick}>
             <img src={venue.bannerUri ?? "../assets/default-banner.webp"} alt={venue.name} loading="lazy" className="aspect-2/1"/>
 
             <CardHeader>

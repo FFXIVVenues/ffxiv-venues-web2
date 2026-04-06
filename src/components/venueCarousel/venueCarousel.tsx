@@ -12,7 +12,7 @@ import type {Venue} from "@/lib/model/venue.ts";
 type VenueCarouselProps = {
     title: ReactNode;
     venues?: ScheduleItem[];
-    onVenueClick: (venue: Venue) => void;
+    onVenueClick: (venue: Venue, newTab?: boolean) => void;
     className?: string;
 };
 

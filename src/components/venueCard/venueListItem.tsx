@@ -1,3 +1,4 @@
+import { type MouseEvent, memo, useCallback } from "react";
 import type { Venue } from "@/lib/model/venue.ts";
 import type { Opening } from "@/lib/model/opening.ts";
 import { TimeText } from "@/components/dateString/timeText.tsx";
@@ -9,16 +10,24 @@ import { DateText } from "@/components/dateString/dateText.tsx";
 type VenueCardListProps = {
     venue: Venue;
     opening?: Opening;
-    onClick: (venue: Venue) => void;
+    onClick: (venue: Venue, newTab?: boolean) => void;
     future?: boolean;
 };
 
-export function VenueListItem({ venue, opening, onClick, future = false }: VenueCardListProps) {
+export const VenueListItem = memo(({ venue, opening, onClick, future = false }: VenueCardListProps) => {
     const displayOpening = opening ?? venue.resolution;
     const isNew = venue.isNew();
 
+    const onClickCallback = useCallback((e: MouseEvent) => {
+        if (e.button === 0) onClick(venue, false);
+    }, [onClick, venue]);
+
+    const onAuxClickCallback = useCallback((e: MouseEvent) => {
+        if (e.button === 1) onClick(venue, true);
+    }, [onClick, venue]);
+
     return (
-        <TableBody className="group cursor-pointer" onClick={_ => onClick(venue)}>
+        <TableBody className="group cursor-pointer" onClick={onClickCallback} onAuxClick={onAuxClickCallback}>
         {displayOpening && !displayOpening.isNow && future && (
             <TableRow className="border-none hover:bg-transparent">
                 <TableCell colSpan={3} className="sm:table-cell pb-0 pt-3 text-muted-foreground group-hover:bg-muted/50">
@@ -59,4 +68,4 @@ export function VenueListItem({ venue, opening, onClick, future = false }: Venue
         </TableRow>
         </TableBody>
     );
-}
+});
