@@ -22,12 +22,21 @@ export const VenueListItem = memo(({ venue, opening, onClick, future = false }: 
         if (e.button === 0) onClick(venue, false);
     }, [onClick, venue]);
 
-    const onAuxClickCallback = useCallback((e: MouseEvent) => {
-        if (e.button === 1) onClick(venue, true);
+    const onMiddleMouseDown = useCallback((e: MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+    }, [onClick, venue]);
+
+    const onMiddleClick = useCallback((e: MouseEvent) => {
+        if (e.button !== 1)
+            return;
+        e.preventDefault();
+        e.stopPropagation();
+        onClick(venue, true);
     }, [onClick, venue]);
 
     return (
-        <TableBody className="group cursor-pointer" onClick={onClickCallback} onAuxClick={onAuxClickCallback}>
+        <TableBody className="group cursor-pointer" onMouseDown={onMiddleMouseDown} onClick={onClickCallback} onMouseUp={onMiddleClick}>
         {displayOpening && !displayOpening.isNow && future && (
             <TableRow className="border-none hover:bg-transparent">
                 <TableCell colSpan={3} className="sm:table-cell pb-0 pt-3 text-muted-foreground group-hover:bg-muted/50">
