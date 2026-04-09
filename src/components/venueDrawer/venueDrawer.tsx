@@ -68,7 +68,7 @@ export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
               <LocationText location={venue.location} />
             </DrawerDescription>
           </DrawerHeader>
-          <div className="mx-8 no-scrollbar overflow-y-auto">
+          <div tab-index={0} className="mx-8 no-scrollbar overflow-y-auto">
             <VenueDescription description={venue.description} />
             <VenueTags tags={venue.tags} />
             <hr className="border-t border-dotted border-muted mt-8 "/>
