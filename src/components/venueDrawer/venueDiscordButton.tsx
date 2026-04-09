@@ -7,6 +7,6 @@ export const VenueDiscordButton = ({discordLink}: { discordLink: Nullable<string
   <Button nativeButton={false} className="cursor-pointer flex items-center h-10 px-4 gap-2 font-bold grow" render={(props) =>
     <a href={discordLink} target="_blank" rel="noopener noreferrer" {...props}>
       <DiscordFillIcon className="size-5" stroke="var(--color-primary-foreground)"
-                       fill="var(--color-primary-foreground)"/> Discord
+                       fill="var(--color-primary-foreground)" aria-hidden="true"/> Discord
     </a>
   }/>

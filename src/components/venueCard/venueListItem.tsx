@@ -18,7 +18,11 @@ export function VenueListItem({ venue, opening, onClick, future = false }: Venue
     const isNew = venue.isNew();
 
     return (
-        <TableBody className="group cursor-pointer" tabIndex={0} onKeyDown={e => e.key === 'Enter' && onClick(venue)} onClick={_ => onClick(venue)}>
+        <TableBody className="group cursor-pointer"
+                   aria-label={venue.name}
+                   tabIndex={0}
+                   onKeyDown={e => e.key === 'Enter' && onClick(venue)}
+                   onClick={_ => onClick(venue)}>
         {displayOpening && !displayOpening.isNow && future && (
             <TableRow className="border-none hover:bg-transparent">
                 <TableCell colSpan={3} className="sm:table-cell pb-0 pt-3 text-muted-foreground group-hover:bg-muted/50">

@@ -93,6 +93,7 @@ export const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
                     <Switch
                         checked={sidebarOpen}
                         onCheckedChange={value => settingsService.setSetting('sidebar', value)}
+                        aria-label="Show navigation bar"
                     />
                 </div>
             </DialogContent>

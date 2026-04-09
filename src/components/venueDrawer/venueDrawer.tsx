@@ -58,7 +58,7 @@ export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
   return <Drawer open={open} onClose={onClose} direction={positionSetting} modal={true}>
       <DrawerContent className="max-w-150" ref={container} onOpenAutoFocus={e => { e.preventDefault(); closeRef.current?.focus(); }}>
           <DrawerHeader className="p-0">
-            <DrawerClose ref={closeRef} className={exitButtonStyle({ side: positionSetting })}>
+            <DrawerClose ref={closeRef} className={exitButtonStyle({ side: positionSetting })} aria-label="Close">
               <XIcon />
             </DrawerClose>
             <img className={bannerStyle({ side: positionSetting })} src={venue.bannerUri ?? defaultBanner } alt={venue.name} />

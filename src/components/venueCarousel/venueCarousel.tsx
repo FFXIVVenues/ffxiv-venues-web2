@@ -1,4 +1,4 @@
-import React, { type ReactNode, memo, useCallback } from "react";
+import React, { type ReactNode, memo } from "react";
 import { VenueCard } from "@/components/venueCard/venueCard";
 import {VenueCardCompact} from "@/components/venueCard/venueCardCompact.tsx";
 import type { ScheduleItem } from "@/lib/services/venues/venueService";
@@ -42,8 +42,8 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
                             ))}
                         </CarouselContent>
 
-                        <CarouselPrevious />
-                        <CarouselNext />
+                        <CarouselPrevious aria-label="Previous" />
+                        <CarouselNext aria-label="Next" />
                     </Carousel>
                 </div>
             </CollapsibleContent>
