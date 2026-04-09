@@ -40,7 +40,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
       <ButtonGroup>
         <Tooltip>
           <TooltipTrigger onClick={copyLocationToClipboard} render={(props) =>
-            <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props}>
+            <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label="Copy location">
               <CopyIcon className="size-4"/>
             </Button>}
           />
@@ -51,7 +51,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
 
         <Tooltip>
           <TooltipTrigger onClick={copyLifestreamToClipboard} render={(props) =>
-            <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props}>
+            <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label="Copy lifestream command">
               <CopySlashIcon className="size-4"/>
             </Button>}
           />
