@@ -10,7 +10,7 @@ import {Table} from "@/components/ui/table.tsx";
 type VenueListProps = {
     title: ReactNode;
     venues?: ScheduleItem[];
-    onVenueClick: (venue: Venue) => void;
+    onVenueClick: (venue: Venue, newTab?: boolean) => void;
     future?: boolean;
     className?: string;
 };
