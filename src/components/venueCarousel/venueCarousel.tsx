@@ -34,8 +34,8 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
                     <Carousel opts={{ containScroll: "trimSnaps", align: "start", loop: false, dragFree: true }} className="mt-3 pb-3">
                         <CarouselContent>
                             {venues!.map(({ venue, opening }) => (
-                                <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-65 sm:basis-70 md:basis-90 lg:basis-auto m-0.5">
-                                    <VenueCard venue={venue} opening={opening} onClick={onVenueClick} />
+                                <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-auto mx-0.5">
+                                  <VenueCard venue={venue} opening={opening} onClick={onVenueClick} />
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
@@ -55,4 +55,3 @@ const VenueCard = memo(({ venue, opening, onClick }: { venue: Venue, opening?: O
           ? <VenueCardCompact venue={venue} opening={opening} onClick={onClick}/>
           : <VenueCardFull venue={venue} opening={opening} onClick={onClick}/>
 })
-
