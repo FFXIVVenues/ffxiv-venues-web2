@@ -96,7 +96,6 @@ function InputGroupButton({
       data-size={size}
       variant={variant}
       className={cn(inputGroupButtonVariants({ size }), className)}
-      aria-label="Input group"
       {...props}
     />
   )

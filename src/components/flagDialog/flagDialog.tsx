@@ -87,7 +87,7 @@ const FlagForm = ({
 
   return <>
     <Combobox onValueChange={setSelectedReason}>
-      <ComboboxInput placeholder="Select reason" aria-label="Select Reason"/>
+      <ComboboxInput placeholder="Select reason" aria-label="Select Reason" triggerAriaLabel="Input Group"/>
       <ComboboxContent>
         <ComboboxList>
           <ComboboxItem value={{ label: "Venue empty", value: "VenueEmpty" }}>
