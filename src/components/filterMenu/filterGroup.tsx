@@ -65,8 +65,7 @@ export const FilterGroup = memo(({heading, options, onFilter, singleSelect = fal
                             className={cn(roundingStyle, "cursor-pointer py-4 flex justify-between items-center relative")}
                             onClick={() => isActive ? removeFilter(option.filter!) : addFilter(option.filter!)}
                             aria-label={option.name}
-                            aria-pressed={isActive}
-                            tabindex={0}>
+                            tabIndex={0}>
                             <span className="flex gap-3 items-center [&>svg]:size-3 [&>svg]:mb-[0.1lh]">
                               {option.icon} {option.name}
                             </span>

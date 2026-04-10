@@ -22,9 +22,9 @@ export const VenueList = memo(({ title, venues, onVenueClick, future = false, cl
 
     return (
         <Collapsible open={open} onOpenChange={setOpen} className={className}>
-            <CollapsibleTrigger className="ml-12 group flex w-full items-center gap-2 hover:text-accent cursor-pointer">
+            <CollapsibleTrigger className="ml-12 group flex w-full items-center gap-2 cursor-pointer">
                 <ChevronRightIcon className={cn("h-4 w-4 transition-transform", open ? "rotate-90" : "rotate-0")} />
-                <h2 className="text-lg font-semibold tracking-wide uppercase text-foreground/90 group-hover:text-accent">
+                <h2 className="text-lg font-semibold tracking-wide uppercase text-foreground/90">
                     {title}
                 </h2>
             </CollapsibleTrigger>
