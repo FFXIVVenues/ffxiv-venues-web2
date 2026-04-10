@@ -9,6 +9,7 @@ import {CheckIcon, HeartIcon, StarIcon} from "lucide-react";
 import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
+import {Lazy} from "@/components/ui/lazy.tsx";
 
 type VenueCardProps = {
     venue: Venue;
@@ -46,42 +47,46 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
     }, [onClick, venue]);
 
     return (
-        <Card className="py-5 cursor-pointer hover:bg-muted/50 transition-colors gap-5 max-w-[350px]" onMouseDown={onMiddleMouseDown} onClick={onClickCallback} onMouseUp={onMiddleClick}>
-            <img src={venue.bannerUri ?? "../assets/default-banner.webp"} alt={venue.name} loading="lazy" className="aspect-2/1"/>
+      <div className="w-[350px]">
+          <Lazy className="w-full aspect-3/2">
+            <Card className="py-5 cursor-pointer hover:bg-muted/50 transition-colors gap-5 w-full" onMouseDown={onMiddleMouseDown} onClick={onClickCallback} onMouseUp={onMiddleClick}>
+                <img src={venue.bannerUri ?? "../assets/default-banner.webp"} alt={venue.name} loading="lazy" className="aspect-2/1"/>
 
-            <CardHeader>
-                <div className="flex items-start justify-between gap-3">
-                    <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>
-                    {(isOpen || isNew) && (
-                        <Badge variant="secondary" className="relative pr-6 -mt-0.5">
-                            {status}
-                            <span className="absolute right-2 top-1/2 -translate-y-1/2 flex h-1.5 w-1.5">
-                                <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
-                                <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${pingInner}`} />
-                            </span>
-                        </Badge>
-                    )}
-                </div>
-                <CardDescription className="min-h-4 flex justify-between">
-                    {displayOpening?.isNow? (
-                        <span className="flex items-center gap-1 font-bold">
-                            <span>Open until</span>
-                            <TimeText time={displayOpening.end} />
-                        </span>
-                    ): displayOpening && (
-                        <span className="flex items-center gap-1">
-                             <DateText date={displayOpening.start} />
-                             <TimeText time={displayOpening.start} />
-                             <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
-                         </span>
-                    )}
-                    <div className="flex gap-2">
-                        { rating > 0 && <span className="flex gap-0.5 text-xs font-bold text-muted-foreground">{rating}<StarIcon size={14} fill="currentColor" /></span>}
-                        { isVisited && <CheckIcon size={16} className="mr-1 text-muted-foreground  " /> }
-                        { isFavorite && <HeartIcon size={14} className="mr-1 stroke-muted-foreground fill-muted-foreground" /> }
+                <CardHeader>
+                    <div className="flex items-start justify-between gap-3">
+                        <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>
+                        {(isOpen || isNew) && (
+                            <Badge variant="secondary" className="relative pr-6 -mt-0.5">
+                                {status}
+                                <span className="absolute right-2 top-1/2 -translate-y-1/2 flex h-1.5 w-1.5">
+                                    <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
+                                    <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${pingInner}`} />
+                                </span>
+                            </Badge>
+                        )}
                     </div>
-                </CardDescription>
-            </CardHeader>
-        </Card>
+                    <CardDescription className="min-h-4 flex justify-between">
+                        {displayOpening?.isNow? (
+                            <span className="flex items-center gap-1 font-bold">
+                                <span>Open until</span>
+                                <TimeText time={displayOpening.end} />
+                            </span>
+                        ): displayOpening && (
+                            <span className="flex items-center gap-1">
+                                 <DateText date={displayOpening.start} />
+                                 <TimeText time={displayOpening.start} />
+                                 <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
+                             </span>
+                        )}
+                        <div className="flex gap-2">
+                            { rating > 0 && <span className="flex gap-0.5 text-xs font-bold text-muted-foreground">{rating}<StarIcon size={14} fill="currentColor" /></span>}
+                            { isVisited && <CheckIcon size={16} className="mr-1 text-muted-foreground  " /> }
+                            { isFavorite && <HeartIcon size={14} className="mr-1 stroke-muted-foreground fill-muted-foreground" /> }
+                        </div>
+                    </CardDescription>
+                </CardHeader>
+            </Card>
+        </Lazy>
+      </div>
     );
 });
