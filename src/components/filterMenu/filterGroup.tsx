@@ -63,7 +63,9 @@ export const FilterGroup = memo(({heading, options, onFilter, singleSelect = fal
                         <ButtonElement
                             isActive={isActive}
                             className={cn(roundingStyle, "cursor-pointer py-4 flex justify-between items-center relative")}
-                            onClick={() => isActive ? removeFilter(option.filter!) : addFilter(option.filter!)}>
+                            onClick={() => isActive ? removeFilter(option.filter!) : addFilter(option.filter!)}
+                            aria-label={option.name}
+                            tabIndex={0}>
                             <span className="flex gap-3 items-center [&>svg]:size-3 [&>svg]:mb-[0.1lh]">
                               {option.icon} {option.name}
                             </span>
@@ -76,7 +78,8 @@ export const FilterGroup = memo(({heading, options, onFilter, singleSelect = fal
                                                 nativeButton={ButtonElement === SidebarMenuButton}
                                                     render={(props, state) =>
                                     <ButtonElement
-                                        {...props}>
+                                        {...props}
+                                        aria-label={option.name}>
                                         {option.name}
                                         {option.options &&
                                           <ChevronDown className={cn(state.open ? 'rotate-180' : '', 'transition-transform text-sidebar-foreground/70')} />}
@@ -94,19 +97,18 @@ export const FilterGroup = memo(({heading, options, onFilter, singleSelect = fal
         });
 
     return <SidebarGroup>
-        <SidebarMenu>
-            <Collapsible defaultOpen={defaultOpen} className="group">
-                <CollapsibleTrigger
-                    className="w-full cursor-pointer">
-                        <SidebarGroupLabel className="w-full uppercase font-bold flex justify-between">
-                            {heading}
-                            <ChevronDown className="group-data-open:rotate-180 transition-transform"/>
-                        </SidebarGroupLabel>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
+        <Collapsible defaultOpen={defaultOpen} className="group">
+            <CollapsibleTrigger className="w-full cursor-pointer">
+                <SidebarGroupLabel className="w-full uppercase font-bold flex justify-between">
+                    {heading}
+                    <ChevronDown className="group-data-open:rotate-180 transition-transform"/>
+                </SidebarGroupLabel>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+                <SidebarMenu>
                     {renderMenuItems(SidebarMenuItem, SidebarMenuButton, options)}
-                </CollapsibleContent>
-            </Collapsible>
-        </SidebarMenu>
+                </SidebarMenu>
+            </CollapsibleContent>
+        </Collapsible>
     </SidebarGroup>
 });

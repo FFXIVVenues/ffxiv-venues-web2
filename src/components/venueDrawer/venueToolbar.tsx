@@ -1,4 +1,4 @@
-import {memo, type Ref, type RefObject, useCallback, useState} from "react";
+import {memo, type RefObject, useCallback, useState} from "react";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {CheckIcon, CopyIcon, CopySlashIcon, FlagIcon, HeartIcon} from "lucide-react";
@@ -40,7 +40,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
       <ButtonGroup>
         <Tooltip>
           <TooltipTrigger onClick={copyLocationToClipboard} render={(props) =>
-            <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props}>
+            <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label="Copy location">
               <CopyIcon className="size-4"/>
             </Button>}
           />
@@ -51,7 +51,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
 
         <Tooltip>
           <TooltipTrigger onClick={copyLifestreamToClipboard} render={(props) =>
-            <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props}>
+            <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label="Copy lifestream command">
               <CopySlashIcon className="size-4"/>
             </Button>}
           />
@@ -68,15 +68,16 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
     ]}>
       <Rating onChange={r => { ratingsService.setRating(venue.id, r); setInternalRating(r); }}
               value={internalRating} maxStars={5} color="var(--color-primary)" iconSize={14}
-              className={cn("box-border h-8 px-3 flex items-center rounded-l-lg hover:bg-muted/75", rating > 0 ? "bg-muted" : "")} />
+              className={cn("box-border h-8 px-3 flex items-center rounded-l-lg hover:bg-muted/75", rating > 0 ? "bg-muted" : "")}
+              aria-label="Rating"/>
 
-      <ToggleGroupItem size="sm" value="favourite"
+      <ToggleGroupItem size="sm" value="favourite" aria-label="Favourite" aria-pressed={favouritesService.isFavourite(venue.id)}
                        className="group cursor-pointer w-fit px-3! gap-2 aria-pressed:bg-secondary text-secondary-foreground aria-pressed:hover:bg-secondary/75"
                        onPressedChange={(on) => on ? favouritesService.setFavourite(venue.id) : favouritesService.removeFavourite(venue.id)}>
         <HeartIcon className="group-aria-pressed:fill-secondary-foreground group-aria-pressed:stroke-secondary-foreground mb-0.5" />
       </ToggleGroupItem>
 
-      <ToggleGroupItem value="visited" size="sm"
+      <ToggleGroupItem value="visited" size="sm" aria-label="Visited" aria-pressed={visitedService.isVisited(venue.id)}
               className="group cursor-pointer w-fit px-3! gap-2 aria-pressed:bg-secondary text-secondary-foreground aria-pressed:hover:bg-secondary/75"
               onPressedChange={(on) => on ? visitedService.setVisited(venue.id) : visitedService.removeVisited(venue.id)}>
         <CheckIcon className=" group-aria-pressed:stroke-secondary-foreground mb-0.5" strokeWidth={3}/>
@@ -86,7 +87,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
     <ButtonGroup>
       <Tooltip>
         <TooltipTrigger onClick={openFlagDialog} render={(props) =>
-          <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props}>
+          <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label="Flag Venue">
             <FlagIcon className="size-4"/>
           </Button>}
         />

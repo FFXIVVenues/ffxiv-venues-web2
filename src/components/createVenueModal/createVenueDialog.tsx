@@ -37,7 +37,7 @@ export const CreateVenueDialog = ({ open, onOpenChange } : CreateVenueDialogProp
                             <li>
                                 Veni's home; the FFXIV Venues Discord!
                                 <div className="mt-2">
-                                    <Button variant="outline" size="sm" render={<a href="https://discord.gg/gTP65VYcMj" rel="noopener noreferrer" target="_blank" />}>
+                                    <Button nativeButton={false} variant="outline" size="sm" render={<a href="https://discord.gg/gTP65VYcMj" rel="noopener noreferrer" target="_blank" />}>
                                         Join the discord!
                                     </Button>
                                 </div>
@@ -48,7 +48,7 @@ export const CreateVenueDialog = ({ open, onOpenChange } : CreateVenueDialogProp
                                 <span> or type </span>
                                 <code className="text-xs bg-muted px-1 py-0.5 rounded">/create</code>!
                                 <div className="mt-2">
-                                    <Button variant="outline" size="sm" render={<a href="https://discordapp.com/users/906248123951775774" rel="noopener noreferrer" target="_blank" />}>
+                                    <Button nativeButton={false} variant="outline" size="sm" render={<a href="https://discordapp.com/users/906248123951775774" rel="noopener noreferrer" target="_blank" />}>
                                         Meet Veni Ki!
                                     </Button>
                                 </div>

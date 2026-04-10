@@ -49,9 +49,13 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
     return (
       <div className="w-[350px]">
           <Lazy className="w-full aspect-3/2">
-            <Card className="py-5 cursor-pointer hover:bg-muted/50 transition-colors gap-5 w-full" onMouseDown={onMiddleMouseDown} onClick={onClickCallback} onMouseUp={onMiddleClick}>
+            <Card className="py-5 cursor-pointer hover:bg-muted/50 transition-colors gap-5 w-full"
+                  aria-label={venue.name}
+                  tabIndex={0}
+                  onMouseDown={onMiddleMouseDown} 
+                  onClick={onClickCallback} 
+                  onMouseUp={onMiddleClick}>
                 <img src={venue.bannerUri ?? "../assets/default-banner.webp"} alt={venue.name} loading="lazy" className="aspect-2/1"/>
-
                 <CardHeader>
                     <div className="flex items-start justify-between gap-3">
                         <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>

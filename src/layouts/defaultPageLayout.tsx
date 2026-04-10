@@ -54,14 +54,16 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
               </SidebarContent>
                 <SidebarFooter>
                     <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4" onClick={() => setCreateVenueOpen(true)}>
-                        <Plus className="size-4"/> <span className="mt-0.5">Add your venue</span>
+                        <Plus className="size-4"/> 
+                        <span className="mt-0.5">Add your venue</span>
                     </Button>
-                    <Button variant="ghost" render={<a href="https://discord.gg/gTP65VYcMj" rel="noopener noreferrer" target="_blank"></a>} className="cursor-pointer w-full justify-start items-center gap-2 py-4">
-                      <DiscordFillIcon className="size-4" strokeWidth={0} fill="var(--color-primary)"/>
-                      <span className="mt-0.5">Join the discord!</span>
+                    <Button nativeButton={false} variant="ghost" render={<a href="https://discord.gg/gTP65VYcMj" rel="noopener noreferrer" target="_blank"></a>} className="cursor-pointer w-full justify-start items-center gap-2 py-4">
+                        <DiscordFillIcon className="size-4" strokeWidth={0} fill="var(--color-primary)"/> 
+                        <span className="mt-0.5">Join the discord!</span>
                     </Button>
                     <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4" onClick={() => setSettingsOpen(true)}>
-                        <Settings className="size-4"/> <span className="mt-0.5">Settings</span>
+                        <Settings className="size-4"/> 
+                        <span className="mt-0.5">Settings</span>
                     </Button>
                     <CreateVenueDialog open={createVenueOpen} onOpenChange={setCreateVenueOpen} />
                     <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />

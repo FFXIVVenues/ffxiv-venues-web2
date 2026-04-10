@@ -36,7 +36,13 @@ export const VenueListItem = memo(({ venue, opening, onClick, future = false }: 
     }, [onClick, venue]);
 
     return (
-        <TableBody className="group cursor-pointer" onMouseDown={onMiddleMouseDown} onClick={onClickCallback} onMouseUp={onMiddleClick}>
+        <TableBody className="group cursor-pointer"
+                   aria-label={venue.name}
+                   tabIndex={0}
+                   onMouseDown={onMiddleMouseDown}
+                   onMouseUp={onMiddleClick}
+                   onClick={onClickCallback} 
+                   onKeyDown={e => e.key === 'Enter' && onClick(venue)}>
         {displayOpening && !displayOpening.isNow && future && (
             <TableRow className="border-none hover:bg-transparent">
                 <TableCell colSpan={3} className="sm:table-cell pb-0 pt-3 text-muted-foreground group-hover:bg-muted/50">

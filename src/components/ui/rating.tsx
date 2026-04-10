@@ -35,6 +35,7 @@ const StarIcon = React.memo(
       size={iconSize}
       fill={style.fill}
       color={style.color}
+      tabIndex={0}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       className={cn(

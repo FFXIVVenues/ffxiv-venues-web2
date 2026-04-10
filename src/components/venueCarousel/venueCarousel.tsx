@@ -40,8 +40,8 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
                             ))}
                         </CarouselContent>
 
-                        <CarouselPrevious />
-                        <CarouselNext />
+                        <CarouselPrevious aria-label="Previous" />
+                        <CarouselNext aria-label="Next" />
                     </Carousel>
                 </div>
             </CollapsibleContent>
