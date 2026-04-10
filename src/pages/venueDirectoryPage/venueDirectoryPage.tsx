@@ -11,6 +11,7 @@ import {VenueDrawer} from "@/components/venueDrawer/venueDrawer.tsx";
 import {VenueList} from "@/components/venueList/venueList.tsx";
 import {useSetting} from "@/lib/services/settings/useSetting";
 import {venueService} from "@/lib/services/venues/venueService.ts";
+import type {VenueSchedule} from "@/lib/services/venues/venueSchedule.ts";
 
 export const VenueDirectoryPage = () => {
     const { venue, openDrawer } = useVenueFromRoute();
@@ -18,9 +19,9 @@ export const VenueDirectoryPage = () => {
     useVenueHashRedirect();
 
     const [venues, error, setFilters] = useVenueSchedule([]);
-    const currentDay = (new Date().getDay() + 6) % 7;
     const view = useSetting('view');
 
+    const title = openDrawer && venue ? `${venue.name} - FFXIV Venues` : undefined;
     const openVenue = useCallback((venue: Venue, newTab?: boolean) => {
         if (newTab) {
             window.open(`/venue/${venue.id}`, '_blank');
@@ -34,65 +35,79 @@ export const VenueDirectoryPage = () => {
     }, [navigate]);
 
     return(
-        <DefaultPageLayout>
+        <DefaultPageLayout title={title}>
             <DefaultPageLayout.Panel>
                 <FilterMenu onFilter={setFilters} />
             </DefaultPageLayout.Panel>
             <DefaultPageLayout.Page>
+                <VenueDrawer open={openDrawer} venue={venue} onClose={closeVenue} />
                 {error ? (
                     <div className="mx-auto max-w-7xl py-6">
                         <p className="text-red-600">Error: {error?.message}</p>
                     </div>
-                ): !venues ? (
-                        <>
-                            <div className="mx-auto max-w-7xl py-6 space-y-10">
-                                {Array.from({ length: 4 }).map((_, i) => (
-                                    <section key={i} className="space-y-3">
-                                        <Skeleton className="h-7 w-48" />
-                                        <Skeleton className="h-64 w-full rounded-xl" />
-                                    </section>
-                                ))}
-                            </div>
-                        </>
-                    ):
-                    <>
-                        <VenueDrawer open={openDrawer} venue={venue} onClose={closeVenue} />
-                        {view === 'list' ? (
-                            <>
-                                <VenueList title="Favorites" venues={venues.favourites} onVenueClick={openVenue} className="mb-4" />
-                                <VenueList title="Open Now" venues={venues.open} onVenueClick={openVenue} />
-                                <VenueList title="Newest" venues={venues.newest} onVenueClick={openVenue} />
-                                {(venues?.scheduled).map((dayVenues, i) => {
-                                    const day = Day[(currentDay+i)%7];
-                                    const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
-                                    return(
-                                        <VenueList key={day} title={title} venues={dayVenues} onVenueClick={openVenue} />
-                                    )}
-                                )}
-                                <VenueList title="Future Openings" venues={venues.future} onVenueClick={openVenue} future={true}/>
-                                <VenueList title="Unscheduled" venues={venues.unscheduled} onVenueClick={openVenue} />
-                            </>
-                        ) : (
-                            <>
-                                <VenueCarousel title="Favorites" venues={venues.favourites} onVenueClick={openVenue} className="mb-4" />
-                                <VenueCarousel title="Open Now" venues={venues.open} onVenueClick={openVenue} />
-                                <VenueCarousel title="Newest" venues={venues.newest} onVenueClick={openVenue} />
-                                {(venues.scheduled).map((dayVenues, i) => {
-                                    const day = Day[(currentDay+i)%7];
-                                    const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
-                                    return(
-                                        <VenueCarousel key={day} title={title} venues={dayVenues} onVenueClick={openVenue} />
-                                    )
-                                })}
-                                <VenueCarousel title="Future Openings" venues={venues.future} onVenueClick={openVenue} />
-                                <VenueCarousel title="Unscheduled" venues={venues.unscheduled} onVenueClick={openVenue} />
-                            </>
-                        )}
-                    </>
+                ): !venues
+                  ? <VenueDirectoryLoadingStub />
+                  : view === 'list'
+                    ? <VenueDirectoryAsList venues={venues} onVenueClick={openVenue} />
+                    : <VenueDirectoryAsCards venues={venues} onVenueClick={openVenue} />
                 }
             </DefaultPageLayout.Page>
         </DefaultPageLayout>
     );
+}
+
+function VenueDirectoryLoadingStub() {
+    return <>
+        <div className="mx-12 max-w-7xl py-2 space-y-10">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <section key={i} className="space-y-3">
+                  <Skeleton className="h-7 w-48" />
+                  <div className="flex flex-row space-x-4 overflow-hidden">
+                      <Skeleton className="w-93.75 aspect-square rounded-xl" />
+                      <Skeleton className="w-93.75 aspect-square rounded-xl" />
+                      <Skeleton className="w-93.75 aspect-square rounded-xl" />
+
+                  </div>
+              </section>
+            ))}
+        </div>
+    </>
+}
+
+function VenueDirectoryAsList({ venues, onVenueClick }  : { venues: VenueSchedule, onVenueClick: (venue: Venue) => void }) {
+    const currentDay = (new Date().getDay() + 6) % 7;
+    return <>
+        <VenueList title="Favorites" venues={venues.favourites} onVenueClick={onVenueClick} />
+        <VenueList title="Open Now" venues={venues.open} onVenueClick={onVenueClick} />
+        <VenueList title="Newest" venues={venues.newest} onVenueClick={onVenueClick} />
+        {(venues?.scheduled).map((dayVenues, i) => {
+            const day = Day[(currentDay+i)%7];
+            const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
+            return(
+              <VenueList key={day} title={title} venues={dayVenues} onVenueClick={onVenueClick} />
+            )}
+        )}
+        <VenueList title="Future Openings" venues={venues.future} onVenueClick={onVenueClick} future={true}/>
+        <VenueList title="Unscheduled" venues={venues.unscheduled} onVenueClick={onVenueClick} />
+    </>
+}
+
+function VenueDirectoryAsCards({ venues, onVenueClick } : { venues: VenueSchedule, onVenueClick: (venue: Venue) => void }) {
+    const currentDay = (new Date().getDay() + 6) % 7;
+    return <>
+        <VenueCarousel title="Favorites" venues={venues.favourites} onVenueClick={onVenueClick} className="mt-4 mb-4" />
+        <VenueCarousel title="Open Now" venues={venues.open} onVenueClick={onVenueClick} className="mb-4" />
+        <VenueCarousel title="Newest" venues={venues.newest} onVenueClick={onVenueClick} className="mb-4" />
+        {(venues.scheduled).map((dayVenues, i) => {
+            const day = Day[(currentDay+i)%7];
+            const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
+            return(
+              <VenueCarousel key={day} title={title} venues={dayVenues} onVenueClick={onVenueClick} className="mb-4" />
+            )
+        })}
+        <VenueCarousel title="Future Openings" venues={venues.future} onVenueClick={onVenueClick} className="mb-4" />
+        <VenueCarousel title="Unscheduled" venues={venues.unscheduled} onVenueClick={onVenueClick} className="mb-4" />
+    </>;
 }
 
 function useVenueFromRoute() {

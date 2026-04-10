@@ -1,13 +1,14 @@
-import React, { type ReactNode, memo, useCallback } from "react";
-import { VenueCard } from "@/components/venueCard/venueCard";
+import React, {memo, type ReactNode} from "react";
+import {VenueCardFull} from "@/components/venueCard/venueCardFull.tsx";
 import {VenueCardCompact} from "@/components/venueCard/venueCardCompact.tsx";
-import type { ScheduleItem } from "@/lib/services/venues/venueService";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
+import type {ScheduleItem} from "@/lib/services/venues/venueService";
+import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
+import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
 import {ChevronRightIcon} from "lucide-react";
 import {cn} from "@/lib/utils";
 import {useSetting} from "@/lib/services/settings/useSetting";
 import type {Venue} from "@/lib/model/venue.ts";
+import type {Opening} from "@/lib/model/opening.ts";
 
 type VenueCarouselProps = {
     title: ReactNode;
@@ -20,7 +21,6 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
     const list = venues ?? [];
     if (list.length === 0) return null;
     const [open, setOpen] = React.useState(true)
-    const view = useSetting('view');
 
     return (
         <Collapsible open={open} onOpenChange={setOpen} className={className}>
@@ -35,9 +35,7 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
                         <CarouselContent>
                             {venues!.map(({ venue, opening }) => (
                                 <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-65 sm:basis-70 md:basis-90 lg:basis-auto m-0.5">
-                                    {view === 'compact'
-                                        ? <VenueCardCompact venue={venue} opening={opening} onClick={onVenueClick}/>
-                                        : <VenueCard venue={venue} opening={opening} onClick={onVenueClick}/>}
+                                    <VenueCard venue={venue} opening={opening} onClick={onVenueClick} />
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
@@ -50,3 +48,11 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
         </Collapsible>
     );
 });
+
+const VenueCard = memo(({ venue, opening, onClick }: { venue: Venue, opening?: Opening, onClick: (venue: Venue, newTab?: boolean) => void }) => {
+  const view = useSetting('view');
+  return view === 'compact'
+          ? <VenueCardCompact venue={venue} opening={opening} onClick={onClick}/>
+          : <VenueCardFull venue={venue} opening={opening} onClick={onClick}/>
+})
+
