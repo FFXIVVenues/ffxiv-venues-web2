@@ -70,6 +70,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
             </Sidebar>
 
             <main className="flex-1 px-2 py-4 overflow-x-hidden">
+                <SidebarTrigger size="icon-lg" className="fixed -ml-[1rem] bottom-4 z-10 bg-sidebar rounded-tl-none rounded-bl-none border border-l-0 border-sidebar-border w-10 pl-1" />
                 {pageContent}
             </main>
 
