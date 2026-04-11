@@ -58,7 +58,7 @@ export const VenueList = memo(({ title, venues, onVenueClick, future = false, cl
                 <div className="px-4 mt-2 mb-4">
                     {grouped
                         ? Array.from(grouped.entries()).map(([key, items]) => (
-                            <VenueListGroup key={key} items={items} onVenueClick={onVenueClick} />
+                            <VenueListGroup key={key} date={items[0]!.opening.start} items={items} onVenueClick={onVenueClick} />
                         )) : (
                             <div className="pl-5">
                                 <Table className="w-full [&_td]:border-none [&_tr]:border-none">

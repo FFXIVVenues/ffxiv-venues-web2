@@ -9,21 +9,20 @@ import type { Venue } from "@/lib/model/venue.ts";
 import type { ScheduleItemWithOpening } from "@/components/venueList/venueList.tsx";
 
 type VenueListGroupProps = {
+    date: Date;
     items: ScheduleItemWithOpening[];
     onVenueClick: (venue: Venue, newTab?: boolean) => void;
 };
 
-export const VenueListGroup = memo(({ items, onVenueClick }: VenueListGroupProps) => {
+export const VenueListGroup = memo(({ date, items, onVenueClick }: VenueListGroupProps) => {
     const [open, setOpen] = useState(true);
-    const firstItem = items[0];
-    if (!firstItem) return null;
 
     return (
         <Collapsible open={open} onOpenChange={setOpen}>
             <CollapsibleTrigger className="flex w-full items-center gap-2 py-2 pl-5 cursor-pointer group">
                 <ChevronRightIcon className={cn("h-3 w-3 transition-transform shrink-0 text-muted-foreground", open ? "rotate-90" : "rotate-0")} />
                 <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    <DateText date={firstItem.opening.start} />
+                    <DateText date={date} />
                 </h3>
             </CollapsibleTrigger>
             <CollapsibleContent>
