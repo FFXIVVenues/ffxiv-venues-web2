@@ -60,12 +60,12 @@ export const FlagDialog = ({ venue, open, onOpenChange, dialogContainer }: FlagD
 
             <DialogFooter className="-m-5 mt-0 rounded-b-lg bg-muted/50 p-5 border-t flex justify-between!">
               <DialogClose render={
-                <Button type="button" variant="secondary" className="p-4 pt-5 cursor-pointer">
+                <Button type="button" variant="secondary" className="p-4.5">
                   Close
                 </Button>
               } />
               { flagSending && <Spinner className="mt-3 mx-6 h-4 w-4 animate-spin" />}
-              { !flagSending && !flagSent && <Button type="button" variant="destructive" className="p-4 pt-5 cursor-pointer" onClick={submit}>Submit</Button> }
+              { !flagSending && !flagSent && <Button type="button" variant="destructive" className="p-4.5" onClick={submit}>Submit</Button> }
             </DialogFooter>
           </DialogContent>
       </Dialog>

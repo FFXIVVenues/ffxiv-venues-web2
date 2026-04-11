@@ -5,7 +5,7 @@ import {FieldLabel} from "@/components/ui/field.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {FilterGroup} from "@/components/filterMenu/filterGroup.tsx";
 
-import {categoryFilters} from "./filters/categoryFilters.ts";
+import {sceneFilters} from "./filters/sceneFilters.ts";
 import {featureFilters} from "./filters/featureFilters.ts";
 import {worldFilters} from "@/components/filterMenu/filters/worldFilters.ts";
 import {ratingFilters} from "@/components/filterMenu/filters/ratingFilters.tsx";
@@ -19,7 +19,7 @@ export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
     const filterRef = useRef({
         search: null as string | null,
         regionFilters: [] as Filter[],
-        categoryFilters: [] as Filter[],
+        sceneFilters: [] as Filter[],
         featureFilters: [] as Filter[],
         ratingFilters: [] as Filter[]
     });
@@ -28,7 +28,7 @@ export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
         filterRef.current = { ...filterRef.current, ...update };
         const filters = [
             ...filterRef.current.regionFilters,
-            ...filterRef.current.categoryFilters,
+            ...filterRef.current.sceneFilters,
             ...filterRef.current.featureFilters,
             ...filterRef.current.ratingFilters
         ]
@@ -41,7 +41,7 @@ export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
 
     const searchFilter = useCallback((e: ChangeEvent<HTMLInputElement>) => updateFilters({ search: e.target.value }), []);
     const regionsFilter = useCallback((filters: Filter[]) => updateFilters({ regionFilters: filters }), []);
-    const categorryFilter = useCallback((filters: Filter[]) => updateFilters({ categoryFilters: filters }), []);
+    const sceneFilter = useCallback((filters: Filter[]) => updateFilters({ sceneFilters: filters }), []);
     const featuresFilter = useCallback((filters: Filter[]) => updateFilters({ featureFilters: filters }), []);
     const ratingFilter = useCallback((filters: Filter[]) => updateFilters({ ratingFilters: filters }), []);
 
@@ -58,14 +58,13 @@ export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
             heading="Regions"
             defaultOpen={true}
             options={worldFilters}
-            singleSelect={true}
             onFilter={regionsFilter} />
 
         <FilterGroup
             heading="Scenes"
             defaultOpen={false}
-            options={categoryFilters}
-            onFilter={categorryFilter} />
+            options={sceneFilters}
+            onFilter={sceneFilter} />
 
         <FilterGroup
             heading="Features"
@@ -76,7 +75,6 @@ export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
         <FilterGroup
           heading="Rating"
           defaultOpen={false}
-          singleSelect={true}
           options={ratingFilters}
           onFilter={ratingFilter} />
 
