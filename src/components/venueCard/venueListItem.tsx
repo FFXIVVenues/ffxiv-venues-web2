@@ -3,18 +3,18 @@ import type { Venue } from "@/lib/model/venue.ts";
 import type { Opening } from "@/lib/model/opening.ts";
 import { TimeText } from "@/components/dateString/timeText.tsx";
 import { LocationText } from "@/components/locationText/locationText.tsx";
-import { Badge } from "@/components/ui/badge.tsx";
 import { TableCell, TableRow } from "@/components/ui/table.tsx";
+import { DateText } from "@/components/dateString/dateText.tsx";
 
 type VenueCardListProps = {
     venue: Venue;
     opening?: Opening;
     onClick: (venue: Venue, newTab?: boolean) => void;
+    future?: boolean;
 };
 
-export const VenueListItem = memo(({ venue, opening, onClick }: VenueCardListProps) => {
+export const VenueListItem = memo(({ venue, opening, onClick, future = false }: VenueCardListProps) => {
     const displayOpening = opening ?? venue.resolution;
-    const isNew = venue.isNew();
 
     const onClickCallback = useCallback((e: MouseEvent) => {
         if (e.button === 0) onClick(venue, false);
@@ -40,10 +40,9 @@ export const VenueListItem = memo(({ venue, opening, onClick }: VenueCardListPro
             onMouseDown={onMiddleMouseDown}
             onMouseUp={onMiddleClick}
             onClick={onClickCallback}
-            onKeyDown={e => e.key === 'Enter' && onClick(venue)}
-        >
+            onKeyDown={e => e.key === 'Enter' && onClick(venue)}>
             {displayOpening && (
-                <TableCell className="w-[130px] whitespace-nowrap text-muted-foreground tabular-nums py-2.5">
+                <TableCell className="w-[120px] sm:w-[120px] md:w-[280px] lg:w-[280px] whitespace-nowrap text-muted-foreground tabular-nums py-2.5">
                     {displayOpening.isNow ? (
                         <span className="flex items-center gap-1">
                             <span className="hidden md:inline">Open until</span>
@@ -51,6 +50,17 @@ export const VenueListItem = memo(({ venue, opening, onClick }: VenueCardListPro
                         </span>
                     ) : (
                         <span className="flex items-center gap-1">
+                        {future && (
+                            <>
+                                <span className="inline md:hidden">
+                                    <DateText date={displayOpening.start} short={true} />
+                                </span>
+                                <span className="hidden md:inline">
+                                    <DateText date={displayOpening.start} />
+                                </span>
+                            </>
+                        )}
+
                             <TimeText time={displayOpening.start} />
                             <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
                         </span>
@@ -58,16 +68,13 @@ export const VenueListItem = memo(({ venue, opening, onClick }: VenueCardListPro
                 </TableCell>
             )}
 
-            <TableCell colSpan={displayOpening ? 1 : 2} className="w-full max-w-0 font-semibold py-2.5">
+            <TableCell colSpan={displayOpening ? 1 : 2} className="sm:max-w-[100px] sm:w-100px md:max-w-[300px] md:w-[300px] font-semibold py-2.5">
                 <div className="flex items-center gap-2 min-w-0">
                     <span className="truncate">{venue.name}</span>
-                    {isNew && (
-                        <Badge variant="secondary" className="text-[10px] px-1.5 py-0 text-green-500 border-green-500/30 bg-green-500/10 shrink-0">New</Badge>
-                    )}
                 </div>
             </TableCell>
 
-            <TableCell className="hidden xl:table-cell whitespace-nowrap text-right text-muted-foreground py-2.5">
+            <TableCell className="w-full max-w-0 hidden xl:table-cell whitespace-nowrap text-left text-muted-foreground py-2.5">
                 <LocationText location={venue.location} />
             </TableCell>
         </TableRow>
