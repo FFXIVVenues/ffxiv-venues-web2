@@ -8,33 +8,32 @@ import {
 } from "@/components/ui/sidebar.tsx";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
 import {ChevronDown} from "lucide-react";
-import type {FilterOption} from "@/components/filterMenu/filters/categoryFilters.ts";
 import type {Filter} from "@/components/filterMenu/filterMenu.tsx";
 import {cn} from "@/lib/utils/cn.ts";
+import type {FilterOption} from "@/components/filterMenu/filters/filterOption.ts";
 
 export type FilterGroupProps = {
     heading: string;
     options: FilterOption[];
-    singleSelect?: boolean;
     defaultOpen?: boolean;
     onFilter: (e: Filter[]) => void;
 }
 
-export const FilterGroup = memo(({heading, options, onFilter, singleSelect = false, defaultOpen = true}: FilterGroupProps) => {
-    const [enabledFilters, setEnabledFilters] = useState<Filter[]>([]);
+export const FilterGroup = memo(({heading, options, onFilter, defaultOpen = true}: FilterGroupProps) => {
+    const [enabledFilters, setEnabledFilters] = useState<FilterOption[]>([]);
 
-    const addFilter = (filter: Filter) => {
-        let newFilters = [ filter ];
-        if (!singleSelect)
-            newFilters = [ ...enabledFilters, filter];
+    const addFilter = (filter: FilterOption) => {
+        let newFilters = [ ...enabledFilters ]
+          .filter(o => !o.mek || o.mek != filter.mek );
+        newFilters.push(filter);
         setEnabledFilters(newFilters);
-        onFilter(newFilters);
+        onFilter(newFilters.map(o => o.filter!));
     };
 
-    const removeFilter = (filter: Filter) => {
+    const removeFilter = (filter: FilterOption) => {
         const newFilters = enabledFilters.filter(f => f !== filter);
         setEnabledFilters(newFilters);
-        onFilter(newFilters);
+        onFilter(newFilters.map(o => o.filter!));
     }
 
     const renderMenuItems = (
@@ -43,13 +42,13 @@ export const FilterGroup = memo(({heading, options, onFilter, singleSelect = fal
         options: FilterOption[]
     ) =>
         options.map((option, i) => {
-            const isActive = option.filter && enabledFilters.includes(option.filter);
+            const isActive = option.filter && enabledFilters.includes(option);
 
             const prevOption = i > 0 ? options[i - 1] : undefined;
             const nextOption = i < options.length - 1 ? options[i + 1] : undefined;
 
-            const prevIsActive = prevOption?.filter && enabledFilters.includes(prevOption.filter);
-            const nextIsActive = nextOption?.filter && enabledFilters.includes(nextOption.filter);
+            const prevIsActive = prevOption?.filter && enabledFilters.includes(prevOption);
+            const nextIsActive = nextOption?.filter && enabledFilters.includes(nextOption);
 
             const roundingStyle= isActive ?
                 (prevIsActive ? 'rounded-t-none ' : '') +
@@ -63,7 +62,7 @@ export const FilterGroup = memo(({heading, options, onFilter, singleSelect = fal
                         <ButtonElement
                             isActive={isActive}
                             className={cn(roundingStyle, "cursor-pointer py-4 flex justify-between items-center relative")}
-                            onClick={() => isActive ? removeFilter(option.filter!) : addFilter(option.filter!)}
+                            onClick={() => isActive ? removeFilter(option) : addFilter(option)}
                             aria-label={option.name}
                             tabIndex={0}>
                             <span className="flex gap-3 items-center [&>svg]:size-3 [&>svg]:mb-[0.1lh]">
