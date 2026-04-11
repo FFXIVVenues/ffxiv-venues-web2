@@ -5,8 +5,8 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { VenueListItem } from "@/components/venueCard/venueListItem.tsx";
+import { VenueListGroup } from "@/components/venueList/venueListGroup.tsx";
 import { Table, TableBody } from "@/components/ui/table.tsx";
-import { DateText } from "@/components/dateString/dateText.tsx";
 import type { Opening } from "@/lib/model/opening.ts";
 
 type VenueListProps = {
@@ -17,7 +17,7 @@ type VenueListProps = {
     className?: string;
 };
 
-type ScheduleItemWithOpening = ScheduleItem & { opening: Opening };
+export type ScheduleItemWithOpening = ScheduleItem & { opening: Opening };
 
 function groupByDate(items: ScheduleItem[]): Map<string, ScheduleItemWithOpening[]> {
     const groups = new Map<string, ScheduleItemWithOpening[]>();
@@ -46,22 +46,6 @@ export const VenueList = memo(({ title, venues, onVenueClick, future = false, cl
         [list, future]
     );
 
-    const [groupOpen, setGroupOpen] = useState<Set<string>>(
-        () => new Set(grouped?.keys() ?? [])
-    );
-
-    const toggleGroup = (key: string) => {
-        setGroupOpen(prev => {
-            const next = new Set(prev);
-            if (next.has(key)) {
-                next.delete(key);
-            } else {
-                next.add(key);
-            }
-            return next;
-        });
-    };
-
     return (
         <Collapsible open={open} onOpenChange={setOpen} className={className}>
             <CollapsibleTrigger className="group flex w-full items-center gap-2 px-4 cursor-pointer">
@@ -70,36 +54,12 @@ export const VenueList = memo(({ title, venues, onVenueClick, future = false, cl
                     {title}
                 </h2>
             </CollapsibleTrigger>
-
             <CollapsibleContent>
                 <div className="px-4 mt-2 mb-4">
                     {grouped
-                        ? Array.from(grouped.entries()).map(([key, items]) => {
-                            const firstItem = items[0];
-                            if (!firstItem) return null;
-                            const isGroupOpen = groupOpen.has(key);
-                            return (
-                                <Collapsible key={key} open={isGroupOpen} onOpenChange={() => toggleGroup(key)}>
-                                    <CollapsibleTrigger className="flex w-full items-center gap-2 py-2 pl-5 cursor-pointer group">
-                                        <ChevronRightIcon className={cn("h-3 w-3 transition-transform shrink-0 text-muted-foreground", isGroupOpen ? "rotate-90" : "rotate-0")} />
-                                        <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                                            <DateText date={firstItem.opening.start} />
-                                        </h3>
-                                    </CollapsibleTrigger>
-                                    <CollapsibleContent>
-                                        <div className="pl-9">
-                                            <Table className="w-full [&_td]:border-none [&_tr]:border-none">
-                                                <TableBody>
-                                                    {items.map(({ venue, opening }) => (
-                                                        <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={onVenueClick} />
-                                                    ))}
-                                                </TableBody>
-                                            </Table>
-                                        </div>
-                                    </CollapsibleContent>
-                                </Collapsible>
-                            );
-                        }) : (
+                        ? Array.from(grouped.entries()).map(([key, items]) => (
+                            <VenueListGroup key={key} items={items} onVenueClick={onVenueClick} />
+                        )) : (
                             <div className="pl-5">
                                 <Table className="w-full [&_td]:border-none [&_tr]:border-none">
                                     <TableBody>
