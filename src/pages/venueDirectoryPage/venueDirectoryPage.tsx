@@ -76,7 +76,7 @@ function VenueDirectoryLoadingStub() {
 
 function VenueDirectoryAsList({ venues, onVenueClick }  : { venues: VenueSchedule, onVenueClick: (venue: Venue) => void }) {
     const currentDay = (new Date().getDay() + 6) % 7;
-    return <>
+    return <div className="mt-4">
         <VenueList title="Favorites" venues={venues.favourites} onVenueClick={onVenueClick} />
         <VenueList title="Open Now" venues={venues.open} onVenueClick={onVenueClick} />
         <VenueList title="Newest" venues={venues.newest} onVenueClick={onVenueClick} />
@@ -89,13 +89,13 @@ function VenueDirectoryAsList({ venues, onVenueClick }  : { venues: VenueSchedul
         )}
         <VenueList title="Future Openings" venues={venues.future} onVenueClick={onVenueClick} future={true}/>
         <VenueList title="Unscheduled" venues={venues.unscheduled} onVenueClick={onVenueClick} />
-    </>
+    </div>
 }
 
 function VenueDirectoryAsCards({ venues, onVenueClick } : { venues: VenueSchedule, onVenueClick: (venue: Venue) => void }) {
     const currentDay = (new Date().getDay() + 6) % 7;
-    return <>
-        <VenueCarousel title="Favorites" venues={venues.favourites} onVenueClick={onVenueClick} className="mt-4 mb-4" />
+    return <div className="mt-4">
+        <VenueCarousel title="Favorites" venues={venues.favourites} onVenueClick={onVenueClick} className="mb-4" />
         <VenueCarousel title="Open Now" venues={venues.open} onVenueClick={onVenueClick} className="mb-4" />
         <VenueCarousel title="Newest" venues={venues.newest} onVenueClick={onVenueClick} className="mb-4" />
         {(venues.scheduled).map((dayVenues, i) => {
@@ -107,7 +107,7 @@ function VenueDirectoryAsCards({ venues, onVenueClick } : { venues: VenueSchedul
         })}
         <VenueCarousel title="Future Openings" venues={venues.future} onVenueClick={onVenueClick} className="mb-4" />
         <VenueCarousel title="Unscheduled" venues={venues.unscheduled} onVenueClick={onVenueClick} className="mb-4" />
-    </>;
+    </div>;
 }
 
 function useVenueFromRoute() {
