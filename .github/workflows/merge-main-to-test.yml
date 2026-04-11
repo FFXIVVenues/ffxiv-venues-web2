@@ -8,6 +8,8 @@ on:
 jobs:
   merge_back_to_test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v6
 
