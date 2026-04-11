@@ -1,6 +1,6 @@
 const DEFAULTS = {
     theme: 'system',
-    view: 'card',
+    view: 'compact',
     sidebar: true,
     drawerSide: 'right',
 };
