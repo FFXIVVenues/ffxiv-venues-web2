@@ -1,4 +1,4 @@
-import React, { type ReactNode, memo } from "react";
+import React, {type ReactNode, memo, useMemo} from "react";
 import type { ScheduleItem } from "@/lib/services/venues/venueService";
 import type { Venue } from "@/lib/model/venue.ts";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible.tsx";
@@ -21,7 +21,11 @@ type ScheduleItemWithOpening = ScheduleItem & { opening: Opening };
 
 function groupByDate(items: ScheduleItem[]): Map<string, ScheduleItemWithOpening[]> {
     const groups = new Map<string, ScheduleItemWithOpening[]>();
-    for (const item of items) {
+    const sorted = [...items].sort((a, b) => {
+        if (!a.opening || !b.opening) return 0;
+        return a.opening.start.getTime() - b.opening.start.getTime();
+    });
+    for (const item of sorted) {
         if (!item.opening) continue;
         const key = new Date(item.opening.start).toDateString();
         const group = groups.get(key) ?? [];
@@ -36,7 +40,10 @@ export const VenueList = memo(({ title, venues, onVenueClick, future = false, cl
     if (list.length === 0) return null;
     const [open, setOpen] = React.useState(true);
 
-    const grouped = future ? groupByDate(list) : null;
+    const grouped = useMemo(
+        () => future ? groupByDate(list) : null,
+        [list, future]
+    );
 
     return (
         <Collapsible open={open} onOpenChange={setOpen} className={className}>
