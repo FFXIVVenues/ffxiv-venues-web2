@@ -1,11 +1,11 @@
-import React, {type ReactNode, memo, useMemo} from "react";
+import React, { type ReactNode, memo, useMemo, useState } from "react";
 import type { ScheduleItem } from "@/lib/services/venues/venueService";
 import type { Venue } from "@/lib/model/venue.ts";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible.tsx";
 import { ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { VenueListItem } from "@/components/venueCard/venueListItem.tsx";
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table.tsx";
+import { Table, TableBody } from "@/components/ui/table.tsx";
 import { DateText } from "@/components/dateString/dateText.tsx";
 import type { Opening } from "@/lib/model/opening.ts";
 
@@ -38,12 +38,29 @@ function groupByDate(items: ScheduleItem[]): Map<string, ScheduleItemWithOpening
 export const VenueList = memo(({ title, venues, onVenueClick, future = false, className }: VenueListProps) => {
     const list = venues ?? [];
     if (list.length === 0) return null;
-    const [open, setOpen] = React.useState(true);
+
+    const [open, setOpen] = useState(true);
 
     const grouped = useMemo(
         () => future ? groupByDate(list) : null,
         [list, future]
     );
+
+    const [groupOpen, setGroupOpen] = useState<Set<string>>(
+        () => new Set(grouped?.keys() ?? [])
+    );
+
+    const toggleGroup = (key: string) => {
+        setGroupOpen(prev => {
+            const next = new Set(prev);
+            if (next.has(key)) {
+                next.delete(key);
+            } else {
+                next.add(key);
+            }
+            return next;
+        });
+    };
 
     return (
         <Collapsible open={open} onOpenChange={setOpen} className={className}>
@@ -56,31 +73,40 @@ export const VenueList = memo(({ title, venues, onVenueClick, future = false, cl
 
             <CollapsibleContent>
                 <div className="px-4 mt-2 mb-4">
-                    <Table className="w-full [&_td]:border-none [&_tr]:border-none">
-                        <TableBody>
-                            {grouped
-                                ? Array.from(grouped.entries()).map(([key, items]) => {
-                                    const firstItem = items[0];
-                                    if (!firstItem) return null;
-                                    return (
-                                        <React.Fragment key={key}>
-                                            <TableRow className="border-none hover:bg-transparent">
-                                                <TableCell colSpan={3} className="pb-1 pt-4 text-sm text-muted-foreground">
-                                                    <DateText date={firstItem.opening.start} />
-                                                </TableCell>
-                                            </TableRow>
-                                            {items.map(({ venue, opening }) => (
-                                                <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={onVenueClick} />
-                                            ))}
-                                        </React.Fragment>
-                                    );
-                                })
-                                : list.map(({ venue, opening }) => (
-                                    <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={onVenueClick} />
-                                ))
-                            }
-                        </TableBody>
-                    </Table>
+                    {grouped
+                        ? Array.from(grouped.entries()).map(([key, items]) => {
+                            const firstItem = items[0];
+                            if (!firstItem) return null;
+                            const isGroupOpen = groupOpen.has(key);
+                            return (
+                                <Collapsible key={key} open={isGroupOpen} onOpenChange={() => toggleGroup(key)}>
+                                    <CollapsibleTrigger className="flex w-full items-center gap-2 py-2 cursor-pointer group">
+                                        <ChevronRightIcon className={cn("h-3 w-3 transition-transform shrink-0 text-muted-foreground", isGroupOpen ? "rotate-90" : "rotate-0")} />
+                                        <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                                            <DateText date={firstItem.opening.start} />
+                                        </h3>
+                                    </CollapsibleTrigger>
+                                    <CollapsibleContent>
+                                        <Table className="w-full [&_td]:border-none [&_tr]:border-none">
+                                            <TableBody>
+                                                {items.map(({ venue, opening }) => (
+                                                    <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={onVenueClick} />
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </CollapsibleContent>
+                                </Collapsible>
+                            );
+                        }) : (
+                            <Table className="w-full [&_td]:border-none [&_tr]:border-none">
+                                <TableBody>
+                                    {list.map(({ venue, opening }) => (
+                                        <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={onVenueClick} />
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        )
+                    }
                 </div>
             </CollapsibleContent>
         </Collapsible>

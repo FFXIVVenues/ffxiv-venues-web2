@@ -52,7 +52,7 @@ export const VenueListItem = memo(({ venue, opening, onClick }: VenueCardListPro
                     ) : (
                         <span className="flex items-center gap-1">
                             <TimeText time={displayOpening.start} />
-                            <span className="hidden md:inline">– <TimeText time={displayOpening.end} /></span>
+                            <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
                         </span>
                     )}
                 </TableCell>
