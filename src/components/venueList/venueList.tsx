@@ -80,31 +80,35 @@ export const VenueList = memo(({ title, venues, onVenueClick, future = false, cl
                             const isGroupOpen = groupOpen.has(key);
                             return (
                                 <Collapsible key={key} open={isGroupOpen} onOpenChange={() => toggleGroup(key)}>
-                                    <CollapsibleTrigger className="flex w-full items-center gap-2 py-2 cursor-pointer group">
+                                    <CollapsibleTrigger className="flex w-full items-center gap-2 py-2 pl-5 cursor-pointer group">
                                         <ChevronRightIcon className={cn("h-3 w-3 transition-transform shrink-0 text-muted-foreground", isGroupOpen ? "rotate-90" : "rotate-0")} />
                                         <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                                             <DateText date={firstItem.opening.start} />
                                         </h3>
                                     </CollapsibleTrigger>
                                     <CollapsibleContent>
-                                        <Table className="w-full [&_td]:border-none [&_tr]:border-none">
-                                            <TableBody>
-                                                {items.map(({ venue, opening }) => (
-                                                    <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={onVenueClick} />
-                                                ))}
-                                            </TableBody>
-                                        </Table>
+                                        <div className="pl-9">
+                                            <Table className="w-full [&_td]:border-none [&_tr]:border-none">
+                                                <TableBody>
+                                                    {items.map(({ venue, opening }) => (
+                                                        <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={onVenueClick} />
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </div>
                                     </CollapsibleContent>
                                 </Collapsible>
                             );
                         }) : (
-                            <Table className="w-full [&_td]:border-none [&_tr]:border-none">
-                                <TableBody>
-                                    {list.map(({ venue, opening }) => (
-                                        <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={onVenueClick} />
-                                    ))}
-                                </TableBody>
-                            </Table>
+                            <div className="pl-5">
+                                <Table className="w-full [&_td]:border-none [&_tr]:border-none">
+                                    <TableBody>
+                                        {list.map(({ venue, opening }) => (
+                                            <VenueListItem key={`${venue.id}-${opening?.start ?? "x"}`} venue={venue} opening={opening} onClick={onVenueClick} />
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </div>
                         )
                     }
                 </div>
