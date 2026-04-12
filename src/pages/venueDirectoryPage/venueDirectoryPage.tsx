@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import {useParams, useNavigate, useLocation} from "react-router";
 import {DefaultPageLayout} from "@/layouts/defaultPageLayout.tsx";
 import {FilterMenu} from "@/components/filterMenu/filterMenu.tsx";
@@ -22,10 +22,13 @@ export const VenueDirectoryPage = () => {
     const view = useSetting('view');
 
     const title = openDrawer && venue ? `${venue.name} - FFXIV Venues` : undefined;
+
+    const lastFocused = useRef<HTMLElement | null>(null);
     const openVenue = useCallback((venue: Venue, newTab?: boolean) => {
         if (newTab) {
             window.open(`/venue/${venue.id}`, '_blank');
         } else {
+            lastFocused.current = document.activeElement as HTMLElement;
             navigate(`/venue/${venue.id}`);
         }
     }, [navigate]);
@@ -40,7 +43,7 @@ export const VenueDirectoryPage = () => {
                 <FilterMenu onFilter={setFilters} />
             </DefaultPageLayout.Panel>
             <DefaultPageLayout.Page>
-                <VenueDrawer open={openDrawer} venue={venue} onClose={closeVenue} />
+                <VenueDrawer open={openDrawer} venue={venue} onClose={closeVenue} onCloseComplete={() => lastFocused.current?.focus()} />
                 {error ? (
                     <div className="mx-auto max-w-7xl py-6">
                         <p className="text-red-600">Error: {error?.message}</p>
