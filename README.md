@@ -1,34 +1,36 @@
 # FFXIV Venues Web Client
 
-The web frontend for FFXIV Venues stack.
+Frontend 2026 web client for FFXIV Venues, built on Typescript, React, and Tailwind. 
 
 ## Development
 
 This project uses [Bun](https://bun.sh/) as its package manager and runtime.
-
-### Prerequisites
-
-- [Bun](https://bun.sh/) installed on your machine.
+You'll need [Bun](https://bun.sh/) installed on your machine.
 
 ### Getting Started
 
 ```bash
-# Install dependencies
-bun install
-
-# Start the development server
-bun run dev
-
-# Build for production
-bun run build
-
-# Lint the project
-bun run lint
+bun install # Install dependencies
+bun run dev # Start the development server
 ```
 
-### License
+## License Summary
 
-This software is licensed under the **SSPL 1.0 with Mandatory Attribution**.
-- Forking and modification allowed for **non-commercial purposes only**.
-- Any deployment or hosting must include attribution to the original author.
-- Selling, paid SaaS, or commercial use is strictly prohibited.
+### ✅ You CAN
+- Fork, modify, and self-host this project
+- Use it in personal, hobby, nonprofit, or cost-recovery projects
+- Include it in paid software **if** it’s not a substantial part and not separately paywalled
+- Run it as a non-commercial SaaS **with source published**
+- Rename forks (required) while keeping lineage clear
+
+### ❌ You CANNOT
+- Use it for commercial or profit-seeking purposes
+- Sell it, license it for a fee, or paywall it
+- Hide modifications or source when it’s substantially used
+- Fork it and keep the exact same project name
+- Remove attribution
+
+### 🧾 Attribution
+If it powers a feature, credit it near that feature.  
+If there’s a credits file, put it there.  
+Otherwise, place attribution somewhere reasonable.

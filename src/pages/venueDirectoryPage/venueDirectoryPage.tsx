@@ -58,15 +58,14 @@ export const VenueDirectoryPage = () => {
 
 function VenueDirectoryLoadingStub() {
     return <>
-        <div className="mx-12 max-w-7xl py-2 space-y-10">
+        <div className="mx-12 max-w-7xl py-2 space-y-8 mt-4">
             {Array.from({ length: 4 }).map((_, i) => (
               <section key={i} className="space-y-3">
-                  <Skeleton className="h-7 w-48" />
-                  <div className="flex flex-row space-x-4 overflow-hidden">
-                      <Skeleton className="w-93.75 aspect-square rounded-xl" />
-                      <Skeleton className="w-93.75 aspect-square rounded-xl" />
-                      <Skeleton className="w-93.75 aspect-square rounded-xl" />
-
+                  <Skeleton className="h-6 w-36" />
+                  <div className="flex flex-row gap-x-4 overflow-hidden">
+                      {Array.from({ length: Math.floor(Math.random() * 4) + 1 }).map((_, j) => (
+                          <Skeleton key={j} className="w-[350px] shrink-0 h-[250px] rounded-xl" />
+                      ))}
                   </div>
               </section>
             ))}
