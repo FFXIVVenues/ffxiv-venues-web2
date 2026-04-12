@@ -87,6 +87,7 @@ class VenueService {
            new Date(one.opening!.start).getHours() - new Date(another.opening!.start).getHours()
         || new Date(one.opening!.start).getMinutes() - new Date(another.opening!.start).getMinutes()));
         venueViewModels.newest = venueViewModels.newest.sort((a, b) => ((b.venue.added && (new Date(b.venue.added).getTime())) || 0) - ((a.venue.added && (new Date(a.venue.added).getTime())) || 0));
+        venueViewModels.future = venueViewModels.future.sort((a, b) => new Date(a.opening!.start).getTime() - new Date(b.opening!.start).getTime());
 
         return venueViewModels;
     }
