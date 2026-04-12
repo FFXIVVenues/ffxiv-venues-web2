@@ -12,6 +12,9 @@ import type {Venue} from "@/lib/model/venue.ts";
 import {ToggleGroup, ToggleGroupItem} from "@/components/ui/toggle-group.tsx";
 import Rating from "@/components/ui/rating.tsx";
 import {toast} from "sonner";
+import {useFavourite} from "@/lib/services/useFavourite.ts";
+import {useVisited} from "@/lib/services/useVisited.ts";
+import {useRating} from "@/lib/services/useRating.ts";
 
 type VenueToolbarProps = {
   venue: Venue;
@@ -21,19 +24,21 @@ type VenueToolbarProps = {
 }
 
 const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueToolbarProps) => {
-  const location = venue.location;
-  const rating = ratingsService.getRating(venue.id);
-  const [ internalRating, setInternalRating ] = useState(rating);
+  const [ favourited, setFavourited ] = useFavourite(venue.id);
+  const [ visited, setVisited ] = useVisited(venue.id);
+  const [ rating, setRating ] = useRating(venue.id);
+
   const copyLocationToClipboard = useCallback(() => {
-    navigator.clipboard.writeText(location.toString());
-    toast("Location copied to clipboard");
-  }, [location]);
+    navigator.clipboard.writeText(location.toString())
+      .then(() => toast("Location copied to clipboard"))
+  }, [venue.location]);
   const copyLifestreamToClipboard = useCallback(() => {
     navigator.clipboard.writeText("/li " + location.toString())
-    toast("Lifestream command copied to clipboard");
-  }, [location]);
+      .then(() => toast("Lifestream command copied to clipboard"))
+  }, [venue.location]);
   const [ flagDialogOpen, setFlagDialogOpen ] = useState(false);
   const openFlagDialog = useCallback(() => { setFlagDialogOpen(true); onDialogOpen?.call([]) }, [setFlagDialogOpen]);
+
 
   return <div className="bg-muted/50 text-muted-foreground border-t border-b border-muted py-1.5 px-8 -mt-0.5 flex items-center justify-between">
     <div className={cn("flex gap-1", className)}>
@@ -63,23 +68,23 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
     </div>
 
     <ToggleGroup multiple className="gap-0.5" defaultValue={[
-      favouritesService.isFavourite(venue.id) ? 'favourite' : '',
-      visitedService.isVisited(venue.id) ? 'visited' : '',
+      favourited ? 'favourite' : '',
+      visited ? 'visited' : '',
     ]}>
-      <Rating onChange={r => { ratingsService.setRating(venue.id, r); setInternalRating(r); }}
-              value={internalRating} maxStars={5} color="var(--color-primary)" iconSize={14}
+      <Rating onChange={setRating}
+              value={rating} maxStars={5} color="var(--color-primary)" iconSize={14}
               className={cn("box-border h-8 px-3 flex items-center rounded-l-lg hover:bg-muted/75", rating > 0 ? "bg-muted" : "")}
               aria-label="Rating"/>
 
       <ToggleGroupItem size="sm" value="favourite" aria-label="Favourite" aria-pressed={favouritesService.isFavourite(venue.id)}
                        className="group cursor-pointer w-fit px-3! gap-2 aria-pressed:bg-secondary text-secondary-foreground aria-pressed:hover:bg-secondary/75"
-                       onPressedChange={(on) => on ? favouritesService.setFavourite(venue.id) : favouritesService.removeFavourite(venue.id)}>
+                       onPressedChange={setFavourited}>
         <HeartIcon className="group-aria-pressed:fill-secondary-foreground group-aria-pressed:stroke-secondary-foreground mb-0.5" />
       </ToggleGroupItem>
 
       <ToggleGroupItem value="visited" size="sm" aria-label="Visited" aria-pressed={visitedService.isVisited(venue.id)}
               className="group cursor-pointer w-fit px-3! gap-2 aria-pressed:bg-secondary text-secondary-foreground aria-pressed:hover:bg-secondary/75"
-              onPressedChange={(on) => on ? visitedService.setVisited(venue.id) : visitedService.removeVisited(venue.id)}>
+              onPressedChange={setVisited}>
         <CheckIcon className=" group-aria-pressed:stroke-secondary-foreground mb-0.5" strokeWidth={3}/>
       </ToggleGroupItem>
     </ToggleGroup>

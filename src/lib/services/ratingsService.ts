@@ -47,7 +47,7 @@ class RatingsService {
 
     observe(observer: () => void) {
         this._observers.push(observer);
-        return () => this._observers = this._observers.filter(o => o !== observer);
+        return () => { this._observers = this._observers.filter(o => o !== observer) };
     }
 
     private _setRatings(ratings: Rating[]) {
