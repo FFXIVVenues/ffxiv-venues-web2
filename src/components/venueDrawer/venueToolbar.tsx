@@ -4,8 +4,6 @@ import {Button} from "@/components/ui/button.tsx";
 import {CheckIcon, CopyIcon, CopySlashIcon, FlagIcon, HeartIcon} from "lucide-react";
 import {cn} from "@/lib/utils";
 import {ButtonGroup} from "@/components/ui/button-group.tsx";
-import {favouritesService} from "@/lib/services/favouritesService.ts";
-import {visitedService} from "@/lib/services/visitedService.ts";
 import {FlagDialog} from "@/components/flagDialog/flagDialog.tsx";
 import type {Venue} from "@/lib/model/venue.ts";
 import Rating from "@/components/ui/rating.tsx";
@@ -71,13 +69,13 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
               className="px-5 flex items-center leading-none"
               aria-label="Rating"/>
 
-      <Button size="icon" variant="secondary" aria-label="Favourite" aria-pressed={favouritesService.isFavourite(venue.id)}
+      <Button size="icon" variant="secondary" aria-label="Favourite" aria-pressed={favourited}
               className="group cursor-pointer px-5 py-4 aria-pressed:bg-primary aria-pressed:font-secondary-foreground aria-pressed:hover:bg-primary/75"
               onClick={() => setFavourited(!favourited)}>
         <HeartIcon className=" fill-secondary-foreground group-aria-pressed:fill-primary-foreground group-aria-pressed:stroke-primary-foreground size-4" />
       </Button>
 
-      <Button variant="secondary" size="icon" aria-label="Visited" aria-pressed={visitedService.isVisited(venue.id)}
+      <Button variant="secondary" size="icon" aria-label="Visited" aria-pressed={visited}
               className="group cursor-pointer px-5 py-4 gap-2 aria-pressed:bg-primary aria-pressed:hover:bg-primary/75"
               onClick={() => setVisited(!visited)}>
         <CheckIcon className=" group-aria-pressed:stroke-primary-foreground size-4" strokeWidth={3}/>
