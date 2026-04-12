@@ -12,6 +12,8 @@ import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
 import {Lazy} from "@/components/ui/lazy.tsx";
+import {PulseBadge} from "@/components/pulseBadge/pulseBadge.tsx";
+import {cn} from "@/lib/utils";
 
 type VenueCardProps = {
     venue: Venue;
@@ -27,8 +29,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
     const isFavorite = favouritesService.isFavourite(venue.id);
     const isNew  = venue.isNew();
     const status = isOpen ? "Open" : isNew ? "New" : null;
-    const pingOuter = isOpen ? "bg-accent" : isNew ? "bg-green-500" : "";
-    const pingInner = isOpen ? "bg-accent shadow-[0_0_10px_rgba(232,121,249,0.75)]" : isNew ? "bg-green-400 shadow-[0_0_10px_rgba(34,197,94,0.75)]" : "";
+    const badgeBg = isOpen ? "bg-accent" : isNew ? "bg-green-700" : "";
 
     const onClickCallback = useCallback((e: MouseEvent) => {
       if (e.button === 0) onClick(venue, false);
@@ -56,15 +57,9 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
               <CardHeader>
                   <div className="flex items-start justify-between gap-3">
                       <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>
-                      {(isOpen || isNew) && (
-                          <Badge variant="secondary" className="relative pr-6 -mt-0.5">
-                              {status}
-                              <span className="absolute right-2 top-1/2 -translate-y-1/2 flex h-1.5 w-1.5">
-                                  <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pingOuter} opacity-75`} />
-                                  <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${pingInner}`} />
-                              </span>
-                          </Badge>
-                      )}
+                      {(isOpen || isNew) &&
+                        <PulseBadge className={cn("shadow", badgeBg)}>{status}</PulseBadge>
+                      }
                   </div>
                   <CardDescription className="min-h-6 flex justify-between">
                     {displayOpening?.isNow ? (
