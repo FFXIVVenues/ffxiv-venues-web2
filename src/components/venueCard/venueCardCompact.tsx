@@ -55,7 +55,10 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
                   tabIndex={0}
                   onMouseDown={onMiddleMouseDown}
                   onClick={onClickCallback} 
-                  onMouseUp={onMiddleClick}>
+                  onMouseUp={onMiddleClick}
+                  onKeyDown={e => {
+                      if (e.key === ' ') e.preventDefault();
+                      if (e.key == 'Enter' || e.key === ' ') onClick(venue)}}>
                 <img src={venue.bannerUri ?? defaultBanner} alt={venue.name} loading="lazy" className="aspect-2/1"/>
                 <CardHeader>
                     <div className="flex items-start justify-between gap-3">

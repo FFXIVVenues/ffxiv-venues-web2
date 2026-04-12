@@ -40,7 +40,9 @@ export const VenueListItem = memo(({ venue, opening, onClick, future = false }: 
             onMouseDown={onMiddleMouseDown}
             onMouseUp={onMiddleClick}
             onClick={onClickCallback}
-            onKeyDown={e => e.key === 'Enter' && onClick(venue)}>
+            onKeyDown={e => {
+                if (e.key === ' ') e.preventDefault();
+                if (e.key == 'Enter' || e.key === ' ') onClick(venue)}}>
             {displayOpening && (
                 <TableCell className="w-[120px] sm:w-[120px] md:w-[280px] lg:w-[280px] whitespace-nowrap text-muted-foreground tabular-nums py-2.5">
                     {displayOpening.isNow ? (
