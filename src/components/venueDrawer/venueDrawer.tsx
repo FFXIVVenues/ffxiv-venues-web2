@@ -18,10 +18,11 @@ import {memo, type RefObject, useRef} from "react";
 type VenueSheetProps = {
     open: boolean,
     venue: Nullable<Venue>,
-    onClose?: () => void
+    onClose?: () => void,
+    onCloseComplete?: () => void
 }
 
-export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
+export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: VenueSheetProps)=> {
     const container: RefObject<HTMLDivElement | null> = useRef(null);
     const closeRef: RefObject<HTMLButtonElement | null> = useRef(null);
 
@@ -56,7 +57,11 @@ export const VenueDrawer = memo(({ open, venue, onClose }: VenueSheetProps)=> {
     });
 
   return <Drawer open={open} onClose={onClose} direction={positionSetting} modal={true}>
-      <DrawerContent className="max-w-150" ref={container} onOpenAutoFocus={e => { e.preventDefault(); closeRef.current?.focus(); }}>
+      <DrawerContent
+          className="max-w-150"
+          ref={container}
+          onOpenAutoFocus={e => { e.preventDefault(); closeRef.current?.focus(); }}
+          onCloseAutoFocus={e => { e.preventDefault(); onCloseComplete?.(); }}>
           <DrawerHeader className="p-0">
             <DrawerClose ref={closeRef} className={exitButtonStyle({ side: positionSetting })} aria-label="Close">
               <XIcon />
