@@ -1,4 +1,4 @@
-import { type MouseEvent, memo, useCallback } from "react";
+import React, { type MouseEvent, memo, useCallback } from "react";
 import type { Venue } from "@/lib/model/venue.ts";
 import type { Opening } from "@/lib/model/opening.ts";
 import { TimeText } from "@/components/dateString/timeText.tsx";
@@ -32,6 +32,11 @@ export const VenueListItem = memo(({ venue, opening, onClick, future = false }: 
         onClick(venue, true);
     }, [onClick, venue]);
 
+    const onKeyDown = useCallback((e: React.KeyboardEvent) => {
+        if (e.key === ' ') e.preventDefault();
+        if (e.key === 'Enter' || e.key === ' ') onClick(venue);
+    }, [onClick, venue]);
+
     return (
         <TableRow
             className="border-none hover:bg-muted/50 cursor-pointer group"
@@ -40,9 +45,7 @@ export const VenueListItem = memo(({ venue, opening, onClick, future = false }: 
             onMouseDown={onMiddleMouseDown}
             onMouseUp={onMiddleClick}
             onClick={onClickCallback}
-            onKeyDown={e => {
-                if (e.key === ' ') e.preventDefault();
-                if (e.key == 'Enter' || e.key === ' ') onClick(venue)}}>
+            onKeyDown={onKeyDown}>
             {displayOpening && (
                 <TableCell className="w-[120px] sm:w-[120px] md:w-[280px] lg:w-[280px] whitespace-nowrap text-muted-foreground tabular-nums py-2.5">
                     {displayOpening.isNow ? (
