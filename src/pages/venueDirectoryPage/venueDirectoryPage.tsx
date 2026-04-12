@@ -43,7 +43,7 @@ export const VenueDirectoryPage = () => {
                 <FilterMenu onFilter={setFilters} />
             </DefaultPageLayout.Panel>
             <DefaultPageLayout.Page>
-                <VenueDrawer open={openDrawer} venue={venue} onClose={closeVenue} closeReference={() => lastFocused.current?.focus()} />
+                <VenueDrawer open={openDrawer} venue={venue} onClose={closeVenue} onCloseComplete={() => lastFocused.current?.focus()} />
                 {error ? (
                     <div className="mx-auto max-w-7xl py-6">
                         <p className="text-red-600">Error: {error?.message}</p>

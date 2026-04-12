@@ -19,10 +19,10 @@ type VenueSheetProps = {
     open: boolean,
     venue: Nullable<Venue>,
     onClose?: () => void,
-    closeReference?: () => void
+    onCloseComplete?: () => void
 }
 
-export const VenueDrawer = memo(({ open, venue, onClose, closeReference }: VenueSheetProps)=> {
+export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: VenueSheetProps)=> {
     const container: RefObject<HTMLDivElement | null> = useRef(null);
     const closeRef: RefObject<HTMLButtonElement | null> = useRef(null);
 
@@ -61,7 +61,7 @@ export const VenueDrawer = memo(({ open, venue, onClose, closeReference }: Venue
           className="max-w-150"
           ref={container}
           onOpenAutoFocus={e => { e.preventDefault(); closeRef.current?.focus(); }}
-          onCloseAutoFocus={e => { e.preventDefault(); closeReference?.(); }}>
+          onCloseAutoFocus={e => { e.preventDefault(); onCloseComplete?.(); }}>
           <DrawerHeader className="p-0">
             <DrawerClose ref={closeRef} className={exitButtonStyle({ side: positionSetting })} aria-label="Close">
               <XIcon />
