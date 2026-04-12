@@ -26,11 +26,5 @@ export const featureFilters: FilterOption[] = [
   { name: "VIP available", filter: hasTag("vip") },
   { name: "LGBTQIA+ focused", filter: hasTag("LGBTQIA+") },
   { name: "IC RP encouraged", filter: hasTag("rp heavy") },
-  { name: "IC RP only", filter: hasTag("ic rp only") },
-  { name: "Triple triad", filter: hasTag("triple triad") },
-  { name: "Truth or dare", filter: hasTag("truth or dare") },
-  { name: "Blackjack", filter: hasTag("blackjack") },
-  { name: "Deathroll", filter: hasTag("deathroll") },
-  { name: "Texas holdem", filter: hasTag("texas holdem") },
-  { name: "Bingo", filter: hasTag("bingo") },
+  { name: "IC RP only", filter: hasTag("ic rp only") }
 ];

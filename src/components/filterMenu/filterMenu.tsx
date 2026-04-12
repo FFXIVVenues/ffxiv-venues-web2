@@ -9,75 +9,85 @@ import {sceneFilters} from "./filters/sceneFilters.ts";
 import {featureFilters} from "./filters/featureFilters.ts";
 import {worldFilters} from "@/components/filterMenu/filters/worldFilters.ts";
 import {ratingFilters} from "@/components/filterMenu/filters/ratingFilters.tsx";
+import {gameFilters} from "@/components/filterMenu/filters/gameFilters.ts";
 
 export type Filter = (venue: Venue) => boolean;
 export type FilterMenuProps = {
-    onFilter: (filters: Filter[]) => void;
+  onFilter: (filters: Filter[]) => void;
 }
 
 export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
-    const filterRef = useRef({
-        search: null as string | null,
-        regionFilters: [] as Filter[],
-        sceneFilters: [] as Filter[],
-        featureFilters: [] as Filter[],
-        ratingFilters: [] as Filter[]
-    });
+  const filterRef = useRef({
+    search: null as string | null,
+    regionFilters: [] as Filter[],
+    sceneFilters: [] as Filter[],
+    featureFilters: [] as Filter[],
+    gameFilters: [] as Filter[],
+    ratingFilters: [] as Filter[]
+  });
 
-    const updateFilters = useCallback((update: Partial<typeof filterRef.current>) => {
-        filterRef.current = { ...filterRef.current, ...update };
-        const filters = [
-            ...filterRef.current.regionFilters,
-            ...filterRef.current.sceneFilters,
-            ...filterRef.current.featureFilters,
-            ...filterRef.current.ratingFilters
-        ]
-        const searchText = filterRef.current.search?.toLowerCase();
-        if (searchText && searchText.length > 0)
-            filters.push((v: Venue) =>
-                v.name.toLowerCase().includes(searchText));
-        onFilter(filters);
-    }, [onFilter]);
+  const updateFilters = useCallback((update: Partial<typeof filterRef.current>) => {
+    filterRef.current = { ...filterRef.current, ...update };
+    const filters = [
+      ...filterRef.current.regionFilters,
+      ...filterRef.current.sceneFilters,
+      ...filterRef.current.featureFilters,
+      ...filterRef.current.gameFilters,
+      ...filterRef.current.ratingFilters
+    ]
+    const searchText = filterRef.current.search?.toLowerCase();
+    if (searchText && searchText.length > 0)
+      filters.push((v: Venue) =>
+        v.name.toLowerCase().includes(searchText));
+    onFilter(filters);
+  }, [onFilter]);
 
-    const searchFilter = useCallback((e: ChangeEvent<HTMLInputElement>) => updateFilters({ search: e.target.value }), []);
-    const regionsFilter = useCallback((filters: Filter[]) => updateFilters({ regionFilters: filters }), []);
-    const sceneFilter = useCallback((filters: Filter[]) => updateFilters({ sceneFilters: filters }), []);
-    const featuresFilter = useCallback((filters: Filter[]) => updateFilters({ featureFilters: filters }), []);
-    const ratingFilter = useCallback((filters: Filter[]) => updateFilters({ ratingFilters: filters }), []);
+  const searchFilter = useCallback((e: ChangeEvent<HTMLInputElement>) => updateFilters({ search: e.target.value }), []);
+  const regionsFilter = useCallback((filters: Filter[]) => updateFilters({ regionFilters: filters }), []);
+  const sceneFilter = useCallback((filters: Filter[]) => updateFilters({ sceneFilters: filters }), []);
+  const featuresFilter = useCallback((filters: Filter[]) => updateFilters({ featureFilters: filters }), []);
+  const gamesFilter = useCallback((filters: Filter[]) => updateFilters({ gameFilters: filters }), []);
+  const ratingFilter = useCallback((filters: Filter[]) => updateFilters({ ratingFilters: filters }), []);
 
-    return <>
-        <SidebarGroup>
-            <FieldLabel htmlFor="search-venues" className="sr-only">Search venues</FieldLabel>
-            <Input id="search-venues"
-                   type="text"
-                   placeholder="Search venues"
-                   onChange={searchFilter} />
-        </SidebarGroup>
+  return <>
+    <SidebarGroup>
+      <FieldLabel htmlFor="search-venues" className="sr-only">Search venues</FieldLabel>
+      <Input id="search-venues"
+             type="text"
+             placeholder="Search venues"
+             onChange={searchFilter} />
+    </SidebarGroup>
 
-        <FilterGroup
-            heading="Regions"
-            defaultOpen={true}
-            options={worldFilters}
-            onFilter={regionsFilter} />
+    <FilterGroup
+      heading="Regions"
+      defaultOpen={true}
+      options={worldFilters}
+      onFilter={regionsFilter} />
 
-        <FilterGroup
-            heading="Scenes"
-            defaultOpen={false}
-            options={sceneFilters}
-            onFilter={sceneFilter} />
+    <FilterGroup
+      heading="Scenes"
+      defaultOpen={false}
+      options={sceneFilters}
+      onFilter={sceneFilter} />
 
-        <FilterGroup
-            heading="Features"
-            defaultOpen={false}
-            options={featureFilters}
-            onFilter={featuresFilter} />
+    <FilterGroup
+      heading="Features"
+      defaultOpen={false}
+      options={featureFilters}
+      onFilter={featuresFilter} />
 
-        <FilterGroup
-          heading="Rating"
-          defaultOpen={false}
-          options={ratingFilters}
-          onFilter={ratingFilter} />
+    <FilterGroup
+      heading="Games"
+      defaultOpen={false}
+      options={gameFilters}
+      onFilter={gamesFilter} />
 
-    </>
+    <FilterGroup
+      heading="Rating"
+      defaultOpen={false}
+      options={ratingFilters}
+      onFilter={ratingFilter} />
+
+  </>
 
 });

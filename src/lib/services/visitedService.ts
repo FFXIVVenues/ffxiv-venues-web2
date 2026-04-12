@@ -2,9 +2,11 @@ import {toast} from "sonner";
 
 class VisitedService {
     private _visitedCache: string[] | null;
+    private _observers: (() => void)[];
 
     constructor() {
         this._visitedCache = null;
+        this._observers = [];
     }
 
     getVisited(): string[] {
@@ -44,9 +46,15 @@ class VisitedService {
         return visited;
     }
 
+    observe(observer: () => void) {
+        this._observers.push(observer);
+        return () => { this._observers = this._observers.filter(o => o !== observer); }
+    }
+
     private _setVisited(visited: string[]) {
         this._visitedCache = visited;
         localStorage.setItem("aether-venues-visited", JSON.stringify(visited));
+        this._observers.forEach(o => o());
     }
 }
 
