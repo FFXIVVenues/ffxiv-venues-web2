@@ -6,7 +6,12 @@ export const useRating = (id : string) : [ rating: number, (rating: number) => v
   useEffect(() => ratingsService.observe(() => {
     internalSetRating(ratingsService.getRating(id));
   }), [ id ]);
-  const setRating =
-    (rating: number) => { ratingsService.setRating(id, rating) }
+  const setRating = (rating: number) => {
+    if (rating === ratingsService.getRating(id)){
+      ratingsService.removeRating(id);
+    } else{
+      ratingsService.setRating(id, rating);
+    }
+  }
   return [ rating, setRating ];
 }
