@@ -1,6 +1,6 @@
 import {memo, type RefObject, useCallback, useEffect, useState} from "react";
 import {useNote} from "@/lib/services/notes/useNote.ts";
-import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose} from "@/components/ui/dialog";
+import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter} from "@/components/ui/dialog";
 import {Textarea} from "@/components/ui/textarea.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Trash2Icon} from "lucide-react";

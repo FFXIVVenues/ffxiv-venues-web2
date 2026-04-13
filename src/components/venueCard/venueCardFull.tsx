@@ -7,13 +7,14 @@ import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
 import defaultBanner from "@/assets/default-banner.webp";
-import {CheckIcon, HeartIcon, StarIcon} from "lucide-react";
+import {CheckIcon, HeartIcon, NotebookPen, StarIcon} from "lucide-react";
 import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
 import {Lazy} from "@/components/ui/lazy.tsx";
 import {PulseBadge} from "@/components/pulseBadge/pulseBadge.tsx";
 import {cn} from "@/lib/utils";
+import {notesService} from "@/lib/services/notes/notesService.ts";
 
 type VenueCardProps = {
     venue: Venue;
@@ -27,6 +28,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
     const rating = ratingsService.getRating(venue.id);
     const isVisited = visitedService.isVisited(venue.id);
     const isFavorite = favouritesService.isFavourite(venue.id);
+    const hasNote = notesService.hasNote(venue.id);
     const isNew  = venue.isNew();
     const status = isOpen ? "Open" : isNew ? "New" : null;
     const badgeBg = isOpen ? "bg-accent" : isNew ? "bg-green-700" : "";
@@ -75,9 +77,10 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
                         </span>
                     )}
                     <div className="flex gap-2 items-center">
-                      { rating > 0 && <span className="flex gap-0.5 text-xs font-bold text-muted-foreground">{rating}<StarIcon size={14} fill="currentColor" /></span>}
-                      { isVisited && <CheckIcon size={16} className="mr-1 text-muted-foreground  " /> }
-                      { isFavorite && <HeartIcon size={14} className="mr-1 stroke-muted-foreground fill-muted-foreground" /> }
+                        { rating > 0 && <span className="flex gap-0.5 text-xs font-bold text-muted-foreground">{rating}<StarIcon size={14} fill="currentColor" /></span>}
+                        { isVisited && <CheckIcon size={16} className="mr-1 text-muted-foreground  " /> }
+                        { isFavorite && <HeartIcon size={14} className="mr-1 stroke-muted-foreground fill-muted-foreground" /> }
+                        { hasNote && <NotebookPen size={14} className="mr-1 stroke-muted-foreground" /> }
                     </div>
                   </CardDescription>
               </CardHeader>
