@@ -25,11 +25,11 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
   const [ rating, setRating ] = useRating(venue.id);
 
   const copyLocationToClipboard = useCallback(() => {
-    navigator.clipboard.writeText(location.toString())
+    navigator.clipboard.writeText(venue.location.toString())
         .then(() => toast("Location copied to clipboard"))
   }, [venue.location]);
   const copyLifestreamToClipboard = useCallback(() => {
-    navigator.clipboard.writeText("/li " + location.toString())
+    navigator.clipboard.writeText("/li " + venue.location.toString())
         .then(() => toast("Lifestream command copied to clipboard"))
   }, [venue.location]);
   const [ flagDialogOpen, setFlagDialogOpen ] = useState(false);
