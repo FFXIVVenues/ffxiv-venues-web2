@@ -83,7 +83,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
               </CardHeader>
 
               <CardContent className="flex-1">
-                  <div className="flex items-center gap-2 pt-0.5">
+                  <div className="flex items-center gap-2 pt-0.5 min-h-[22px]">
                       <div className="flex items-center gap-2 overflow-hidden flex-1" style={{ maskImage: "linear-gradient(to right, black 70%, transparent 100%)" }}>
                           {venue.tags.map((tag) => (
                               <Badge key={tag} variant="outline" className="bg-muted text-muted-foreground border-muted rounded-sm shrink-0">

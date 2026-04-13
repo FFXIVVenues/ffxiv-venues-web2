@@ -1,4 +1,4 @@
-import {memo, type MouseEvent, useCallback} from 'react';
+import React, {memo, type MouseEvent, useCallback} from 'react';
 import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import defaultBanner from "@/assets/default-banner.webp";
 import type {Venue} from "@/lib/model/venue.ts";
@@ -47,6 +47,11 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
         onClick(venue, true);
     }, [onClick, venue]);
 
+    const onKeyDown = useCallback((e: React.KeyboardEvent) => {
+        if (e.key === ' ') e.preventDefault();
+        if (e.key === 'Enter' || e.key === ' ') onClick(venue);
+    }, [onClick, venue]);
+
     return (
       <div className="w-[350px]">
           <Lazy className="w-full aspect-3/2">
@@ -55,7 +60,8 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
                   tabIndex={0}
                   onMouseDown={onMiddleMouseDown}
                   onClick={onClickCallback} 
-                  onMouseUp={onMiddleClick}>
+                  onMouseUp={onMiddleClick}
+                  onKeyDown={onKeyDown}>
                 <img src={venue.bannerUri ?? defaultBanner} alt={venue.name} loading="lazy" className="aspect-2/1"/>
                 <CardHeader>
                     <div className="flex items-start justify-between gap-3">
