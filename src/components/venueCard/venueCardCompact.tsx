@@ -5,13 +5,15 @@ import type {Venue} from "@/lib/model/venue.ts";
 import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
-import {CheckIcon, HeartIcon, StarIcon} from "lucide-react";
+import {CheckIcon, HeartIcon, Pencil, StarIcon} from "lucide-react";
 import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
 import {Lazy} from "@/components/ui/lazy.tsx";
 import {cn} from "@/lib/utils";
 import {PulseBadge} from "@/components/pulseBadge/pulseBadge.tsx";
+import {notesService} from "@/lib/services/notes/notesService.ts";
+import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card.tsx";
 
 type VenueCardProps = {
     venue: Venue;
@@ -24,6 +26,7 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
     const rating = ratingsService.getRating(venue.id);
     const isFavorite = favouritesService.isFavourite(venue.id);
     const isVisited = visitedService.isVisited(venue.id);
+    const hasNote = notesService.hasNote(venue.id);
     const isOpen = displayOpening?.isNow === true;
     const isNew  = venue.isNew();
     const status = isOpen ? "Open" : isNew ? "New" : null;
@@ -87,6 +90,17 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
                             { rating > 0 && <span className="flex gap-0.5 text-xs font-bold text-muted-foreground">{rating}<StarIcon size={14} fill="currentColor" /></span>}
                             { isVisited && <CheckIcon size={16} className="mr-1 text-muted-foreground  " /> }
                             { isFavorite && <HeartIcon size={14} className="mr-1 stroke-muted-foreground fill-muted-foreground" /> }
+                            {hasNote && (
+                                <HoverCard>
+                                    <HoverCardTrigger>
+                                        <Pencil size={14} className="stroke-muted-foreground fill-muted-foreground" />
+                                    </HoverCardTrigger>
+                                    <HoverCardContent className="w-64">
+                                        <p className="text-xs font-semibold text-muted-foreground mb-1">Note</p>
+                                        <p className="text-sm text-muted-foreground whitespace-pre-wrap">{notesService.getNote(venue.id)}</p>
+                                    </HoverCardContent>
+                                </HoverCard>
+                            )}
                         </div>
                     </CardDescription>
                 </CardHeader>
