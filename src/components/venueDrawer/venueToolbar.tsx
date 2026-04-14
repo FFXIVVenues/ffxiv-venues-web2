@@ -1,7 +1,7 @@
 import {memo, type RefObject, useCallback, useState} from "react";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {CheckIcon, CopyIcon, CopySlashIcon, FlagIcon, HeartIcon, NotebookPen} from "lucide-react";
+import {CheckIcon, CopyIcon, CopySlashIcon, FlagIcon, HeartIcon, Pencil} from "lucide-react";
 import {cn} from "@/lib/utils";
 import {ButtonGroup} from "@/components/ui/button-group.tsx";
 import {FlagDialog} from "@/components/flagDialog/flagDialog.tsx";
@@ -103,7 +103,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
         <TooltipTrigger onClick={openNotesDialog} render={(props) =>
             <Button size="icon" variant="secondary" className="group cursor-pointer px-5 py-4 gap-2 aria-pressed:bg-primary aria-pressed:hover:bg-primary/75"
                     {...props} aria-label="Venue Notes" aria-pressed={!!note}>
-              <NotebookPen className="group-aria-pressed:stroke-primary-foreground size-4" />
+              <Pencil className=" fill-secondary-foreground group-aria-pressed:fill-primary-foreground group-aria-pressed:stroke-primary-foreground size-4" />
             </Button>}
         />
         <TooltipContent side="top" className="bg-muted text-muted-foreground">

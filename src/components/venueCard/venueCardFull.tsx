@@ -7,7 +7,7 @@ import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
 import defaultBanner from "@/assets/default-banner.webp";
-import {CheckIcon, HeartIcon, NotebookPen, StarIcon} from "lucide-react";
+import {CheckIcon, HeartIcon, Pencil, StarIcon} from "lucide-react";
 import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
@@ -84,7 +84,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
                         {hasNote && (
                             <HoverCard>
                                 <HoverCardTrigger>
-                                    <NotebookPen size={14} className="stroke-muted-foreground" />
+                                    <Pencil size={14} className="stroke-muted-foreground fill-muted-foreground" />
                                 </HoverCardTrigger>
                                 <HoverCardContent className="w-64">
                                     <p className="text-xs font-semibold text-muted-foreground mb-1">Note</p>
