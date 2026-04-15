@@ -40,7 +40,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
     return <>
         <title>{title ? title : 'FFXIV Venues'}</title>
         <Toaster />
-        <TooltipProvider>
+        <TooltipProvider delay={600}>
           <SidebarProvider defaultOpen={sidebarDefault}>
             <Sidebar variant="floating">
               <SidebarHeader>
