@@ -96,7 +96,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
                           )}
                       </div>
                     </div>
-                    <LocationText className="not-italic" location={venue.location} />
+                    <LocationText className="line-clamp-1" location={venue.location} />
                   </CardDescription>
               </CardHeader>
 
