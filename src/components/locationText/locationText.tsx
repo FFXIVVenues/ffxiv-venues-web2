@@ -11,13 +11,13 @@ export const LocationText = memo(({ location, shorten, className }: LocationProp
 {
     if (location.override) {
         if (shorten && location.override.length > 50)
-            return <span className={className}>{ `${location.override.substring(0, 50)}...` }</span>
+            return <address className={className}>{ `${location.override.substring(0, 50)}...` }</address>
         else
-            return <span className={className}>{location.override}</span>
+            return <address className={className}>{location.override}</address>
     }
 
     if (location.apartment)
-        return <span className={className}>{`${location.dataCenter}, ${location.world}, ${location.district}, Ward ${location.ward}${location.subdivision ? " Sub" : ''}, Apt ${location.apartment}`}</span>
+        return <address className={className}>{`${location.dataCenter}, ${location.world}, ${location.district}, Ward ${location.ward}${location.subdivision ? " Sub" : ''}, Apt ${location.apartment}`}</address>
 
-    return <span className={className}>{`${location.dataCenter}, ${location.world}, ${location.district}, Ward ${location.ward}, Plot ${location.plot}${location.room ? `, Room ${location.room}` : ''}`}</span>
+    return <address className={className}>{`${location.dataCenter}, ${location.world}, ${location.district}, Ward ${location.ward}, Plot ${location.plot}${location.room ? `, Room ${location.room}` : ''}`}</address>
 })
