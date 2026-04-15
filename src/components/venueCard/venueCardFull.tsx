@@ -16,6 +16,7 @@ import {PulseBadge} from "@/components/pulseBadge/pulseBadge.tsx";
 import {cn} from "@/lib/utils";
 import {notesService} from "@/lib/services/notes/notesService.ts";
 import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card.tsx";
+import {LocationText} from "@/components/locationText/locationText.tsx";
 
 type VenueCardProps = {
     venue: Venue;
@@ -56,56 +57,60 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
         <Lazy className="w-full aspect-3/2">
           <Card className="p-0 h-full flex flex-col w-full">
               <img src={venue.bannerUri ?? defaultBanner} alt={venue.name} loading="lazy" className="aspect-2/1"/>
-
               <CardHeader>
+
                   <div className="flex items-start justify-between gap-3">
                       <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>
                       {(isOpen || isNew) &&
                         <PulseBadge className={cn("shadow", badgeBg)}>{status}</PulseBadge>
                       }
                   </div>
-                  <CardDescription className="min-h-6 flex justify-between">
-                    {displayOpening?.isNow ? (
-                        <span className="flex items-center gap-1">
-                            <span className="text-muted-foreground">Open until</span>
-                            <TimeText time={displayOpening.end} />
-                        </span>
-                    ) : displayOpening && (
-                        <span className="flex items-center gap-1">
-                            <DateText date={displayOpening.start} />
-                            <TimeText time={displayOpening.start} />
-                            <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
-                        </span>
-                    )}
-                    <div className="flex gap-2 items-center">
-                        { rating > 0 && <span className="flex gap-0.5 text-xs font-bold text-muted-foreground">{rating}<StarIcon size={14} fill="currentColor" /></span>}
-                        { isVisited && <CheckIcon size={16} className="mr-1 text-muted-foreground  " /> }
-                        { isFavorite && <HeartIcon size={14} className="mr-1 stroke-muted-foreground fill-muted-foreground" /> }
-                        {hasNote && (
-                            <HoverCard>
-                                <HoverCardTrigger>
-                                    <Pencil size={14} className="stroke-muted-foreground fill-muted-foreground" />
-                                </HoverCardTrigger>
-                                <HoverCardContent className="w-64">
-                                    <p className="text-xs font-semibold text-muted-foreground mb-1">Note</p>
-                                    <p className="text-sm text-muted-foreground whitespace-pre-wrap">{notesService.getNote(venue.id)}</p>
-                                </HoverCardContent>
-                            </HoverCard>
-                        )}
+                  <CardDescription>
+                    <div className="min-h-6 flex justify-between">
+                      {displayOpening?.isNow ? (
+                          <span className="flex items-center gap-1">
+                              <span className="text-muted-foreground">Open until</span>
+                              <TimeText time={displayOpening.end} />
+                          </span>
+                      ) : displayOpening && (
+                          <span className="flex items-center gap-1">
+                              <DateText date={displayOpening.start} />
+                              <TimeText time={displayOpening.start} />
+                              <span className="hidden md:inline">- <TimeText time={displayOpening.end} /></span>
+                          </span>
+                      )}
+                      <div className="flex gap-2 items-center">
+                          { rating > 0 && <span className="flex gap-0.5 text-xs font-bold text-muted-foreground">{rating}<StarIcon size={14} fill="currentColor" /></span>}
+                          { isVisited && <CheckIcon size={16} className="mr-1 text-muted-foreground  " /> }
+                          { isFavorite && <HeartIcon size={14} className="mr-1 stroke-muted-foreground fill-muted-foreground" /> }
+                          {hasNote && (
+                              <HoverCard>
+                                  <HoverCardTrigger>
+                                      <Pencil size={14} className="stroke-muted-foreground fill-muted-foreground" />
+                                  </HoverCardTrigger>
+                                  <HoverCardContent className="w-64">
+                                      <p className="text-xs font-semibold text-muted-foreground mb-1">Note</p>
+                                      <p className="text-sm text-muted-foreground whitespace-pre-wrap">{notesService.getNote(venue.id)}</p>
+                                  </HoverCardContent>
+                              </HoverCard>
+                          )}
+                      </div>
                     </div>
+                    <LocationText className="not-italic" location={venue.location} />
                   </CardDescription>
               </CardHeader>
 
               <CardContent className="flex-1">
-                  <div className="flex items-center gap-2 pt-0.5 min-h-[22px]">
-                      <div className="flex items-center gap-2 overflow-hidden flex-1" style={{ maskImage: "linear-gradient(to right, black 70%, transparent 100%)" }}>
-                          {venue.tags.map((tag) => (
-                              <Badge key={tag} variant="outline" className="bg-muted text-muted-foreground border-muted rounded-sm shrink-0">
-                                  {tag}
-                              </Badge>
-                          ))}
-                      </div>
+
+                <div className="flex items-center gap-2 pt-0.5 min-h-[22px]">
+                  <div className="flex items-center gap-2 overflow-hidden flex-1" style={{ maskImage: "linear-gradient(to right, black 70%, transparent 100%)" }}>
+                    {venue.tags.map((tag) => (
+                      <Badge key={tag} variant="outline" className="bg-muted text-muted-foreground border-muted rounded-sm shrink-0">
+                        {tag}
+                      </Badge>
+                    ))}
                   </div>
+                </div>
               </CardContent>
 
               <CardFooter className="pb-6 border-t">
