@@ -19,7 +19,7 @@ export const featureFilters: FilterOption[] = [
   { name: "Pillow talk", filter: hasTag("pillow"), hint: "The venue offers Pillows who provide a safe, confidential space to promote an SFW companionship for a limited time." },
   { name: "Photography", filter: hasTag("photography"), hint: "The venue hosts photographers who take venue snapshots or more complex gpose of patrons to display in the venue discord and create memories." },
   { name: "Open stage", filter: hasTag("open stage"), hint: "The venue offers the stage for a patron to perform to the audience." },
-  { name: "Void", filter: hasTag("void"), hint: "The venue is build in a the void; created outside the walls of the house." },
+  { name: "Void", filter: hasTag("void"), hint: "The venue is build in the void; created outside the walls of the house." },
   { name: "Stylists", filter: hasTag("stylists"), hint: "The venue hosts stylists who offer a variety of glamour services, including hair styling, makeup, and wardrobe assistance." },
   { name: "Performances", filter: hasTag("performances"), hint: "The venue offers unique schedule performances, this could be SFW (theater, synch dancers, etc) or NSFW (erotic voyeur shows, live BDSM, etc)." },
   { name: "Giveaways", filter: hasTag("giveaways"), hint: "The venue offers giveaways through various channels, in chat, twitch stream or discord." },
