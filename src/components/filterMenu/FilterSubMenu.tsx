@@ -7,7 +7,6 @@ import {ChevronDown} from "lucide-react";
 import {cn} from "@/lib/utils/cn.ts";
 import type {FilterOption} from "@/components/filterMenu/filters/filterOption.ts";
 import {FilterMenuList} from "@/components/filterMenu/FilterMenuList.tsx";
-import {SidebarMenuSubButton, SidebarMenuSubItem} from "@/components/ui/sidebar.tsx";
 
 export type FilterSubMenuProps = {
     option: FilterOption;
