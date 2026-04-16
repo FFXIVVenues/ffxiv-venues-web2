@@ -10,7 +10,7 @@ export const VenueSchedule = ({venue, className}: { venue: Venue, className?: st
       <p className="font-bold px-3 py-2 bg-accent text-accent-foreground border rounded-md">Open now until <TimeText
         time={venue.resolution?.end}/></p>}
     {venue.resolution?.isNow === false &&
-      <p className="font-bold px-3 py-2 bg-muted text-accent-foreground border rounded-md">Next open <DateText
+      <p className="font-bold px-2 ">Next open <DateText
         date={venue.resolution?.start}/> <TimeText time={venue.resolution?.start}/></p>}
 
     {venue.schedule && venue.schedule.length > 0 &&
