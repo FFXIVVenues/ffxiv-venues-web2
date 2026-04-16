@@ -1,16 +1,16 @@
-import {memo, useState, type ElementType} from "react";
+import {memo, useState, useCallback} from "react";
 import {
     SidebarGroup,
     SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuButton,
-    SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem
+    SidebarMenuItem
 } from "@/components/ui/sidebar.tsx";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
 import {ChevronDown} from "lucide-react";
 import type {Filter} from "@/components/filterMenu/filterMenu.tsx";
-import {cn} from "@/lib/utils/cn.ts";
 import type {FilterOption} from "@/components/filterMenu/filters/filterOption.ts";
+import {FilterMenuList} from "@/components/filterMenu/FilterMenuList.tsx";
 
 export type FilterGroupProps = {
     heading: string;
@@ -22,78 +22,23 @@ export type FilterGroupProps = {
 export const FilterGroup = memo(({heading, options, onFilter, defaultOpen = true}: FilterGroupProps) => {
     const [enabledFilters, setEnabledFilters] = useState<FilterOption[]>([]);
 
-    const addFilter = (filter: FilterOption) => {
-        let newFilters = [ ...enabledFilters ]
-          .filter(o => !o.mek || o.mek != filter.mek );
-        newFilters.push(filter);
-        setEnabledFilters(newFilters);
-        onFilter(newFilters.map(o => o.filter!));
-    };
-
-    const removeFilter = (filter: FilterOption) => {
-        const newFilters = enabledFilters.filter(f => f !== filter);
-        setEnabledFilters(newFilters);
-        onFilter(newFilters.map(o => o.filter!));
-    }
-
-    const renderMenuItems = (
-        ItemElement: ElementType,
-        ButtonElement: ElementType,
-        options: FilterOption[]
-    ) =>
-        options.map((option, i) => {
-            const isActive = option.filter && enabledFilters.includes(option);
-
-            const prevOption = i > 0 ? options[i - 1] : undefined;
-            const nextOption = i < options.length - 1 ? options[i + 1] : undefined;
-
-            const prevIsActive = prevOption?.filter && enabledFilters.includes(prevOption);
-            const nextIsActive = nextOption?.filter && enabledFilters.includes(nextOption);
-
-            const roundingStyle= isActive ?
-                (prevIsActive ? 'rounded-t-none ' : '') +
-                (nextIsActive ? 'rounded-b-none ' : '')
-                : ''
-
-            return (
-                <ItemElement key={i}>
-                    {!option.options
-                        ?
-                        <ButtonElement
-                            isActive={isActive}
-                            className={cn(roundingStyle, "cursor-pointer py-4 flex justify-between items-center relative")}
-                            onClick={() => isActive ? removeFilter(option) : addFilter(option)}
-                            aria-label={option.name}
-                            tabIndex={0}>
-                            <span className="flex gap-3 items-center [&>svg]:size-3 [&>svg]:mb-[0.1lh]">
-                              {option.icon} {option.name}
-                            </span>
-                            {isActive &&
-                              <span className="inline-block size-1 mr-1 rounded-full bg-accent shadow-[0_0_4px_var(--color-accent)]" />}
-                        </ButtonElement>
-                        :
-                        <Collapsible>
-                            <CollapsibleTrigger className="cursor-pointer justify-between text-inherit py-4"
-                                                nativeButton={ButtonElement === SidebarMenuButton}
-                                                    render={(props, state) =>
-                                    <ButtonElement
-                                        {...props}
-                                        aria-label={option.name}>
-                                        {option.name}
-                                        {option.options &&
-                                          <ChevronDown className={cn(state.open ? 'rotate-180' : '', 'transition-transform text-sidebar-foreground/70')} />}
-                                    </ButtonElement>
-                                }/>
-                                <CollapsibleContent>
-                                    <SidebarMenuSub className="w-full px-3.5 gap-0">
-                                        {renderMenuItems(SidebarMenuSubItem, SidebarMenuSubButton, option.options)}
-                                    </SidebarMenuSub>
-                                </CollapsibleContent>
-                            </Collapsible>
-                    }
-                </ItemElement>
-            )
+    const addFilter = useCallback((filter: FilterOption) => {
+        setEnabledFilters(prev => {
+            const newFilters = prev
+              .filter(o => !o.mek || o.mek != filter.mek );
+            newFilters.push(filter);
+            onFilter(newFilters.map(o => o.filter!));
+            return [...newFilters];
         });
+    }, [onFilter]);
+
+    const removeFilter = useCallback((filter: FilterOption) => {
+        setEnabledFilters(prev => {
+            const newFilters = prev.filter(f => f !== filter);
+            onFilter(newFilters.map(o => o.filter!));
+            return [...newFilters];
+        });
+    }, [onFilter]);
 
     return <SidebarGroup>
         <Collapsible defaultOpen={defaultOpen} className="group">
@@ -105,7 +50,12 @@ export const FilterGroup = memo(({heading, options, onFilter, defaultOpen = true
             </CollapsibleTrigger>
             <CollapsibleContent>
                 <SidebarMenu>
-                    {renderMenuItems(SidebarMenuItem, SidebarMenuButton, options)}
+                    <FilterMenuList
+                        options={options}
+                        enabledFilters={enabledFilters}
+                        onFilterAdd={addFilter}
+                        onFilterRemove={removeFilter}
+                    />
                 </SidebarMenu>
             </CollapsibleContent>
         </Collapsible>
