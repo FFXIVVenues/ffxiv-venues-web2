@@ -41,12 +41,12 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
   const openNotesDialog = useCallback(() => { setNotesDialogOpen(true); onDialogOpen?.call([]) }, [setNotesDialogOpen]);
 
 
-  return <div className="bg-muted/50 text-muted-foreground border-t border-b border-muted py-1.5 px-4 sm:px-8 -mt-0.5 flex items-center justify-between">
+  return <div className="bg-muted/50 text-muted-foreground border-t border-b border-muted py-1.5 px-2 sm:px-8 -mt-0.5 flex items-center justify-between">
     <div className={cn("flex gap-1", className)}>
       <ButtonGroup>
         <Tooltip>
           <TooltipTrigger onClick={copyLocationToClipboard} render={(props) =>
-              <Button size="icon" variant="secondary" className="rounded-r-lg! sm:rounded-r-none! cursor-pointer px-5 py-4" {...props} aria-label="Copy location">
+              <Button size="icon" variant="secondary" className="rounded-r-lg! sm:rounded-r-none! cursor-pointer px-3 py-2 sm:px-5 sm:py-4" {...props} aria-label="Copy location">
                 <CopyIcon className="size-4"/>
               </Button>}
           />
@@ -57,7 +57,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
 
         <Tooltip>
           <TooltipTrigger onClick={copyLifestreamToClipboard} render={(props) =>
-              <Button size="icon" variant="secondary" className="hidden sm:inline-flex cursor-pointer px-5 py-4" {...props} aria-label="Copy lifestream command">
+              <Button size="icon" variant="secondary" className="hidden sm:inline-flex cursor-pointer px-3 py-2 sm:px-5 sm:py-4" {...props} aria-label="Copy lifestream command">
                 <CopySlashIcon className="size-4"/>
               </Button>}
           />
@@ -77,7 +77,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
       <Tooltip>
         <TooltipTrigger onClick={() => setFavourited(!favourited)} render={(props) =>
             <Button size="icon" variant="secondary" aria-label="Favourite" aria-pressed={favourited}
-                    className="group cursor-pointer px-5 py-4 aria-pressed:bg-primary aria-pressed:font-secondary-foreground aria-pressed:hover:bg-primary/75"
+                    className="group cursor-pointer px-3 py-2 sm:px-5 sm:py-4 aria-pressed:bg-primary aria-pressed:font-secondary-foreground aria-pressed:hover:bg-primary/75"
                     {...props}>
               <HeartIcon className=" fill-secondary-foreground group-aria-pressed:fill-primary-foreground group-aria-pressed:stroke-primary-foreground size-4" />
             </Button>}
@@ -90,7 +90,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
       <Tooltip>
         <TooltipTrigger onClick={() => setVisited(!visited)} render={(props) =>
             <Button variant="secondary" size="icon" aria-label="Visited" aria-pressed={visited}
-                    className="group cursor-pointer px-5 py-4 gap-2 aria-pressed:bg-primary aria-pressed:hover:bg-primary/75"
+                    className="group cursor-pointer px-3 py-2 sm:px-5 sm:py-4 gap-2 aria-pressed:bg-primary aria-pressed:hover:bg-primary/75"
                     {...props} >
               <CheckIcon className=" group-aria-pressed:stroke-primary-foreground size-4" strokeWidth={3}/>
             </Button>}
@@ -101,7 +101,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
       </Tooltip>
       <Tooltip>
         <TooltipTrigger onClick={openNotesDialog} render={(props) =>
-            <Button size="icon" variant="secondary" className="group cursor-pointer px-5 py-4 gap-2 aria-pressed:bg-primary aria-pressed:hover:bg-primary/75"
+            <Button size="icon" variant="secondary" className="group cursor-pointer px-3 py-2 sm:px-5 sm:py-4 gap-2 aria-pressed:bg-primary aria-pressed:hover:bg-primary/75"
                     {...props} aria-label="Venue Notes" aria-pressed={!!note}>
               <Pencil className=" fill-secondary-foreground group-aria-pressed:fill-primary-foreground group-aria-pressed:stroke-primary-foreground size-4" />
             </Button>}
@@ -115,7 +115,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
     <ButtonGroup>
       <Tooltip>
         <TooltipTrigger onClick={openFlagDialog} render={(props) =>
-            <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label="Flag Venue">
+            <Button size="icon" variant="secondary" className="cursor-pointer px-3 py-2 sm:px-5 sm:py-4" {...props} aria-label="Flag Venue">
               <FlagIcon className="size-4"/>
             </Button>}
         />
