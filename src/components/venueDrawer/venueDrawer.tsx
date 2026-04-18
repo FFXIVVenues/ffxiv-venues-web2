@@ -83,7 +83,11 @@ export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: Venu
                 {venue.resolution?.isNow && <OpenBadge/>}
               </div>
             </div>
-            <LocationText location={venue.location} className="text-muted-foreground text-md mx-8 mb-2 select-text!" />
+            <address>
+              <DrawerDescription>
+                <LocationText location={venue.location} className="text-muted-foreground text-md mx-8 mb-2 select-text!" />
+              </DrawerDescription>
+            </address>
           </DrawerHeader>
           <div tabIndex={0} className="mx-8 no-scrollbar overflow-y-auto">
             <VenueDescription description={venue.description} />
