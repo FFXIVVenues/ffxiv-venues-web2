@@ -35,10 +35,10 @@ export const VenueSchedule = ({venue, className}: { venue: Venue, className?: st
         <Table className="mt-4">
           <TableBody>
             {venue.scheduleOverrides.filter(o => new Date() < o.end).map((o, i) =>
-              <TableRow key={i} className={o.isNow() ? "text-accent font-extrabold" : undefined}>
+              <TableRow key={i} className={o.isNow ? "text-accent font-extrabold" : undefined}>
                 <TableCell className="w-full">
                   <span className="flex items-center">
-                    {o.isNow() && <Pulse className="mr-3" color="bg-accent"/>}
+                    {o.isNow && <Pulse className="mr-3" color="bg-accent"/>}
                     {o.open ? 'Open' : 'Closed'}
                   </span>
                 </TableCell>

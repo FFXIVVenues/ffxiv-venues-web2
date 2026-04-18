@@ -1,18 +1,16 @@
 import type { ScheduleOverrideDto } from "../services/venues/dtos/scheduleOverrideDto.ts";
 
-class ScheduleOverride implements Omit<ScheduleOverrideDto, 'start' | 'end'> {
+class ScheduleOverride {
     open!: boolean;
     start: Date;
     end: Date;
+    isNow: boolean;
 
     constructor(props: ScheduleOverrideDto) {
-        Object.assign(this, props);
+        this.open = props.open;
         this.start = new Date(props.start);
         this.end = new Date(props.end);
-    }
-
-    isNow() {
-        return this.open && this.start < new Date() && this.end > new Date();
+        this.isNow = props.isNow;
     }
 
 }
