@@ -11,6 +11,10 @@ class ScheduleOverride implements Omit<ScheduleOverrideDto, 'start' | 'end'> {
         this.end = new Date(props.end);
     }
 
+    isNow() {
+        return this.open && this.start < new Date() && this.end > new Date();
+    }
+
 }
 
 export { ScheduleOverride };

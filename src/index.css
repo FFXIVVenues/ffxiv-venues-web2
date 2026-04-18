@@ -68,3 +68,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+@utility drag-none {
+  user-drag: none;
+  -webkit-user-drag: none;
+}
