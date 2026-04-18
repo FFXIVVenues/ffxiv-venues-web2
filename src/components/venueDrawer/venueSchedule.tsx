@@ -3,27 +3,26 @@ import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import {Table, TableBody, TableCell, TableRow} from "@/components/ui/table.tsx";
 import {RecurringDayText} from "@/components/dateString/recurringDayText.tsx";
+import {cn} from "@/lib/utils";
+import {Pulse} from "@/components/pulse/pulse.tsx";
 
 export const VenueSchedule = ({venue, className}: { venue: Venue, className?: string }) => {
   return <div className={className}>
-    {venue.resolution?.isNow &&
-      <p className="font-bold px-3 py-2 bg-accent text-accent-foreground border rounded-md">Open now until <TimeText
-        time={venue.resolution?.end}/></p>}
-    {venue.resolution?.isNow === false &&
-      <p className="font-bold px-2 ">Next open <DateText
-        date={venue.resolution?.start}/> <TimeText time={venue.resolution?.start}/></p>}
-
     {venue.schedule && venue.schedule.length > 0 &&
-      <div className="mt-2">
-        {/*<h2 className="uppercase font-bold">Usual Schedule</h2>*/}
-        <Table className="mt-4">
+      <div>
+        <Table>
           <TableBody>
             {venue.schedule.map((s, i) => s.resolution &&
-              <TableRow key={i}>
-                <TableCell><RecurringDayText date={s.resolution.start} interval={s.interval}/></TableCell>
-                <TableCell className="text-right w-fit"><TimeText time={s.resolution.start}/></TableCell>
-                <TableCell className="w-4">-</TableCell>
-                <TableCell className="text-left w-fit"><TimeText time={s.resolution.end}/></TableCell>
+              <TableRow key={i} className={cn("font-bold", s.resolution.isNow && "text-accent font-extrabold")}>
+                <TableCell className="w-full">
+                  <span className="flex items-center">
+                    { s.resolution.isNow && <Pulse className="mr-3" color="bg-accent"/>}
+                    <RecurringDayText date={s.resolution.start} interval={s.interval}/>
+                  </span>
+                </TableCell>
+                <TableCell className="text-right w-min"><TimeText time={s.resolution.start}/></TableCell>
+                <TableCell className=" w-min">-</TableCell>
+                <TableCell className="text-right w-min"><TimeText time={s.resolution.end}/></TableCell>
               </TableRow>
             )}
           </TableBody>
@@ -48,6 +47,10 @@ export const VenueSchedule = ({venue, className}: { venue: Venue, className?: st
         </Table>
       </div>
     }
+
+    {venue.resolution?.isNow === false &&
+      <p className="font-bold px-2 ">Next open <DateText
+        date={venue.resolution?.start}/> <TimeText time={venue.resolution?.start}/></p>}
 
   </div>
 

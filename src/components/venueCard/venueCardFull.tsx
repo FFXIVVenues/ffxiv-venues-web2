@@ -12,11 +12,13 @@ import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
 import {Lazy} from "@/components/ui/lazy.tsx";
-import {PulseBadge} from "@/components/pulseBadge/pulseBadge.tsx";
+import {PulseBadge} from "@/components/badges/pulseBadge.tsx";
 import {cn} from "@/lib/utils";
 import {notesService} from "@/lib/services/notes/notesService.ts";
 import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card.tsx";
 import {LocationText} from "@/components/locationText/locationText.tsx";
+import {NewBadge} from "@/components/badges/newBadge.tsx";
+import {OpenBadge} from "@/components/badges/openBadge.tsx";
 
 type VenueCardProps = {
     venue: Venue;
@@ -32,8 +34,6 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
     const isFavorite = favouritesService.isFavourite(venue.id);
     const hasNote = notesService.hasNote(venue.id);
     const isNew  = venue.isNew();
-    const status = isOpen ? "Open" : isNew ? "New" : null;
-    const badgeBg = isOpen ? "bg-accent" : isNew ? "bg-green-700" : "";
 
     const onClickCallback = useCallback((e: MouseEvent) => {
       if (e.button === 0) onClick(venue, false);
@@ -58,12 +58,9 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
           <Card className="p-0 h-full flex flex-col w-full">
               <img src={venue.bannerUri ?? defaultBanner} alt={venue.name} loading="lazy" className="aspect-2/1"/>
               <CardHeader>
-
                   <div className="flex items-start justify-between gap-3">
                       <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>
-                      {(isOpen || isNew) &&
-                        <PulseBadge className={cn("shadow", badgeBg)}>{status}</PulseBadge>
-                      }
+                      {isOpen ? <NewBadge /> : isNew ? <OpenBadge /> : null}
                   </div>
                   <CardDescription>
                     <div className="min-h-6 flex justify-between">

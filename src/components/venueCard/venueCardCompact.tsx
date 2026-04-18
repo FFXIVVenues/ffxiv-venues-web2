@@ -11,9 +11,11 @@ import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
 import {Lazy} from "@/components/ui/lazy.tsx";
 import {cn} from "@/lib/utils";
-import {PulseBadge} from "@/components/pulseBadge/pulseBadge.tsx";
+import {PulseBadge} from "@/components/badges/pulseBadge.tsx";
 import {notesService} from "@/lib/services/notes/notesService.ts";
 import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card.tsx";
+import {NewBadge} from "@/components/badges/newBadge.tsx";
+import {OpenBadge} from "@/components/badges/openBadge.tsx";
 
 type VenueCardProps = {
     venue: Venue;
@@ -29,9 +31,6 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
     const hasNote = notesService.hasNote(venue.id);
     const isOpen = displayOpening?.isNow === true;
     const isNew  = venue.isNew();
-    const status = isOpen ? "Open" : isNew ? "New" : null;
-
-    const badgeBg = isOpen ? "bg-accent" : isNew ? "bg-green-700" : "";
 
     const onClickCallback = useCallback((e: MouseEvent) => {
         if (e.button === 0) onClick(venue, false);
@@ -69,9 +68,7 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
                 <CardHeader>
                     <div className="flex items-start justify-between gap-3">
                         <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>
-                        {(isOpen || isNew) &&
-                          <PulseBadge className={cn("shadow", badgeBg)}>{status}</PulseBadge>
-                        }
+                        {isOpen ? <OpenBadge /> : isNew ? <NewBadge /> : null}
                     </div>
                     <CardDescription className="min-h-4 flex justify-between">
                         {displayOpening?.isNow? (
