@@ -13,7 +13,12 @@ import {VenueTags} from "@/components/venueDrawer/venueTags.tsx";
 import defaultBanner from "@/assets/default-banner.webp";
 import {settingsService} from "@/lib/services/settings/settingsService";
 import {cva} from "class-variance-authority";
-import {memo, type RefObject, useRef} from "react";
+import React, {memo, type RefObject, useRef} from "react";
+import {CardTitle} from "@/components/ui/card.tsx";
+import {PulseBadge} from "@/components/badges/pulseBadge.tsx";
+import {cn} from "@/lib/utils";
+import {OpenBadge} from "@/components/badges/openBadge.tsx";
+import {NewBadge} from "@/components/badges/newBadge.tsx";
 
 type VenueSheetProps = {
     open: boolean,
@@ -30,7 +35,7 @@ export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: Venu
 
   const positionSetting = settingsService.getSetting("drawerSide");
   const bannerStyle = cva(
-    "w-full max-w-full",
+    "w-full max-w-full drag-none",
     {
       variants: {
         side: {
@@ -68,16 +73,25 @@ export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: Venu
             </DrawerClose>
             <img className={bannerStyle({ side: positionSetting })} src={venue.bannerUri ?? defaultBanner } alt={venue.name} />
             <VenueToolbar venue={venue} container={container} />
-            <DrawerTitle className="text-2xl mx-8 mt-4 mb-0">{venue.name}</DrawerTitle>
-            <DrawerDescription className="text-muted-foreground text-md mx-8 mb-2">
+
+            <div className="flex items-center justify-between gap-3 mt-4 mb-0 mx-8">
+              <DrawerTitle className="text-2xl select-text!">
+                {venue.name}
+              </DrawerTitle>
+              <div className="flex gap-2 h-min">
+                {venue.isNew() && <NewBadge/>}
+                {venue.resolution?.isNow && <OpenBadge/>}
+              </div>
+            </div>
+
+            <DrawerDescription className="text-muted-foreground text-md mx-8 mb-2 select-text!">
               <LocationText location={venue.location} />
             </DrawerDescription>
           </DrawerHeader>
           <div tabIndex={0} className="mx-8 no-scrollbar overflow-y-auto">
             <VenueDescription description={venue.description} />
-            <VenueTags tags={venue.tags} />
-            <hr className="border-t border-dotted border-muted mt-8 "/>
-            <VenueSchedule venue={venue} className="mt-8"/>
+            <VenueTags tags={venue.tags} className="my-8" />
+            <VenueSchedule venue={venue} />
             <small className="text-muted-foreground italic ml-2 mt-4 inline-block">
                 All times are in <em>your</em> timezone: <UtcOffset /> {Intl.DateTimeFormat().resolvedOptions().timeZone}
             </small>

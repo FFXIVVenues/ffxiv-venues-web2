@@ -1,7 +1,8 @@
 import {Badge} from "@/components/ui/badge.tsx";
+import {cn} from "@/lib/utils";
 
-export const VenueTags = ({tags}: { tags: string[] }) =>
-  <div className="flex flex-wrap gap-2 my-8">
+export const VenueTags = ({tags, className }: { tags: string[], className?: string }) =>
+  <div className={cn("flex flex-wrap gap-2", className)}>
     {tags && tags.length &&
       tags.map((tag, i) =>
         <Badge variant="secondary" className="p-3 text-md rounded-sm" key={i}>{tag}</Badge>
