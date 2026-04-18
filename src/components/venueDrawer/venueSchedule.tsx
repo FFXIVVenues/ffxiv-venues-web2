@@ -7,13 +7,13 @@ import {cn} from "@/lib/utils";
 import {Pulse} from "@/components/pulse/pulse.tsx";
 
 export const VenueSchedule = ({venue, className}: { venue: Venue, className?: string }) => {
-  return <div className={className}>
+  return <div className={cn("font-bold", className)}>
     {venue.schedule && venue.schedule.length > 0 &&
       <div>
         <Table>
           <TableBody>
             {venue.schedule.map((s, i) => s.resolution &&
-              <TableRow key={i} className={cn("font-bold", s.resolution.isNow && "text-accent font-extrabold")}>
+              <TableRow key={i} className={s.resolution.isNow ? "text-accent font-extrabold" : undefined}>
                 <TableCell className="w-full">
                   <span className="flex items-center">
                     { s.resolution.isNow && <Pulse className="mr-3" color="bg-accent"/>}
@@ -35,8 +35,13 @@ export const VenueSchedule = ({venue, className}: { venue: Venue, className?: st
         <Table className="mt-4">
           <TableBody>
             {venue.scheduleOverrides.filter(o => new Date() < o.end).map((o, i) =>
-              <TableRow key={i}>
-                <TableCell className="w-full">{o.open ? 'Open' : 'Closed'}</TableCell>
+              <TableRow key={i} className={o.isNow() ? "text-accent font-extrabold" : undefined}>
+                <TableCell className="w-full">
+                  <span className="flex items-center">
+                    {o.isNow() && <Pulse className="mr-3" color="bg-accent"/>}
+                    {o.open ? 'Open' : 'Closed'}
+                  </span>
+                </TableCell>
                 <TableCell className="text-right w-fit"><DateText date={o.start}/></TableCell>
                 <TableCell className="text-right"><TimeText time={o.start}/></TableCell>
                 <TableCell className="w-4">-</TableCell>
