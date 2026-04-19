@@ -174,9 +174,24 @@ export const worldFilters: FilterOption[] = [
             filter: isDataCenter("Dynamis"),
           },
           {
+            name: "Cuchulainn",
+            mek: worldMek,
+            filter: isWorld("Cuchulainn")
+          },
+          {
+            name: "Golem",
+            mek: worldMek,
+            filter: isWorld("Golem")
+          },
+          {
             name: "Halicarnassus",
             mek: worldMek,
             filter: isWorld("Halicarnassus")
+          },
+          {
+            name: "Kraken",
+            mek: worldMek,
+            filter: isWorld("Kraken")
           },
           {
             name: "Maduin",
@@ -187,6 +202,11 @@ export const worldFilters: FilterOption[] = [
             name: "Marilith",
             mek: worldMek,
             filter: isWorld("Marilith")
+          },
+          {
+            name: "Rafflesia",
+            mek: worldMek,
+            filter: isWorld("Rafflesia")
           },
           {
             name: "Seraph",
