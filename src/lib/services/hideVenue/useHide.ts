@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { hideService} from "@/lib/services/hideVenue/hideService.ts";
 
-export const useHidden = (id: string): [isHidden: boolean, toggleHidden: () => void] => {
+export const useHide = (id: string): [isHidden: boolean, toggleHidden: () => void] => {
     const [isHidden, setIsHidden] = useState(hideService.isHidden(id));
 
     useEffect(() => hideService.observe(() => {
