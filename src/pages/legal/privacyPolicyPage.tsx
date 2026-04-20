@@ -35,21 +35,18 @@ export const PrivacyPolicyPage = memo(() => {
         <p className="text-xs italic text-gray-500 mb-2">Applies to FFXIV Venues Site / API / Veni Ki</p>
         <hr className="mb-8" />
 
-        <a id="whoweare"/>
-        <h2 className={S.h2}>1. Who we are</h2>
+        <h2 className={S.h2} id="whoweare">1. Who we are</h2>
         <P n="1.1">FFXIV Venues is a community-run platform that allows Final Fantasy XIV players to discover and list in-game venues. The service is operated as a non-commercial community project, accessible at <A href="/">ffxivvenues.com</A>.</P>
         <P n="1.2">For any privacy-related enquiries, please <A href="https://discord.com/channels/942536163959406632/1188579990271434883">contact us via a ticket</A> in the <A href="https://discord.gg/gTP65VYcMj">FFXIV Venues discord</A></P>
 
-        <a id="covers"/>
-        <h2 className={S.h2}>2. What this policy covers</h2>
+        <h2 className={S.h2} id="covers">2. What this policy covers</h2>
         <P n="2.1">This policy explains what personal data FFXIV Venues collects, why we collect it, how it is stored and protected, and your rights in relation to that data. This policy applies to the following categories of user:</P>
         <Sub n="2.1.1">Visitors who browse our site.</Sub>
         <Sub n="2.1.2">Consumers of our API.</Sub>
         <Sub n="2.1.3">Venue owners who use our Discord bot, Veni Ki, to create and manage venue listings.</Sub>
         <Sub n="2.1.4">Any user who submits a venue flag for moderation purposes.</Sub>
 
-        <a id="data"/>
-        <h2 className={S.h2}>3. Data we collect and why</h2>
+        <h2 className={S.h2} id="data">3. Data we collect and why</h2>
         <h3 className={S.h3}>3.1 Site visitors</h3>
         <h3 className={S.h3}>3.1.1 General browsing (and API usage)</h3>
         <P n="3.1.1.1">You do not need an account or login to browse venue listings. We do not deliberately collect personal data for basic browsing; however, some limited technical data may be processed as a necessary consequence of operating the service.</P>
@@ -82,15 +79,13 @@ export const PrivacyPolicyPage = memo(() => {
         <Sub n="3.3.3.1">Providing open statistics and trends on the venue market.</Sub>
         <Sub n="3.3.3.2">Aiding decisions on service improvements.</Sub>
 
-        <a id="cookies"/>
-        <h2 className={S.h2}>4. Cookies and local storage</h2>
+        <h2 className={S.h2} id="cookies">4. Cookies and local storage</h2>
         <P n="4.1">FFXIV Venues uses a small number of essential cookies and browser local storage. These are strictly necessary for the site to function correctly (for example, maintaining session state and load balancing) and are not used for advertising or behavioural tracking.</P>
         <P n="4.2">Essential Cloudflare cookies (for example, cf_clearance and __cflb) are set by our network provider for security and load balancing. We do not use these for analytics, advertising, or cross-site tracking.</P>
         <P n="4.3">Browser local storage is used only for the optional device-side features described in section 3.2. This data remains on your device and is never transmitted to us.</P>
         <P n="4.4">We do not use analytics cookies, marketing cookies, or any form of cross-site tracking.</P>
 
-        <a id="thirdparty"/>
-        <h2 className={S.h2}>5. Third-party services</h2>
+        <h2 className={S.h2} id="thirdparty">5. Third-party services</h2>
         <P n="5.1">We use a small number of third-party services to operate the platform. These providers may process limited technical data as a necessary consequence of delivering the service. We do not sell personal data to any third party.</P>
 
         <P n="5.2">Cloudflare routes traffic to ffxivvenues.com and provides CDN, DDoS protection, and network security services.</P>
@@ -105,21 +100,18 @@ export const PrivacyPolicyPage = memo(() => {
         <Sub n="5.4.1">Data processed: Discord user ID, server-level technical data, and messages and interactions with Veni Ki and in our Discord server.</Sub>
         <Sub n="5.4.2"><span className="font-semibold">Privacy policy: </span><A href="https://discord.com/privacy">https://discord.com/privacy</A></Sub>
 
-        <a id="retention"/>
-        <h2 className={S.h2}>6. Data retention</h2>
+        <h2 className={S.h2} id="retention">6. Data retention</h2>
         <P n="6.1">Server and Cloudflare logs (including IP addresses) are retained for short periods in line with standard infrastructure practices and are then automatically deleted.</P>
         <P n="6.2">Venue profile data: venue listings and associated Discord user IDs are retained for as long as the venue listing remains active and confirmed. Periodically venue owners/managers will be prompted to review data correctness and confirm venue details, if the prompt is unanswered the data is automatically deleted. If a venue is deleted, the data is held in an inactive state for up to six months to allow restoration at the venue owner's request. If you wish your venue data to be permanently and immediately erased rather than held for restoration, you must submit a deletion request as described in section 8.</P>
         <P n="6.3">Flag data, including hashed IP identifiers, is retained for as long as is reasonably necessary for moderation purposes.</P>
         <P n="6.4">Device-side data (favourites, visited status, ratings, and notes) is stored indefinitely in your browser's local storage until you choose to remove it. This data never leaves your device and we have no access to it or control over it.</P>
         <P n="6.5">Backups: automated hourly backups are retained with our infrastructure providers for up to six months for disaster recovery purposes. Data deleted from the live service may persist in backups until those backups expire. We do not selectively remove individual records from backup archives.</P>
 
-        <a id="transfers"/>
-        <h2 className={S.h2}>7. International data transfers</h2>
+        <h2 className={S.h2} id="transfers">7. International data transfers</h2>
         <P n="7.1">Our servers are located in the European Union (Hetzner). Cloudflare operates a global network, which means request-level data may be processed in multiple countries as part of standard network routing. Cloudflare maintains appropriate data transfer mechanisms in accordance with applicable law.</P>
         <P n="7.2">If you are located outside the EU or UK, your data may be transferred to and processed in countries with different data protection standards. By using FFXIV Venues, you acknowledge this.</P>
 
-        <a id="rights"/>
-        <h2 className={S.h2}>8. Your rights</h2>
+        <h2 className={S.h2} id="rights">8. Your rights</h2>
         <P n="8.1">Depending on your jurisdiction, you may have the following rights in relation to your personal data:</P>
         <Sub n="8.1.1"><span className="font-semibold">Right of access:</span> to request a copy of the data we hold about you.</Sub>
         <Sub n="8.1.2"><span className="font-semibold">Right to rectification:</span> to ask us to correct inaccurate data.</Sub>
@@ -129,8 +121,7 @@ export const PrivacyPolicyPage = memo(() => {
         <Sub n="8.1.6"><span className="font-semibold">Right to data portability:</span> where technically feasible.</Sub>
         <P n="8.2">To exercise any of these rights, please <A href="https://discord.com/channels/942536163959406632/1188579990271434883">contact us via a ticket</A> in the <A href="https://discord.gg/gTP65VYcMj">FFXIV Venues discord</A>. We will respond within 30 days. We may need to verify your identity before acting on a request.</P>
 
-        <a id="security"/>
-        <h2 className={S.h2}>9. Security</h2>
+        <h2 className={S.h2} id="security">9. Security</h2>
         <P n="9.1">We take reasonable technical measures to protect the data we hold. These include:</P>
         <Sub n="9.1.1"><span className="font-semibold">Infrastructure security:</span> hosting and edge protection are provided by reputable providers (Hetzner and Cloudflare).</Sub>
         <Sub n="9.1.2"><span className="font-semibold">Flag privacy:</span> IP addresses submitted with flag reports are irreversibly hashed and truncated before storage; the original address cannot be recovered.</Sub>
@@ -138,15 +129,13 @@ export const PrivacyPolicyPage = memo(() => {
         <Sub n="9.1.4"><span className="font-semibold">Access controls:</span> access to systems and data is limited to what is strictly necessary to operate the service.</Sub>
         <P n="9.2">No method of transmission or storage is completely secure, and we cannot guarantee absolute security. We will notify affected individuals and relevant authorities of any data breach as required by applicable law.</P>
 
-        <a id="changes"/>
-        <h2 className={S.h2}>10. Changes to this policy</h2>
+        <h2 className={S.h2} id="changes">10. Changes to this policy</h2>
         <P n="10.1">We may update this policy from time to time. The effective date at the bottom of this document will always reflect the most recent revision. We encourage you to review this policy periodically. Continued use of FFXIV Venues after a revised policy is posted constitutes acceptance of the updated policy.</P>
 
-        <a id="contact"/>
-        <h2 className={S.h2}>11. Contact us</h2>
+        <h2 className={S.h2} id="contact">11. Contact us</h2>
         <P n="11.1">If you have any questions, concerns, or requests relating to this privacy policy or your personal data, please <A href="https://discord.com/channels/942536163959406632/1188579990271434883">contact us via a ticket</A> in the <A href="https://discord.gg/gTP65VYcMj">FFXIV Venues discord</A>.</P>
 
-        <p className="text-right text-xs italic text-gray-500 mt-16">Effective date: 15<sup>th</sup> April 2026</p>
+        <p className="text-right text-xs italic text-gray-500 mt-16">Effective 15<sup>th</sup> April 2026</p>
       </div>
     </DefaultPageLayout.Page>
   </DefaultPageLayout>
