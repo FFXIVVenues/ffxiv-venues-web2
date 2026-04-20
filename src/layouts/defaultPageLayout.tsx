@@ -21,8 +21,8 @@ type DefaultLayoutProps = {
 };
 
 type CompoundComponent<P = {}> = FC<P> & {
-    Panel: FC<{ children: ReactNode }>;
-    Page: FC<{ children: ReactNode }>;
+    Panel: FC<{ children?: ReactNode }>;
+    Page: FC<{ children?: ReactNode }>;
 };
 
 export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({children, title, className}) => {
@@ -45,8 +45,10 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
             <Sidebar variant="floating">
               <SidebarHeader>
                   <h1>
-                    <img src={logoLight} alt="FFXIV Venues" className="hidden dark:block mx-auto p-2"/>
-                    <img src={logoDark} alt="FFXIV Venues" className="block dark:hidden mx-auto p-2"/>
+                    <a href="/">
+                      <img src={logoLight} alt="FFXIV Venues" className="hidden dark:block mx-auto p-2"/>
+                      <img src={logoDark} alt="FFXIV Venues" className="block dark:hidden mx-auto p-2"/>
+                    </a>
                   </h1>
               </SidebarHeader>
               <SidebarContent className="px-2">
@@ -74,6 +76,17 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
             <main className="flex-1 px-2 py-4 overflow-x-hidden">
                 <SidebarTrigger size="icon-lg" className="fixed -ml-[1rem] bottom-4 z-10 bg-sidebar rounded-tl-none rounded-bl-none border border-l-0 border-sidebar-border w-10 pl-1" />
                 {pageContent}
+                <footer className="text-center text-sm text-muted-foreground mt-16 mb-8 mx-12">
+                  <hr className="my-8"/>
+                  <p className="mb-4">
+                    FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.
+                    <br/>
+                    Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved.
+                  </p>
+                  <p>
+                    FFXIV Venues | <a className="underline" href="/privacy">Privacy Policy</a>
+                  </p>
+                </footer>
             </main>
 
             </SidebarProvider>
