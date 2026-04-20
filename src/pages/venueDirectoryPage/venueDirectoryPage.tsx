@@ -18,7 +18,7 @@ export const VenueDirectoryPage = () => {
     const navigate = useNavigate();
     useVenueHashRedirect();
 
-    const [venues, error, setFilters] = useVenueSchedule([]);
+    const [venues, error, setFilters] = useVenueSchedule([], false);
     const view = useSetting('view');
 
     const title = openDrawer && venue ? `${venue.name} - FFXIV Venues` : undefined;

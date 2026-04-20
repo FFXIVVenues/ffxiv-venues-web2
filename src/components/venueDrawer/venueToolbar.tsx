@@ -1,18 +1,19 @@
 import {memo, type RefObject, useCallback, useState} from "react";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {CheckIcon, CopyIcon, CopySlashIcon, FlagIcon, HeartIcon, Pencil} from "lucide-react";
+import {CheckIcon, CopyIcon, CopySlashIcon, FlagIcon, HeartIcon, Pencil, EyeOffIcon} from "lucide-react";
 import {cn} from "@/lib/utils";
 import {ButtonGroup} from "@/components/ui/button-group.tsx";
 import {FlagDialog} from "@/components/flagDialog/flagDialog.tsx";
+import {NotesDialog} from "@/components/notesDialog/notesDialog.tsx";
 import type {Venue} from "@/lib/model/venue.ts";
 import Rating from "@/components/ui/rating.tsx";
 import {toast} from "sonner";
 import {useFavourite} from "@/lib/services/useFavourite.ts";
 import {useVisited} from "@/lib/services/useVisited.ts";
 import {useRating} from "@/lib/services/useRating.ts";
-import {NotesDialog} from "@/components/notesDialog/notesDialog.tsx";
 import {useNote} from "@/lib/services/notes/useNote.ts";
+import {useHide} from "@/lib/services/hideVenue/useHide.ts"
 
 type VenueToolbarProps = {
   venue: Venue;
@@ -25,6 +26,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
   const [ favourited, setFavourited ] = useFavourite(venue.id);
   const [ visited, setVisited ] = useVisited(venue.id);
   const [ rating, setRating ] = useRating(venue.id);
+  const [hidden, toggleHidden] = useHide(venue.id);
   const [note] = useNote(venue.id);
 
   const copyLocationToClipboard = useCallback(() => {
@@ -39,6 +41,17 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
   const [ notesDialogOpen, setNotesDialogOpen ] = useState(false);
   const openFlagDialog = useCallback(() => { setFlagDialogOpen(true); onDialogOpen?.call([]) }, [setFlagDialogOpen]);
   const openNotesDialog = useCallback(() => { setNotesDialogOpen(true); onDialogOpen?.call([]) }, [setNotesDialogOpen]);
+  const handleToggleHidden = useCallback(() => {
+    toggleHidden();
+    if (!hidden){
+      toast("Venue hidden", {
+        action: {
+          label: "Undo",
+          onClick: toggleHidden
+        }
+      });
+    }
+  }, [hidden, toggleHidden]);
 
 
   return <div className="bg-muted/50 text-muted-foreground border-t border-b border-muted py-1.5 px-2 sm:px-8 -mt-0.5 flex items-center justify-between">
@@ -113,6 +126,21 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
     </ButtonGroup>
 
     <ButtonGroup>
+      <Tooltip>
+        <TooltipTrigger onClick={handleToggleHidden} render={(props) =>
+            <Button size="icon"
+                    variant="secondary"
+                    className="group cursor-pointer px-3 py-2 sm:px-5 sm:py-4 aria-pressed:bg-primary aria-pressed:hover:bg-primary/75"
+                    aria-label="Hide Venue"
+                    aria-pressed={hidden}
+                    {...props}>
+              <EyeOffIcon className="group-aria-pressed:stroke-primary-foreground size-4"/>
+            </Button>}
+        />
+        <TooltipContent side="top" className="bg-muted text-muted-foreground">
+          {hidden ? "Unhide Venue" : "Hide Venue"}
+        </TooltipContent>
+      </Tooltip>
       <Tooltip>
         <TooltipTrigger onClick={openFlagDialog} render={(props) =>
             <Button size="icon" variant="secondary" className="cursor-pointer px-3 py-2 sm:px-5 sm:py-4" {...props} aria-label="Flag Venue">

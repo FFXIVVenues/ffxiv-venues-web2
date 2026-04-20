@@ -4,6 +4,7 @@ import {Venue} from "@/lib/model/venue.ts";
 import type {Opening} from "@/lib/model/opening.ts";
 import type {VenueFilter} from "./venueFilter.ts";
 import {useEnv} from "@/lib/utils/hooks/useEnv.ts";
+import {hideService} from "@/lib/services/hideVenue/hideService.ts";
 
 export interface ScheduleItem {
     venue: Venue;
@@ -29,7 +30,7 @@ class VenueService {
         return venues.find(v => v.id === id);
     }
 
-    async getVenueSchedule(filters?: VenueFilter[]): Promise<VenueSchedule> {
+    async getVenueSchedule(filters?: VenueFilter[], showHidden?: boolean): Promise<VenueSchedule> {
         const venueViewModels: VenueSchedule = {
             favourites: [],
             newest: [],
@@ -43,6 +44,10 @@ class VenueService {
     
         for (const venue of await this.getVenues()) {
             if (filters && filters.length > 0 && !filters.every(filter => filter(venue))) {
+                continue;
+            }
+
+            if (!showHidden && hideService.isHidden(venue.id)) {
                 continue;
             }
 
