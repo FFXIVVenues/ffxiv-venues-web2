@@ -12,8 +12,6 @@ import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
 import {Lazy} from "@/components/ui/lazy.tsx";
-import {PulseBadge} from "@/components/badges/pulseBadge.tsx";
-import {cn} from "@/lib/utils";
 import {notesService} from "@/lib/services/notes/notesService.ts";
 import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card.tsx";
 import {LocationText} from "@/components/locationText/locationText.tsx";

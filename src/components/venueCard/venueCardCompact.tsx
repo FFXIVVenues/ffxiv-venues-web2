@@ -10,8 +10,6 @@ import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
 import {Lazy} from "@/components/ui/lazy.tsx";
-import {cn} from "@/lib/utils";
-import {PulseBadge} from "@/components/badges/pulseBadge.tsx";
 import {notesService} from "@/lib/services/notes/notesService.ts";
 import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card.tsx";
 import {NewBadge} from "@/components/badges/newBadge.tsx";
