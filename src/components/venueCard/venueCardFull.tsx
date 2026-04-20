@@ -7,7 +7,7 @@ import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
 import defaultBanner from "@/assets/default-banner.webp";
-import {CheckIcon, HeartIcon, Pencil, StarIcon} from "lucide-react";
+import {CheckIcon, EyeOffIcon, HeartIcon, Pencil, StarIcon} from "lucide-react";
 import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
@@ -19,6 +19,7 @@ import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hov
 import {LocationText} from "@/components/locationText/locationText.tsx";
 import {NewBadge} from "@/components/badges/newBadge.tsx";
 import {OpenBadge} from "@/components/badges/openBadge.tsx";
+import {hideService} from "@/lib/services/hideVenue/hideService.ts";
 
 type VenueCardProps = {
     venue: Venue;
@@ -33,6 +34,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
     const isVisited = visitedService.isVisited(venue.id);
     const isFavorite = favouritesService.isFavourite(venue.id);
     const hasNote = notesService.hasNote(venue.id);
+    const isHidden = hideService.isHidden(venue.id);
     const isNew  = venue.isNew();
 
     const onClickCallback = useCallback((e: MouseEvent) => {
@@ -91,6 +93,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
                                   </HoverCardContent>
                               </HoverCard>
                           )}
+                          { isHidden && <EyeOffIcon size={14} className="mr-1 stroke-muted-foreground fill-muted-foreground" /> }
                       </div>
                     </div>
                     <LocationText className="line-clamp-1" location={venue.location} />
