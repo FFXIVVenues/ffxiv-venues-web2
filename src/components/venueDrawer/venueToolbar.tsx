@@ -1,4 +1,4 @@
-import {memo, type RefObject, useCallback, useState} from "react";
+import {memo, useCallback, useState} from "react";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
 import {Button, buttonVariants} from "@/components/ui/button.tsx";
 import {CheckIcon, CopyIcon, CopySlashIcon, FlagIcon, HeartIcon, Pencil, EyeOffIcon, Menu} from "lucide-react";
@@ -26,7 +26,7 @@ type VenueToolbarProps = {
   venue: Venue;
   className?: string;
   onDialogOpen?: () => void;
-  container?: RefObject<HTMLDivElement | null>;
+  container?: HTMLDivElement | null;
 }
 
 type VenueToolbarActionsProps = {
@@ -35,7 +35,7 @@ type VenueToolbarActionsProps = {
   rating: number;
   hidden: boolean;
   note: string;
-  container?: RefObject<HTMLDivElement | null>;
+  container?: HTMLDivElement | null;
   onCopyLocation: () => void;
   onCopyLifestream: () => void;
   onSetFavourited: (value: boolean) => void;
@@ -52,6 +52,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
   const [rating, setRating] = useRating(venue.id);
   const [hidden, toggleHidden] = useHide(venue.id);
   const [note] = useNote(venue.id);
+  const containerRef = { current: container } as React.RefObject<HTMLDivElement | null>;
 
   const [flagDialogOpen, setFlagDialogOpen] = useState(false);
   const [notesDialogOpen, setNotesDialogOpen] = useState(false);
@@ -105,8 +106,8 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
   return <div className="bg-muted/50 text-muted-foreground border-t border-b border-muted py-1.5 px-2 sm:px-8 -mt-0.5 flex items-center justify-between">
     <VenueToolbarMobile {...actionsProps} />
     <VenueToolbarDesktop {...actionsProps} className={className} />
-    <FlagDialog venue={venue} open={flagDialogOpen} onOpenChange={setFlagDialogOpen} dialogContainer={container} />
-    <NotesDialog venueId={venue.id} open={notesDialogOpen} onOpenChange={setNotesDialogOpen} dialogContainer={container} />
+    <FlagDialog venue={venue} open={flagDialogOpen} onOpenChange={setFlagDialogOpen} dialogContainer={containerRef} />
+    <NotesDialog venueId={venue.id} open={notesDialogOpen} onOpenChange={setNotesDialogOpen} dialogContainer={containerRef} />
   </div>
 })
 
@@ -118,11 +119,12 @@ function VenueToolbarMobile({ favourited, visited, rating, hidden, note, contain
           aria-label="Venue actions">
         <Menu className="size-4"/>
       </DropdownMenuTrigger>
-      <DropdownMenuPortal container={container?.current ?? document.body}>
+      <DropdownMenuPortal container={container ?? document.body}>
         <DropdownMenuContent align="end" className="w-52">
 
           <DropdownMenuItem className="cursor-pointer" onClick={onCopyLocation}>
-            <CopyIcon className="size-4 mr-2"/> Copy location
+            <CopyIcon className="size-4 mr-2"/>
+            Copy location
           </DropdownMenuItem>
 
           <DropdownMenuSeparator/>
