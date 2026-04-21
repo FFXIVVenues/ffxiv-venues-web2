@@ -110,7 +110,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
   </div>
 })
 
-function VenueToolbarMobile({ favourited, visited, rating, hidden, note, container, onCopyLocation, onCopyLifestream, onSetFavourited, onSetVisited, onSetRating, onToggleHidden, onOpenNotes, onOpenFlag }: VenueToolbarActionsProps) {
+function VenueToolbarMobile({ favourited, visited, rating, hidden, note, container, onCopyLocation, onSetFavourited, onSetVisited, onSetRating, onToggleHidden, onOpenNotes, onOpenFlag }: VenueToolbarActionsProps) {
   return <div className="flex sm:hidden w-full justify-end items-center gap-2">
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger
@@ -120,24 +120,19 @@ function VenueToolbarMobile({ favourited, visited, rating, hidden, note, contain
       </DropdownMenuTrigger>
       <DropdownMenuPortal container={container?.current ?? document.body}>
         <DropdownMenuContent align="end" className="w-52">
+
+          <DropdownMenuItem className="cursor-pointer" onClick={onCopyLocation}>
+            <CopyIcon className="size-4 mr-2"/> Copy location
+          </DropdownMenuItem>
+
+          <DropdownMenuSeparator/>
+
           <div className="flex justify-center py-1.5">
             <Rating onChange={onSetRating}
                     value={rating} maxStars={5} color="var(--color-primary)" iconSize={16}
                     className="flex items-center leading-none"
                     aria-label="Rating"/>
           </div>
-
-          <DropdownMenuSeparator/>
-
-          <DropdownMenuItem className="cursor-pointer" onClick={onCopyLocation}>
-            <CopyIcon className="size-4 mr-2"/> Copy location
-          </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer" onClick={onCopyLifestream}>
-            <CopySlashIcon className="size-4 mr-2"/> Copy lifestream command
-          </DropdownMenuItem>
-
-          <DropdownMenuSeparator/>
-
           <DropdownMenuItem className="cursor-pointer" onClick={() => onSetFavourited(!favourited)} aria-pressed={favourited}>
             <HeartIcon className={cn("size-4 mr-2", favourited && "fill-primary stroke-primary")}/>
             {favourited ? "Unfavourite" : "Favourite"}
