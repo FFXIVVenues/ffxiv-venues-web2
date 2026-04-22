@@ -8,7 +8,7 @@ const S = {
   h3: "text-base font-semibold mt-6 mb-2",
   p: "flex gap-4 mb-2 text-sm leading-relaxed",
   num: "font-semibold shrink-0",
-  sub: "flex gap-4 mb-1.5 text-sm leading-relaxed pl-8",
+  sub: "flex gap-4 mb-1.5 text-sm leading-relaxed pl-9",
   a: "underline underline-offset-2 hover:opacity-70 transition-opacity",
 };
 
@@ -32,7 +32,7 @@ export const PrivacyPolicyPage = memo(() => {
 
         {/* Title block */}
         <h1 className="text-3xl font-bold mb-1">Privacy Policy</h1>
-        <p className="text-xs italic text-gray-500 mb-2">Applies to FFXIV Venues Site / API / Veni Ki</p>
+        <p className="text-xs italic text-gray-500 mb-2">Applies to FFXIV Venues Site / API / Veni Ki / Ruby Ki</p>
         <hr className="mb-8" />
 
         <h2 className={S.h2} id="whoweare">1. Who we are</h2>
@@ -43,8 +43,9 @@ export const PrivacyPolicyPage = memo(() => {
         <P n="2.1">This policy explains what personal data FFXIV Venues collects, why we collect it, how it is stored and protected, and your rights in relation to that data. This policy applies to the following categories of user:</P>
         <Sub n="2.1.1">Visitors who browse our site.</Sub>
         <Sub n="2.1.2">Consumers of our API.</Sub>
-        <Sub n="2.1.3">Venue owners who use our Discord bot, Veni Ki, to create and manage venue listings.</Sub>
-        <Sub n="2.1.4">Any user who submits a venue flag for moderation purposes.</Sub>
+        <Sub n="2.1.3">Venue owners who use our Discord bots, Veni Ki or Ruby Ki, to create and manage venue listings or use utility features.</Sub>
+        <Sub n="2.1.4">Users of Ruby Ki's utility features, such as anonymous posting.</Sub>
+        <Sub n="2.1.5">Any user who submits a venue flag for moderation purposes.</Sub>
 
         <h2 className={S.h2} id="data">3. Data we collect and why</h2>
         <h3 className={S.h3}>3.1 Site visitors</h3>
@@ -72,12 +73,30 @@ export const PrivacyPolicyPage = memo(() => {
         <Sub n="3.2.3.1">The provision of service - taking steps at your request to create and maintain your venue listing.</Sub>
         <Sub n="3.2.3.2">Legitimate interests - contributing to community statistics (see section 3.3).</Sub>
 
-        <h3 className={S.h3}>3.3 Statistics dashboard</h3>
-        <P n="3.3.1">FFXIV Venues operates a statistics dashboard at <A href="https://stats.ffxivvenues.com/">stats.ffxivvenues.com</A> as an additional processing purpose for the venue profile data described in section 3.2. The dashboard presents both aggregate statistics and individual views; all data surfaced is already publicly accessible via the main site.</P>
-        <P n="3.3.2">Access is open to anyone who requests it via a Discord role. No additional personal data is collected or stored as a result of accessing the dashboard.</P>
-        <P n="3.3.3">Our lawful basis (where UK GDPR or EU GDPR applies) is the provision of service:</P>
-        <Sub n="3.3.3.1">Providing open statistics and trends on the venue market.</Sub>
-        <Sub n="3.3.3.2">Aiding decisions on service improvements.</Sub>
+        <h3 className={S.h3} id="rubyki">3.3 Ruby Ki</h3>
+        <P n="3.3.1">Ruby Ki is a Discord bot providing utility functions for the FFXIV Venues community, including message anchoring, anonymity features, and minigames.</P>
+        <P n="3.3.2">If you use Ruby Ki's anonymity feature to post messages, we collect and store the following data for moderation and safety purposes:</P>
+        <Sub n="3.3.2.1">Your Discord user ID.</Sub>
+        <Sub n="3.3.2.2">The ID of the message(s) sent via the service.</Sub>
+        <P n="3.3.3">This data is used solely to allow moderators to identify the source of messages in the event of a policy violation. It is not exposed to the public or other users. Access is restricted to community moderators and engineers for the purposes of moderation and service maintenance.</P>
+        <P n="3.3.4">Our lawful basis (where UK GDPR or EU GDPR applies) is legitimate interests in maintaining a safe community environment and preventing abuse.</P>
+
+        <h3 className={S.h3}>3.4 Statistics dashboard</h3>
+        <P n="3.4.1">FFXIV Venues operates a statistics dashboard at <A href="https://stats.ffxivvenues.com/">stats.ffxivvenues.com</A> as an additional processing purpose for the venue profile data described in section 3.2. The dashboard presents both aggregate statistics and individual views; all data surfaced is already publicly accessible via the main site.</P>
+        <P n="3.4.2">Access is open to anyone who requests it via a Discord role. No additional personal data is collected or stored as a result of accessing the dashboard.</P>
+        <P n="3.4.3">Our lawful basis (where UK GDPR or EU GDPR applies) is the provision of service:</P>
+        <Sub n="3.4.3.1">Providing open statistics and trends on the venue market.</Sub>
+        <Sub n="3.4.3.2">Aiding decisions on service improvements.</Sub>
+
+        <h3 className={S.h3}>3.5 Support tickets (Ticket Tool)</h3>
+        <P n="3.5.1">If you open a support ticket in our Discord server, we collect and store the information you provide within that ticket via Ticket Tool. This is used to respond to your enquiry, manage community escalations, and maintain an audit record of changes made by request.</P>
+        <P n="3.5.2">The data collected includes:</P>
+        <Sub n="3.5.2.1">Your Discord user ID.</Sub>
+        <Sub n="3.5.2.2">The content of your messages, including any information you choose to share in the ticket.</Sub>
+        <Sub n="3.5.2.3">Timestamps and ticket status history.</Sub>
+        <P n="3.5.3">Our lawful basis (where UK GDPR or EU GDPR applies) is:</P>
+        <Sub n="3.5.3.1">The provision of service - responding to your request or enquiry.</Sub>
+        <Sub n="3.5.3.2">Legitimate interests - maintaining an audit record of escalations and venue changes.</Sub>
 
         <h2 className={S.h2} id="cookies">4. Cookies and local storage</h2>
         <P n="4.1">FFXIV Venues uses a small number of essential cookies and browser local storage. These are strictly necessary for the site to function correctly (for example, maintaining session state and load balancing) and are not used for advertising or behavioural tracking.</P>
@@ -96,16 +115,21 @@ export const PrivacyPolicyPage = memo(() => {
         <Sub n="5.3.1">Data processed: server-level infrastructure data only.</Sub>
         <Sub n="5.3.2"><span className="font-semibold">Privacy policy: </span><A href="https://www.hetzner.com/legal/privacy-policy">https://www.hetzner.com/legal/privacy-policy</A></Sub>
 
-        <P n="5.4">Discord is used to create and manage venue listings via our bot, Veni Ki. Your Discord user ID is processed and stored by us as described in section 3.2. Discord also processes your data under its own policies when you interact with the bot.</P>
-        <Sub n="5.4.1">Data processed: Discord user ID, server-level technical data, and messages and interactions with Veni Ki and in our Discord server.</Sub>
+        <P n="5.4">Discord is used as our community messaging platform and to interact with our bots, Veni Ki and Ruby Ki. Your Discord user ID is processed and stored by us as described in sections 3.2 and 3.3. Discord also processes your data under its own policies when you messsage in the community and/or interact with the bots.</P>
+        <Sub n="5.4.1">Data processed: Discord user ID, server-level technical data, and messages and interactions with our bots and in our Discord server.</Sub>
         <Sub n="5.4.2"><span className="font-semibold">Privacy policy: </span><A href="https://discord.com/privacy">https://discord.com/privacy</A></Sub>
+
+        <P n="5.5">Ticket Tool is a Discord bot that runs our support ticket system within our Discord community server. It collects and stores conversations within those tickets perpetually as transcripts, as an audit record of escalations and changes made by request. These transcripts can be removed upon request as described in section 8.</P>
+        <Sub n="5.5.1">Data processed: Discord user ID, message content, and timestamps within support tickets.</Sub>
+        <Sub n="5.5.2"><span className="font-semibold">Privacy policy: </span><A href="https://tickettool.xyz/privacy">https://tickettool.xyz/privacy</A></Sub>
 
         <h2 className={S.h2} id="retention">6. Data retention</h2>
         <P n="6.1">Server and Cloudflare logs (including IP addresses) are retained for short periods in line with standard infrastructure practices and are then automatically deleted.</P>
         <P n="6.2">Venue profile data: venue listings and associated Discord user IDs are retained for as long as the venue listing remains active and confirmed. Periodically venue owners/managers will be prompted to review data correctness and confirm venue details, if the prompt is unanswered the data is automatically deleted. If a venue is deleted, the data is held in an inactive state for up to six months to allow restoration at the venue owner's request. If you wish your venue data to be permanently and immediately erased rather than held for restoration, you must submit a deletion request as described in section 8.</P>
         <P n="6.3">Flag data, including hashed IP identifiers, is retained for as long as is reasonably necessary for moderation purposes.</P>
-        <P n="6.4">Device-side data (favourites, visited status, ratings, and notes) is stored indefinitely in your browser's local storage until you choose to remove it. This data never leaves your device and we have no access to it or control over it.</P>
-        <P n="6.5">Backups: automated hourly backups are retained with our infrastructure providers for up to six months for disaster recovery purposes. Data deleted from the live service may persist in backups until those backups expire. We do not selectively remove individual records from backup archives.</P>
+        <P n="6.4">Ticket transcripts: conversations within support tickets are stored perpetually by Ticket Tool as an audit record of community interactions and account changes. These can be removed at your request (see section 8).</P>
+        <P n="6.5">Device-side data (favourites, visited status, ratings, and notes) is stored indefinitely in your browser's local storage until you choose to remove it. This data never leaves your device and we have no access to it or control over it.</P>
+        <P n="6.6">Backups: automated hourly backups are retained with our infrastructure providers for up to six months for disaster recovery purposes. Data deleted from the live service may persist in backups until those backups expire. We do not selectively remove individual records from backup archives.</P>
 
         <h2 className={S.h2} id="transfers">7. International data transfers</h2>
         <P n="7.1">Our servers are located in the European Union (Hetzner). Cloudflare operates a global network, which means request-level data may be processed in multiple countries as part of standard network routing. Cloudflare maintains appropriate data transfer mechanisms in accordance with applicable law.</P>
