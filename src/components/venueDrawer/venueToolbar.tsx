@@ -111,7 +111,10 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
   </div>
 })
 
-function VenueToolbarMobile({ favourited, visited, rating, hidden, note, container, onCopyLocation, onSetFavourited, onSetVisited, onSetRating, onToggleHidden, onOpenNotes, onOpenFlag }: VenueToolbarActionsProps) {
+function VenueToolbarMobile(props: VenueToolbarActionsProps ) {
+  const {favourited, visited, rating, hidden, note, container,
+    onCopyLocation, onSetFavourited, onSetVisited, onSetRating,
+    onToggleHidden, onOpenNotes, onOpenFlag} = props;
   return <div className="flex sm:hidden w-full justify-end items-center gap-2">
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger
@@ -164,7 +167,11 @@ function VenueToolbarMobile({ favourited, visited, rating, hidden, note, contain
   </div>
 }
 
-function VenueToolbarDesktop({ favourited, visited, rating, hidden, note, onCopyLocation, onCopyLifestream, onSetFavourited, onSetVisited, onSetRating, onToggleHidden, onOpenNotes, onOpenFlag, className }: VenueToolbarActionsProps & { className?: string }) {
+type VenueToolbarDesktopProps = VenueToolbarActionsProps & {className?: string};
+function VenueToolbarDesktop(props: VenueToolbarDesktopProps ) {
+  const { favourited, visited, rating, hidden, note, onCopyLocation,
+          onCopyLifestream, onSetFavourited, onSetVisited, onSetRating,
+          onToggleHidden, onOpenNotes, onOpenFlag, className } = props;
   return <div className={cn("hidden sm:flex items-center justify-between w-full", className)}>
     <div className="flex gap-1">
       <ButtonGroup>
@@ -202,7 +209,7 @@ function VenueToolbarDesktop({ favourited, visited, rating, hidden, note, onCopy
               <HeartIcon className="fill-secondary-foreground group-aria-pressed:fill-primary-foreground group-aria-pressed:stroke-primary-foreground size-4"/>
             </Button>}
         />
-        <TooltipContent side="top" className="bg-muted text-muted-foreground">Favourite</TooltipContent>
+        <TooltipContent side="top" className="bg-muted text-muted-foreground">{favourited ? "Unfavourite" : "Favourite"}</TooltipContent>
       </Tooltip>
 
       <Tooltip>
@@ -213,7 +220,7 @@ function VenueToolbarDesktop({ favourited, visited, rating, hidden, note, onCopy
               <CheckIcon className="group-aria-pressed:stroke-primary-foreground size-4" strokeWidth={3}/>
             </Button>}
         />
-        <TooltipContent side="top" className="bg-muted text-muted-foreground">Visited</TooltipContent>
+        <TooltipContent side="top" className="bg-muted text-muted-foreground">{visited ? "Mark unvisited" : "Mark visited"}</TooltipContent>
       </Tooltip>
 
       <Tooltip>
@@ -224,7 +231,7 @@ function VenueToolbarDesktop({ favourited, visited, rating, hidden, note, onCopy
               <Pencil className="fill-secondary-foreground group-aria-pressed:fill-primary-foreground group-aria-pressed:stroke-primary-foreground size-4"/>
             </Button>}
         />
-        <TooltipContent side="top" className="bg-muted text-muted-foreground">Edit Note</TooltipContent>
+        <TooltipContent side="top" className="bg-muted text-muted-foreground">{note ? "Edit note" : "Add note"}</TooltipContent>
       </Tooltip>
     </ButtonGroup>
 
@@ -237,9 +244,7 @@ function VenueToolbarDesktop({ favourited, visited, rating, hidden, note, onCopy
               <EyeOffIcon className="group-aria-pressed:stroke-primary-foreground size-4"/>
             </Button>}
         />
-        <TooltipContent side="top" className="bg-muted text-muted-foreground">
-          {hidden ? "Unhide Venue" : "Hide Venue"}
-        </TooltipContent>
+        <TooltipContent side="top" className="bg-muted text-muted-foreground">{hidden ? "Unhide Venue" : "Hide Venue"}</TooltipContent>
       </Tooltip>
 
       <Tooltip>
