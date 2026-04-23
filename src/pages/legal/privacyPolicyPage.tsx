@@ -72,8 +72,10 @@ export const PrivacyPolicyPage = memo(() => {
         <P n="3.2.3">Our lawful basis (where UK GDPR or EU GDPR applies) is:</P>
         <Sub n="3.2.3.1">The provision of service - taking steps at your request to create and maintain your venue listing.</Sub>
         <Sub n="3.2.3.2">Legitimate interests - contributing to community statistics (see section 3.3).</Sub>
+        <P n="3.2.4">To enable interaction via natural language, we use Microsoft Cognitive Services for intent classification. When you message Veni Ki, your message content is processed by this service to identify your intent and provide the appropriate response. We do not use this data for any other purpose.</P>
+        <P n="3.2.5">Our lawful basis (where UK GDPR or EU GDPR applies) is legitimate interests in providing a user-friendly and efficient interface for venue management.</P>
 
-        <h3 className={S.h3} id="rubyki">3.3 Ruby Ki</h3>
+        <h3 className={S.h3}>3.3 Ruby Ki</h3>
         <P n="3.3.1">Ruby Ki is a Discord bot providing utility functions for the FFXIV Venues community, including message anchoring, anonymity features, and minigames.</P>
         <P n="3.3.2">If you use Ruby Ki's anonymity feature to post messages, we collect and store the following data for moderation and safety purposes:</P>
         <Sub n="3.3.2.1">Your Discord user ID.</Sub>
@@ -123,6 +125,10 @@ export const PrivacyPolicyPage = memo(() => {
         <Sub n="5.5.1">Data processed: Discord user ID, message content, and timestamps within support tickets.</Sub>
         <Sub n="5.5.2"><span className="font-semibold">Privacy policy: </span><A href="https://tickettool.xyz/privacy">https://tickettool.xyz/privacy</A></Sub>
 
+        <P n="5.6">Microsoft Cognitive Services provides intent classification services for Veni Ki. They process messages sent to the bot to identify user intent and enable conversational interactions.</P>
+        <Sub n="5.6.1">Data processed: message content sent to Veni Ki.</Sub>
+        <Sub n="5.6.2"><span className="font-semibold">Privacy policy: </span><A href="https://privacy.microsoft.com/en-us/privacystatement">https://privacy.microsoft.com/en-us/privacystatement</A></Sub>
+
         <h2 className={S.h2} id="retention">6. Data retention</h2>
         <P n="6.1">Server and Cloudflare logs (including IP addresses) are retained for short periods in line with standard infrastructure practices and are then automatically deleted.</P>
         <P n="6.2">Venue profile data: venue listings and associated Discord user IDs are retained for as long as the venue listing remains active and confirmed. Periodically venue owners/managers will be prompted to review data correctness and confirm venue details, if the prompt is unanswered the data is automatically deleted. If a venue is deleted, the data is held in an inactive state for up to six months to allow restoration at the venue owner's request. If you wish your venue data to be permanently and immediately erased rather than held for restoration, you must submit a deletion request as described in section 8.</P>
@@ -159,7 +165,7 @@ export const PrivacyPolicyPage = memo(() => {
         <h2 className={S.h2} id="contact">11. Contact us</h2>
         <P n="11.1">If you have any questions, concerns, or requests relating to this privacy policy or your personal data, please <A href="https://discord.com/channels/942536163959406632/1188579990271434883">contact us via a ticket</A> in the <A href="https://discord.gg/gTP65VYcMj">FFXIV Venues discord</A>.</P>
 
-        <p className="text-right text-xs italic text-gray-500 mt-16">Effective 15<sup>th</sup> April 2026</p>
+        <p className="text-right text-xs italic text-gray-500 mt-16">Effective 23<sup>rd</sup> April 2026</p>
       </div>
     </DefaultPageLayout.Page>
   </DefaultPageLayout>
