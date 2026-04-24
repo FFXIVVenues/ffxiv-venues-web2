@@ -5,17 +5,16 @@ import type {Venue} from "@/lib/model/venue.ts";
 import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
-import {CheckIcon, HeartIcon, Pencil, StarIcon} from "lucide-react";
+import {CheckIcon, EyeOffIcon, HeartIcon, Pencil, StarIcon} from "lucide-react";
 import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
 import {Lazy} from "@/components/ui/lazy.tsx";
-import {cn} from "@/lib/utils";
-import {PulseBadge} from "@/components/badges/pulseBadge.tsx";
 import {notesService} from "@/lib/services/notes/notesService.ts";
 import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card.tsx";
 import {NewBadge} from "@/components/badges/newBadge.tsx";
 import {OpenBadge} from "@/components/badges/openBadge.tsx";
+import {hideService} from "@/lib/services/hideVenue/hideService.ts";
 
 type VenueCardProps = {
     venue: Venue;
@@ -29,6 +28,7 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
     const isFavorite = favouritesService.isFavourite(venue.id);
     const isVisited = visitedService.isVisited(venue.id);
     const hasNote = notesService.hasNote(venue.id);
+    const isHidden = hideService.isHidden(venue.id);
     const isOpen = displayOpening?.isNow === true;
     const isNew  = venue.isNew();
 
@@ -98,6 +98,7 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
                                     </HoverCardContent>
                                 </HoverCard>
                             )}
+                            { isHidden && <EyeOffIcon size={14} className="mr-1 stroke-muted-foreground fill-muted-foreground" /> }
                         </div>
                     </CardDescription>
                 </CardHeader>

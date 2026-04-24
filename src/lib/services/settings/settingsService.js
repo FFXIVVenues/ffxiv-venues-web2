@@ -3,6 +3,7 @@ const DEFAULTS = {
     view: 'compact',
     sidebar: true,
     drawerSide: 'right',
+    showHidden: false,
 };
 
 class SettingsService {

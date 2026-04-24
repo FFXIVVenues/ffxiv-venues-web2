@@ -16,6 +16,7 @@ export const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
     const view = useSetting('view');
     const sidebarOpen = useSetting('sidebar');
     const drawerSide = useSetting('drawerSide');
+    const showHidden = useSetting('showHidden');
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
@@ -94,6 +95,15 @@ export const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
                         checked={sidebarOpen}
                         onCheckedChange={value => settingsService.setSetting('sidebar', value)}
                         aria-label="Show navigation bar"
+                    />
+                </div>
+
+                <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium">Show hidden venues</span>
+                    <Switch
+                        checked={showHidden}
+                        onCheckedChange={value => settingsService.setSetting('showHidden', value)}
+                        aria-label="Show hidden venues"
                     />
                 </div>
             </DialogContent>
