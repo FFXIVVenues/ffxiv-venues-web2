@@ -30,7 +30,6 @@ export const PrivacyPolicyPage = memo(() => {
     <DefaultPageLayout.Page>
       <div className="max-w-3xl mx-auto px-6 py-12 text-sm leading-relaxed">
 
-        {/* Title block */}
         <h1 className="text-3xl font-bold mb-1">Privacy Policy</h1>
         <p className="text-xs italic text-gray-500 mb-2">Applies to FFXIV Venues Site / API / Veni Ki / Ruby Ki</p>
         <hr className="mb-8" />
@@ -41,10 +40,10 @@ export const PrivacyPolicyPage = memo(() => {
 
         <h2 className={S.h2} id="covers">2. What this policy covers</h2>
         <P n="2.1">This policy explains what personal data FFXIV Venues collects, why it is collected, how it is stored and protected, and the rights in relation to that data. This policy applies to the following categories of user:</P>
-        <Sub n="2.1.1">Visitors who browse our site.</Sub>
+        <Sub n="2.1.1">Visitors who browse our sites.</Sub>
         <Sub n="2.1.2">Consumers of our API.</Sub>
-        <Sub n="2.1.3">Venue owners who use our Discord bots, Veni Ki or Ruby Ki, to create and manage venue listings or use utility features.</Sub>
-        <Sub n="2.1.4">Users of Ruby Ki's utility features, such as anonymous posting.</Sub>
+        <Sub n="2.1.3">Venue owners who use our Discord bot, Veni Ki, to create and manage venue listings.</Sub>
+        <Sub n="2.1.4">Users of our Discord bot, Ruby Ki, to use utility features such as anonymous posting.</Sub>
         <Sub n="2.1.5">Any user who submits a venue flag for moderation purposes.</Sub>
 
         <h2 className={S.h2} id="data">3. Data we collect and why</h2>
@@ -62,7 +61,7 @@ export const PrivacyPolicyPage = memo(() => {
         <Sub n="3.1.3.1.1">The flag type, selected from a predefined list.</Sub>
         <Sub n="3.1.3.1.2">An optional free-text description provided by the user.</Sub>
         <Sub n="3.1.3.1.3">A derived identifier: the IP address is irreversibly hashed and truncated before being stored. Original IP addresses cannot be reconstructed from this value. It is used only to correlate flags from the same source in order to detect spam or coordinated abuse, and cannot be used for individual identification.</Sub>
-        <P n="3.1.3.2">Our lawful basis (where UK GDPR or EU GDPR applies) is legitimate interests in abuse prevention.</P>
+        <P n="3.1.3.2">Our lawful basis (where UK GDPR or EU GDPR applies) is legitimate interests in abuse prevention and data accuracy.</P>
 
         <h3 className={S.h3}>3.2 Veni Ki (venue owners)</h3>
         <P n="3.2.1">When a venue listing is created or managed using the Discord bot, Veni Ki, the following data is collected in order to provide and maintain that listing:</P>
@@ -71,9 +70,7 @@ export const PrivacyPolicyPage = memo(() => {
         <P n="3.2.2">The information submitted is displayed back during the creation confirmation process, allowing for review of the stored data before it is saved.</P>
         <P n="3.2.3">Our lawful basis (where UK GDPR or EU GDPR applies) is:</P>
         <Sub n="3.2.3.1">The provision of service - taking steps at the user's request to create and maintain the venue listing.</Sub>
-        <Sub n="3.2.3.2">Legitimate interests - contributing to community statistics (see section 3.3).</Sub>
-        <P n="3.2.4">To enable interaction via natural language, Microsoft Cognitive Services is used for intent classification. When a message is sent to Veni Ki, the content is processed by this service to identify intent and provide the appropriate response. This data is not used for any other purpose.</P>
-        <P n="3.2.5">Our lawful basis (where UK GDPR or EU GDPR applies) is legitimate interests in providing a user-friendly and efficient interface for venue management.</P>
+        <Sub n="3.2.3.2">Legitimate interests - contributing to community statistics (see section 3.4).</Sub>
 
         <h3 className={S.h3}>3.3 Ruby Ki</h3>
         <P n="3.3.1">Ruby Ki is a Discord bot providing utility functions for the FFXIV Venues community, including message anchoring, anonymity features, and minigames.</P>
@@ -90,15 +87,21 @@ export const PrivacyPolicyPage = memo(() => {
         <Sub n="3.4.3.1">Providing open statistics and trends on the venue market.</Sub>
         <Sub n="3.4.3.2">Aiding decisions on service improvements.</Sub>
 
-        <h3 className={S.h3}>3.5 Support tickets (Ticket Tool)</h3>
-        <P n="3.5.1">If a support ticket is opened in the Discord server, the information provided within that ticket is collected and stored via Ticket Tool. This is used to respond to the enquiry, manage community escalations, and maintain an audit record of changes made by request.</P>
-        <P n="3.5.2">The data collected includes:</P>
-        <Sub n="3.5.2.1">The user's Discord ID.</Sub>
-        <Sub n="3.5.2.2">The content of messages, including any information shared in the ticket.</Sub>
-        <Sub n="3.5.2.3">Timestamps and ticket status history.</Sub>
-        <P n="3.5.3">Our lawful basis (where UK GDPR or EU GDPR applies) is:</P>
-        <Sub n="3.5.3.1">The provision of service - responding to the request or enquiry.</Sub>
-        <Sub n="3.5.3.2">Legitimate interests - maintaining an audit record of escalations and venue changes.</Sub>
+        <h3 className={S.h3}>3.5 Staging site</h3>
+        <P n="3.5.1">A separate version of the website is maintained at <A href="https://ffxivvenues.dev/">ffxivvenues.dev</A> to test new features and improvements before they are released to the main site.</P>
+        <P n="3.5.2">In accessing this site, IP address and request data (for example, timestamps and request urls) may be processed in server logs, and Cloudflare systems for network security, DDoS protection, troubleshooting, and performance monitoring. This data is not used to identify individuals.</P>
+        <P n="3.5.3">This staging site uses a copy of the live data to ensure that new updates work correctly and accurately with real-world information. To ensure isolation the data on the staging site is disconnected from your Discord account. This means that actions performed on the staging site will not affect your live data or result in messages being sent to you.</P>
+        <P n="3.5.5">Our lawful basis (where UK GDPR or EU GDPR applies) is provision of service - ensuring service updates are stable, performant, and accurate.</P>
+
+        <h3 className={S.h3}>3.6 Support tickets (Ticket Tool)</h3>
+        <P n="3.6.1">If a support ticket is opened in the Discord server, the information provided within that ticket is collected and stored via Ticket Tool. This is used to respond to the enquiry, manage community escalations, and maintain an audit record of changes made by request.</P>
+        <P n="3.6.2">The data collected includes:</P>
+        <Sub n="3.6.2.1">The user's Discord ID.</Sub>
+        <Sub n="3.6.2.2">The content of messages, including any information shared in the ticket.</Sub>
+        <Sub n="3.6.2.3">Timestamps and ticket status history.</Sub>
+        <P n="3.6.3">Our lawful basis (where UK GDPR or EU GDPR applies) is:</P>
+        <Sub n="3.6.3.1">The provision of service - responding to the request or enquiry.</Sub>
+        <Sub n="3.6.3.2">Legitimate interests - maintaining an audit record of escalations and venue changes.</Sub>
 
         <h2 className={S.h2} id="cookies">4. Cookies and local storage</h2>
         <P n="4.1">FFXIV Venues uses a small number of essential cookies and browser local storage. These are strictly necessary for the site to function correctly (for example, maintaining session state and load balancing) and are not used for advertising or behavioural tracking.</P>
@@ -153,6 +156,7 @@ export const PrivacyPolicyPage = memo(() => {
         <Sub n="8.1.4"><span className="font-semibold">Right to restrict processing:</span> in certain circumstances.</Sub>
         <Sub n="8.1.5"><span className="font-semibold">Right to object:</span> to processing carried out on the basis of legitimate interests.</Sub>
         <Sub n="8.1.6"><span className="font-semibold">Right to data portability:</span> where technically feasible.</Sub>
+        <Sub n="8.1.7"><span className="font-semibold">Right to lodge a complaint:</span> with a data protection authority (for example, the ICO in the UK).</Sub>
         <P n="8.2">To exercise any of these rights, <A href="https://discord.com/channels/942536163959406632/1188579990271434883">contact the team via a ticket</A> in the <A href="https://discord.gg/gTP65VYcMj">FFXIV Venues discord</A>. Verification of identity may be required before acting on a request.</P>
 
         <h2 className={S.h2} id="security">9. Security</h2>
