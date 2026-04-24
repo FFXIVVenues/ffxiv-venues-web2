@@ -13,10 +13,7 @@ import {VenueTags} from "@/components/venueDrawer/venueTags.tsx";
 import defaultBanner from "@/assets/default-banner.webp";
 import {settingsService} from "@/lib/services/settings/settingsService";
 import {cva} from "class-variance-authority";
-import React, {memo, type RefObject, useRef} from "react";
-import {CardTitle} from "@/components/ui/card.tsx";
-import {PulseBadge} from "@/components/badges/pulseBadge.tsx";
-import {cn} from "@/lib/utils";
+import React, {memo, type RefObject, useRef, useState} from "react";
 import {OpenBadge} from "@/components/badges/openBadge.tsx";
 import {NewBadge} from "@/components/badges/newBadge.tsx";
 
@@ -28,7 +25,7 @@ type VenueSheetProps = {
 }
 
 export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: VenueSheetProps)=> {
-    const container: RefObject<HTMLDivElement | null> = useRef(null);
+    const [container, setContainer] = useState<HTMLDivElement | null>(null);
     const closeRef: RefObject<HTMLButtonElement | null> = useRef(null);
 
     if (!venue) return null;
@@ -64,7 +61,7 @@ export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: Venu
   return <Drawer open={open} onClose={onClose} direction={positionSetting} modal={true}>
       <DrawerContent
           className="max-w-150"
-          ref={container}
+          ref={setContainer}
           onOpenAutoFocus={e => { e.preventDefault(); closeRef.current?.focus(); }}
           onCloseAutoFocus={e => { e.preventDefault(); onCloseComplete?.(); }}>
           <DrawerHeader className="p-0">
