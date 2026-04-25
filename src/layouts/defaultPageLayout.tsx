@@ -9,7 +9,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import {SettingsDialog} from "@/components/settingsMenu/settingsDialog.tsx";
 import {useSetting} from "@/lib/services/settings/useSetting";
 import {CreateVenueDialog} from "@/components/createVenueModal/createVenueDialog.tsx";
-import {DiscordFillIcon} from "@/components/icons/akar-icons-discord-fill.tsx";
+import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {Plus, Settings} from "lucide-react";
 import {Toaster} from "@/components/ui/sonner.tsx";

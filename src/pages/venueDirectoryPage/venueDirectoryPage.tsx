@@ -12,19 +12,18 @@ import {VenueList} from "@/components/venueList/venueList.tsx";
 import {useSetting} from "@/lib/services/settings/useSetting";
 import {venueService} from "@/lib/services/venues/venueService.ts";
 import type {VenueSchedule} from "@/lib/services/venues/venueSchedule.ts";
+import {LogoFail} from "@/components/icons/logo-fail.tsx";
 
 export const VenueDirectoryPage = () => {
     const { venue, openDrawer } = useVenueFromRoute();
     const navigate = useNavigate();
-    useVenueHashRedirect();
-
     const view = useSetting('view');
     const showHidden = useSetting('showHidden');
+    useVenueHashRedirect();
 
     const [venues, error, setFilters] = useVenueSchedule([], showHidden);
 
     const title = openDrawer && venue ? `${venue.name} - FFXIV Venues` : undefined;
-
     const lastFocused = useRef<HTMLElement | null>(null);
     const openVenue = useCallback((venue: Venue, newTab?: boolean) => {
         if (newTab) {
@@ -46,12 +45,12 @@ export const VenueDirectoryPage = () => {
             </DefaultPageLayout.Panel>
             <DefaultPageLayout.Page>
                 <VenueDrawer open={openDrawer} venue={venue} onClose={closeVenue} onCloseComplete={() => lastFocused.current?.focus()} />
-                {error ? (
-                    <div className="mx-auto max-w-7xl py-6">
-                        <p className="text-red-600">Error: {error?.message}</p>
-                    </div>
-                ): !venues
+                {error
+                  ? <VenueDirectoryError error={error} />
+                  : !venues
                   ? <VenueDirectoryLoadingStub />
+                  : venues.scheduled.every(a => a.length === 0) && venues.unscheduled.length === 0 && venues.future.length === 0
+                  ? <VenueDirectoryEmpty />
                   : view === 'list'
                     ? <VenueDirectoryAsList venues={venues} onVenueClick={openVenue} />
                     : <VenueDirectoryAsCards venues={venues} onVenueClick={openVenue} />
@@ -112,6 +111,21 @@ function VenueDirectoryAsCards({ venues, onVenueClick } : { venues: VenueSchedul
         <VenueCarousel title="Future Openings" venues={venues.future} onVenueClick={onVenueClick} className="mb-4" />
         <VenueCarousel title="Unscheduled" venues={venues.unscheduled} onVenueClick={onVenueClick} className="mb-4" />
     </div>;
+}
+
+function VenueDirectoryError({ error }: { error: Error }) {
+    return <div className="mx-auto text-center max-w-7xl mt-[20vh] mb-[45vh]">
+        <LogoFail className="m-4 mx-auto" size={96} color="var(--color-muted-foreground)" />
+        Sorry, we couldn't get you venues. :(
+        <p className="">{error?.message}</p>
+    </div>
+}
+
+function VenueDirectoryEmpty() {
+    return <div className="mx-auto text-center max-w-7xl mt-[20vh] mb-[45vh]">
+        <LogoFail className="m-4 mx-auto" size={96} color="var(--color-muted-foreground)" />
+        There are no venues to show :/
+    </div>
 }
 
 function useVenueFromRoute() {

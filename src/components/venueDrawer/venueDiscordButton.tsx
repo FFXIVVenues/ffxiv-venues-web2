@@ -1,6 +1,6 @@
 import type {Nullable} from "@/lib/utils/nullable.ts";
 import {Button} from "@/components/ui/button.tsx";
-import {DiscordFillIcon} from "@/components/icons/akar-icons-discord-fill.tsx";
+import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
 
 export const VenueDiscordButton = ({discordLink}: { discordLink: Nullable<string> }) =>
   discordLink &&
