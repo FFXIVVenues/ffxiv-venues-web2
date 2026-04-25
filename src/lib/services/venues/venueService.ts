@@ -5,6 +5,7 @@ import type {Opening} from "@/lib/model/opening.ts";
 import type {VenueFilter} from "./venueFilter.ts";
 import {useEnv} from "@/lib/utils/hooks/useEnv.ts";
 import {hideService} from "@/lib/services/hideVenue/hideService.ts";
+import {request} from "@/lib/utils";
 
 export interface ScheduleItem {
     venue: Venue;
@@ -17,7 +18,7 @@ class VenueService {
     getVenues(): Promise<Venue[]> {
         const venuesUrl = useEnv("FFXIV_VENUES_API_ROOT") + "/v1.0/venue";
         return this._fetchPromise ??= new Promise((resolve, reject) => {
-            fetch(venuesUrl)
+            request(venuesUrl)
                 .then(response => response.json() as Promise<VenueDto[]>)
                 .then(venues => venues.map(v => new Venue(v)))
                 .then(resolve)
