@@ -1,7 +1,7 @@
 import type {Nullable} from "@/lib/utils/nullable";
 import type {Venue} from "@/lib/model/venue.ts";
 import {LocationText} from "@/components/locationText/locationText.tsx";
-import {Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle} from "@/components/ui/drawer.tsx";
+import {Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle} from "@/components/ui/shadcn/drawer.tsx";
 import {XIcon} from "lucide-react";
 import VenueToolbar from "@/components/venueDrawer/venueToolbar.tsx";
 import {VenueDescription} from "@/components/venueDrawer/venueDescription.tsx";

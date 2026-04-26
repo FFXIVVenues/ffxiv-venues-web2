@@ -3,7 +3,7 @@ import type {FilterOption} from "@/components/filterMenu/filters/filterOption.ts
 import {FilterMenuItem} from "@/components/filterMenu/FilterMenuItem.tsx";
 import {FilterSubMenu} from "@/components/filterMenu/FilterSubMenu.tsx";
 
-import {SidebarMenuItem, SidebarMenuButton, SidebarMenuSubItem, SidebarMenuSubButton} from "@/components/ui/sidebar.tsx";
+import {SidebarMenuItem, SidebarMenuButton, SidebarMenuSubItem, SidebarMenuSubButton} from "@/components/ui/shadcn/sidebar.tsx";
 
 export type FilterMenuListProps = {
     options: FilterOption[];

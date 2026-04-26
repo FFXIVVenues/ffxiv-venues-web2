@@ -6,15 +6,15 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle
-} from "@/components/ui/dialog";
+} from "@/components/ui/shadcn/dialog.tsx";
 import React, {type ChangeEvent, type RefObject, useCallback, useState} from "react";
-import {Combobox, ComboboxContent, ComboboxInput, ComboboxItem, ComboboxList} from "@/components/ui/combobox.tsx";
-import {Button} from "@/components/ui/button.tsx";
-import {Textarea} from "@/components/ui/textarea.tsx";
+import {Combobox, ComboboxContent, ComboboxInput, ComboboxItem, ComboboxList} from "@/components/ui/shadcn/combobox.tsx";
+import {Button} from "@/components/ui/shadcn/button.tsx";
+import {Textarea} from "@/components/ui/shadcn/textarea.tsx";
 import {FlagCategory, flagService} from "@/lib/services/flagging/flagService.tsx";
 import type {Venue} from "@/lib/model/venue.ts";
-import {Spinner} from "@/components/ui/spinner.tsx";
-import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert.tsx";
+import {Spinner} from "@/components/ui/shadcn/spinner.tsx";
+import {Alert, AlertDescription, AlertTitle} from "@/components/ui/shadcn/alert.tsx";
 import {CheckCircle2Icon} from "lucide-react";
 
 type FlagDialogProps = {

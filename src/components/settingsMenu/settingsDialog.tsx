@@ -1,10 +1,10 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/shadcn/dialog.tsx";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/shadcn/toggle-group.tsx";
 import {Sun, Moon, Monitor, LayoutGrid, List, Grid3x3, PanelLeft, PanelRight} from "lucide-react";
 import { useSetting } from "@/lib/services/settings/useSetting";
 import { settingsService } from "@/lib/services/settings/settingsService";
-import {Switch} from "@/components/ui/switch.tsx";
-import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
+import {Switch} from "@/components/ui/shadcn/switch.tsx";
+import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/shadcn/tooltip.tsx";
 
 type SettingsDialogProps = {
     open: boolean;

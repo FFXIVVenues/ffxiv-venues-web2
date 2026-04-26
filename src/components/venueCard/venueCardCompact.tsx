@@ -1,5 +1,5 @@
 import React, {memo, type MouseEvent, useCallback} from 'react';
-import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/shadcn/card.tsx";
 import defaultBanner from "@/assets/default-banner.webp";
 import type {Venue} from "@/lib/model/venue.ts";
 import {TimeText} from "@/components/dateString/timeText.tsx";
@@ -9,9 +9,9 @@ import {CheckIcon, EyeOffIcon, HeartIcon, Pencil, StarIcon} from "lucide-react";
 import {favouritesService} from "@/lib/services/favouritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
-import {Lazy} from "@/components/ui/lazy.tsx";
+import {Lazy} from "@/components/ui/shadcn/lazy.tsx";
 import {notesService} from "@/lib/services/notes/notesService.ts";
-import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/hover-card.tsx";
+import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/shadcn/hover-card.tsx";
 import {NewBadge} from "@/components/badges/newBadge.tsx";
 import {OpenBadge} from "@/components/badges/openBadge.tsx";
 import {hideService} from "@/lib/services/hideVenue/hideService.ts";

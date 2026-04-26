@@ -1,4 +1,4 @@
-import {Badge} from "@/components/ui/badge.tsx";
+import {Badge} from "@/components/ui/shadcn/badge.tsx";
 import {cn} from "@/lib/utils";
 
 export const VenueTags = ({tags, className }: { tags: string[], className?: string }) =>

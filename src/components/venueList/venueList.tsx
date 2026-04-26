@@ -1,11 +1,11 @@
 import React, { type ReactNode, memo, useState } from "react";
 import type { ScheduleItem } from "@/lib/services/venues/venueService";
 import type { Venue } from "@/lib/model/venue.ts";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible.tsx";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/shadcn/collapsible.tsx";
 import { ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { VenueListItem } from "@/components/venueCard/venueListItem.tsx";
-import { Table, TableBody } from "@/components/ui/table.tsx";
+import { Table, TableBody } from "@/components/ui/shadcn/table.tsx";
 
 type VenueListProps = {
     title: ReactNode;

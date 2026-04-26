@@ -7,9 +7,9 @@ import {
     DialogTitle,
     DialogFooter,
     DialogDescription
-} from "@/components/ui/dialog";
-import {Textarea} from "@/components/ui/textarea.tsx";
-import {Button} from "@/components/ui/button.tsx";
+} from "@/components/ui/shadcn/dialog.tsx";
+import {Textarea} from "@/components/ui/shadcn/textarea.tsx";
+import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Trash2Icon} from "lucide-react";
 
 interface notesDialogProps {

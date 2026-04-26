@@ -1,8 +1,8 @@
 import {memo} from "react";
 import type {ElementType} from "react";
-import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
-import {SidebarMenuButton, SidebarMenuSub} from "@/components/ui/sidebar.tsx";
-import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
+import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/shadcn/collapsible.tsx";
+import {SidebarMenuButton, SidebarMenuSub} from "@/components/ui/shadcn/sidebar.tsx";
+import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/shadcn/tooltip.tsx";
 import {ChevronDown} from "lucide-react";
 import {cn} from "@/lib/utils/cn.ts";
 import type {FilterOption} from "@/components/filterMenu/filters/filterOption.ts";

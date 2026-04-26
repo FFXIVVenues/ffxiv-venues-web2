@@ -1,5 +1,5 @@
 import type {Nullable} from "@/lib/utils/nullable.ts";
-import {Button} from "@/components/ui/button.tsx";
+import {Button} from "@/components/ui/shadcn/button.tsx";
 import {LinkIcon} from "lucide-react";
 
 export const VenueWebsiteButton = ({website}: { website: Nullable<string> }) =>
