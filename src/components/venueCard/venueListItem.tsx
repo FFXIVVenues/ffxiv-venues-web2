@@ -3,7 +3,7 @@ import type { Venue } from "@/lib/model/venue.ts";
 import type { Opening } from "@/lib/model/opening.ts";
 import { TimeText } from "@/components/dateString/timeText.tsx";
 import { LocationText } from "@/components/locationText/locationText.tsx";
-import { TableCell, TableRow } from "@/components/ui/table.tsx";
+import { TableCell, TableRow } from "@/components/ui/shadcn/table.tsx";
 import { DateText } from "@/components/dateString/dateText.tsx";
 
 type VenueCardListProps = {

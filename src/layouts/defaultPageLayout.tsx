@@ -4,15 +4,15 @@ import logoDark from "@/assets/logo-dark-300.webp";
 import {
     Sidebar, SidebarContent, SidebarFooter,
     SidebarHeader, SidebarProvider, SidebarRail, SidebarTrigger
-} from "@/components/ui/sidebar.tsx";
-import { TooltipProvider } from "@/components/ui/tooltip";
+} from "@/components/ui/shadcn/sidebar.tsx";
+import { TooltipProvider } from "@/components/ui/shadcn/tooltip.tsx";
 import {SettingsDialog} from "@/components/settingsMenu/settingsDialog.tsx";
 import {useSetting} from "@/lib/services/settings/useSetting";
 import {CreateVenueDialog} from "@/components/createVenueModal/createVenueDialog.tsx";
 import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
-import {Button} from "@/components/ui/button.tsx";
+import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Plus, Settings} from "lucide-react";
-import {Toaster} from "@/components/ui/sonner.tsx";
+import {Toaster} from "@/components/ui/shadcn/sonner.tsx";
 
 type DefaultLayoutProps = {
     children: ReactNode;

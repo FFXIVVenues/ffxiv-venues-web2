@@ -1,8 +1,8 @@
 import {useRef, useCallback, memo, type ChangeEvent} from "react";
 import type {Venue} from "@/lib/model/venue.ts";
-import {SidebarGroup} from "@/components/ui/sidebar.tsx";
-import {FieldLabel} from "@/components/ui/field.tsx";
-import {Input} from "@/components/ui/input.tsx";
+import {SidebarGroup} from "@/components/ui/shadcn/sidebar.tsx";
+import {FieldLabel} from "@/components/ui/shadcn/field.tsx";
+import {Input} from "@/components/ui/shadcn/input.tsx";
 import {FilterGroup} from "@/components/filterMenu/filterGroup.tsx";
 
 import {sceneFilters} from "./filters/sceneFilters.ts";

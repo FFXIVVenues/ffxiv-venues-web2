@@ -1,7 +1,7 @@
 import {memo} from "react";
 import type {ElementType, ReactNode} from "react";
 import {cn} from "@/lib/utils/cn.ts";
-import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
+import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/shadcn/tooltip.tsx";
 
 export type FilterMenuItemProps = {
     isActive: boolean;

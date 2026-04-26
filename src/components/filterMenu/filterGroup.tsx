@@ -5,8 +5,8 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem
-} from "@/components/ui/sidebar.tsx";
-import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible.tsx";
+} from "@/components/ui/shadcn/sidebar.tsx";
+import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/shadcn/collapsible.tsx";
 import {ChevronDown} from "lucide-react";
 import type {Filter} from "@/components/filterMenu/filterMenu.tsx";
 import type {FilterOption} from "@/components/filterMenu/filters/filterOption.ts";
