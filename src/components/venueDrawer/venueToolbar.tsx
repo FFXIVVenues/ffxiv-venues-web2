@@ -1,13 +1,13 @@
 import {memo, useCallback, useState} from "react";
-import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
-import {Button, buttonVariants} from "@/components/ui/button.tsx";
+import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/shadcn/tooltip.tsx";
+import {Button, buttonVariants} from "@/components/ui/shadcn/button.tsx";
 import {CheckIcon, CopyIcon, CopySlashIcon, FlagIcon, HeartIcon, Pencil, EyeOffIcon, Menu} from "lucide-react";
 import {cn} from "@/lib/utils";
-import {ButtonGroup} from "@/components/ui/button-group.tsx";
+import {ButtonGroup} from "@/components/ui/shadcn/button-group.tsx";
 import {FlagDialog} from "@/components/flagDialog/flagDialog.tsx";
 import {NotesDialog} from "@/components/notesDialog/notesDialog.tsx";
 import type {Venue} from "@/lib/model/venue.ts";
-import Rating from "@/components/ui/rating.tsx";
+import Rating from "@/components/ui/shadcn/rating.tsx";
 import {toast} from "sonner";
 import {useFavourite} from "@/lib/services/useFavourite.ts";
 import {useVisited} from "@/lib/services/useVisited.ts";
@@ -20,7 +20,7 @@ import {
   DropdownMenuItem, DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu.tsx";
+} from "@/components/ui/shadcn/dropdown-menu.tsx";
 
 type VenueToolbarProps = {
   venue: Venue;

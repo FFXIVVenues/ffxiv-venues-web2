@@ -3,11 +3,12 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-} from "@/components/ui/dialog";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import {Button} from "@/components/ui/button.tsx";
+} from "@/components/ui/shadcn/dialog.tsx";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/shadcn/avatar.tsx";
+import { Separator } from "@/components/ui/shadcn/separator.tsx";
+import {Button} from "@/components/ui/shadcn/button.tsx";
 import veni from "@/assets/veni.webp";
+import {A} from "@/components/ui/a.tsx";
 
 type CreateVenueDialogProps = {
     open: boolean;
@@ -35,7 +36,7 @@ export const CreateVenueDialog = ({ open, onOpenChange } : CreateVenueDialogProp
 
                         <ol className="list-decimal list-inside flex flex-col gap-4 text-sm text-muted-foreground">
                             <li>
-                                Veni's home; the FFXIV Venues Discord!
+                                Join Veni's home; the FFXIV Venues Discord!
                                 <div className="mt-2">
                                     <Button nativeButton={false} variant="outline" size="sm" render={<a href="https://discord.gg/gTP65VYcMj" rel="noopener noreferrer" target="_blank" />}>
                                         Join the discord!
@@ -67,6 +68,9 @@ export const CreateVenueDialog = ({ open, onOpenChange } : CreateVenueDialogProp
                             If you have any questions or need help, just make a <a href="https://discord.com/channels/942536163959406632/1188579990271434883" rel="noopener noreferrer" target="_blank" className="text-primary underline underline-offset-4">Venue Ticket</a> in the discord.
                         </p>
                     </div>
+                </div>
+                <div className="flex justify-center">
+                    <p className="text-xs text-muted-foreground">Subject to <A href="https://ffxivvenues.com/privacy">privacy policy</A></p>
                 </div>
             </DialogContent>
         </Dialog>

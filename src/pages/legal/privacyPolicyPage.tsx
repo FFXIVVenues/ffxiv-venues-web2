@@ -1,6 +1,7 @@
 import React, {memo, type ReactNode} from "react";
 import {DefaultPageLayout} from "@/layouts/defaultPageLayout.tsx";
-import {SidebarMenuButton} from "@/components/ui/sidebar.tsx";
+import {SidebarMenuButton} from "@/components/ui/shadcn/sidebar.tsx";
+import {A} from "@/components/ui/a.tsx";
 
 const S = {
   m: "mx-2 w-auto -mt-1/2",
@@ -9,7 +10,6 @@ const S = {
   p: "flex gap-4 mb-2 text-sm leading-relaxed",
   num: "font-semibold shrink-0",
   sub: "flex gap-4 mb-1.5 text-sm leading-relaxed pl-9",
-  a: "underline underline-offset-2 hover:opacity-70 transition-opacity",
 };
 
 export const PrivacyPolicyPage = memo(() => {
@@ -194,10 +194,4 @@ const Sub = ({ n, children }: { n: string, children: ReactNode }) => (
     <span className={S.num}>{n}</span>
     <span>{children}</span>
   </p>
-);
-
-const A = ({ href, children }: { href: string, children: ReactNode }) => (
-  <a href={href} className={S.a} target="_blank" rel="noopener noreferrer">
-    {children}
-  </a>
 );

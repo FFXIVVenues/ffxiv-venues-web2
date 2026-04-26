@@ -1,10 +1,10 @@
 import type {Venue} from "@/lib/model/venue.ts";
 import {TimeText} from "@/components/dateString/timeText.tsx";
 import {DateText} from "@/components/dateString/dateText.tsx";
-import {Table, TableBody, TableCell, TableRow} from "@/components/ui/table.tsx";
+import {Table, TableBody, TableCell, TableRow} from "@/components/ui/shadcn/table.tsx";
 import {RecurringDayText} from "@/components/dateString/recurringDayText.tsx";
 import {cn} from "@/lib/utils";
-import {Pulse} from "@/components/pulse/pulse.tsx";
+import {Pulse} from "@/components/ui/pulse.tsx";
 
 export const VenueSchedule = ({venue, className}: { venue: Venue, className?: string }) => {
   return <div className={cn("font-bold", className)}>

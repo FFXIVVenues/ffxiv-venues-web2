@@ -3,8 +3,8 @@
 import * as React from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 
-import { cn } from "@/lib/utils/index"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/shadcn/button.tsx"
 import { XIcon } from "lucide-react"
 import type {Ref, RefObject} from "react";
 
