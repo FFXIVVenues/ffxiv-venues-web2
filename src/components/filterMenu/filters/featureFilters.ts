@@ -23,8 +23,10 @@ export const featureFilters: FilterOption[] = [
   { name: "Stylists", filter: hasTag("stylists"), hint: "The venue hosts stylists who offer a variety of glamour services, including hair styling, makeup, and wardrobe assistance." },
   { name: "Performances", filter: hasTag("performances"), hint: "The venue offers unique schedule performances, this could be SFW (theater, synch dancers, etc) or NSFW (erotic voyeur shows, live BDSM, etc)." },
   { name: "Giveaways", filter: hasTag("giveaways"), hint: "The venue offers giveaways through various channels, in chat, twitch stream or discord." },
+  { name: "Syncshell available", filter: hasTag("syncshell available"), hint: "The venue has a syncshell available for guests to join and see each other as they see themselves."},
   { name: "VIP available", filter: hasTag("vip"), hint: "The venue offers various perks through VIP tiers. This could include free drinks, gpose, gambling perk or more." },
   { name: "LGBTQIA+ focused", filter: hasTag("LGBTQIA+"), hint: "The venue is a safe space focused on LGBTQIA+." },
   { name: "IC RP encouraged", filter: hasTag("rp heavy"), hint: "The venue encourages an environment for players to role play as their characters, though interacting as themselves is allowed." },
-  { name: "IC RP only", filter: hasTag("ic rp only"), hint: "The venue offers an environment for players to role play as their characters only, and does not allow open interaction as themselves."  }
+  { name: "IC RP only", filter: hasTag("ic rp only"), hint: "The venue offers an environment for players to role play as their characters only, and does not allow open interaction as themselves."  },
+  { name: "24/7 open house", filter: hasTag("24/7 open house"), hint: "The venue allows anyone to visit at anytime, even outside of any scheduled hours"}
 ];
