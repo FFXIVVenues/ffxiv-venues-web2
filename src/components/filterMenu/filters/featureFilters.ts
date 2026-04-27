@@ -28,5 +28,5 @@ export const featureFilters: FilterOption[] = [
   { name: "LGBTQIA+ focused", filter: hasTag("LGBTQIA+"), hint: "The venue is a safe space focused on LGBTQIA+." },
   { name: "IC RP encouraged", filter: hasTag("rp heavy"), hint: "The venue encourages an environment for players to role play as their characters, though interacting as themselves is allowed." },
   { name: "IC RP only", filter: hasTag("ic rp only"), hint: "The venue offers an environment for players to role play as their characters only, and does not allow open interaction as themselves."  },
-  { name: "24/7 Open House", filter: hasTag("24/7 open house"), hint: "The venue allows anyone to visit at anytime, even outside of any scheduled hours"}
+  { name: "24/7 open house", filter: hasTag("24/7 open house"), hint: "The venue allows anyone to visit at anytime, even outside of any scheduled hours"}
 ];
