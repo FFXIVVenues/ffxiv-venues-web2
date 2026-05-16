@@ -60,7 +60,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
               <CardHeader>
                   <div className="flex items-start justify-between gap-3">
                       <CardTitle className="leading-tight line-clamp-1">{venue.name}</CardTitle>
-                      {isOpen ? <NewBadge /> : isNew ? <OpenBadge /> : null}
+                      {isOpen ? <OpenBadge /> : isNew ? <NewBadge /> : null}
                   </div>
                   <CardDescription>
                     <div className="min-h-6 flex justify-between">
