@@ -51,7 +51,8 @@ export const NotesDialog = memo(({venueId, open, onOpenChange, dialogContainer}:
                     rows={6} />
                 <DialogFooter className="-m-5 mt-0 rounded-b-lg bg-muted/50 p-5 border-t flex justify-between!">
                     {note && (
-                        <Button variant="destructive"
+                        <Button type="button"
+                                variant="destructive"
                                 className="p-4.5"
                                 size="icon"
                                 onClick={handleDelete}
@@ -60,8 +61,8 @@ export const NotesDialog = memo(({venueId, open, onOpenChange, dialogContainer}:
                         </Button>
                     )}
                     <div className="flex gap-2 ml-auto">
-                        <Button variant="outline" className="p-4.5" onClick={() => onOpenChange(false)}>Cancel</Button>
-                        <Button className="p-4.5" onClick={handleSave}>Save</Button>
+                        <Button type="button" variant="outline" className="p-4.5" onClick={() => onOpenChange(false)}>Cancel</Button>
+                        <Button type="button" className="p-4.5" onClick={handleSave}>Save</Button>
                     </div>
                 </DialogFooter>
             </DialogContent>
