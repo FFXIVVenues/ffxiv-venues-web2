@@ -60,7 +60,7 @@ export const FlagDialog = ({ venue, open, onOpenChange, dialogContainer }: FlagD
 
             <DialogFooter className="-m-5 mt-0 rounded-b-lg bg-muted/50 p-5 border-t flex justify-between!">
               <DialogClose render={
-                <Button type="button" variant="secondary" className="p-4.5">
+                <Button type="button" variant="outline" className="p-4.5">
                   Close
                 </Button>
               } />

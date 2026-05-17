@@ -21,6 +21,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/shadcn/dropdown-menu.tsx";
+import {HideDialog} from "@/components/hideDialog/hideDialog.tsx";
 
 type VenueToolbarProps = {
   venue: Venue;
@@ -56,6 +57,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
 
   const [flagDialogOpen, setFlagDialogOpen] = useState(false);
   const [notesDialogOpen, setNotesDialogOpen] = useState(false);
+  const [hideConfirmOpen, setHideConfirmOpen] = useState(false);
 
   const copyLocationToClipboard = useCallback(() => {
     navigator.clipboard.writeText(venue.location.toString())
@@ -77,12 +79,20 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
     onDialogOpen?.call([])
   }, [setNotesDialogOpen]);
 
-  const handleToggleHidden = useCallback(() => {
+  const handleConfirmHide = useCallback(() => {
     toggleHidden();
-    if (!hidden) {
-      toast("Venue hidden", {
-        action: { label: "Undo", onClick: toggleHidden }
-      });
+    toast("Venue hidden", {
+      action: { label: "Undo", onClick: toggleHidden}
+    });
+    setHideConfirmOpen(false);
+  }, [toggleHidden]);
+
+  const handleToggleHidden = useCallback(() => {
+    if(hidden){
+      toggleHidden();
+    }
+    else{
+      setHideConfirmOpen(true);
     }
   }, [hidden, toggleHidden]);
 
@@ -108,6 +118,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
     <VenueToolbarDesktop {...actionsProps} className={className} />
     <FlagDialog venue={venue} open={flagDialogOpen} onOpenChange={setFlagDialogOpen} dialogContainer={containerRef} />
     <NotesDialog venueId={venue.id} open={notesDialogOpen} onOpenChange={setNotesDialogOpen} dialogContainer={containerRef} />
+    <HideDialog open={hideConfirmOpen} onOpenChange={setHideConfirmOpen} onConfirm={handleConfirmHide} dialogContainer={containerRef} />
   </div>
 })
 
