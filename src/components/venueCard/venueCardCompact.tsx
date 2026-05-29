@@ -29,7 +29,7 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
     const isVisited = visitedService.isVisited(venue.id);
     const hasNote = notesService.hasNote(venue.id);
     const isHidden = hideService.isHidden(venue.id);
-    const isOpen = displayOpening?.isNow === true;
+    const isOpen = venue.resolution?.isNow === true;
     const isNew  = venue.isNew();
 
     const onClickCallback = useCallback((e: MouseEvent) => {
