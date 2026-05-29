@@ -27,7 +27,7 @@ type VenueCardProps = {
 
 export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) => {
     const displayOpening = opening ?? venue.resolution;
-    const isOpen = displayOpening?.isNow === true;
+    const isOpen = venue.resolution?.isNow === true;
     const rating = ratingsService.getRating(venue.id);
     const isVisited = visitedService.isVisited(venue.id);
     const isFavorite = favouritesService.isFavourite(venue.id);
