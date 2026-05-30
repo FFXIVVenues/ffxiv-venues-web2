@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useRef, useState} from "react";
 import {useParams, useNavigate, useLocation} from "react-router";
-import {DefaultPageLayout} from "@/layouts/defaultPageLayout.tsx";
+import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
 import {FilterMenu} from "@/components/filterMenu/filterMenu.tsx";
 import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
 import {VenueCarousel} from "@/components/venueCarousel/venueCarousel.tsx";
