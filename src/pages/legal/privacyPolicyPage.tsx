@@ -1,5 +1,5 @@
 import React, {memo, type ReactNode} from "react";
-import {DefaultPageLayout} from "@/layouts/defaultPageLayout.tsx";
+import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
 import {SidebarMenuButton} from "@/components/ui/shadcn/sidebar.tsx";
 import {A} from "@/components/ui/a.tsx";
 

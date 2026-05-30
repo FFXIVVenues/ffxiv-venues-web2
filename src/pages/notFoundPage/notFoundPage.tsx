@@ -1,4 +1,4 @@
-import {DefaultPageLayout} from "@/layouts/defaultPageLayout.tsx";
+import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
 
 export const NotFoundPage = () => {
   return <DefaultPageLayout
