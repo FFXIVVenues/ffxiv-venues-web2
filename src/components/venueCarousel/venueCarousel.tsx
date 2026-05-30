@@ -32,10 +32,10 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
             <CollapsibleContent>
                 <div className="relative px-12">
                     <Carousel opts={{ containScroll: "trimSnaps", align: "start", loop: false, dragFree: true }} className="mt-3 pb-3">
-                        <CarouselContent>
+                        <CarouselContent className="">
                             {venues!.map(({ venue, opening }) => (
-                                <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-auto mx-0.5 my-px">
-                                  <VenueCard venue={venue} opening={opening} onClick={onVenueClick} />
+                                <CarouselItem key={`${venue.id}-${opening?.start ?? "x"}--${title}`} className="basis-auto my-px box-border w-[275px] lg:w-min">
+                                  <VenueCard venue={venue} opening={opening} onClick={onVenueClick} className="max-lg:w-full" />
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
@@ -49,9 +49,11 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
     );
 });
 
-const VenueCard = memo(({ venue, opening, onClick }: { venue: Venue, opening?: Opening, onClick: (venue: Venue, newTab?: boolean) => void }) => {
+type VenueCardProps = { venue: Venue, opening?: Opening, onClick: (venue: Venue, newTab?: boolean) => void, className?: string }
+
+const VenueCard = memo(({ venue, opening, onClick, className }: VenueCardProps) => {
   const view = useSetting('view');
   return view === 'compact'
-          ? <VenueCardCompact venue={venue} opening={opening} onClick={onClick}/>
-          : <VenueCardFull venue={venue} opening={opening} onClick={onClick}/>
+          ? <VenueCardCompact venue={venue} opening={opening} onClick={onClick} className={className}/>
+          : <VenueCardFull venue={venue} opening={opening} onClick={onClick} className={className}/>
 })

@@ -15,14 +15,16 @@ import {HoverCard, HoverCardContent, HoverCardTrigger} from "@/components/ui/sha
 import {NewBadge} from "@/components/badges/newBadge.tsx";
 import {OpenBadge} from "@/components/badges/openBadge.tsx";
 import {hideService} from "@/lib/services/hideVenue/hideService.ts";
+import {cn} from "@/lib/utils";
 
 type VenueCardProps = {
     venue: Venue;
     opening?: Opening;
     onClick: (venue: Venue, newTab?: boolean) => void;
+    className?: string;
 }
 
-export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProps) => {
+export const VenueCardCompact = memo(({ venue, opening, onClick, className }: VenueCardProps) => {
     const displayOpening = opening ?? venue.resolution;
     const rating = ratingsService.getRating(venue.id);
     const isFavorite = favouritesService.isFavourite(venue.id);
@@ -55,7 +57,7 @@ export const VenueCardCompact = memo(({ venue, opening, onClick }: VenueCardProp
     }, [onClick, venue]);
 
     return (
-      <div className="w-[350px]">
+      <div className={cn("w-[350px]", className)}>
           <Lazy className="w-full aspect-3/2">
             <Card className="py-5 cursor-pointer hover:bg-muted/50 transition-colors gap-5 w-full"
                   aria-label={venue.name}
