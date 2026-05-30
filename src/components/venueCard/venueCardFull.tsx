@@ -18,14 +18,16 @@ import {LocationText} from "@/components/locationText/locationText.tsx";
 import {NewBadge} from "@/components/badges/newBadge.tsx";
 import {OpenBadge} from "@/components/badges/openBadge.tsx";
 import {hideService} from "@/lib/services/hideVenue/hideService.ts";
+import {cn} from "@/lib/utils";
 
 type VenueCardProps = {
     venue: Venue;
     opening?: Opening;
     onClick: (venue: Venue, newTab?: boolean) => void;
+    className?: string;
 }
 
-export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) => {
+export const VenueCardFull = memo(({ venue, opening, onClick, className }: VenueCardProps) => {
     const displayOpening = opening ?? venue.resolution;
     const isOpen = venue.resolution?.isNow === true;
     const rating = ratingsService.getRating(venue.id);
@@ -53,7 +55,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick }: VenueCardProps) 
     }, [onClick, venue]);
 
     return (
-      <div className="w-[375px]">
+      <div className={cn(`w-[375px]`, className)}>
         <Lazy className="w-full aspect-3/2">
           <Card className="p-0 h-full flex flex-col w-full">
               <img src={venue.bannerUri ?? defaultBanner} alt={venue.name} loading="lazy" className="aspect-2/1"/>
