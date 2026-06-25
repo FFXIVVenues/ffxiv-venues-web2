@@ -84,7 +84,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
                     Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved.
                   </p>
                   <p>
-                    FFXIV Venues | <a className="underline" href="/privacy">Privacy Policy</a>
+                    FFXIV Venues | <a className="underline" href="/terms">Terms of Service</a> | <a className="underline" href="/privacy">Privacy Policy</a>
                   </p>
                 </footer>
             </main>
