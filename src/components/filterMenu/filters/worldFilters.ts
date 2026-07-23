@@ -371,5 +371,215 @@ export const worldFilters: FilterOption[] = [
         ]
       }
     ]
+  },
+  {
+    name: "Japan",
+    options: [
+      {
+        name: "All Japan",
+        mek: worldMek,
+        filter: isRegion("jp"),
+      },
+      {
+        name: "Elemental",
+        options: [
+          {
+            name: "All Elemental",
+            mek: worldMek,
+            filter: isDataCenter("Elemental"),
+          },
+          {
+            name: "Aegis",
+            mek: worldMek,
+            filter: isWorld("Aegis")
+          },
+          {
+            name: "Atomos",
+            mek: worldMek,
+            filter: isWorld("Atomos")
+          },
+          {
+            name: "Carbuncle",
+            mek: worldMek,
+            filter: isWorld("Carbuncle")
+          },
+          {
+            name: "Garuda",
+            mek: worldMek,
+            filter: isWorld("Garuda")
+          },
+          {
+            name: "Gungnir",
+            mek: worldMek,
+            filter: isWorld("Gungnir")
+          },
+          {
+            name: "Kujata",
+            mek: worldMek,
+            filter: isWorld("Kujata")
+          },
+          {
+            name: "Tonberry",
+            mek: worldMek,
+            filter: isWorld("Tonberry")
+          },
+          {
+            name: "Typhon",
+            mek: worldMek,
+            filter: isWorld("Typhon")
+          }
+        ]
+      },
+      {
+        name: "Gaia",
+        options: [
+          {
+            name: "All Gaia",
+            mek: worldMek,
+            filter: isDataCenter("Gaia"),
+          },
+          {
+            name: "Alexander",
+            mek: worldMek,
+            filter: isWorld("Alexander")
+          },
+          {
+            name: "Bahamut",
+            mek: worldMek,
+            filter: isWorld("Bahamut")
+          },
+          {
+            name: "Durandal",
+            mek: worldMek,
+            filter: isWorld("Durandal")
+          },
+          {
+            name: "Fenrir",
+            mek: worldMek,
+            filter: isWorld("Fenrir")
+          },
+          {
+            name: "Ifrit",
+            mek: worldMek,
+            filter: isWorld("Ifrit")
+          },
+          {
+            name: "Ridill",
+            mek: worldMek,
+            filter: isWorld("Ridill")
+          },
+          {
+            name: "Tiamat",
+            mek: worldMek,
+            filter: isWorld("Tiamat")
+          },
+          {
+            name: "Ultima",
+            mek: worldMek,
+            filter: isWorld("Ultima")
+          }
+        ]
+      },
+      {
+        name: "Mana",
+        options: [
+          {
+            name: "All Mana",
+            mek: worldMek,
+            filter: isDataCenter("Mana"),
+          },
+          {
+            name: "Anima",
+            mek: worldMek,
+            filter: isWorld("Anima")
+          },
+          {
+            name: "Asura",
+            mek: worldMek,
+            filter: isWorld("Asura")
+          },
+          {
+            name: "Chocobo",
+            mek: worldMek,
+            filter: isWorld("Chocobo")
+          },
+          {
+            name: "Hades",
+            mek: worldMek,
+            filter: isWorld("Hades")
+          },
+          {
+            name: "Ixion",
+            mek: worldMek,
+            filter: isWorld("Ixion")
+          },
+          {
+            name: "Masamune",
+            mek: worldMek,
+            filter: isWorld("Masamune")
+          },
+          {
+            name: "Pandaemonium",
+            mek: worldMek,
+            filter: isWorld("Pandaemonium")
+          },
+          {
+            name: "Titan",
+            mek: worldMek,
+            filter: isWorld("Titan")
+          }
+        ]
+      },
+      {
+        name: "Meteor",
+        options: [
+          {
+            name: "All Meteor",
+            mek: worldMek,
+            filter: isDataCenter("Meteor"),
+          },
+          {
+            name: "Belias",
+            mek: worldMek,
+            filter: isWorld("Belias")
+          },
+          {
+            name: "Mandragora",
+            mek: worldMek,
+            filter: isWorld("Mandragora")
+          },
+          {
+            name: "Ramuh",
+            mek: worldMek,
+            filter: isWorld("Ramuh")
+          },
+          {
+            name: "Shinryu",
+            mek: worldMek,
+            filter: isWorld("Shinryu")
+          },
+          {
+            name: "Unicorn",
+            mek: worldMek,
+            filter: isWorld("Unicorn")
+          },
+          {
+            name: "Valefor",
+            mek: worldMek,
+            filter: isWorld("Valefor")
+          },
+          {
+            name: "Yojimbo",
+            mek: worldMek,
+            filter: isWorld("Yojimbo")
+          },
+          {
+            name: "Zeromus",
+            mek: worldMek,
+            filter: isWorld("Zeromus")
+          }
+        ]
+      }
+    ]
   }
 ]
