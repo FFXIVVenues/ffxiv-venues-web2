@@ -13,14 +13,97 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/notFoundPage/notFoundPage.tsx:9
-#~ msgid "Meow"
-#~ msgstr "Meow"
+#. Schedule layout option
+#: src/components/settingsMenu/settingsDialog.tsx:60
+msgid "Card"
+msgstr "Card"
+
+#: src/components/settingsMenu/settingsDialog.tsx:61
+msgid "Card View"
+msgstr "Card View"
+
+#. Schedule layout option
+#: src/components/settingsMenu/settingsDialog.tsx:65
+msgid "Compact"
+msgstr "Compact"
+
+#: src/components/settingsMenu/settingsDialog.tsx:67
+msgid "Compact View"
+msgstr "Compact View"
+
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:47
+msgid "Dark"
+msgstr "Dark"
+
+#: src/components/settingsMenu/settingsDialog.tsx:48
+msgid "Dark Mode"
+msgstr "Dark Mode"
+
+#. Drawer panel position
+#: src/components/settingsMenu/settingsDialog.tsx:84
+#: src/components/settingsMenu/settingsDialog.tsx:85
+msgid "Left"
+msgstr "Left"
+
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:37
+msgid "Light"
+msgstr "Light"
+
+#: src/components/settingsMenu/settingsDialog.tsx:38
+msgid "Light Mode"
+msgstr "Light Mode"
+
+#: src/components/settingsMenu/settingsDialog.tsx:71
+#: src/components/settingsMenu/settingsDialog.tsx:72
+msgid "List View"
+msgstr "List View"
+
+#. Drawer panel position
+#: src/components/settingsMenu/settingsDialog.tsx:88
+#: src/components/settingsMenu/settingsDialog.tsx:89
+msgid "Right"
+msgstr "Right"
+
+#: src/components/settingsMenu/settingsDialog.tsx:27
+msgid "Settings"
+msgstr "Settings"
+
+#: src/components/settingsMenu/settingsDialog.tsx:104
+#: src/components/settingsMenu/settingsDialog.tsx:108
+msgid "Show hidden venues"
+msgstr "Show hidden venues"
+
+#: src/components/settingsMenu/settingsDialog.tsx:99
+msgid "Show navigation bar"
+msgstr "Show navigation bar"
+
+#: src/components/settingsMenu/settingsDialog.tsx:95
+msgid "Show navigation bar by default"
+msgstr "Show navigation bar by default"
+
+#: src/components/settingsMenu/settingsDialog.tsx:78
+msgid "Side for venue details"
+msgstr "Side for venue details"
 
 #: src/pages/notFoundPage/notFoundPage.tsx:8
 msgid "Sorry, that page could not be found."
 msgstr "Sorry, that page could not be found."
 
-#: src/pages/notFoundPage/notFoundPage.tsx:9
-#~ msgid "Test"
-#~ msgstr "Test"
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:42
+msgid "System"
+msgstr "System"
+
+#: src/components/settingsMenu/settingsDialog.tsx:31
+msgid "Theme"
+msgstr "Theme"
+
+#: src/components/settingsMenu/settingsDialog.tsx:43
+msgid "Use System Theme"
+msgstr "Use System Theme"
+
+#: src/components/settingsMenu/settingsDialog.tsx:54
+msgid "Venue schedule layout"
+msgstr "Venue schedule layout"

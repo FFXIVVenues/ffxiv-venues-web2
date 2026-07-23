@@ -6,7 +6,104 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: fr\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#. Schedule layout option
+#: src/components/settingsMenu/settingsDialog.tsx:60
+msgid "Card"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:61
+msgid "Card View"
+msgstr ""
+
+#. Schedule layout option
+#: src/components/settingsMenu/settingsDialog.tsx:65
+msgid "Compact"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:67
+msgid "Compact View"
+msgstr ""
+
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:47
+msgid "Dark"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:48
+msgid "Dark Mode"
+msgstr ""
+
+#. Drawer panel position
+#: src/components/settingsMenu/settingsDialog.tsx:84
+#: src/components/settingsMenu/settingsDialog.tsx:85
+msgid "Left"
+msgstr ""
+
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:37
+msgid "Light"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:38
+msgid "Light Mode"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:71
+#: src/components/settingsMenu/settingsDialog.tsx:72
+msgid "List View"
+msgstr ""
+
+#. Drawer panel position
+#: src/components/settingsMenu/settingsDialog.tsx:88
+#: src/components/settingsMenu/settingsDialog.tsx:89
+msgid "Right"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:27
+msgid "Settings"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:104
+#: src/components/settingsMenu/settingsDialog.tsx:108
+msgid "Show hidden venues"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:99
+msgid "Show navigation bar"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:95
+msgid "Show navigation bar by default"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:78
+msgid "Side for venue details"
+msgstr ""
 
 #: src/pages/notFoundPage/notFoundPage.tsx:8
 msgid "Sorry, that page could not be found."
+msgstr ""
+
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:42
+msgid "System"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:31
+msgid "Theme"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:43
+msgid "Use System Theme"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:54
+msgid "Venue schedule layout"
 msgstr ""
