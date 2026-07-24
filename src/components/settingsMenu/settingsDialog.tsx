@@ -6,6 +6,7 @@ import { settingsService } from "@/lib/services/settings/settingsService";
 import {Switch} from "@/components/ui/shadcn/switch.tsx";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/shadcn/tooltip.tsx";
 import { Trans, useLingui } from "@lingui/react/macro";
+import { locales, activateLocale } from "@/lib/services/i18n";
 
 type SettingsDialogProps = {
     open: boolean;
@@ -18,7 +19,7 @@ export const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
     const sidebarOpen = useSetting('sidebar');
     const drawerSide = useSetting('drawerSide');
     const showHidden = useSetting('showHidden');
-    const { t } = useLingui();
+    const { t, i18n } = useLingui();
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
@@ -48,6 +49,19 @@ export const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
                             <TooltipContent><Trans>Dark Mode</Trans></TooltipContent>
                         </Tooltip>
                     </ToggleGroup>
+                </div>
+
+                <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium"><Trans>Language</Trans></span>
+                    <select
+                        value={i18n.locale}
+                        onChange={e => activateLocale(e.target.value)}
+                        aria-label={t({ message: 'Language', comment: 'Interface language selector' })}
+                        className="text-sm bg-background border border-input rounded-md px-2 py-1 cursor-pointer">
+                        {Object.entries(locales).map(([code, name]) => (
+                            <option key={code} value={code}>{name}</option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="flex items-center justify-between">
