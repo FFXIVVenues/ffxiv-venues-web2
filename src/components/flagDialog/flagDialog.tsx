@@ -16,6 +16,7 @@ import type {Venue} from "@/lib/model/venue.ts";
 import {Spinner} from "@/components/ui/shadcn/spinner.tsx";
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/shadcn/alert.tsx";
 import {CheckCircle2Icon} from "lucide-react";
+import {Trans, useLingui} from "@lingui/react/macro";
 
 type FlagDialogProps = {
     venue: Venue;
@@ -51,8 +52,8 @@ export const FlagDialog = ({ venue, open, onOpenChange, dialogContainer }: FlagD
       <Dialog open={open} onOpenChange={onOpenChange} modal={true}>
           <DialogContent container={dialogContainer} className="p-5" showCloseButton={false}>
               <DialogHeader>
-                <DialogTitle className="text-base leading-none font-bold">Flag venue</DialogTitle>
-                <DialogDescription>Flag a venue to the team for review.</DialogDescription>
+                <DialogTitle className="text-base leading-none font-bold"><Trans>Flag venue</Trans></DialogTitle>
+                <DialogDescription><Trans>Flag a venue to the team for review.</Trans></DialogDescription>
               </DialogHeader>
 
             { !flagSent && <FlagForm additionalDetail={additionalDetail} selectedReason={selectedReason} /> }
@@ -61,11 +62,11 @@ export const FlagDialog = ({ venue, open, onOpenChange, dialogContainer }: FlagD
             <DialogFooter className="-m-5 mt-0 rounded-b-lg bg-muted/50 p-5 border-t flex justify-between!">
               <DialogClose render={
                 <Button type="button" variant="outline" className="p-4.5">
-                  Close
+                  <Trans>Close</Trans>
                 </Button>
               } />
               { flagSending && <Spinner className="mt-3 mx-6 h-4 w-4 animate-spin" />}
-              { !flagSending && !flagSent && <Button type="button" variant="destructive" className="p-4.5" onClick={submit}>Submit</Button> }
+              { !flagSending && !flagSent && <Button type="button" variant="destructive" className="p-4.5" onClick={submit}><Trans>Submit</Trans></Button> }
             </DialogFooter>
           </DialogContent>
       </Dialog>
@@ -84,33 +85,34 @@ const FlagForm = ({
     useCallback((value: { value: FlagCategory } | null) => selectedReason.current = value?.value, [ selectedReason ]);
   const setAdditionalDetail =
     useCallback((e: ChangeEvent<HTMLTextAreaElement>) => additionalDetail.current = e.target.value, [ additionalDetail ]);
+  const { t } = useLingui();
 
   return <>
     <Combobox onValueChange={setSelectedReason}>
-      <ComboboxInput placeholder="Select reason" aria-label="Select reason" triggerAriaLabel="Select reason"/>
+      <ComboboxInput placeholder={t`Select reason`} aria-label={t`Select reason`} triggerAriaLabel={t`Select reason`}/>
       <ComboboxContent>
         <ComboboxList>
-          <ComboboxItem value={{ label: "Venue empty", value: "VenueEmpty" }}>
-            Venue empty
+          <ComboboxItem value={{ label: t`Venue empty`, value: "VenueEmpty" }}>
+            <Trans>Venue empty</Trans>
           </ComboboxItem>
-          <ComboboxItem value={{ label: "Incorrect information", value: "IncorrectInformation" }}>
-            Incorrect information
+          <ComboboxItem value={{ label: t`Incorrect information`, value: "IncorrectInformation" }}>
+            <Trans>Incorrect information</Trans>
           </ComboboxItem>
-          <ComboboxItem value={{ label: "Inappropriate content", value: "InappropriateContent" }}>
-            Inappropriate content
+          <ComboboxItem value={{ label: t`Inappropriate content`, value: "InappropriateContent" }}>
+            <Trans>Inappropriate content</Trans>
           </ComboboxItem>
         </ComboboxList>
       </ComboboxContent>
     </Combobox>
-    <Textarea placeholder="Additional details" onChange={setAdditionalDetail} />
+    <Textarea placeholder={t`Additional details`} onChange={setAdditionalDetail} />
   </>
 }
 
 const FlagSubmittedNotice = () => <Alert>
   <CheckCircle2Icon />
-  <AlertTitle>Flag accepted</AlertTitle>
+  <AlertTitle><Trans>Flag accepted</Trans></AlertTitle>
   <AlertDescription>
-    Your flag has been submitted for review. The team usually actions flags within 24 hours.
+    <Trans>Your flag has been submitted for review. The team usually actions flags within 24 hours.</Trans>
   </AlertDescription>
 </Alert>
 
