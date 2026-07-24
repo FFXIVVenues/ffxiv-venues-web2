@@ -1,0 +1,495 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-07-23 22:38-0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: ja\n"
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:17
+msgid "1+ Stars"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:16
+msgid "2+ Stars"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:32
+msgid "24/7 open house"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:15
+msgid "3+ Stars"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:14
+msgid "4+ Stars"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:13
+msgid "5 Stars"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:16
+msgid "A bard provides theme-based or general music to entertain guests with a selection of songs."
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:23
+msgid "All Aether"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:233
+msgid "All Chaos"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:73
+msgid "All Crystal"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:173
+msgid "All Dynamis"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:225
+msgid "All Europe"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:283
+msgid "All Light"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:343
+msgid "All Materia"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:15
+msgid "All North America"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:335
+msgid "All Oceania"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:123
+msgid "All Primal"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:14
+msgid "Artists"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:14
+msgid "Artists are present in the venue to offer various custom artwork."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:16
+msgid "Bards"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:21
+msgid "Bath house"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:12
+msgid "Bingo"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:9
+msgid "Blackjack"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:12
+msgid "Cafe"
+msgstr ""
+
+#. Schedule layout option
+#: src/components/settingsMenu/settingsDialog.tsx:74
+msgid "Card"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:75
+msgid "Card View"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:18
+msgid "Casino"
+msgstr ""
+
+#. Schedule layout option
+#: src/components/settingsMenu/settingsDialog.tsx:79
+msgid "Compact"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:81
+msgid "Compact View"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:12
+msgid "Courtesans"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:15
+msgid "Dancers"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:15
+msgid "Dancers populate the venue to hype the party and/or host customers."
+msgstr ""
+
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:48
+msgid "Dark"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:49
+msgid "Dark Mode"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:10
+msgid "Deathroll"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:11
+msgid "Den"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:222
+msgid "Europe"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:11
+msgid "Favorited"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:17
+msgid "Fight club"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:13
+msgid "Gambling"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:26
+msgid "Giveaways"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:30
+msgid "IC RP encouraged"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:31
+msgid "IC RP only"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:14
+msgid "Inn"
+msgstr ""
+
+#. Interface language selector
+#: src/components/settingsMenu/settingsDialog.tsx:55
+#: src/components/settingsMenu/settingsDialog.tsx:59
+msgid "Language"
+msgstr ""
+
+#. Drawer panel position
+#: src/components/settingsMenu/settingsDialog.tsx:98
+#: src/components/settingsMenu/settingsDialog.tsx:99
+msgid "Left"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:29
+msgid "LGBTQIA+ focused"
+msgstr ""
+
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:38
+msgid "Light"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:39
+msgid "Light Mode"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:85
+#: src/components/settingsMenu/settingsDialog.tsx:86
+msgid "List View"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:15
+msgid "Lounge"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:20
+msgid "Maid cafe / host club"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:10
+msgid "Nightclub"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:12
+msgid "North America"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:24
+msgid "Not bath house"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:23
+msgid "Not nightclub"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:11
+msgid "NSFW on entry"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:332
+msgid "Oceania"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:22
+msgid "Open stage"
+msgstr ""
+
+#. Venue type: none of the listed categories
+#: src/components/filterMenu/filters/sceneFilters.ts:22
+msgid "Other"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:25
+msgid "Performances"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:21
+msgid "Photography"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:20
+msgid "Pillow talk"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:16
+msgid "Restaurant"
+msgstr ""
+
+#. Drawer panel position
+#: src/components/settingsMenu/settingsDialog.tsx:102
+#: src/components/settingsMenu/settingsDialog.tsx:103
+msgid "Right"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:13
+msgid "Roulette"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:28
+msgid "Settings"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:10
+msgid "SFW on entry"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:19
+msgid "Shop"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:118
+#: src/components/settingsMenu/settingsDialog.tsx:122
+msgid "Show hidden venues"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:113
+msgid "Show navigation bar"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:109
+msgid "Show navigation bar by default"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:92
+msgid "Side for venue details"
+msgstr ""
+
+#: src/pages/notFoundPage/notFoundPage.tsx:8
+msgid "Sorry, that page could not be found."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:24
+msgid "Stylists"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:18
+msgid "Sync DJ"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:27
+msgid "Syncshell available"
+msgstr ""
+
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:43
+msgid "System"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:19
+msgid "Tarot"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:13
+msgid "Tavern"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:11
+msgid "Texas holdem"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:11
+msgid "The venue allows adult language, nudity or erotic content in the open."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:32
+msgid "The venue allows anyone to visit at anytime, even outside of any scheduled hours"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:10
+msgid "The venue disallows nudity or erotic content in the open, some adult language expected, nudity/erotic content may occur in private rooms."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:30
+msgid "The venue encourages an environment for players to role play as their characters, though interacting as themselves is allowed."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:27
+msgid "The venue has a syncshell available for guests to join and see each other as they see themselves."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:9
+msgid "The venue holds a table for players who wish to gamble gil in a game of 21."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:13
+msgid "The venue holds a table for players who wish to gamble gil in a game of Roulette."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:11
+msgid "The venue holds a table for players who wish to gamble gil in a game of Texas holdem."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:12
+msgid "The venue holds a venue wide bingo game, usually with prizes involved."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:17
+msgid "The venue hosts a DJ who provides music in twitch streams and hype the venue."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:18
+msgid "The venue hosts a sync DJ who offers music via synchshells."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:19
+msgid "The venue hosts a Tarot Reader who offers to read drawn cards and provide insights about the possible meaning they hold."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:21
+msgid "The venue hosts photographers who take venue snapshots or more complex gpose of patrons to display in the venue discord and create memories."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:24
+msgid "The venue hosts stylists who offer a variety of glamour services, including hair styling, makeup, and wardrobe assistance."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:29
+msgid "The venue is a safe space focused on LGBTQIA+."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:23
+msgid "The venue is built in the void; created outside the walls of the house."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:8
+msgid "The venue offers a game of Truth or Dare for whomever feels like joining. Sometimes in private alliance, sometimes venue wide."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:31
+msgid "The venue offers an environment for players to role play as their characters only, and does not allow open interaction as themselves."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:12
+msgid "The venue offers erotic role-play services in a consensual environment."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:26
+msgid "The venue offers giveaways through various channels, in chat, twitch stream or discord."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:10
+msgid "The venue offers individual or competitive game of Deathroll usually with prizes involved."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:7
+msgid "The venue offers individual or competitive games of Triple Triad via the game interface itself."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:20
+msgid "The venue offers Pillows who provide a safe, confidential space to promote an SFW companionship for a limited time."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:22
+msgid "The venue offers the stage for a patron to perform to the audience."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:25
+msgid "The venue offers unique schedule performances, this could be SFW (theater, synch dancers, etc) or NSFW (erotic voyeur shows, live BDSM, etc)."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:13
+msgid "The venue offers various games of chance with set amounts of gils and house rules."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:28
+msgid "The venue offers various perks through VIP tiers. This could include free drinks, gpose, gambling perk or more."
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:32
+msgid "Theme"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:7
+msgid "Triple triad"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:8
+msgid "Truth or dare"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:17
+msgid "Twitch DJ"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:18
+msgid "Unrated"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:44
+msgid "Use System Theme"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:68
+msgid "Venue schedule layout"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:28
+msgid "VIP available"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:12
+msgid "Visited"
+msgstr ""
+
+#. Venue built in the housing void
+#: src/components/filterMenu/filters/featureFilters.ts:23
+msgid "Void"
+msgstr ""

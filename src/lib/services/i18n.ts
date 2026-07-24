@@ -3,6 +3,9 @@ import { i18n } from "@lingui/core";
 export const locales = {
     en: "English",
     fr: "Français",
+    de: "Deutsch",
+    "pt-BR": "Português (Brasil)",
+    ja: "日本語",
 } as const;
 
 export type Locale = keyof typeof locales;
@@ -19,6 +22,10 @@ export async function activateLocale(locale: string) {
 export function detectLocale(): Locale {
     const saved = localStorage.getItem("locale");
     if (saved && saved in locales) return saved as Locale;
-    const browser = navigator.language.split("-")[0] ?? defaultLocale;
-    return (browser in locales ? browser : defaultLocale) as Locale;
+    const nav = navigator.language;
+    if (nav in locales) return nav as Locale;
+    const base = nav.split("-")[0] ?? defaultLocale;
+    if (base in locales) return base as Locale;
+
+    return defaultLocale;
 }
