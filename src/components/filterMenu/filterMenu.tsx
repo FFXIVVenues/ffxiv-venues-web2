@@ -10,6 +10,7 @@ import {featureFilters} from "./filters/featureFilters.ts";
 import {worldFilters} from "@/components/filterMenu/filters/worldFilters.ts";
 import {ratingFilters} from "@/components/filterMenu/filters/ratingFilters.tsx";
 import {gameFilters} from "@/components/filterMenu/filters/gameFilters.ts";
+import {Trans, useLingui} from "@lingui/react/macro";
 
 export type Filter = (venue: Venue) => boolean;
 export type FilterMenuProps = {
@@ -25,6 +26,8 @@ export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
     gameFilters: [] as Filter[],
     ratingFilters: [] as Filter[]
   });
+
+  const { t } = useLingui();
 
   const updateFilters = useCallback((update: Partial<typeof filterRef.current>) => {
     filterRef.current = { ...filterRef.current, ...update };
@@ -51,39 +54,39 @@ export const FilterMenu = memo(({ onFilter }: FilterMenuProps) => {
 
   return <>
     <SidebarGroup>
-      <FieldLabel htmlFor="search-venues" className="sr-only">Search venues</FieldLabel>
+      <FieldLabel htmlFor="search-venues" className="sr-only"><Trans>Search venues</Trans></FieldLabel>
       <Input id="search-venues"
              type="text"
-             placeholder="Search venues"
+             placeholder={t`Search venues`}
              onChange={searchFilter} />
     </SidebarGroup>
 
     <FilterGroup
-      heading="Regions"
+      heading={t`Regions`}
       defaultOpen={true}
       options={worldFilters}
       onFilter={regionsFilter} />
 
     <FilterGroup
-      heading="Scenes"
+      heading={t`Scenes`}
       defaultOpen={false}
       options={sceneFilters}
       onFilter={sceneFilter} />
 
     <FilterGroup
-      heading="Features"
+      heading={t`Features`}
       defaultOpen={false}
       options={featureFilters}
       onFilter={featuresFilter} />
 
     <FilterGroup
-      heading="Games"
+      heading={t`Games`}
       defaultOpen={false}
       options={gameFilters}
       onFilter={gamesFilter} />
 
     <FilterGroup
-      heading="Rating"
+      heading={t`Rating`}
       defaultOpen={false}
       options={ratingFilters}
       onFilter={ratingFilter} />

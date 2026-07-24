@@ -168,12 +168,20 @@ msgstr ""
 msgid "Favorited"
 msgstr ""
 
+#: src/components/filterMenu/filterMenu.tsx:77
+msgid "Features"
+msgstr ""
+
 #: src/components/filterMenu/filters/sceneFilters.ts:17
 msgid "Fight club"
 msgstr ""
 
 #: src/components/filterMenu/filters/featureFilters.ts:13
 msgid "Gambling"
+msgstr ""
+
+#: src/components/filterMenu/filterMenu.tsx:83
+msgid "Games"
 msgstr ""
 
 #: src/components/filterMenu/filters/featureFilters.ts:26
@@ -275,6 +283,14 @@ msgstr ""
 msgid "Pillow talk"
 msgstr ""
 
+#: src/components/filterMenu/filterMenu.tsx:89
+msgid "Rating"
+msgstr ""
+
+#: src/components/filterMenu/filterMenu.tsx:65
+msgid "Regions"
+msgstr ""
+
 #: src/components/filterMenu/filters/sceneFilters.ts:16
 msgid "Restaurant"
 msgstr ""
@@ -287,6 +303,15 @@ msgstr ""
 
 #: src/components/filterMenu/filters/gameFilters.ts:13
 msgid "Roulette"
+msgstr ""
+
+#: src/components/filterMenu/filterMenu.tsx:71
+msgid "Scenes"
+msgstr ""
+
+#: src/components/filterMenu/filterMenu.tsx:57
+#: src/components/filterMenu/filterMenu.tsx:60
+msgid "Search venues"
 msgstr ""
 
 #: src/components/settingsMenu/settingsDialog.tsx:28
