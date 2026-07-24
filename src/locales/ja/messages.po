@@ -45,6 +45,10 @@ msgstr ""
 msgid "Add a personal note for this venue."
 msgstr ""
 
+#: src/pageLayoutss/defaultPageLayout.tsx:61
+msgid "Add your venue"
+msgstr ""
+
 #: src/components/flagDialog/flagDialog.tsx:107
 msgid "Additional details"
 msgstr ""
@@ -185,6 +189,10 @@ msgstr ""
 msgid "Europe"
 msgstr ""
 
+#: src/lib/services/flagging/flagService.tsx:27
+msgid "Failed to flag venue"
+msgstr ""
+
 #: src/components/filterMenu/filters/ratingFilters.tsx:11
 msgid "Favorited"
 msgstr ""
@@ -197,11 +205,16 @@ msgstr ""
 msgid "Fight club"
 msgstr ""
 
+#: src/pageLayoutss/defaultPageLayout.tsx:83
+msgid "FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<0/>Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved."
+msgstr ""
+
 #: src/components/flagDialog/flagDialog.tsx:56
 msgid "Flag a venue to the team for review."
 msgstr ""
 
 #: src/components/flagDialog/flagDialog.tsx:113
+#: src/lib/services/flagging/flagService.tsx:38
 msgid "Flag accepted"
 msgstr ""
 
@@ -255,7 +268,16 @@ msgstr ""
 msgid "Inn"
 msgstr ""
 
+#: src/lib/services/favouritesService.ts:35
+msgid "It'll appear at the top of the index for you."
+msgstr ""
+
+#: src/lib/services/favouritesService.ts:46
+msgid "It'll no longer appear in your favourites."
+msgstr ""
+
 #: src/components/createVenueModal/createVenueDialog.tsx:43
+#: src/pageLayoutss/defaultPageLayout.tsx:65
 msgid "Join the discord!"
 msgstr ""
 
@@ -312,6 +334,11 @@ msgstr ""
 msgid "Meet Veni Ki!"
 msgstr ""
 
+#. Badge shown on newly-added venues
+#: src/components/badges/newBadge.tsx:8
+msgid "New"
+msgstr ""
+
 #: src/components/filterMenu/filters/sceneFilters.ts:10
 msgid "Nightclub"
 msgstr ""
@@ -336,6 +363,11 @@ msgstr ""
 msgid "Oceania"
 msgstr ""
 
+#. Badge shown when a venue is currently open
+#: src/components/badges/openBadge.tsx:7
+msgid "Open"
+msgstr ""
+
 #: src/components/filterMenu/filters/featureFilters.ts:22
 msgid "Open stage"
 msgstr ""
@@ -357,6 +389,10 @@ msgstr ""
 msgid "Pillow talk"
 msgstr ""
 
+#: src/pageLayoutss/defaultPageLayout.tsx:90
+msgid "Privacy Policy"
+msgstr ""
+
 #: src/components/filterMenu/filterMenu.tsx:89
 msgid "Rating"
 msgstr ""
@@ -367,6 +403,10 @@ msgstr ""
 
 #: src/components/filterMenu/filters/sceneFilters.ts:16
 msgid "Restaurant"
+msgstr ""
+
+#: src/lib/services/flagging/flagService.tsx:28
+msgid "Retrying in {retry} seconds."
 msgstr ""
 
 #. Drawer panel position
@@ -399,6 +439,7 @@ msgid "Select reason"
 msgstr ""
 
 #: src/components/settingsMenu/settingsDialog.tsx:28
+#: src/pageLayoutss/defaultPageLayout.tsx:69
 msgid "Settings"
 msgstr ""
 
@@ -462,6 +503,10 @@ msgstr ""
 
 #: src/components/filterMenu/filters/sceneFilters.ts:13
 msgid "Tavern"
+msgstr ""
+
+#: src/pageLayoutss/defaultPageLayout.tsx:90
+msgid "Terms of Service"
 msgstr ""
 
 #: src/components/filterMenu/filters/gameFilters.ts:11
@@ -623,12 +668,32 @@ msgstr ""
 msgid "Venue empty"
 msgstr ""
 
+#: src/lib/services/favouritesService.ts:34
+msgid "Venue favourited"
+msgstr ""
+
+#: src/lib/services/visitedService.ts:32
+msgid "Venue marked as visited"
+msgstr ""
+
 #: src/components/notesDialog/notesDialog.tsx:46
 msgid "Venue Note"
 msgstr ""
 
+#: src/lib/services/ratingsService.ts:36
+msgid "Venue rated"
+msgstr ""
+
 #: src/components/settingsMenu/settingsDialog.tsx:68
 msgid "Venue schedule layout"
+msgstr ""
+
+#: src/lib/services/favouritesService.ts:45
+msgid "Venue unfavourited"
+msgstr ""
+
+#: src/lib/services/visitedService.ts:43
+msgid "Venue unmarked as visited"
 msgstr ""
 
 #: src/components/filterMenu/filters/featureFilters.ts:28
@@ -648,6 +713,16 @@ msgstr ""
 msgid "Write anything you want to remember about this venue!"
 msgstr ""
 
+#: src/lib/services/ratingsService.ts:37
+msgid "You can filter to venues of a certain rating later via the sidebar."
+msgstr ""
+
+#: src/lib/services/visitedService.ts:33
+#: src/lib/services/visitedService.ts:44
+msgid "You can filter to venues you have or haven't visited later via the sidebar."
+msgstr ""
+
 #: src/components/flagDialog/flagDialog.tsx:115
+#: src/lib/services/flagging/flagService.tsx:39
 msgid "Your flag has been submitted for review. The team usually actions flags within 24 hours."
 msgstr ""

@@ -45,6 +45,10 @@ msgstr "A bard provides theme-based or general music to entertain guests with a 
 msgid "Add a personal note for this venue."
 msgstr "Add a personal note for this venue."
 
+#: src/pageLayoutss/defaultPageLayout.tsx:61
+msgid "Add your venue"
+msgstr "Add your venue"
+
 #: src/components/flagDialog/flagDialog.tsx:107
 msgid "Additional details"
 msgstr "Additional details"
@@ -185,6 +189,10 @@ msgstr "Den"
 msgid "Europe"
 msgstr "Europe"
 
+#: src/lib/services/flagging/flagService.tsx:27
+msgid "Failed to flag venue"
+msgstr "Failed to flag venue"
+
 #: src/components/filterMenu/filters/ratingFilters.tsx:11
 msgid "Favorited"
 msgstr "Favorited"
@@ -197,11 +205,16 @@ msgstr "Features"
 msgid "Fight club"
 msgstr "Fight club"
 
+#: src/pageLayoutss/defaultPageLayout.tsx:83
+msgid "FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<0/>Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved."
+msgstr "FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<0/>Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved."
+
 #: src/components/flagDialog/flagDialog.tsx:56
 msgid "Flag a venue to the team for review."
 msgstr "Flag a venue to the team for review."
 
 #: src/components/flagDialog/flagDialog.tsx:113
+#: src/lib/services/flagging/flagService.tsx:38
 msgid "Flag accepted"
 msgstr "Flag accepted"
 
@@ -255,7 +268,16 @@ msgstr "Incorrect information"
 msgid "Inn"
 msgstr "Inn"
 
+#: src/lib/services/favouritesService.ts:35
+msgid "It'll appear at the top of the index for you."
+msgstr "It'll appear at the top of the index for you."
+
+#: src/lib/services/favouritesService.ts:46
+msgid "It'll no longer appear in your favourites."
+msgstr "It'll no longer appear in your favourites."
+
 #: src/components/createVenueModal/createVenueDialog.tsx:43
+#: src/pageLayoutss/defaultPageLayout.tsx:65
 msgid "Join the discord!"
 msgstr "Join the discord!"
 
@@ -312,6 +334,11 @@ msgstr "Maid cafe / host club"
 msgid "Meet Veni Ki!"
 msgstr "Meet Veni Ki!"
 
+#. Badge shown on newly-added venues
+#: src/components/badges/newBadge.tsx:8
+msgid "New"
+msgstr "New"
+
 #: src/components/filterMenu/filters/sceneFilters.ts:10
 msgid "Nightclub"
 msgstr "Nightclub"
@@ -336,6 +363,11 @@ msgstr "NSFW on entry"
 msgid "Oceania"
 msgstr "Oceania"
 
+#. Badge shown when a venue is currently open
+#: src/components/badges/openBadge.tsx:7
+msgid "Open"
+msgstr "Open"
+
 #: src/components/filterMenu/filters/featureFilters.ts:22
 msgid "Open stage"
 msgstr "Open stage"
@@ -357,6 +389,10 @@ msgstr "Photography"
 msgid "Pillow talk"
 msgstr "Pillow talk"
 
+#: src/pageLayoutss/defaultPageLayout.tsx:90
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
 #: src/components/filterMenu/filterMenu.tsx:89
 msgid "Rating"
 msgstr "Rating"
@@ -368,6 +404,10 @@ msgstr "Regions"
 #: src/components/filterMenu/filters/sceneFilters.ts:16
 msgid "Restaurant"
 msgstr "Restaurant"
+
+#: src/lib/services/flagging/flagService.tsx:28
+msgid "Retrying in {retry} seconds."
+msgstr "Retrying in {retry} seconds."
 
 #. Drawer panel position
 #: src/components/settingsMenu/settingsDialog.tsx:102
@@ -399,6 +439,7 @@ msgid "Select reason"
 msgstr "Select reason"
 
 #: src/components/settingsMenu/settingsDialog.tsx:28
+#: src/pageLayoutss/defaultPageLayout.tsx:69
 msgid "Settings"
 msgstr "Settings"
 
@@ -463,6 +504,10 @@ msgstr "Tarot"
 #: src/components/filterMenu/filters/sceneFilters.ts:13
 msgid "Tavern"
 msgstr "Tavern"
+
+#: src/pageLayoutss/defaultPageLayout.tsx:90
+msgid "Terms of Service"
+msgstr "Terms of Service"
 
 #: src/components/filterMenu/filters/gameFilters.ts:11
 msgid "Texas holdem"
@@ -623,13 +668,33 @@ msgstr "Use System Theme"
 msgid "Venue empty"
 msgstr "Venue empty"
 
+#: src/lib/services/favouritesService.ts:34
+msgid "Venue favourited"
+msgstr "Venue favourited"
+
+#: src/lib/services/visitedService.ts:32
+msgid "Venue marked as visited"
+msgstr "Venue marked as visited"
+
 #: src/components/notesDialog/notesDialog.tsx:46
 msgid "Venue Note"
 msgstr "Venue Note"
 
+#: src/lib/services/ratingsService.ts:36
+msgid "Venue rated"
+msgstr "Venue rated"
+
 #: src/components/settingsMenu/settingsDialog.tsx:68
 msgid "Venue schedule layout"
 msgstr "Venue schedule layout"
+
+#: src/lib/services/favouritesService.ts:45
+msgid "Venue unfavourited"
+msgstr "Venue unfavourited"
+
+#: src/lib/services/visitedService.ts:43
+msgid "Venue unmarked as visited"
+msgstr "Venue unmarked as visited"
 
 #: src/components/filterMenu/filters/featureFilters.ts:28
 msgid "VIP available"
@@ -648,6 +713,16 @@ msgstr "Void"
 msgid "Write anything you want to remember about this venue!"
 msgstr "Write anything you want to remember about this venue!"
 
+#: src/lib/services/ratingsService.ts:37
+msgid "You can filter to venues of a certain rating later via the sidebar."
+msgstr "You can filter to venues of a certain rating later via the sidebar."
+
+#: src/lib/services/visitedService.ts:33
+#: src/lib/services/visitedService.ts:44
+msgid "You can filter to venues you have or haven't visited later via the sidebar."
+msgstr "You can filter to venues you have or haven't visited later via the sidebar."
+
 #: src/components/flagDialog/flagDialog.tsx:115
+#: src/lib/services/flagging/flagService.tsx:39
 msgid "Your flag has been submitted for review. The team usually actions flags within 24 hours."
 msgstr "Your flag has been submitted for review. The team usually actions flags within 24 hours."
