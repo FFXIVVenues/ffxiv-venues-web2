@@ -19,6 +19,7 @@ import {NewBadge} from "@/components/badges/newBadge.tsx";
 import {OpenBadge} from "@/components/badges/openBadge.tsx";
 import {hideService} from "@/lib/services/hideVenue/hideService.ts";
 import {cn} from "@/lib/utils";
+import {Trans} from "@lingui/react/macro";
 
 type VenueCardProps = {
     venue: Venue;
@@ -68,7 +69,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick, className }: Venue
                     <div className="min-h-6 flex justify-between">
                       {displayOpening?.isNow ? (
                           <span className="flex items-center gap-1">
-                              <span className="text-muted-foreground">Open until</span>
+                              <span className="text-muted-foreground"><Trans>Open until</Trans></span>
                               <TimeText time={displayOpening.end} />
                           </span>
                       ) : displayOpening && (
@@ -88,7 +89,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick, className }: Venue
                                       <Pencil size={14} className="stroke-muted-foreground fill-muted-foreground" />
                                   </HoverCardTrigger>
                                   <HoverCardContent className="w-64">
-                                      <p className="text-xs font-semibold text-muted-foreground mb-1">Note</p>
+                                      <p className="text-xs font-semibold text-muted-foreground mb-1"><Trans>Note</Trans></p>
                                       <p className="text-sm text-muted-foreground whitespace-pre-wrap">{notesService.getNote(venue.id)}</p>
                                   </HoverCardContent>
                               </HoverCard>
@@ -114,7 +115,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick, className }: Venue
               </CardContent>
 
               <CardFooter className="pb-6 border-t">
-                  <Button className="w-full cursor-pointer" onMouseDown={onMiddleMouseDown} onClick={onClickCallback} onMouseUp={onMiddleClick}>View Venue</Button>
+                  <Button className="w-full cursor-pointer" onMouseDown={onMiddleMouseDown} onClick={onClickCallback} onMouseUp={onMiddleClick}><Trans>View Venue</Trans></Button>
               </CardFooter>
           </Card>
         </Lazy>

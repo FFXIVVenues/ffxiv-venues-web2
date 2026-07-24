@@ -339,6 +339,10 @@ msgstr ""
 msgid "New"
 msgstr ""
 
+#: src/components/venueCarousel/venueCarousel.tsx:46
+msgid "Next"
+msgstr ""
+
 #: src/components/filterMenu/filters/sceneFilters.ts:10
 msgid "Nightclub"
 msgstr ""
@@ -353,6 +357,11 @@ msgstr ""
 
 #: src/components/filterMenu/filters/sceneFilters.ts:23
 msgid "Not nightclub"
+msgstr ""
+
+#: src/components/venueCard/venueCardCompact.tsx:99
+#: src/components/venueCard/venueCardFull.tsx:92
+msgid "Note"
 msgstr ""
 
 #: src/components/filterMenu/filters/featureFilters.ts:11
@@ -372,6 +381,12 @@ msgstr ""
 msgid "Open stage"
 msgstr ""
 
+#: src/components/venueCard/venueCardCompact.tsx:79
+#: src/components/venueCard/venueCardFull.tsx:72
+#: src/components/venueCard/venueListItem.tsx:54
+msgid "Open until"
+msgstr ""
+
 #. Venue type: none of the listed categories
 #: src/components/filterMenu/filters/sceneFilters.ts:22
 msgid "Other"
@@ -387,6 +402,10 @@ msgstr ""
 
 #: src/components/filterMenu/filters/featureFilters.ts:20
 msgid "Pillow talk"
+msgstr ""
+
+#: src/components/venueCarousel/venueCarousel.tsx:45
+msgid "Previous"
 msgstr ""
 
 #: src/pageLayoutss/defaultPageLayout.tsx:90
@@ -696,6 +715,10 @@ msgstr ""
 msgid "Venue unmarked as visited"
 msgstr ""
 
+#: src/components/venueCard/venueCardFull.tsx:118
+msgid "View Venue"
+msgstr ""
+
 #: src/components/filterMenu/filters/featureFilters.ts:28
 msgid "VIP available"
 msgstr ""
@@ -707,6 +730,10 @@ msgstr ""
 #. Venue built in the housing void
 #: src/components/filterMenu/filters/featureFilters.ts:23
 msgid "Void"
+msgstr ""
+
+#: src/components/venueDrawer/venueWebsiteButton.tsx:10
+msgid "Website"
 msgstr ""
 
 #: src/components/notesDialog/notesDialog.tsx:52

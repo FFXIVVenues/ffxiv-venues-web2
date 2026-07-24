@@ -339,6 +339,10 @@ msgstr "Meet Veni Ki!"
 msgid "New"
 msgstr "New"
 
+#: src/components/venueCarousel/venueCarousel.tsx:46
+msgid "Next"
+msgstr "Next"
+
 #: src/components/filterMenu/filters/sceneFilters.ts:10
 msgid "Nightclub"
 msgstr "Nightclub"
@@ -354,6 +358,11 @@ msgstr "Not bath house"
 #: src/components/filterMenu/filters/sceneFilters.ts:23
 msgid "Not nightclub"
 msgstr "Not nightclub"
+
+#: src/components/venueCard/venueCardCompact.tsx:99
+#: src/components/venueCard/venueCardFull.tsx:92
+msgid "Note"
+msgstr "Note"
 
 #: src/components/filterMenu/filters/featureFilters.ts:11
 msgid "NSFW on entry"
@@ -372,6 +381,12 @@ msgstr "Open"
 msgid "Open stage"
 msgstr "Open stage"
 
+#: src/components/venueCard/venueCardCompact.tsx:79
+#: src/components/venueCard/venueCardFull.tsx:72
+#: src/components/venueCard/venueListItem.tsx:54
+msgid "Open until"
+msgstr "Open until"
+
 #. Venue type: none of the listed categories
 #: src/components/filterMenu/filters/sceneFilters.ts:22
 msgid "Other"
@@ -388,6 +403,10 @@ msgstr "Photography"
 #: src/components/filterMenu/filters/featureFilters.ts:20
 msgid "Pillow talk"
 msgstr "Pillow talk"
+
+#: src/components/venueCarousel/venueCarousel.tsx:45
+msgid "Previous"
+msgstr "Previous"
 
 #: src/pageLayoutss/defaultPageLayout.tsx:90
 msgid "Privacy Policy"
@@ -696,6 +715,10 @@ msgstr "Venue unfavourited"
 msgid "Venue unmarked as visited"
 msgstr "Venue unmarked as visited"
 
+#: src/components/venueCard/venueCardFull.tsx:118
+msgid "View Venue"
+msgstr "View Venue"
+
 #: src/components/filterMenu/filters/featureFilters.ts:28
 msgid "VIP available"
 msgstr "VIP available"
@@ -708,6 +731,10 @@ msgstr "Visited"
 #: src/components/filterMenu/filters/featureFilters.ts:23
 msgid "Void"
 msgstr "Void"
+
+#: src/components/venueDrawer/venueWebsiteButton.tsx:10
+msgid "Website"
+msgstr "Website"
 
 #: src/components/notesDialog/notesDialog.tsx:52
 msgid "Write anything you want to remember about this venue!"

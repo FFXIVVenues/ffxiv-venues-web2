@@ -5,6 +5,7 @@ import { TimeText } from "@/components/dateString/timeText.tsx";
 import { LocationText } from "@/components/locationText/locationText.tsx";
 import { TableCell, TableRow } from "@/components/ui/shadcn/table.tsx";
 import { DateText } from "@/components/dateString/dateText.tsx";
+import {Trans} from "@lingui/react/macro";
 
 type VenueCardListProps = {
     venue: Venue;
@@ -50,7 +51,7 @@ export const VenueListItem = memo(({ venue, opening, onClick, future = false }: 
                 <TableCell className="w-[120px] sm:w-[120px] md:w-[280px] lg:w-[280px] whitespace-nowrap text-muted-foreground tabular-nums py-2.5">
                     {displayOpening.isNow ? (
                         <span className="flex items-center gap-1">
-                            <span className="hidden md:inline">Open until</span>
+                            <span className="hidden md:inline"><Trans>Open until</Trans></span>
                             <TimeText time={displayOpening.end} />
                         </span>
                     ) : (
