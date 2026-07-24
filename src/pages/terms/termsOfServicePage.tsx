@@ -81,7 +81,7 @@ export const TermsOfServicePage = memo(() => {
         <P n="6.1">FFXIV Venues provides a public API that exposes venue data for community use.</P>
         <P n="6.2">We provide API documentation at <A href="https://api.ffxivvenues.com/docs/v1.0">api.ffxivvenues.com/docs/v1.0</A>, which we keep up to date. Using endpoints outside of those documented is not recommended or supported, but still subject to the restrictions below.</P>
         <P n="6.3">You may use the API to build tools and integrations, provided you do so reasonably and within the limits set out below.</P>
-        <P n="6.4">Requests are rate-limited to 3 calls per 10 seconds per IP address. This limit is shared across all activity from the same IP address, so you should account for any other integrations or applications you run that also call the API.</P>
+        <P n="6.4">Requests are rate-limited to 3 calls per 10 seconds per IP address. This limit is shared across all activity from the same IP address, so you should account for any other integrations or applications your users run that may also call the API.</P>
         <P n="6.5">You must identify your integration at all times by setting a descriptive User-Agent header on every request.</P>
         <P n="6.6">The API targets 99.99% uptime. This is a service target that we aim for, not a guarantee. We hold no liability for any consequences arising from a failed, rate-limited, or blocked API request.</P>
         <P n="6.7">Your integration should make best efforts to handle unsuccessful requests gracefully, for example with sensible retries and back-off, including where a request is rate-limited or blocked for security reasons.</P>
