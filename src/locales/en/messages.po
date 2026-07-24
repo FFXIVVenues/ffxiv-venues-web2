@@ -13,6 +13,18 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/venueDrawer/venueNsfwText.tsx:11
+msgid "<0>Warning:</0> This venue has indicated they are openly NSFW and offer adult services. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
+msgstr "<0>Warning:</0> This venue has indicated they are openly NSFW and offer adult services. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
+
+#: src/components/venueDrawer/venueNsfwText.tsx:25
+msgid "<0>Warning:</0> This venue has indicated they are openly NSFW. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
+msgstr "<0>Warning:</0> This venue has indicated they are openly NSFW. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
+
+#: src/components/venueDrawer/venueNsfwText.tsx:18
+msgid "<0>Warning:</0> This venue has indicated they offer adult services. You must not partake in these services if you are under 18 years of age or the legal age of consent in your country, and by partaking in these services you declare you are not. Be prepared to verify your age."
+msgstr "<0>Warning:</0> This venue has indicated they offer adult services. You must not partake in these services if you are under 18 years of age or the legal age of consent in your country, and by partaking in these services you declare you are not. Be prepared to verify your age."
+
 #: src/components/filterMenu/filters/ratingFilters.tsx:17
 msgid "1+ Stars"
 msgstr "1+ Stars"
@@ -44,6 +56,11 @@ msgstr "A bard provides theme-based or general music to entertain guests with a 
 #: src/components/notesDialog/notesDialog.tsx:47
 msgid "Add a personal note for this venue."
 msgstr "Add a personal note for this venue."
+
+#: src/components/venueDrawer/venueToolbar.tsx:166
+#: src/components/venueDrawer/venueToolbar.tsx:251
+msgid "Add note"
+msgstr "Add note"
 
 #: src/pageLayoutss/defaultPageLayout.tsx:61
 msgid "Add your venue"
@@ -93,6 +110,10 @@ msgstr "All Oceania"
 msgid "All Primal"
 msgstr "All Primal"
 
+#: src/components/venueDrawer/venueDrawer.tsx:97
+msgid "All times are in <0>your</0> timezone: <1/> {timeZone}"
+msgstr "All times are in <0>your</0> timezone: <1/> {timeZone}"
+
 #: src/components/filterMenu/filters/featureFilters.ts:14
 msgid "Artists"
 msgstr "Artists"
@@ -140,8 +161,13 @@ msgid "Casino"
 msgstr "Casino"
 
 #: src/components/flagDialog/flagDialog.tsx:65
+#: src/components/venueDrawer/venueDrawer.tsx:71
 msgid "Close"
 msgstr "Close"
+
+#: src/components/venueDrawer/venueSchedule.tsx:56
+msgid "Closed"
+msgstr "Closed"
 
 #. Schedule layout option
 #: src/components/settingsMenu/settingsDialog.tsx:79
@@ -151,6 +177,17 @@ msgstr "Compact"
 #: src/components/settingsMenu/settingsDialog.tsx:81
 msgid "Compact View"
 msgstr "Compact View"
+
+#: src/components/venueDrawer/venueToolbar.tsx:206
+#: src/components/venueDrawer/venueToolbar.tsx:210
+msgid "Copy lifestream command"
+msgstr "Copy lifestream command"
+
+#: src/components/venueDrawer/venueToolbar.tsx:145
+#: src/components/venueDrawer/venueToolbar.tsx:197
+#: src/components/venueDrawer/venueToolbar.tsx:201
+msgid "Copy location"
+msgstr "Copy location"
 
 #: src/components/filterMenu/filters/featureFilters.ts:12
 msgid "Courtesans"
@@ -185,6 +222,11 @@ msgstr "Delete Note"
 msgid "Den"
 msgstr "Den"
 
+#: src/components/venueDrawer/venueToolbar.tsx:166
+#: src/components/venueDrawer/venueToolbar.tsx:251
+msgid "Edit note"
+msgstr "Edit note"
+
 #: src/components/filterMenu/filters/worldFilters.ts:222
 msgid "Europe"
 msgstr "Europe"
@@ -196,6 +238,12 @@ msgstr "Failed to flag venue"
 #: src/components/filterMenu/filters/ratingFilters.tsx:11
 msgid "Favorited"
 msgstr "Favorited"
+
+#: src/components/venueDrawer/venueToolbar.tsx:158
+#: src/components/venueDrawer/venueToolbar.tsx:223
+#: src/components/venueDrawer/venueToolbar.tsx:229
+msgid "Favourite"
+msgstr "Favourite"
 
 #: src/components/filterMenu/filterMenu.tsx:77
 msgid "Features"
@@ -219,6 +267,9 @@ msgid "Flag accepted"
 msgstr "Flag accepted"
 
 #: src/components/flagDialog/flagDialog.tsx:55
+#: src/components/venueDrawer/venueToolbar.tsx:176
+#: src/components/venueDrawer/venueToolbar.tsx:269
+#: src/components/venueDrawer/venueToolbar.tsx:273
 msgid "Flag venue"
 msgstr "Flag venue"
 
@@ -239,8 +290,15 @@ msgid "Hide this venue?"
 msgstr "Hide this venue?"
 
 #: src/components/hideDialog/hideDialog.tsx:26
-msgid "Hide Venue"
-msgstr "Hide Venue"
+#: src/components/venueDrawer/venueToolbar.tsx:173
+#: src/components/venueDrawer/venueToolbar.tsx:260
+#: src/components/venueDrawer/venueToolbar.tsx:264
+msgid "Hide venue"
+msgstr "Hide venue"
+
+#: src/components/hideDialog/hideDialog.tsx:26
+#~ msgid "Hide Venue"
+#~ msgstr "Hide Venue"
 
 #: src/components/filterMenu/filters/featureFilters.ts:30
 msgid "IC RP encouraged"
@@ -307,6 +365,10 @@ msgstr "Left"
 msgid "LGBTQIA+ focused"
 msgstr "LGBTQIA+ focused"
 
+#: src/components/venueDrawer/venueToolbar.tsx:71
+msgid "Lifestream command copied to clipboard"
+msgstr "Lifestream command copied to clipboard"
+
 #. Theme option
 #: src/components/settingsMenu/settingsDialog.tsx:38
 msgid "Light"
@@ -321,6 +383,10 @@ msgstr "Light Mode"
 msgid "List View"
 msgstr "List View"
 
+#: src/components/venueDrawer/venueToolbar.tsx:66
+msgid "Location copied to clipboard"
+msgstr "Location copied to clipboard"
+
 #: src/components/filterMenu/filters/sceneFilters.ts:15
 msgid "Lounge"
 msgstr "Lounge"
@@ -328,6 +394,16 @@ msgstr "Lounge"
 #: src/components/filterMenu/filters/sceneFilters.ts:20
 msgid "Maid cafe / host club"
 msgstr "Maid cafe / host club"
+
+#: src/components/venueDrawer/venueToolbar.tsx:162
+#: src/components/venueDrawer/venueToolbar.tsx:240
+msgid "Mark unvisited"
+msgstr "Mark unvisited"
+
+#: src/components/venueDrawer/venueToolbar.tsx:162
+#: src/components/venueDrawer/venueToolbar.tsx:240
+msgid "Mark visited"
+msgstr "Mark visited"
 
 #. Veni / Veni Ki is the FFXIV Venues Discord bot; keep the name as-is
 #: src/components/createVenueModal/createVenueDialog.tsx:51
@@ -342,6 +418,10 @@ msgstr "New"
 #: src/components/venueCarousel/venueCarousel.tsx:46
 msgid "Next"
 msgstr "Next"
+
+#: src/components/venueDrawer/venueSchedule.tsx:21
+msgid "Next open <0/> <1/>"
+msgstr "Next open <0/> <1/>"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:10
 msgid "Nightclub"
@@ -374,8 +454,13 @@ msgstr "Oceania"
 
 #. Badge shown when a venue is currently open
 #: src/components/badges/openBadge.tsx:7
+#: src/components/venueDrawer/venueSchedule.tsx:56
 msgid "Open"
 msgstr "Open"
+
+#: src/components/venueDrawer/venueSchedule.tsx:16
+msgid "Open now until <0/>"
+msgstr "Open now until <0/>"
 
 #: src/components/filterMenu/filters/featureFilters.ts:22
 msgid "Open stage"
@@ -412,7 +497,11 @@ msgstr "Previous"
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
+#. Star rating control
+#. Star rating control
 #: src/components/filterMenu/filterMenu.tsx:89
+#: src/components/venueDrawer/venueToolbar.tsx:154
+#: src/components/venueDrawer/venueToolbar.tsx:219
 msgid "Rating"
 msgstr "Rating"
 
@@ -445,6 +534,15 @@ msgstr "Save"
 #: src/components/filterMenu/filterMenu.tsx:71
 msgid "Scenes"
 msgstr "Scenes"
+
+#: src/components/venueDrawer/venueSchedule.tsx:26
+#: src/components/venueDrawer/venueSchedule.tsx:48
+msgid "Schedule"
+msgstr "Schedule"
+
+#: src/components/venueDrawer/venueSchedule.tsx:48
+msgid "Schedule amendments"
+msgstr "Schedule amendments"
 
 #: src/components/filterMenu/filterMenu.tsx:57
 #: src/components/filterMenu/filterMenu.tsx:60
@@ -674,6 +772,20 @@ msgstr "Truth or dare"
 msgid "Twitch DJ"
 msgstr "Twitch DJ"
 
+#: src/components/venueDrawer/venueToolbar.tsx:87
+msgid "Undo"
+msgstr "Undo"
+
+#: src/components/venueDrawer/venueToolbar.tsx:158
+#: src/components/venueDrawer/venueToolbar.tsx:229
+msgid "Unfavourite"
+msgstr "Unfavourite"
+
+#: src/components/venueDrawer/venueToolbar.tsx:173
+#: src/components/venueDrawer/venueToolbar.tsx:264
+msgid "Unhide venue"
+msgstr "Unhide venue"
+
 #: src/components/filterMenu/filters/ratingFilters.tsx:18
 msgid "Unrated"
 msgstr "Unrated"
@@ -681,6 +793,10 @@ msgstr "Unrated"
 #: src/components/settingsMenu/settingsDialog.tsx:44
 msgid "Use System Theme"
 msgstr "Use System Theme"
+
+#: src/components/venueDrawer/venueToolbar.tsx:137
+msgid "Venue actions"
+msgstr "Venue actions"
 
 #: src/components/flagDialog/flagDialog.tsx:95
 #: src/components/flagDialog/flagDialog.tsx:96
@@ -691,6 +807,10 @@ msgstr "Venue empty"
 msgid "Venue favourited"
 msgstr "Venue favourited"
 
+#: src/components/venueDrawer/venueToolbar.tsx:86
+msgid "Venue hidden"
+msgstr "Venue hidden"
+
 #: src/lib/services/visitedService.ts:32
 msgid "Venue marked as visited"
 msgstr "Venue marked as visited"
@@ -698,6 +818,10 @@ msgstr "Venue marked as visited"
 #: src/components/notesDialog/notesDialog.tsx:46
 msgid "Venue Note"
 msgstr "Venue Note"
+
+#: src/components/venueDrawer/venueToolbar.tsx:247
+msgid "Venue Notes"
+msgstr "Venue Notes"
 
 #: src/lib/services/ratingsService.ts:36
 msgid "Venue rated"
@@ -724,6 +848,7 @@ msgid "VIP available"
 msgstr "VIP available"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:12
+#: src/components/venueDrawer/venueToolbar.tsx:234
 msgid "Visited"
 msgstr "Visited"
 

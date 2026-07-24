@@ -23,7 +23,7 @@ export const HideDialog = ({ open, onOpenChange, onConfirm, dialogContainer }: H
                 </AlertDialogHeader>
                 <AlertDialogFooter className="-m-5 mt-0 rounded-b-lg bg-muted/50 p-5 border-t flex justify-between!">
                     <Button type="button" variant="outline" className="p-4.5" onClick={() => onOpenChange(false)}><Trans>Cancel</Trans></Button>
-                    <Button type="button" variant="destructive" className="p-4.5" onClick={onConfirm}><Trans>Hide Venue</Trans></Button>
+                    <Button type="button" variant="destructive" className="p-4.5" onClick={onConfirm}><Trans>Hide venue</Trans></Button>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

@@ -22,6 +22,7 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/shadcn/dropdown-menu.tsx";
 import {HideDialog} from "@/components/hideDialog/hideDialog.tsx";
+import { Trans, useLingui } from "@lingui/react/macro";
 
 type VenueToolbarProps = {
   venue: Venue;
@@ -54,6 +55,7 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
   const [hidden, toggleHidden] = useHide(venue.id);
   const [note] = useNote(venue.id);
   const containerRef = { current: container } as React.RefObject<HTMLDivElement | null>;
+  const { t } = useLingui();
 
   const [flagDialogOpen, setFlagDialogOpen] = useState(false);
   const [notesDialogOpen, setNotesDialogOpen] = useState(false);
@@ -61,12 +63,12 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
 
   const copyLocationToClipboard = useCallback(() => {
     navigator.clipboard.writeText(venue.location.toString())
-        .then(() => toast("Location copied to clipboard"))
+        .then(() => toast(t`Location copied to clipboard`))
   }, [venue.location]);
 
   const copyLifestreamToClipboard = useCallback(() => {
     navigator.clipboard.writeText("/li " + venue.location.toString())
-        .then(() => toast("Lifestream command copied to clipboard"))
+        .then(() => toast(t`Lifestream command copied to clipboard`))
   }, [venue.location]);
 
   const openFlagDialog = useCallback(() => {
@@ -81,8 +83,8 @@ const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueT
 
   const handleConfirmHide = useCallback(() => {
     toggleHidden();
-    toast("Venue hidden", {
-      action: { label: "Undo", onClick: toggleHidden}
+    toast(t`Venue hidden`, {
+      action: { label: t`Undo`, onClick: toggleHidden}
     });
     setHideConfirmOpen(false);
   }, [toggleHidden]);
@@ -126,11 +128,13 @@ function VenueToolbarMobile(props: VenueToolbarActionsProps ) {
   const {favourited, visited, rating, hidden, note, container,
     onCopyLocation, onSetFavourited, onSetVisited, onSetRating,
     onToggleHidden, onOpenNotes, onOpenFlag} = props;
+  const { t } = useLingui();
+
   return <div className="flex sm:hidden w-full justify-end items-center gap-2">
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger
           className={cn(buttonVariants({ variant: "secondary", size: "icon" }), "cursor-pointer")}
-          aria-label="Venue actions">
+          aria-label={t`Venue actions`}>
         <Menu className="size-4"/>
       </DropdownMenuTrigger>
       <DropdownMenuPortal container={container ?? document.body}>
@@ -138,7 +142,7 @@ function VenueToolbarMobile(props: VenueToolbarActionsProps ) {
 
           <DropdownMenuItem className="cursor-pointer" onClick={onCopyLocation}>
             <CopyIcon className="size-4 mr-2"/>
-            Copy location
+            <Trans>Copy location</Trans>
           </DropdownMenuItem>
 
           <DropdownMenuSeparator/>
@@ -147,29 +151,29 @@ function VenueToolbarMobile(props: VenueToolbarActionsProps ) {
             <Rating onChange={onSetRating}
                     value={rating} maxStars={5} color="var(--color-primary)" iconSize={16}
                     className="flex items-center leading-none"
-                    aria-label="Rating"/>
+                    aria-label={t({ message: `Rating`, comment: `Star rating control` })}/>
           </div>
           <DropdownMenuItem className="cursor-pointer" onClick={() => onSetFavourited(!favourited)} aria-pressed={favourited}>
             <HeartIcon className={cn("size-4 mr-2", favourited && "fill-primary stroke-primary")}/>
-            {favourited ? "Unfavourite" : "Favourite"}
+            {favourited ? <Trans>Unfavourite</Trans> : <Trans>Favourite</Trans>}
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer" onClick={() => onSetVisited(!visited)} aria-pressed={visited}>
             <CheckIcon className={cn("size-4 mr-2", visited && "stroke-primary")} strokeWidth={3}/>
-            {visited ? "Mark unvisited" : "Mark visited"}
+            {visited ? <Trans>Mark unvisited</Trans> : <Trans>Mark visited</Trans>}
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer" onClick={onOpenNotes} aria-pressed={!!note}>
             <Pencil className={cn("size-4 mr-2", !!note && "fill-primary stroke-primary")}/>
-            {note ? "Edit note" : "Add note"}
+            {note ? <Trans>Edit note</Trans> : <Trans>Add note</Trans>}
           </DropdownMenuItem>
 
           <DropdownMenuSeparator/>
 
           <DropdownMenuItem className="cursor-pointer" onClick={onToggleHidden} aria-pressed={hidden}>
             <EyeOffIcon className={cn("size-4 mr-2", hidden && "stroke-primary")}/>
-            {hidden ? "Unhide venue" : "Hide venue"}
+            {hidden ? <Trans>Unhide venue</Trans> : <Trans>Hide venue</Trans>}
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer" onClick={onOpenFlag}>
-            <FlagIcon className="size-4 mr-2"/> Flag venue
+            <FlagIcon className="size-4 mr-2"/> <Trans>Flag venue</Trans>
           </DropdownMenuItem>
 
         </DropdownMenuContent>
@@ -183,25 +187,27 @@ function VenueToolbarDesktop(props: VenueToolbarDesktopProps ) {
   const { favourited, visited, rating, hidden, note, onCopyLocation,
           onCopyLifestream, onSetFavourited, onSetVisited, onSetRating,
           onToggleHidden, onOpenNotes, onOpenFlag, className } = props;
+  const { t } = useLingui();
+
   return <div className={cn("hidden sm:flex items-center justify-between w-full", className)}>
     <div className="flex gap-1">
       <ButtonGroup>
         <Tooltip>
           <TooltipTrigger onClick={onCopyLocation} render={(props) =>
-              <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label="Copy location">
+              <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label={t`Copy location`}>
                 <CopyIcon className="size-4"/>
               </Button>}
           />
-          <TooltipContent side="top" className="bg-muted text-muted-foreground">Copy location</TooltipContent>
+          <TooltipContent side="top" className="bg-muted text-muted-foreground"><Trans>Copy location</Trans></TooltipContent>
         </Tooltip>
 
         <Tooltip>
           <TooltipTrigger onClick={onCopyLifestream} render={(props) =>
-              <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label="Copy lifestream command">
+              <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label={t`Copy lifestream command`}>
                 <CopySlashIcon className="size-4"/>
               </Button>}
           />
-          <TooltipContent side="top" className="bg-muted text-muted-foreground">Copy lifestream command</TooltipContent>
+          <TooltipContent side="top" className="bg-muted text-muted-foreground"><Trans>Copy lifestream command</Trans></TooltipContent>
         </Tooltip>
       </ButtonGroup>
     </div>
@@ -210,39 +216,39 @@ function VenueToolbarDesktop(props: VenueToolbarDesktopProps ) {
       <Rating onChange={onSetRating}
               value={rating} maxStars={5} color="var(--color-primary)" iconSize={16}
               className="px-5 flex items-center leading-none"
-              aria-label="Rating"/>
+              aria-label={t({ message: `Rating`, comment: `Star rating control` })}/>
 
       <Tooltip>
         <TooltipTrigger onClick={() => onSetFavourited(!favourited)} render={(props) =>
-            <Button size="icon" variant="secondary" aria-label="Favourite" aria-pressed={favourited}
+            <Button size="icon" variant="secondary" aria-label={t`Favourite`} aria-pressed={favourited}
                     className="group cursor-pointer px-5 py-4 aria-pressed:bg-primary aria-pressed:hover:bg-primary/75"
                     {...props}>
               <HeartIcon className="fill-secondary-foreground group-aria-pressed:fill-primary-foreground group-aria-pressed:stroke-primary-foreground size-4"/>
             </Button>}
         />
-        <TooltipContent side="top" className="bg-muted text-muted-foreground">{favourited ? "Unfavourite" : "Favourite"}</TooltipContent>
+        <TooltipContent side="top" className="bg-muted text-muted-foreground">{favourited ? t`Unfavourite` : t`Favourite`}</TooltipContent>
       </Tooltip>
 
       <Tooltip>
         <TooltipTrigger onClick={() => onSetVisited(!visited)} render={(props) =>
-            <Button variant="secondary" size="icon" aria-label="Visited" aria-pressed={visited}
+            <Button variant="secondary" size="icon" aria-label={t`Visited`} aria-pressed={visited}
                     className="group cursor-pointer px-5 py-4 aria-pressed:bg-primary aria-pressed:hover:bg-primary/75"
                     {...props}>
               <CheckIcon className="group-aria-pressed:stroke-primary-foreground size-4" strokeWidth={3}/>
             </Button>}
         />
-        <TooltipContent side="top" className="bg-muted text-muted-foreground">{visited ? "Mark unvisited" : "Mark visited"}</TooltipContent>
+        <TooltipContent side="top" className="bg-muted text-muted-foreground">{visited ? t`Mark unvisited` : t`Mark visited`}</TooltipContent>
       </Tooltip>
 
       <Tooltip>
         <TooltipTrigger onClick={onOpenNotes} render={(props) =>
             <Button size="icon" variant="secondary"
                     className="group cursor-pointer px-5 py-4 aria-pressed:bg-primary aria-pressed:hover:bg-primary/75"
-                    {...props} aria-label="Venue Notes" aria-pressed={!!note}>
+                    {...props} aria-label={t`Venue Notes`} aria-pressed={!!note}>
               <Pencil className="fill-secondary-foreground group-aria-pressed:fill-primary-foreground group-aria-pressed:stroke-primary-foreground size-4"/>
             </Button>}
         />
-        <TooltipContent side="top" className="bg-muted text-muted-foreground">{note ? "Edit note" : "Add note"}</TooltipContent>
+        <TooltipContent side="top" className="bg-muted text-muted-foreground">{note ? t`Edit note` : t`Add note`}</TooltipContent>
       </Tooltip>
     </ButtonGroup>
 
@@ -251,20 +257,20 @@ function VenueToolbarDesktop(props: VenueToolbarDesktopProps ) {
         <TooltipTrigger onClick={onToggleHidden} render={(props) =>
             <Button size="icon" variant="secondary"
                     className="group cursor-pointer px-5 py-4 aria-pressed:bg-primary aria-pressed:hover:bg-primary/75"
-                    aria-label="Hide Venue" aria-pressed={hidden} {...props}>
+                    aria-label={t`Hide venue`} aria-pressed={hidden} {...props}>
               <EyeOffIcon className="group-aria-pressed:stroke-primary-foreground size-4"/>
             </Button>}
         />
-        <TooltipContent side="top" className="bg-muted text-muted-foreground">{hidden ? "Unhide Venue" : "Hide Venue"}</TooltipContent>
+        <TooltipContent side="top" className="bg-muted text-muted-foreground">{hidden ? t`Unhide venue` : t`Hide venue`}</TooltipContent>
       </Tooltip>
 
       <Tooltip>
         <TooltipTrigger onClick={onOpenFlag} render={(props) =>
-            <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label="Flag Venue">
+            <Button size="icon" variant="secondary" className="cursor-pointer px-5 py-4" {...props} aria-label={t`Flag venue`}>
               <FlagIcon className="size-4"/>
             </Button>}
         />
-        <TooltipContent side="top" className="bg-muted text-muted-foreground">Flag venue</TooltipContent>
+        <TooltipContent side="top" className="bg-muted text-muted-foreground"><Trans>Flag venue</Trans></TooltipContent>
       </Tooltip>
     </ButtonGroup>
   </div>
