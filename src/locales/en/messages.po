@@ -476,12 +476,8 @@ msgstr "Not bath house"
 msgid "Not nightclub"
 msgstr "Not nightclub"
 
-#: src/components/venueCard/venueCardCompact.tsx:98
-msgid "Note"
-msgstr "Note"
-
-#. js-lingui-explicit-id
-#: src/components/venueCard/venueCardFull.tsx:95
+#: src/components/venueCard/venueCardCompact.tsx:99
+#: src/components/venueCard/venueCardFull.tsx:92
 msgid "Note"
 msgstr "Note"
 
@@ -512,15 +508,11 @@ msgstr "Open now until <0/>"
 msgid "Open stage"
 msgstr "Open stage"
 
-#: src/components/venueCard/venueCardCompact.tsx:79
-#: src/components/venueCard/venueListItem.tsx:54
-msgid "Open until <0/>"
-msgstr "Open until <0/>"
-
-#. js-lingui-explicit-id
-#: src/components/venueCard/venueCardFull.tsx:72
-msgid "Open until <TimeText>"
-msgstr "Open until <TimeText/>"
+#: src/components/venueCard/venueCardCompact.tsx:80
+#: src/components/venueCard/venueCardFull.tsx:73
+#: src/components/venueCard/venueListItem.tsx:55
+msgid "Open until {closingTime}"
+msgstr "Open until {closingTime}"
 
 #. Venue type: none of the listed categories
 #: src/components/filterMenu/filters/sceneFilters.ts:22
@@ -916,8 +908,7 @@ msgstr "Venue unfavourited"
 msgid "Venue unmarked as visited"
 msgstr "Venue unmarked as visited"
 
-#. js-lingui-explicit-id
-#: src/components/venueCard/venueCardFull.tsx:121
+#: src/components/venueCard/venueCardFull.tsx:118
 msgid "View Venue"
 msgstr "View Venue"
 

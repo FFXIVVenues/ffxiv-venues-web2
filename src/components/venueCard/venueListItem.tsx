@@ -16,6 +16,7 @@ type VenueCardListProps = {
 
 export const VenueListItem = memo(({ venue, opening, onClick, future = false }: VenueCardListProps) => {
     const displayOpening = opening ?? venue.resolution;
+    const closingTime = displayOpening && <TimeText time={displayOpening.end} />;
 
     const onClickCallback = useCallback((e: MouseEvent) => {
         if (e.button === 0) onClick(venue, false);
@@ -51,7 +52,7 @@ export const VenueListItem = memo(({ venue, opening, onClick, future = false }: 
                 <TableCell className="w-[120px] sm:w-[120px] md:w-[280px] lg:w-[280px] whitespace-nowrap text-muted-foreground tabular-nums py-2.5">
                     {displayOpening.isNow ? (
                         <span className="flex items-center gap-1">
-                            <span className="hidden md:inline"><Trans>Open until <TimeText time={displayOpening.end} /></Trans></span>
+                            <span className="hidden md:inline"><Trans>Open until {closingTime}</Trans></span>
                             <span className="md:hidden"><TimeText time={displayOpening.end} /></span>
                         </span>
                     ) : (

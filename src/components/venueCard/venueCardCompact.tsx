@@ -27,6 +27,7 @@ type VenueCardProps = {
 
 export const VenueCardCompact = memo(({ venue, opening, onClick, className }: VenueCardProps) => {
     const displayOpening = opening ?? venue.resolution;
+    const closingTime = displayOpening && <TimeText time={displayOpening.end} />;
     const rating = ratingsService.getRating(venue.id);
     const isFavorite = favouritesService.isFavourite(venue.id);
     const isVisited = visitedService.isVisited(venue.id);
@@ -76,7 +77,7 @@ export const VenueCardCompact = memo(({ venue, opening, onClick, className }: Ve
                     <CardDescription className="min-h-4 flex justify-between">
                         {displayOpening?.isNow? (
                             <span className="flex items-center gap-1 font-bold">
-                                <Trans>Open until <TimeText time={displayOpening.end} /></Trans>
+                                <Trans>Open until {closingTime}</Trans>
                             </span>
                         ): displayOpening && (
                             <span className="flex items-center gap-1">
