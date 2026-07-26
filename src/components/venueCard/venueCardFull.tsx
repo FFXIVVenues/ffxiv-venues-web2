@@ -68,9 +68,8 @@ export const VenueCardFull = memo(({ venue, opening, onClick, className }: Venue
                   <CardDescription>
                     <div className="min-h-6 flex justify-between">
                       {displayOpening?.isNow ? (
-                          <span className="flex items-center gap-1">
-                              <span className="text-muted-foreground"><Trans>Open until</Trans></span>
-                              <TimeText time={displayOpening.end} />
+                          <span className="flex items-center gap-1 text-muted-foreground">
+                              <Trans>Open until <TimeText time={displayOpening.end} /></Trans>
                           </span>
                       ) : displayOpening && (
                           <span className="flex items-center gap-1">

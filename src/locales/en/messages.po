@@ -13,6 +13,24 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. placeholder {0}: date.getDate()
+#: src/components/dateString/dateText.tsx:19
+msgid "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
+msgstr "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
+
+#. placeholder {0}: Math.abs(arg)
+#: src/components/dateString/recurringDayText.tsx:24
+msgid "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} last {day} of the month"
+msgstr "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} last {day} of the month"
+
+#: src/components/dateString/recurringDayText.tsx:21
+msgid "{arg, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} {day} of the month"
+msgstr "{arg, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} {day} of the month"
+
+#: src/components/dateString/recurringDayText.tsx:16
+msgid "{arg} weekly on {day}s"
+msgstr "{arg} weekly on {day}s"
+
 #: src/components/venueDrawer/venueNsfwText.tsx:11
 msgid "<0>Warning:</0> This venue has indicated they are openly NSFW and offer adult services. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
 msgstr "<0>Warning:</0> This venue has indicated they are openly NSFW and offer adult services. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
@@ -134,6 +152,10 @@ msgstr "Bath house"
 msgid "Bingo"
 msgstr "Bingo"
 
+#: src/components/dateString/recurringDayText.tsx:15
+msgid "Biweekly on {day}s"
+msgstr "Biweekly on {day}s"
+
 #: src/components/filterMenu/filters/gameFilters.ts:9
 msgid "Blackjack"
 msgstr "Blackjack"
@@ -239,6 +261,11 @@ msgstr "Failed to flag venue"
 msgid "Favorited"
 msgstr "Favorited"
 
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:84
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:101
+msgid "Favorites"
+msgstr "Favorites"
+
 #: src/components/venueDrawer/venueToolbar.tsx:158
 #: src/components/venueDrawer/venueToolbar.tsx:223
 #: src/components/venueDrawer/venueToolbar.tsx:229
@@ -273,6 +300,11 @@ msgstr "Flag accepted"
 msgid "Flag venue"
 msgstr "Flag venue"
 
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:93
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:110
+msgid "Future Openings"
+msgstr "Future Openings"
+
 #: src/components/filterMenu/filters/featureFilters.ts:13
 msgid "Gambling"
 msgstr "Gambling"
@@ -295,10 +327,6 @@ msgstr "Hide this venue?"
 #: src/components/venueDrawer/venueToolbar.tsx:264
 msgid "Hide venue"
 msgstr "Hide venue"
-
-#: src/components/hideDialog/hideDialog.tsx:26
-#~ msgid "Hide Venue"
-#~ msgstr "Hide Venue"
 
 #: src/components/filterMenu/filters/featureFilters.ts:30
 msgid "IC RP encouraged"
@@ -354,6 +382,10 @@ msgstr "Join via Veni!"
 #: src/components/settingsMenu/settingsDialog.tsx:59
 msgid "Language"
 msgstr "Language"
+
+#: src/components/dateString/recurringDayText.tsx:23
+msgid "Last {day} of the month"
+msgstr "Last {day} of the month"
 
 #. Drawer panel position
 #: src/components/settingsMenu/settingsDialog.tsx:98
@@ -415,6 +447,11 @@ msgstr "Meet Veni Ki!"
 msgid "New"
 msgstr "New"
 
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:86
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:103
+msgid "Newest"
+msgstr "Newest"
+
 #: src/components/venueCarousel/venueCarousel.tsx:46
 msgid "Next"
 msgstr "Next"
@@ -439,8 +476,8 @@ msgstr "Not bath house"
 msgid "Not nightclub"
 msgstr "Not nightclub"
 
-#: src/components/venueCard/venueCardCompact.tsx:99
-#: src/components/venueCard/venueCardFull.tsx:92
+#: src/components/venueCard/venueCardCompact.tsx:98
+#: src/components/venueCard/venueCardFull.tsx:91
 msgid "Note"
 msgstr "Note"
 
@@ -458,6 +495,11 @@ msgstr "Oceania"
 msgid "Open"
 msgstr "Open"
 
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:85
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:102
+msgid "Open Now"
+msgstr "Open Now"
+
 #: src/components/venueDrawer/venueSchedule.tsx:16
 msgid "Open now until <0/>"
 msgstr "Open now until <0/>"
@@ -469,8 +511,8 @@ msgstr "Open stage"
 #: src/components/venueCard/venueCardCompact.tsx:79
 #: src/components/venueCard/venueCardFull.tsx:72
 #: src/components/venueCard/venueListItem.tsx:54
-msgid "Open until"
-msgstr "Open until"
+msgid "Open until <0/>"
+msgstr "Open until <0/>"
 
 #. Venue type: none of the listed categories
 #: src/components/filterMenu/filters/sceneFilters.ts:22
@@ -588,6 +630,10 @@ msgstr "Side for venue details"
 #: src/pages/notFoundPage/notFoundPage.tsx:8
 msgid "Sorry, that page could not be found."
 msgstr "Sorry, that page could not be found."
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:118
+msgid "Sorry, we couldn't get you venues. :("
+msgstr "Sorry, we couldn't get you venues. :("
 
 #: src/components/filterMenu/filters/featureFilters.ts:24
 msgid "Stylists"
@@ -751,6 +797,10 @@ msgstr "Theme"
 msgid "Then simply DM Veni and ask to <0>Create a venue</0> or type <1>/create</1>!"
 msgstr "Then simply DM Veni and ask to <0>Create a venue</0> or type <1>/create</1>!"
 
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:126
+msgid "There are no venues to show :/"
+msgstr "There are no venues to show :/"
+
 #: src/components/hideDialog/hideDialog.tsx:21
 msgid "This venue will no longer appear in your results. You can unhide it by selecting show hidden venues from the settings page at any time."
 msgstr "This venue will no longer appear in your results. You can unhide it by selecting show hidden venues from the settings page at any time."
@@ -759,6 +809,20 @@ msgstr "This venue will no longer appear in your results. You can unhide it by s
 #: src/components/createVenueModal/createVenueDialog.tsx:62
 msgid "To keep your venue indexed, we ask that you stay in the FFXIV Venues Discord - it's how Veni stays in touch with you. Don't worry, the server will never notify you unless you subscribe to a topic, and Veni will DM you regularly to keep things up to date. <0>🥰</0>"
 msgstr "To keep your venue indexed, we ask that you stay in the FFXIV Venues Discord - it's how Veni stays in touch with you. Don't worry, the server will never notify you unless you subscribe to a topic, and Veni will DM you regularly to keep things up to date. <0>🥰</0>"
+
+#: src/components/dateString/dateText.tsx:13
+msgid "Today"
+msgstr "Today"
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:90
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:107
+msgid "Today ({day})"
+msgstr "Today ({day})"
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:90
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:107
+msgid "Tomorrow ({day})"
+msgstr "Tomorrow ({day})"
 
 #: src/components/filterMenu/filters/gameFilters.ts:7
 msgid "Triple triad"
@@ -789,6 +853,11 @@ msgstr "Unhide venue"
 #: src/components/filterMenu/filters/ratingFilters.tsx:18
 msgid "Unrated"
 msgstr "Unrated"
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:94
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:111
+msgid "Unscheduled"
+msgstr "Unscheduled"
 
 #: src/components/settingsMenu/settingsDialog.tsx:44
 msgid "Use System Theme"
@@ -839,7 +908,7 @@ msgstr "Venue unfavourited"
 msgid "Venue unmarked as visited"
 msgstr "Venue unmarked as visited"
 
-#: src/components/venueCard/venueCardFull.tsx:118
+#: src/components/venueCard/venueCardFull.tsx:117
 msgid "View Venue"
 msgstr "View Venue"
 
@@ -860,6 +929,10 @@ msgstr "Void"
 #: src/components/venueDrawer/venueWebsiteButton.tsx:10
 msgid "Website"
 msgstr "Website"
+
+#: src/components/dateString/recurringDayText.tsx:14
+msgid "Weekly on {day}s"
+msgstr "Weekly on {day}s"
 
 #: src/components/notesDialog/notesDialog.tsx:52
 msgid "Write anything you want to remember about this venue!"

@@ -51,8 +51,8 @@ export const VenueListItem = memo(({ venue, opening, onClick, future = false }: 
                 <TableCell className="w-[120px] sm:w-[120px] md:w-[280px] lg:w-[280px] whitespace-nowrap text-muted-foreground tabular-nums py-2.5">
                     {displayOpening.isNow ? (
                         <span className="flex items-center gap-1">
-                            <span className="hidden md:inline"><Trans>Open until</Trans></span>
-                            <TimeText time={displayOpening.end} />
+                            <span className="hidden md:inline"><Trans>Open until <TimeText time={displayOpening.end} /></Trans></span>
+                            <span className="md:hidden"><TimeText time={displayOpening.end} /></span>
                         </span>
                     ) : (
                         <span className="flex items-center gap-1">
