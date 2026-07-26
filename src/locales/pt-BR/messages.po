@@ -477,7 +477,11 @@ msgid "Not nightclub"
 msgstr ""
 
 #: src/components/venueCard/venueCardCompact.tsx:98
-#: src/components/venueCard/venueCardFull.tsx:91
+msgid "Note"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/venueCard/venueCardFull.tsx:95
 msgid "Note"
 msgstr ""
 
@@ -509,9 +513,13 @@ msgid "Open stage"
 msgstr ""
 
 #: src/components/venueCard/venueCardCompact.tsx:79
-#: src/components/venueCard/venueCardFull.tsx:72
 #: src/components/venueCard/venueListItem.tsx:54
 msgid "Open until <0/>"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/venueCard/venueCardFull.tsx:72
+msgid "Open until <TimeText>"
 msgstr ""
 
 #. Venue type: none of the listed categories
@@ -908,7 +916,8 @@ msgstr ""
 msgid "Venue unmarked as visited"
 msgstr ""
 
-#: src/components/venueCard/venueCardFull.tsx:117
+#. js-lingui-explicit-id
+#: src/components/venueCard/venueCardFull.tsx:121
 msgid "View Venue"
 msgstr ""
 

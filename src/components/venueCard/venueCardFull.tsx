@@ -19,7 +19,7 @@ import {NewBadge} from "@/components/badges/newBadge.tsx";
 import {OpenBadge} from "@/components/badges/openBadge.tsx";
 import {hideService} from "@/lib/services/hideVenue/hideService.ts";
 import {cn} from "@/lib/utils";
-import {Trans} from "@lingui/react/macro";
+import {Trans} from "@lingui/react";
 
 type VenueCardProps = {
     venue: Venue;
@@ -69,7 +69,11 @@ export const VenueCardFull = memo(({ venue, opening, onClick, className }: Venue
                     <div className="min-h-6 flex justify-between">
                       {displayOpening?.isNow ? (
                           <span className="flex items-center gap-1 text-muted-foreground">
-                              <Trans>Open until <TimeText time={displayOpening.end} /></Trans>
+                              <Trans
+                                  id="Open until <TimeText>"
+                                  message="Open until <TimeText/>"
+                                  components={{ TimeText: <TimeText time={displayOpening.end} /> }}
+                              />
                           </span>
                       ) : displayOpening && (
                           <span className="flex items-center gap-1">
@@ -88,7 +92,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick, className }: Venue
                                       <Pencil size={14} className="stroke-muted-foreground fill-muted-foreground" />
                                   </HoverCardTrigger>
                                   <HoverCardContent className="w-64">
-                                      <p className="text-xs font-semibold text-muted-foreground mb-1"><Trans>Note</Trans></p>
+                                      <p className="text-xs font-semibold text-muted-foreground mb-1"><Trans id="Note" message="Note" /></p>
                                       <p className="text-sm text-muted-foreground whitespace-pre-wrap">{notesService.getNote(venue.id)}</p>
                                   </HoverCardContent>
                               </HoverCard>
@@ -114,7 +118,7 @@ export const VenueCardFull = memo(({ venue, opening, onClick, className }: Venue
               </CardContent>
 
               <CardFooter className="pb-6 border-t">
-                  <Button className="w-full cursor-pointer" onMouseDown={onMiddleMouseDown} onClick={onClickCallback} onMouseUp={onMiddleClick}><Trans>View Venue</Trans></Button>
+                  <Button className="w-full cursor-pointer" onMouseDown={onMiddleMouseDown} onClick={onClickCallback} onMouseUp={onMiddleClick}><Trans id="View Venue" message="View Venue" /></Button>
               </CardFooter>
           </Card>
         </Lazy>
