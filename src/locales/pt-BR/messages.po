@@ -128,8 +128,8 @@ msgstr ""
 msgid "All Primal"
 msgstr ""
 
-#: src/components/venueDrawer/venueDrawer.tsx:97
-msgid "All times are in <0>your</0> timezone: <1/> {timeZone}"
+#: src/components/venueDrawer/venueDrawer.tsx:98
+msgid "All times are in <0>your</0> timezone: {utcOffset} {timeZone}"
 msgstr ""
 
 #: src/components/filterMenu/filters/featureFilters.ts:14
@@ -183,11 +183,11 @@ msgid "Casino"
 msgstr ""
 
 #: src/components/flagDialog/flagDialog.tsx:65
-#: src/components/venueDrawer/venueDrawer.tsx:71
+#: src/components/venueDrawer/venueDrawer.tsx:72
 msgid "Close"
 msgstr ""
 
-#: src/components/venueDrawer/venueSchedule.tsx:56
+#: src/components/venueDrawer/venueSchedule.tsx:59
 msgid "Closed"
 msgstr ""
 
@@ -456,8 +456,8 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: src/components/venueDrawer/venueSchedule.tsx:21
-msgid "Next open <0/> <1/>"
+#: src/components/venueDrawer/venueSchedule.tsx:24
+msgid "Next open {openDate} {openTime}"
 msgstr ""
 
 #: src/components/filterMenu/filters/sceneFilters.ts:10
@@ -491,7 +491,7 @@ msgstr ""
 
 #. Badge shown when a venue is currently open
 #: src/components/badges/openBadge.tsx:7
-#: src/components/venueDrawer/venueSchedule.tsx:56
+#: src/components/venueDrawer/venueSchedule.tsx:59
 msgid "Open"
 msgstr ""
 
@@ -500,8 +500,8 @@ msgstr ""
 msgid "Open Now"
 msgstr ""
 
-#: src/components/venueDrawer/venueSchedule.tsx:16
-msgid "Open now until <0/>"
+#: src/components/venueDrawer/venueSchedule.tsx:19
+msgid "Open now until {closingTime}"
 msgstr ""
 
 #: src/components/filterMenu/filters/featureFilters.ts:22
@@ -577,12 +577,12 @@ msgstr ""
 msgid "Scenes"
 msgstr ""
 
-#: src/components/venueDrawer/venueSchedule.tsx:26
-#: src/components/venueDrawer/venueSchedule.tsx:48
+#: src/components/venueDrawer/venueSchedule.tsx:29
+#: src/components/venueDrawer/venueSchedule.tsx:51
 msgid "Schedule"
 msgstr ""
 
-#: src/components/venueDrawer/venueSchedule.tsx:48
+#: src/components/venueDrawer/venueSchedule.tsx:51
 msgid "Schedule amendments"
 msgstr ""
 

@@ -30,6 +30,7 @@ export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: Venu
     const closeRef: RefObject<HTMLButtonElement | null> = useRef(null);
     const { t } = useLingui();
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    const utcOffset = <UtcOffset />;
 
     if (!venue) return null;
 
@@ -94,7 +95,7 @@ export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: Venu
             <VenueTags tags={venue.tags} className="my-8" />
             <VenueSchedule venue={venue} />
             <small className="text-muted-foreground italic ml-2 mt-4 inline-block">
-                <Trans>All times are in <em>your</em> timezone: <UtcOffset /> {timeZone}</Trans>
+                <Trans>All times are in <em>your</em> timezone: {utcOffset} {timeZone}</Trans>
             </small>
             <VenueNsfwText className="mt-8" hasCourts={venue.tags.indexOf('Courtesans') >= 0} openlyNsfw={!venue.sfw} />
           </div>

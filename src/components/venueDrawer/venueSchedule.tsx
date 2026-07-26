@@ -8,17 +8,20 @@ import {Pulse} from "@/components/ui/pulse.tsx";
 import {Trans} from "@lingui/react/macro";
 
 export const VenueSchedule = ({venue, className}: { venue: Venue, className?: string }) => {
+  const closingTime = venue.resolution && <TimeText time={venue.resolution.end} />;
+  const openDate = venue.resolution && <DateText date={venue.resolution.start} />;
+  const openTime = venue.resolution && <TimeText time={venue.resolution.start} />;
   return <div className={cn("font-bold", className)}>
 
     {venue.resolution?.isNow === true &&
       <div className="rounded-md mb-6 border px-3 py-2 text-accent font-extrabold flex items-center">
         <Pulse className="mr-3" color="bg-accent"/>
-        <Trans>Open now until <TimeText time={venue.resolution?.end}/></Trans>
+        <span><Trans>Open now until {closingTime}</Trans></span>
       </div>}
 
     {venue.resolution?.isNow === false &&
       <div className="font-bold rounded-md mb-6 border px-3 py-2">
-        <Trans>Next open <DateText date={venue.resolution?.start}/> <TimeText time={venue.resolution?.start}/></Trans>
+        <Trans>Next open {openDate} {openTime}</Trans>
       </div>}
 
     {venue.schedule && venue.schedule.length > 0 &&
