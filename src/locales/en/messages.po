@@ -176,11 +176,11 @@ msgid "Cancel"
 msgstr "Cancel"
 
 #. Schedule layout option
-#: src/components/settingsMenu/settingsDialog.tsx:74
+#: src/components/settingsMenu/settingsDialog.tsx:76
 msgid "Card"
 msgstr "Card"
 
-#: src/components/settingsMenu/settingsDialog.tsx:75
+#: src/components/settingsMenu/settingsDialog.tsx:77
 msgid "Card View"
 msgstr "Card View"
 
@@ -200,11 +200,11 @@ msgid "Closed"
 msgstr "Closed"
 
 #. Schedule layout option
-#: src/components/settingsMenu/settingsDialog.tsx:79
+#: src/components/settingsMenu/settingsDialog.tsx:81
 msgid "Compact"
 msgstr "Compact"
 
-#: src/components/settingsMenu/settingsDialog.tsx:81
+#: src/components/settingsMenu/settingsDialog.tsx:83
 msgid "Compact View"
 msgstr "Compact View"
 
@@ -390,8 +390,8 @@ msgid "Join via Veni!"
 msgstr "Join via Veni!"
 
 #. Interface language selector
-#: src/components/settingsMenu/settingsDialog.tsx:55
-#: src/components/settingsMenu/settingsDialog.tsx:59
+#: src/components/settingsMenu/settingsDialog.tsx:56
+#: src/components/settingsMenu/settingsDialog.tsx:60
 msgid "Language"
 msgstr "Language"
 
@@ -400,8 +400,8 @@ msgid "Last {day} of the month"
 msgstr "Last {day} of the month"
 
 #. Drawer panel position
-#: src/components/settingsMenu/settingsDialog.tsx:98
-#: src/components/settingsMenu/settingsDialog.tsx:99
+#: src/components/settingsMenu/settingsDialog.tsx:100
+#: src/components/settingsMenu/settingsDialog.tsx:101
 msgid "Left"
 msgstr "Left"
 
@@ -422,8 +422,8 @@ msgstr "Light"
 msgid "Light Mode"
 msgstr "Light Mode"
 
-#: src/components/settingsMenu/settingsDialog.tsx:85
-#: src/components/settingsMenu/settingsDialog.tsx:86
+#: src/components/settingsMenu/settingsDialog.tsx:87
+#: src/components/settingsMenu/settingsDialog.tsx:88
 msgid "List View"
 msgstr "List View"
 
@@ -585,8 +585,8 @@ msgid "Retrying in {retry} seconds."
 msgstr "Retrying in {retry} seconds."
 
 #. Drawer panel position
-#: src/components/settingsMenu/settingsDialog.tsx:102
-#: src/components/settingsMenu/settingsDialog.tsx:103
+#: src/components/settingsMenu/settingsDialog.tsx:104
+#: src/components/settingsMenu/settingsDialog.tsx:105
 msgid "Right"
 msgstr "Right"
 
@@ -635,20 +635,20 @@ msgstr "SFW on entry"
 msgid "Shop"
 msgstr "Shop"
 
-#: src/components/settingsMenu/settingsDialog.tsx:118
-#: src/components/settingsMenu/settingsDialog.tsx:122
+#: src/components/settingsMenu/settingsDialog.tsx:120
+#: src/components/settingsMenu/settingsDialog.tsx:124
 msgid "Show hidden venues"
 msgstr "Show hidden venues"
 
-#: src/components/settingsMenu/settingsDialog.tsx:113
+#: src/components/settingsMenu/settingsDialog.tsx:115
 msgid "Show navigation bar"
 msgstr "Show navigation bar"
 
-#: src/components/settingsMenu/settingsDialog.tsx:109
+#: src/components/settingsMenu/settingsDialog.tsx:111
 msgid "Show navigation bar by default"
 msgstr "Show navigation bar by default"
 
-#: src/components/settingsMenu/settingsDialog.tsx:92
+#: src/components/settingsMenu/settingsDialog.tsx:94
 msgid "Side for venue details"
 msgstr "Side for venue details"
 
@@ -928,7 +928,7 @@ msgstr "Venue Notes"
 msgid "Venue rated"
 msgstr "Venue rated"
 
-#: src/components/settingsMenu/settingsDialog.tsx:68
+#: src/components/settingsMenu/settingsDialog.tsx:70
 msgid "Venue schedule layout"
 msgstr "Venue schedule layout"
 

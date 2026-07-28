@@ -2,6 +2,7 @@ import { i18n } from "@lingui/core";
 
 export const locales = {
     en: "English",
+    "en-x-miqo": "Miqo'te",
     fr: "Français",
     de: "Deutsch",
     "pt-BR": "Português (Brasil)",
@@ -10,9 +11,10 @@ export const locales = {
 
 export type Locale = keyof typeof locales;
 export const defaultLocale: Locale = "en";
+export const availableLocales: Locale[] = ["en"];
 
 export async function activateLocale(locale: string) {
-    const loc = (locale in locales ? locale : defaultLocale) as Locale;
+    const loc = (availableLocales.includes(locale as Locale) ? locale : defaultLocale) as Locale;
     const { messages } = await import(`../../locales/${loc}/messages.po`);
     i18n.load(loc, messages);
     i18n.activate(loc);
@@ -21,11 +23,11 @@ export async function activateLocale(locale: string) {
 
 export function detectLocale(): Locale {
     const saved = localStorage.getItem("locale");
-    if (saved && saved in locales) return saved as Locale;
+    if (saved && availableLocales.includes(saved as Locale)) return saved as Locale;
     const nav = navigator.language;
-    if (nav in locales) return nav as Locale;
+    if (availableLocales.includes(nav as Locale)) return nav as Locale;
     const base = nav.split("-")[0] ?? defaultLocale;
-    if (base in locales) return base as Locale;
+    if (availableLocales.includes(base as Locale)) return base as Locale;
 
     return defaultLocale;
 }
