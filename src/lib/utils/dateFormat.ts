@@ -7,6 +7,7 @@ export const dtf_options = {
   dateFar: { weekday: "long",  month: "short", day: "numeric" },
   dateNearShort: { weekday: "short", day: "numeric" },
   dateFarShort: { weekday: "short", month: "short", day: "numeric" },
+  effective: { day: "numeric", month: "long", year: "numeric" },
 } satisfies Record<string, Intl.DateTimeFormatOptions>;
 
 export type DtfKey = keyof typeof dtf_options;

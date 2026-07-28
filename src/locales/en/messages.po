@@ -15,6 +15,7 @@ msgstr ""
 
 #. placeholder {0}: date.getDate()
 #: src/components/dateString/dateText.tsx:19
+#: src/components/legal/effectiveDate.tsx:7
 msgid "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
 msgstr "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
 
@@ -132,6 +133,11 @@ msgstr "All Primal"
 msgid "All times are in <0>your</0> timezone: {utcOffset} {timeZone}"
 msgstr "All times are in <0>your</0> timezone: {utcOffset} {timeZone}"
 
+#: src/pages/legal/privacyPolicyPage.tsx:34
+#: src/pages/terms/termsOfServicePage.tsx:34
+msgid "Applies to FFXIV Venues Site / API / Veni Ki / Ruby Ki"
+msgstr "Applies to FFXIV Venues Site / API / Veni Ki / Ruby Ki"
+
 #: src/components/filterMenu/filters/featureFilters.ts:14
 msgid "Artists"
 msgstr "Artists"
@@ -248,6 +254,10 @@ msgstr "Den"
 #: src/components/venueDrawer/venueToolbar.tsx:251
 msgid "Edit note"
 msgstr "Edit note"
+
+#: src/components/legal/effectiveDate.tsx:12
+msgid "Effective {formatted}"
+msgstr "Effective {formatted}"
 
 #: src/components/filterMenu/filters/worldFilters.ts:222
 msgid "Europe"
@@ -536,6 +546,7 @@ msgid "Previous"
 msgstr "Previous"
 
 #: src/pageLayoutss/defaultPageLayout.tsx:90
+#: src/pages/legal/privacyPolicyPage.tsx:33
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
@@ -669,6 +680,7 @@ msgid "Tavern"
 msgstr "Tavern"
 
 #: src/pageLayoutss/defaultPageLayout.tsx:90
+#: src/pages/terms/termsOfServicePage.tsx:33
 msgid "Terms of Service"
 msgstr "Terms of Service"
 
