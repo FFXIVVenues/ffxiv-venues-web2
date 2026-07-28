@@ -189,6 +189,8 @@ msgid "Casino"
 msgstr ""
 
 #: src/components/flagDialog/flagDialog.tsx:65
+#: src/components/ui/shadcn/dialog.tsx:82
+#: src/components/ui/shadcn/sheet.tsx:70
 #: src/components/venueDrawer/venueDrawer.tsx:72
 msgid "Close"
 msgstr ""
@@ -425,6 +427,10 @@ msgstr ""
 msgid "List View"
 msgstr ""
 
+#: src/components/ui/shadcn/spinner.tsx:8
+msgid "Loading"
+msgstr ""
+
 #: src/components/venueDrawer/venueToolbar.tsx:66
 msgid "Location copied to clipboard"
 msgstr ""
@@ -468,6 +474,10 @@ msgstr ""
 
 #: src/components/venueDrawer/venueSchedule.tsx:24
 msgid "Next open {openDate} {openTime}"
+msgstr ""
+
+#: src/components/ui/shadcn/carousel.tsx:230
+msgid "Next slide"
 msgstr ""
 
 #: src/components/filterMenu/filters/sceneFilters.ts:10
@@ -543,6 +553,10 @@ msgstr ""
 
 #: src/components/venueCarousel/venueCarousel.tsx:45
 msgid "Previous"
+msgstr ""
+
+#: src/components/ui/shadcn/carousel.tsx:200
+msgid "Previous slide"
 msgstr ""
 
 #: src/pageLayoutss/defaultPageLayout.tsx:90
@@ -829,6 +843,12 @@ msgstr ""
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:90
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:107
 msgid "Today ({day})"
+msgstr ""
+
+#: src/components/ui/shadcn/sidebar.tsx:274
+#: src/components/ui/shadcn/sidebar.tsx:287
+#: src/components/ui/shadcn/sidebar.tsx:290
+msgid "Toggle Sidebar"
 msgstr ""
 
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:90
