@@ -38,16 +38,18 @@ function numbered(childNode: React.ReactNode, className: string) {
   return <p className={className}><span>{childNode}</span></p>;
 }
 
-const components: Components = {
-  h1: ({ children }) => <h1 className="text-3xl font-bold mb-1">{children}</h1>,
-  h2: ({ children }) => <h2 className={S.h2} id={slug(String(children))}>{children}</h2>,
-  h3: ({ children }) => <h3 className={S.h3}>{children}</h3>,
-  p: ({ children }) => numbered(children, S.p),
-  li: ({ children }) => numbered(children, S.sub),
-  ul: ({ children }) => <>{children}</>,
-  a: ({ href, children }) => <A href={href ?? "#"}>{children}</A>,
-};
+export const MdDocument = ({ markdown, DecimalNumberedIndents = false }: { markdown: string; DecimalNumberedIndents?: boolean }) => {
 
-export const LegalDocument = ({ markdown }: { markdown: string }) => (
-  <Markdown components={components}>{markdown}</Markdown>
-);
+  const components: Components = {
+    h2: ({ children }) => <h2 className={S.h2} id={slug(String(children))}>{children}</h2>,
+    h3: ({ children }) => <h3 className={S.h3}>{children}</h3>,
+    a: ({ href, children }) => <A href={href ?? "#"}>{children}</A>,
+    ...(DecimalNumberedIndents ? {
+      p:  ({ children }) => numbered(children, S.p),
+      li: ({ children }) => numbered(children, S.sub),
+      ul: ({ children }) => <>{children}</>,
+    } : {}),
+  };
+
+  return <Markdown components={components}>{markdown}</Markdown>;
+};

@@ -1,4 +1,4 @@
-export const dtf_options = {
+export const dtfOptions = {
   time12: { hour: "numeric", minute: "2-digit" },
   time24: { hour: "numeric", minute: "2-digit", hour12: false },
   weekdayShort: { weekday: "short" },
@@ -10,13 +10,13 @@ export const dtf_options = {
   effective: { day: "numeric", month: "long", year: "numeric" },
 } satisfies Record<string, Intl.DateTimeFormatOptions>;
 
-export type DtfKey = keyof typeof dtf_options;
+export type DtfKey = keyof typeof dtfOptions;
 
 const cache = new Map<string, Intl.DateTimeFormat>();
 
 export function dtf(locale: string, k: DtfKey): Intl.DateTimeFormat {
   const key = locale + "|" + k;
   let f = cache.get(key);
-  if (!f) cache.set(key, (f = new Intl.DateTimeFormat(locale, dtf_options[k])));
+  if (!f) cache.set(key, (f = new Intl.DateTimeFormat(locale, dtfOptions[k])));
   return f;
 }

@@ -6,7 +6,7 @@ import { settingsService } from "@/lib/services/settings/settingsService";
 import {Switch} from "@/components/ui/shadcn/switch.tsx";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/shadcn/tooltip.tsx";
 import { Trans, useLingui } from "@lingui/react/macro";
-import { locales, availableLocales, activateLocale } from "@/lib/services/i18n";
+import {locales, availableLocales, activateLocale, isAvailableLocale} from "@/lib/services/i18n";
 
 type SettingsDialogProps = {
     open: boolean;
@@ -56,7 +56,7 @@ export const SettingsDialog = ({ open, onOpenChange }: SettingsDialogProps) => {
                         <span className="text-sm font-medium"><Trans>Language</Trans></span>
                         <select
                             value={i18n.locale}
-                            onChange={e => activateLocale(e.target.value)}
+                            onChange={e => { if (isAvailableLocale(e.target.value)) activateLocale(e.target.value); }}
                             aria-label={t({ message: 'Language', comment: 'Interface language selector' })}
                             className="text-sm bg-background border border-input rounded-md px-2 py-1 cursor-pointer">
                             {availableLocales.map(code => (

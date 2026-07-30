@@ -6,10 +6,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: en-x-miqo\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
 
+#. Date endings e.g 1st, 2nd, 3rd... 20th etc
+#. Date endings e.g 1st, 2nd, 3rd... 20th etc
 #. placeholder {0}: date.getDate()
 #: src/components/dateString/dateText.tsx:19
-#: src/components/legal/effectiveDate.tsx:7
+#: src/components/legal/formattedDate.tsx:7
 msgid "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
 msgstr ""
 
@@ -127,8 +135,8 @@ msgstr ""
 msgid "All times are in <0>your</0> timezone: {utcOffset} {timeZone}"
 msgstr ""
 
-#: src/pages/legal/privacyPolicyPage.tsx:34
-#: src/pages/terms/termsOfServicePage.tsx:34
+#: src/pages/legal/privacyPolicyPage.tsx:27
+#: src/pages/terms/termsOfServicePage.tsx:28
 msgid "Applies to FFXIV Venues Site / API / Veni Ki / Ruby Ki"
 msgstr ""
 
@@ -251,8 +259,9 @@ msgstr ""
 msgid "Edit note"
 msgstr ""
 
-#: src/components/legal/effectiveDate.tsx:12
-msgid "Effective {formatted}"
+#: src/pages/legal/privacyPolicyPage.tsx:33
+#: src/pages/terms/termsOfServicePage.tsx:34
+msgid "Effective {effective}"
 msgstr ""
 
 #: src/components/filterMenu/filters/worldFilters.ts:222
@@ -533,6 +542,10 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
+#: src/pages/notFoundPage/notFoundPage.tsx:8
+msgid "Page not found"
+msgstr ""
+
 #: src/components/filterMenu/filters/featureFilters.ts:25
 msgid "Performances"
 msgstr ""
@@ -554,7 +567,7 @@ msgid "Previous slide"
 msgstr ""
 
 #: src/pageLayoutss/defaultPageLayout.tsx:90
-#: src/pages/legal/privacyPolicyPage.tsx:33
+#: src/pages/legal/privacyPolicyPage.tsx:26
 msgid "Privacy Policy"
 msgstr ""
 
@@ -646,7 +659,7 @@ msgstr ""
 msgid "Side for venue details"
 msgstr ""
 
-#: src/pages/notFoundPage/notFoundPage.tsx:8
+#: src/pages/notFoundPage/notFoundPage.tsx:10
 msgid "Sorry, that page could not be found."
 msgstr ""
 
@@ -688,7 +701,7 @@ msgid "Tavern"
 msgstr ""
 
 #: src/pageLayoutss/defaultPageLayout.tsx:90
-#: src/pages/terms/termsOfServicePage.tsx:33
+#: src/pages/terms/termsOfServicePage.tsx:27
 msgid "Terms of Service"
 msgstr ""
 

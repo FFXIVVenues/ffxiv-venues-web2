@@ -13,12 +13,13 @@ export type Locale = keyof typeof locales;
 export const defaultLocale: Locale = "en";
 export const availableLocales: Locale[] = ["en"];
 
-export async function activateLocale(locale: string) {
-    const loc = (availableLocales.includes(locale as Locale) ? locale : defaultLocale) as Locale;
-    const { messages } = await import(`../../locales/${loc}/messages.po`);
-    i18n.load(loc, messages);
-    i18n.activate(loc);
-    localStorage.setItem("locale", loc);
+export const isAvailableLocale = (value: string): value is Locale => (availableLocales as readonly string[]).includes(value);
+
+export async function activateLocale(locale: Locale) {
+    const { messages } = await import(`../../locales/${locale}/messages.po`);
+    i18n.load(locale, messages);
+    i18n.activate(locale);
+    localStorage.setItem("locale", locale);
 }
 
 export function detectLocale(): Locale {

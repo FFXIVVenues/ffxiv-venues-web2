@@ -16,7 +16,10 @@ export const DateText = memo(({ date, short = false }: { date: Date, short?: boo
         daysUntil > 7 ? (short ? "dateFarShort" : "dateFar")
                 : (short ? "weekdayShort" : "weekdayLong");
 
-    const ordinal = t`${selectOrdinal(date.getDate(), { one: "#st", two: "#nd", few: "#rd", other: "#th" })}`;
+    const ordinal = t({
+        message: `${selectOrdinal(date.getDate(), { one: "#st", two: "#nd", few: "#rd", other: "#th" })}`,
+        comment: "Date endings e.g 1st, 2nd, 3rd... 20th etc",
+    });
     const display = dtf(i18n.locale, key).formatToParts(date).map(part => (part.type === "day" ? ordinal : part.value)).join("");
 
     return <span>{display}</span>;

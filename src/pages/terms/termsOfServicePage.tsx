@@ -2,25 +2,19 @@ import {memo} from "react";
 import {useLingui} from "@lingui/react";
 import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
 import {SidebarMenuButton} from "@/components/ui/shadcn/sidebar.tsx";
-import {LegalDocument, extractSections} from "@/components/legal/legalDocument.tsx";
+import {MdDocument, extractSections} from "@/components/markdown/MdDocument.tsx";
 import {Trans} from "@lingui/react/macro";
-import {EffectiveDate} from "@/components/legal/effectiveDate.tsx";
-
-const docs = import.meta.glob("../../content/legal/terms/*.md", {
-  query: "?raw", import: "default", eager: true,
-}) as Record<string, string>;
-
-const pick = (locale: string) => {
-  const at = (loc: string) => Object.entries(docs).find(([p]) => p.endsWith(`/${loc}.md`))?.[1];
-  return at(locale) ?? at("en") ?? "";
-};
+import {FormattedDate} from "@/components/dateString/formattedDate.tsx";
+import {_md} from "@/lib/utils/md.ts";
 
 const S = { m: "mx-2 w-auto -mt-1/2" };
 
 export const TermsOfServicePage = memo(() => {
   const { i18n } = useLingui();
-  const md = pick(i18n.locale);
+  const md = _md("markdown/terms", i18n.locale);
   const sections = extractSections(md);
+  const effective = <FormattedDate date={new Date(2026, 5, 25)} format="effective" />;
+
 
   return <DefaultPageLayout>
     <DefaultPageLayout.Panel>
@@ -34,9 +28,11 @@ export const TermsOfServicePage = memo(() => {
         <p className="text-xs italic text-gray-500 mb-2"><Trans>Applies to FFXIV Venues Site / API / Veni Ki / Ruby Ki</Trans></p>
         <hr className="mb-8" />
 
-        <LegalDocument markdown={md} />
+        <MdDocument markdown={md} DecimalNumberedIndents />
 
-        <p className="text-right text-xs italic text-gray-500 mt-16"><EffectiveDate date={new Date(2026, 3, 23)} /></p>
+        <p className="text-right text-xs italic text-gray-500 mt-16">
+          <Trans>Effective {effective}</Trans>
+        </p>
       </div>
     </DefaultPageLayout.Page>
   </DefaultPageLayout>;
