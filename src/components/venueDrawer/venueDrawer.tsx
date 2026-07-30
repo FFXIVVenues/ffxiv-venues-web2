@@ -16,6 +16,7 @@ import {cva} from "class-variance-authority";
 import React, {memo, type RefObject, useRef, useState} from "react";
 import {OpenBadge} from "@/components/badges/openBadge.tsx";
 import {NewBadge} from "@/components/badges/newBadge.tsx";
+import {Trans, useLingui} from "@lingui/react/macro";
 
 type VenueSheetProps = {
     open: boolean,
@@ -27,6 +28,9 @@ type VenueSheetProps = {
 export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: VenueSheetProps)=> {
     const [container, setContainer] = useState<HTMLDivElement | null>(null);
     const closeRef: RefObject<HTMLButtonElement | null> = useRef(null);
+    const { t } = useLingui();
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    const utcOffset = <UtcOffset />;
 
     if (!venue) return null;
 
@@ -65,7 +69,7 @@ export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: Venu
           onOpenAutoFocus={e => { e.preventDefault(); closeRef.current?.focus(); }}
           onCloseAutoFocus={e => { e.preventDefault(); onCloseComplete?.(); }}>
           <DrawerHeader className="p-0">
-            <DrawerClose ref={closeRef} className={exitButtonStyle({ side: positionSetting })} aria-label="Close">
+            <DrawerClose ref={closeRef} className={exitButtonStyle({ side: positionSetting })} aria-label={t`Close`}>
               <XIcon />
             </DrawerClose>
             <img className={bannerStyle({ side: positionSetting })} src={venue.bannerUri ?? defaultBanner } alt={venue.name} />
@@ -91,7 +95,7 @@ export const VenueDrawer = memo(({ open, venue, onClose, onCloseComplete }: Venu
             <VenueTags tags={venue.tags} className="my-8" />
             <VenueSchedule venue={venue} />
             <small className="text-muted-foreground italic ml-2 mt-4 inline-block">
-                All times are in <em>your</em> timezone: <UtcOffset /> {Intl.DateTimeFormat().resolvedOptions().timeZone}
+                <Trans>All times are in <em>your</em> timezone: {utcOffset} {timeZone}</Trans>
             </small>
             <VenueNsfwText className="mt-8" hasCourts={venue.tags.indexOf('Courtesans') >= 0} openlyNsfw={!venue.sfw} />
           </div>

@@ -1,0 +1,992 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-07-28 19:01-0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en-x-miqo\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#. Date endings e.g 1st, 2nd, 3rd... 20th etc
+#. Date endings e.g 1st, 2nd, 3rd... 20th etc
+#. placeholder {0}: date.getDate()
+#: src/components/dateString/dateText.tsx:19
+#: src/components/legal/formattedDate.tsx:7
+msgid "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
+msgstr ""
+
+#. placeholder {0}: Math.abs(arg)
+#: src/components/dateString/recurringDayText.tsx:24
+msgid "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} last {day} of the month"
+msgstr ""
+
+#: src/components/dateString/recurringDayText.tsx:21
+msgid "{arg, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} {day} of the month"
+msgstr ""
+
+#: src/components/dateString/recurringDayText.tsx:16
+msgid "{arg} weekly on {day}s"
+msgstr ""
+
+#: src/components/venueDrawer/venueNsfwText.tsx:11
+msgid "<0>Warning:</0> This venue has indicated they are openly NSFW and offer adult services. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
+msgstr ""
+
+#: src/components/venueDrawer/venueNsfwText.tsx:25
+msgid "<0>Warning:</0> This venue has indicated they are openly NSFW. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
+msgstr ""
+
+#: src/components/venueDrawer/venueNsfwText.tsx:18
+msgid "<0>Warning:</0> This venue has indicated they offer adult services. You must not partake in these services if you are under 18 years of age or the legal age of consent in your country, and by partaking in these services you declare you are not. Be prepared to verify your age."
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:17
+msgid "1+ Stars"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:16
+msgid "2+ Stars"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:32
+msgid "24/7 open house"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:15
+msgid "3+ Stars"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:14
+msgid "4+ Stars"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:13
+msgid "5 Stars"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:16
+msgid "A bard provides theme-based or general music to entertain guests with a selection of songs."
+msgstr ""
+
+#: src/components/notesDialog/notesDialog.tsx:47
+msgid "Add a personal note for this venue."
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:166
+#: src/components/venueDrawer/venueToolbar.tsx:251
+msgid "Add note"
+msgstr ""
+
+#: src/pageLayoutss/defaultPageLayout.tsx:61
+msgid "Add your venue"
+msgstr ""
+
+#: src/components/flagDialog/flagDialog.tsx:107
+msgid "Additional details"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:23
+msgid "All Aether"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:233
+msgid "All Chaos"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:73
+msgid "All Crystal"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:173
+msgid "All Dynamis"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:225
+msgid "All Europe"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:283
+msgid "All Light"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:343
+msgid "All Materia"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:15
+msgid "All North America"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:335
+msgid "All Oceania"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:123
+msgid "All Primal"
+msgstr ""
+
+#: src/components/venueDrawer/venueDrawer.tsx:98
+msgid "All times are in <0>your</0> timezone: {utcOffset} {timeZone}"
+msgstr ""
+
+#: src/pages/legal/privacyPolicyPage.tsx:27
+#: src/pages/terms/termsOfServicePage.tsx:28
+msgid "Applies to FFXIV Venues Site / API / Veni Ki / Ruby Ki"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:14
+msgid "Artists"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:14
+msgid "Artists are present in the venue to offer various custom artwork."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:16
+msgid "Bards"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:21
+msgid "Bath house"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:12
+msgid "Bingo"
+msgstr ""
+
+#: src/components/dateString/recurringDayText.tsx:15
+msgid "Biweekly on {day}s"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:9
+msgid "Blackjack"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:12
+msgid "Cafe"
+msgstr ""
+
+#: src/components/hideDialog/hideDialog.tsx:25
+#: src/components/notesDialog/notesDialog.tsx:66
+msgid "Cancel"
+msgstr ""
+
+#. Schedule layout option
+#: src/components/settingsMenu/settingsDialog.tsx:76
+msgid "Card"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:77
+msgid "Card View"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:18
+msgid "Casino"
+msgstr ""
+
+#: src/components/flagDialog/flagDialog.tsx:65
+#: src/components/ui/shadcn/dialog.tsx:82
+#: src/components/ui/shadcn/sheet.tsx:70
+#: src/components/venueDrawer/venueDrawer.tsx:72
+msgid "Close"
+msgstr ""
+
+#: src/components/venueDrawer/venueSchedule.tsx:59
+msgid "Closed"
+msgstr ""
+
+#. Schedule layout option
+#: src/components/settingsMenu/settingsDialog.tsx:81
+msgid "Compact"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:83
+msgid "Compact View"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:206
+#: src/components/venueDrawer/venueToolbar.tsx:210
+msgid "Copy lifestream command"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:145
+#: src/components/venueDrawer/venueToolbar.tsx:197
+#: src/components/venueDrawer/venueToolbar.tsx:201
+msgid "Copy location"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:12
+msgid "Courtesans"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:15
+msgid "Dancers"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:15
+msgid "Dancers populate the venue to hype the party and/or host customers."
+msgstr ""
+
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:48
+msgid "Dark"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:49
+msgid "Dark Mode"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:10
+msgid "Deathroll"
+msgstr ""
+
+#: src/components/notesDialog/notesDialog.tsx:61
+msgid "Delete Note"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:11
+msgid "Den"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:166
+#: src/components/venueDrawer/venueToolbar.tsx:251
+msgid "Edit note"
+msgstr ""
+
+#: src/pages/legal/privacyPolicyPage.tsx:33
+#: src/pages/terms/termsOfServicePage.tsx:34
+msgid "Effective {effective}"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:222
+msgid "Europe"
+msgstr ""
+
+#: src/lib/services/flagging/flagService.tsx:27
+msgid "Failed to flag venue"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:11
+msgid "Favorited"
+msgstr ""
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:84
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:101
+msgid "Favorites"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:158
+#: src/components/venueDrawer/venueToolbar.tsx:223
+#: src/components/venueDrawer/venueToolbar.tsx:229
+msgid "Favourite"
+msgstr ""
+
+#: src/components/filterMenu/filterMenu.tsx:77
+msgid "Features"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:17
+msgid "Fight club"
+msgstr ""
+
+#: src/pageLayoutss/defaultPageLayout.tsx:83
+msgid "FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<0/>Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved."
+msgstr ""
+
+#: src/components/flagDialog/flagDialog.tsx:56
+msgid "Flag a venue to the team for review."
+msgstr ""
+
+#: src/components/flagDialog/flagDialog.tsx:113
+#: src/lib/services/flagging/flagService.tsx:38
+msgid "Flag accepted"
+msgstr ""
+
+#: src/components/flagDialog/flagDialog.tsx:55
+#: src/components/venueDrawer/venueToolbar.tsx:176
+#: src/components/venueDrawer/venueToolbar.tsx:269
+#: src/components/venueDrawer/venueToolbar.tsx:273
+msgid "Flag venue"
+msgstr ""
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:93
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:110
+msgid "Future Openings"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:13
+msgid "Gambling"
+msgstr ""
+
+#: src/components/filterMenu/filterMenu.tsx:83
+msgid "Games"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:26
+msgid "Giveaways"
+msgstr ""
+
+#: src/components/hideDialog/hideDialog.tsx:19
+msgid "Hide this venue?"
+msgstr ""
+
+#: src/components/hideDialog/hideDialog.tsx:26
+#: src/components/venueDrawer/venueToolbar.tsx:173
+#: src/components/venueDrawer/venueToolbar.tsx:260
+#: src/components/venueDrawer/venueToolbar.tsx:264
+msgid "Hide venue"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:30
+msgid "IC RP encouraged"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:31
+msgid "IC RP only"
+msgstr ""
+
+#: src/components/createVenueModal/createVenueDialog.tsx:68
+msgid "If you have any questions or need help, just make a <0>Venue Ticket</0> in the discord."
+msgstr ""
+
+#: src/components/flagDialog/flagDialog.tsx:101
+#: src/components/flagDialog/flagDialog.tsx:102
+msgid "Inappropriate content"
+msgstr ""
+
+#: src/components/flagDialog/flagDialog.tsx:98
+#: src/components/flagDialog/flagDialog.tsx:99
+msgid "Incorrect information"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:14
+msgid "Inn"
+msgstr ""
+
+#: src/lib/services/favouritesService.ts:35
+msgid "It'll appear at the top of the index for you."
+msgstr ""
+
+#: src/lib/services/favouritesService.ts:46
+msgid "It'll no longer appear in your favourites."
+msgstr ""
+
+#: src/components/createVenueModal/createVenueDialog.tsx:43
+#: src/pageLayoutss/defaultPageLayout.tsx:65
+msgid "Join the discord!"
+msgstr ""
+
+#. Veni / Veni Ki is the FFXIV Venues Discord bot; keep the name as-is
+#: src/components/createVenueModal/createVenueDialog.tsx:40
+msgid "Join Veni's home; the FFXIV Venues Discord!"
+msgstr ""
+
+#. Veni / Veni Ki is the FFXIV Venues Discord bot; keep the name as-is
+#: src/components/createVenueModal/createVenueDialog.tsx:29
+msgid "Join via Veni!"
+msgstr ""
+
+#. Interface language selector
+#: src/components/settingsMenu/settingsDialog.tsx:56
+#: src/components/settingsMenu/settingsDialog.tsx:60
+msgid "Language"
+msgstr ""
+
+#: src/components/dateString/recurringDayText.tsx:23
+msgid "Last {day} of the month"
+msgstr ""
+
+#. Drawer panel position
+#: src/components/settingsMenu/settingsDialog.tsx:100
+#: src/components/settingsMenu/settingsDialog.tsx:101
+msgid "Left"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:29
+msgid "LGBTQIA+ focused"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:71
+msgid "Lifestream command copied to clipboard"
+msgstr ""
+
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:38
+msgid "Light"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:39
+msgid "Light Mode"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:87
+#: src/components/settingsMenu/settingsDialog.tsx:88
+msgid "List View"
+msgstr ""
+
+#: src/components/ui/shadcn/spinner.tsx:8
+msgid "Loading"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:66
+msgid "Location copied to clipboard"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:15
+msgid "Lounge"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:20
+msgid "Maid cafe / host club"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:162
+#: src/components/venueDrawer/venueToolbar.tsx:240
+msgid "Mark unvisited"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:162
+#: src/components/venueDrawer/venueToolbar.tsx:240
+msgid "Mark visited"
+msgstr ""
+
+#. Veni / Veni Ki is the FFXIV Venues Discord bot; keep the name as-is
+#: src/components/createVenueModal/createVenueDialog.tsx:51
+msgid "Meet Veni Ki!"
+msgstr ""
+
+#. Badge shown on newly-added venues
+#: src/components/badges/newBadge.tsx:8
+msgid "New"
+msgstr ""
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:86
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:103
+msgid "Newest"
+msgstr ""
+
+#: src/components/venueCarousel/venueCarousel.tsx:46
+msgid "Next"
+msgstr ""
+
+#: src/components/venueDrawer/venueSchedule.tsx:24
+msgid "Next open {openDate} {openTime}"
+msgstr ""
+
+#: src/components/ui/shadcn/carousel.tsx:230
+msgid "Next slide"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:10
+msgid "Nightclub"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:12
+msgid "North America"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:24
+msgid "Not bath house"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:23
+msgid "Not nightclub"
+msgstr ""
+
+#: src/components/venueCard/venueCardCompact.tsx:99
+#: src/components/venueCard/venueCardFull.tsx:92
+msgid "Note"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:11
+msgid "NSFW on entry"
+msgstr ""
+
+#: src/components/filterMenu/filters/worldFilters.ts:332
+msgid "Oceania"
+msgstr ""
+
+#. Badge shown when a venue is currently open
+#: src/components/badges/openBadge.tsx:7
+#: src/components/venueDrawer/venueSchedule.tsx:59
+msgid "Open"
+msgstr ""
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:85
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:102
+msgid "Open Now"
+msgstr ""
+
+#: src/components/venueDrawer/venueSchedule.tsx:19
+msgid "Open now until {closingTime}"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:22
+msgid "Open stage"
+msgstr ""
+
+#: src/components/venueCard/venueCardCompact.tsx:80
+#: src/components/venueCard/venueCardFull.tsx:73
+#: src/components/venueCard/venueListItem.tsx:55
+msgid "Open until {closingTime}"
+msgstr ""
+
+#. Venue type: none of the listed categories
+#: src/components/filterMenu/filters/sceneFilters.ts:22
+msgid "Other"
+msgstr ""
+
+#: src/pages/notFoundPage/notFoundPage.tsx:8
+msgid "Page not found"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:25
+msgid "Performances"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:21
+msgid "Photography"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:20
+msgid "Pillow talk"
+msgstr ""
+
+#: src/components/venueCarousel/venueCarousel.tsx:45
+msgid "Previous"
+msgstr ""
+
+#: src/components/ui/shadcn/carousel.tsx:200
+msgid "Previous slide"
+msgstr ""
+
+#: src/pageLayoutss/defaultPageLayout.tsx:90
+#: src/pages/legal/privacyPolicyPage.tsx:26
+msgid "Privacy Policy"
+msgstr ""
+
+#. Star rating control
+#. Star rating control
+#: src/components/filterMenu/filterMenu.tsx:89
+#: src/components/venueDrawer/venueToolbar.tsx:154
+#: src/components/venueDrawer/venueToolbar.tsx:219
+msgid "Rating"
+msgstr ""
+
+#: src/components/filterMenu/filterMenu.tsx:65
+msgid "Regions"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:16
+msgid "Restaurant"
+msgstr ""
+
+#: src/lib/services/flagging/flagService.tsx:28
+msgid "Retrying in {retry} seconds."
+msgstr ""
+
+#. Drawer panel position
+#: src/components/settingsMenu/settingsDialog.tsx:104
+#: src/components/settingsMenu/settingsDialog.tsx:105
+msgid "Right"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:13
+msgid "Roulette"
+msgstr ""
+
+#: src/components/notesDialog/notesDialog.tsx:67
+msgid "Save"
+msgstr ""
+
+#: src/components/filterMenu/filterMenu.tsx:71
+msgid "Scenes"
+msgstr ""
+
+#: src/components/venueDrawer/venueSchedule.tsx:29
+#: src/components/venueDrawer/venueSchedule.tsx:51
+msgid "Schedule"
+msgstr ""
+
+#: src/components/venueDrawer/venueSchedule.tsx:51
+msgid "Schedule amendments"
+msgstr ""
+
+#: src/components/filterMenu/filterMenu.tsx:57
+#: src/components/filterMenu/filterMenu.tsx:60
+msgid "Search venues"
+msgstr ""
+
+#: src/components/flagDialog/flagDialog.tsx:92
+#: src/components/flagDialog/flagDialog.tsx:92
+#: src/components/flagDialog/flagDialog.tsx:92
+msgid "Select reason"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:28
+#: src/pageLayoutss/defaultPageLayout.tsx:69
+msgid "Settings"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:10
+msgid "SFW on entry"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:19
+msgid "Shop"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:120
+#: src/components/settingsMenu/settingsDialog.tsx:124
+msgid "Show hidden venues"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:115
+msgid "Show navigation bar"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:111
+msgid "Show navigation bar by default"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:94
+msgid "Side for venue details"
+msgstr ""
+
+#: src/pages/notFoundPage/notFoundPage.tsx:10
+msgid "Sorry, that page could not be found."
+msgstr ""
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:118
+msgid "Sorry, we couldn't get you venues. :("
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:24
+msgid "Stylists"
+msgstr ""
+
+#: src/components/createVenueModal/createVenueDialog.tsx:75
+msgid "Subject to <0>privacy policy</0>"
+msgstr ""
+
+#: src/components/flagDialog/flagDialog.tsx:69
+msgid "Submit"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:18
+msgid "Sync DJ"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:27
+msgid "Syncshell available"
+msgstr ""
+
+#. Theme option
+#: src/components/settingsMenu/settingsDialog.tsx:43
+msgid "System"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:19
+msgid "Tarot"
+msgstr ""
+
+#: src/components/filterMenu/filters/sceneFilters.ts:13
+msgid "Tavern"
+msgstr ""
+
+#: src/pageLayoutss/defaultPageLayout.tsx:90
+#: src/pages/terms/termsOfServicePage.tsx:27
+msgid "Terms of Service"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:11
+msgid "Texas holdem"
+msgstr ""
+
+#. Veni / Veni Ki is the FFXIV Venues Discord bot; keep the name as-is
+#: src/components/createVenueModal/createVenueDialog.tsx:35
+msgid "The easiest way to get your venue listed is through <0>Veni Ki</0> <1>🥰</1> - our cute bot for managing your venue!"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:11
+msgid "The venue allows adult language, nudity or erotic content in the open."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:32
+msgid "The venue allows anyone to visit at anytime, even outside of any scheduled hours"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:10
+msgid "The venue disallows nudity or erotic content in the open, some adult language expected, nudity/erotic content may occur in private rooms."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:30
+msgid "The venue encourages an environment for players to role play as their characters, though interacting as themselves is allowed."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:27
+msgid "The venue has a syncshell available for guests to join and see each other as they see themselves."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:9
+msgid "The venue holds a table for players who wish to gamble gil in a game of 21."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:13
+msgid "The venue holds a table for players who wish to gamble gil in a game of Roulette."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:11
+msgid "The venue holds a table for players who wish to gamble gil in a game of Texas holdem."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:12
+msgid "The venue holds a venue wide bingo game, usually with prizes involved."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:17
+msgid "The venue hosts a DJ who provides music in twitch streams and hype the venue."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:18
+msgid "The venue hosts a sync DJ who offers music via synchshells."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:19
+msgid "The venue hosts a Tarot Reader who offers to read drawn cards and provide insights about the possible meaning they hold."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:21
+msgid "The venue hosts photographers who take venue snapshots or more complex gpose of patrons to display in the venue discord and create memories."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:24
+msgid "The venue hosts stylists who offer a variety of glamour services, including hair styling, makeup, and wardrobe assistance."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:29
+msgid "The venue is a safe space focused on LGBTQIA+."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:23
+msgid "The venue is built in the void; created outside the walls of the house."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:8
+msgid "The venue offers a game of Truth or Dare for whomever feels like joining. Sometimes in private alliance, sometimes venue wide."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:31
+msgid "The venue offers an environment for players to role play as their characters only, and does not allow open interaction as themselves."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:12
+msgid "The venue offers erotic role-play services in a consensual environment."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:26
+msgid "The venue offers giveaways through various channels, in chat, twitch stream or discord."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:10
+msgid "The venue offers individual or competitive game of Deathroll usually with prizes involved."
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:7
+msgid "The venue offers individual or competitive games of Triple Triad via the game interface itself."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:20
+msgid "The venue offers Pillows who provide a safe, confidential space to promote an SFW companionship for a limited time."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:22
+msgid "The venue offers the stage for a patron to perform to the audience."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:25
+msgid "The venue offers unique schedule performances, this could be SFW (theater, synch dancers, etc) or NSFW (erotic voyeur shows, live BDSM, etc)."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:13
+msgid "The venue offers various games of chance with set amounts of gils and house rules."
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:28
+msgid "The venue offers various perks through VIP tiers. This could include free drinks, gpose, gambling perk or more."
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:32
+msgid "Theme"
+msgstr ""
+
+#: src/components/createVenueModal/createVenueDialog.tsx:48
+msgid "Then simply DM Veni and ask to <0>Create a venue</0> or type <1>/create</1>!"
+msgstr ""
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:126
+msgid "There are no venues to show :/"
+msgstr ""
+
+#: src/components/hideDialog/hideDialog.tsx:21
+msgid "This venue will no longer appear in your results. You can unhide it by selecting show hidden venues from the settings page at any time."
+msgstr ""
+
+#. Veni / Veni Ki is the FFXIV Venues Discord bot; keep the name as-is
+#: src/components/createVenueModal/createVenueDialog.tsx:62
+msgid "To keep your venue indexed, we ask that you stay in the FFXIV Venues Discord - it's how Veni stays in touch with you. Don't worry, the server will never notify you unless you subscribe to a topic, and Veni will DM you regularly to keep things up to date. <0>🥰</0>"
+msgstr ""
+
+#: src/components/dateString/dateText.tsx:13
+msgid "Today"
+msgstr ""
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:90
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:107
+msgid "Today ({day})"
+msgstr ""
+
+#: src/components/ui/shadcn/sidebar.tsx:274
+#: src/components/ui/shadcn/sidebar.tsx:287
+#: src/components/ui/shadcn/sidebar.tsx:290
+msgid "Toggle Sidebar"
+msgstr ""
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:90
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:107
+msgid "Tomorrow ({day})"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:7
+msgid "Triple triad"
+msgstr ""
+
+#: src/components/filterMenu/filters/gameFilters.ts:8
+msgid "Truth or dare"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:17
+msgid "Twitch DJ"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:87
+msgid "Undo"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:158
+#: src/components/venueDrawer/venueToolbar.tsx:229
+msgid "Unfavourite"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:173
+#: src/components/venueDrawer/venueToolbar.tsx:264
+msgid "Unhide venue"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:18
+msgid "Unrated"
+msgstr ""
+
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:94
+#: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:111
+msgid "Unscheduled"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:44
+msgid "Use System Theme"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:137
+msgid "Venue actions"
+msgstr ""
+
+#: src/components/flagDialog/flagDialog.tsx:95
+#: src/components/flagDialog/flagDialog.tsx:96
+msgid "Venue empty"
+msgstr ""
+
+#: src/lib/services/favouritesService.ts:34
+msgid "Venue favourited"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:86
+msgid "Venue hidden"
+msgstr ""
+
+#: src/lib/services/visitedService.ts:32
+msgid "Venue marked as visited"
+msgstr ""
+
+#: src/components/notesDialog/notesDialog.tsx:46
+msgid "Venue Note"
+msgstr ""
+
+#: src/components/venueDrawer/venueToolbar.tsx:247
+msgid "Venue Notes"
+msgstr ""
+
+#: src/lib/services/ratingsService.ts:36
+msgid "Venue rated"
+msgstr ""
+
+#: src/components/settingsMenu/settingsDialog.tsx:70
+msgid "Venue schedule layout"
+msgstr ""
+
+#: src/lib/services/favouritesService.ts:45
+msgid "Venue unfavourited"
+msgstr ""
+
+#: src/lib/services/visitedService.ts:43
+msgid "Venue unmarked as visited"
+msgstr ""
+
+#: src/components/venueCard/venueCardFull.tsx:118
+msgid "View Venue"
+msgstr ""
+
+#: src/components/filterMenu/filters/featureFilters.ts:28
+msgid "VIP available"
+msgstr ""
+
+#: src/components/filterMenu/filters/ratingFilters.tsx:12
+#: src/components/venueDrawer/venueToolbar.tsx:234
+msgid "Visited"
+msgstr ""
+
+#. Venue built in the housing void
+#: src/components/filterMenu/filters/featureFilters.ts:23
+msgid "Void"
+msgstr ""
+
+#: src/components/venueDrawer/venueWebsiteButton.tsx:10
+msgid "Website"
+msgstr ""
+
+#: src/components/dateString/recurringDayText.tsx:14
+msgid "Weekly on {day}s"
+msgstr ""
+
+#: src/components/notesDialog/notesDialog.tsx:52
+msgid "Write anything you want to remember about this venue!"
+msgstr ""
+
+#: src/lib/services/ratingsService.ts:37
+msgid "You can filter to venues of a certain rating later via the sidebar."
+msgstr ""
+
+#: src/lib/services/visitedService.ts:33
+#: src/lib/services/visitedService.ts:44
+msgid "You can filter to venues you have or haven't visited later via the sidebar."
+msgstr ""
+
+#: src/components/flagDialog/flagDialog.tsx:115
+#: src/lib/services/flagging/flagService.tsx:39
+msgid "Your flag has been submitted for review. The team usually actions flags within 24 hours."
+msgstr ""

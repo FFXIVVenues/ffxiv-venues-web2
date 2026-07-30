@@ -4,7 +4,6 @@ import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
 import {FilterMenu} from "@/components/filterMenu/filterMenu.tsx";
 import {useVenueSchedule} from "@/lib/services/venues/useVenueSchedule.ts";
 import {VenueCarousel} from "@/components/venueCarousel/venueCarousel.tsx";
-import {Day} from "@/lib/model/day.ts";
 import {Skeleton} from "@/components/ui/shadcn/skeleton.tsx";
 import type {Venue} from "@/lib/model/venue.ts";
 import {VenueDrawer} from "@/components/venueDrawer/venueDrawer.tsx";
@@ -13,6 +12,8 @@ import {useSetting} from "@/lib/services/settings/useSetting";
 import {venueService} from "@/lib/services/venues/venueService.ts";
 import type {VenueSchedule} from "@/lib/services/venues/venueSchedule.ts";
 import {LogoFail} from "@/components/icons/logo-fail.tsx";
+import {Trans, useLingui} from "@lingui/react/macro";
+import {dtf} from "@/lib/utils/dateFormat.ts";
 
 export const VenueDirectoryPage = () => {
     const { venue, openDrawer } = useVenueFromRoute();
@@ -77,55 +78,53 @@ function VenueDirectoryLoadingStub() {
     </>
 }
 
-function VenueDirectoryAsList({ venues, onVenueClick }  : { venues: VenueSchedule, onVenueClick: (venue: Venue) => void }) {
-    const currentDay = (new Date().getDay() + 6) % 7;
+function VenueDirectoryAsList({ venues, onVenueClick }: { venues: VenueSchedule, onVenueClick: (venue: Venue) => void }) {
+    const { t, i18n } = useLingui();
     return <div className="mt-4">
-        <VenueList title="Favorites" venues={venues.favourites} onVenueClick={onVenueClick} />
-        <VenueList title="Open Now" venues={venues.open} onVenueClick={onVenueClick} />
-        <VenueList title="Newest" venues={venues.newest} onVenueClick={onVenueClick} />
-        {(venues?.scheduled).map((dayVenues, i) => {
-            const day = Day[(currentDay+i)%7];
-            const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
-            return(
-              <VenueList key={day} title={title} venues={dayVenues} onVenueClick={onVenueClick} />
-            )}
-        )}
-        <VenueList title="Future Openings" venues={venues.future} onVenueClick={onVenueClick} future={true}/>
-        <VenueList title="Unscheduled" venues={venues.unscheduled} onVenueClick={onVenueClick} />
-    </div>
+        <VenueList title={t`Favorites`} venues={venues.favourites} onVenueClick={onVenueClick} />
+        <VenueList title={t`Open Now`} venues={venues.open} onVenueClick={onVenueClick} />
+        <VenueList title={t`Newest`} venues={venues.newest} onVenueClick={onVenueClick} />
+        {venues.scheduled.map((dayVenues, i) => {
+            const d = new Date(); d.setDate(d.getDate() + i);
+            const day = dtf(i18n.locale, "weekdayLong").format(d);
+            const title = i === 0 ? t`Today (${day})` : i === 1 ? t`Tomorrow (${day})` : day;
+            return <VenueList key={i} title={title} venues={dayVenues} onVenueClick={onVenueClick} />;
+        })}
+        <VenueList title={t`Future Openings`} venues={venues.future} onVenueClick={onVenueClick} future={true} />
+        <VenueList title={t`Unscheduled`} venues={venues.unscheduled} onVenueClick={onVenueClick} />
+    </div>;
 }
 
-function VenueDirectoryAsCards({ venues, onVenueClick } : { venues: VenueSchedule, onVenueClick: (venue: Venue) => void }) {
-    const currentDay = (new Date().getDay() + 6) % 7;
+function VenueDirectoryAsCards({ venues, onVenueClick }: { venues: VenueSchedule, onVenueClick: (venue: Venue) => void }) {
+    const { t, i18n } = useLingui();
     return <div className="mt-4">
-        <VenueCarousel title="Favorites" venues={venues.favourites} onVenueClick={onVenueClick} className="mb-4" />
-        <VenueCarousel title="Open Now" venues={venues.open} onVenueClick={onVenueClick} className="mb-4" />
-        <VenueCarousel title="Newest" venues={venues.newest} onVenueClick={onVenueClick} className="mb-4" />
-        {(venues.scheduled).map((dayVenues, i) => {
-            const day = Day[(currentDay+i)%7];
-            const title = i === 0 ? `Today (${day})` : i === 1 ? `Tomorrow (${day})` : day;
-            return(
-              <VenueCarousel key={day} title={title} venues={dayVenues} onVenueClick={onVenueClick} className="mb-4" />
-            )
+        <VenueCarousel title={t`Favorites`} venues={venues.favourites} onVenueClick={onVenueClick} className="mb-4" />
+        <VenueCarousel title={t`Open Now`} venues={venues.open} onVenueClick={onVenueClick} className="mb-4" />
+        <VenueCarousel title={t`Newest`} venues={venues.newest} onVenueClick={onVenueClick} className="mb-4" />
+        {venues.scheduled.map((dayVenues, i) => {
+            const d = new Date(); d.setDate(d.getDate() + i);
+            const day = dtf(i18n.locale, "weekdayLong").format(d);
+            const title = i === 0 ? t`Today (${day})` : i === 1 ? t`Tomorrow (${day})` : day;
+            return <VenueCarousel key={i} title={title} venues={dayVenues} onVenueClick={onVenueClick} className="mb-4" />;
         })}
-        <VenueCarousel title="Future Openings" venues={venues.future} onVenueClick={onVenueClick} className="mb-4" />
-        <VenueCarousel title="Unscheduled" venues={venues.unscheduled} onVenueClick={onVenueClick} className="mb-4" />
+        <VenueCarousel title={t`Future Openings`} venues={venues.future} onVenueClick={onVenueClick} className="mb-4" />
+        <VenueCarousel title={t`Unscheduled`} venues={venues.unscheduled} onVenueClick={onVenueClick} className="mb-4" />
     </div>;
 }
 
 function VenueDirectoryError({ error }: { error: Error }) {
     return <div className="mx-auto text-center max-w-7xl mt-[20vh] mb-[45vh]">
         <LogoFail className="m-4 mx-auto" size={96} color="var(--color-muted-foreground)" />
-        Sorry, we couldn't get you venues. :(
+        <Trans>Sorry, we couldn't get you venues. :(</Trans>
         <p className="">{error?.message}</p>
-    </div>
+    </div>;
 }
 
 function VenueDirectoryEmpty() {
     return <div className="mx-auto text-center max-w-7xl mt-[20vh] mb-[45vh]">
         <LogoFail className="m-4 mx-auto" size={96} color="var(--color-muted-foreground)" />
-        There are no venues to show :/
-    </div>
+        <Trans>There are no venues to show :/</Trans>
+    </div>;
 }
 
 function useVenueFromRoute() {

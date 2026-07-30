@@ -1,10 +1,13 @@
 import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
+import {Trans, useLingui} from "@lingui/react/macro";
 
 export const NotFoundPage = () => {
+  const { t } = useLingui();
+
   return <DefaultPageLayout
-    title="Page not found - FFXIV Venues">
+      title={`${t`Page not found`} - FFXIV Venues`}>
     <DefaultPageLayout.Page>
-      Sorry, that page could not be found.
+      <Trans>Sorry, that page could not be found.</Trans>
     </DefaultPageLayout.Page>
   </DefaultPageLayout>
 }

@@ -16,6 +16,7 @@ import {NewBadge} from "@/components/badges/newBadge.tsx";
 import {OpenBadge} from "@/components/badges/openBadge.tsx";
 import {hideService} from "@/lib/services/hideVenue/hideService.ts";
 import {cn} from "@/lib/utils";
+import {Trans} from "@lingui/react/macro";
 
 type VenueCardProps = {
     venue: Venue;
@@ -26,6 +27,7 @@ type VenueCardProps = {
 
 export const VenueCardCompact = memo(({ venue, opening, onClick, className }: VenueCardProps) => {
     const displayOpening = opening ?? venue.resolution;
+    const closingTime = displayOpening && <TimeText time={displayOpening.end} />;
     const rating = ratingsService.getRating(venue.id);
     const isFavorite = favouritesService.isFavourite(venue.id);
     const isVisited = visitedService.isVisited(venue.id);
@@ -75,8 +77,7 @@ export const VenueCardCompact = memo(({ venue, opening, onClick, className }: Ve
                     <CardDescription className="min-h-4 flex justify-between">
                         {displayOpening?.isNow? (
                             <span className="flex items-center gap-1 font-bold">
-                                <span>Open until</span>
-                                <TimeText time={displayOpening.end} />
+                                <Trans>Open until {closingTime}</Trans>
                             </span>
                         ): displayOpening && (
                             <span className="flex items-center gap-1">
@@ -95,7 +96,7 @@ export const VenueCardCompact = memo(({ venue, opening, onClick, className }: Ve
                                         <Pencil size={14} className="stroke-muted-foreground fill-muted-foreground" />
                                     </HoverCardTrigger>
                                     <HoverCardContent className="w-64">
-                                        <p className="text-xs font-semibold text-muted-foreground mb-1">Note</p>
+                                        <p className="text-xs font-semibold text-muted-foreground mb-1"><Trans>Note</Trans></p>
                                         <p className="text-sm text-muted-foreground whitespace-pre-wrap">{notesService.getNote(venue.id)}</p>
                                     </HoverCardContent>
                                 </HoverCard>

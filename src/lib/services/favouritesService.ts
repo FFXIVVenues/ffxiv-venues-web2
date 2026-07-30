@@ -1,4 +1,5 @@
 import {toast} from "sonner";
+import { t } from "@lingui/core/macro";
 
 class FavouritesService {
 
@@ -30,8 +31,8 @@ class FavouritesService {
         this._setFavourites(favourites);
 
 
-        toast.success("Venue favourited", {
-            description: "It'll appear at the top of the index for you.",
+        toast.success(t`Venue favourited`, {
+            description: t`It'll appear at the top of the index for you.`,
         })
 
         return favourites;
@@ -41,8 +42,8 @@ class FavouritesService {
         const favourites = this.getFavourites().filter(i => i !== id);
         this._setFavourites(favourites);
 
-        toast.success("Venue unfavourited", {
-            description: "It'll no longer appear in your favourites.",
+        toast.success(t`Venue unfavourited`, {
+            description: t`It'll no longer appear in your favourites.`,
         })
 
         return favourites;

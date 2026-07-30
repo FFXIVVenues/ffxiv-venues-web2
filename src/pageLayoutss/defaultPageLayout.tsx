@@ -13,6 +13,7 @@ import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Plus, Settings} from "lucide-react";
 import {Toaster} from "@/components/ui/shadcn/sonner.tsx";
+import { Trans } from "@lingui/react/macro";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -57,15 +58,15 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
                 <SidebarFooter>
                     <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4" onClick={() => setCreateVenueOpen(true)}>
                         <Plus className="size-4"/> 
-                        <span className="mt-0.5">Add your venue</span>
+                        <span className="mt-0.5"><Trans>Add your venue</Trans></span>
                     </Button>
                     <Button nativeButton={false} variant="ghost" render={<a href="https://discord.gg/gTP65VYcMj" rel="noopener noreferrer" target="_blank"></a>} className="cursor-pointer w-full justify-start items-center gap-2 py-4">
                         <DiscordFillIcon className="size-4" strokeWidth={0} fill="var(--color-primary)"/> 
-                        <span className="mt-0.5">Join the discord!</span>
+                        <span className="mt-0.5"><Trans>Join the discord!</Trans></span>
                     </Button>
                     <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4" onClick={() => setSettingsOpen(true)}>
                         <Settings className="size-4"/> 
-                        <span className="mt-0.5">Settings</span>
+                        <span className="mt-0.5"><Trans>Settings</Trans></span>
                     </Button>
                     <CreateVenueDialog open={createVenueOpen} onOpenChange={setCreateVenueOpen} />
                     <SettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
@@ -79,12 +80,14 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
                 <footer className="text-center text-sm text-muted-foreground mt-16 mb-8 mx-12">
                   <hr className="my-8"/>
                   <p className="mb-4">
-                    FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.
-                    <br/>
-                    Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved.
+                      <Trans>
+                        FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.
+                        <br/>
+                        Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved.
+                      </Trans>
                   </p>
                   <p>
-                    FFXIV Venues | <a className="underline" href="/terms">Terms of Service</a> | <a className="underline" href="/privacy">Privacy Policy</a>
+                    FFXIV Venues | <a className="underline" href="/terms"><Trans>Terms of Service</Trans></a> | <a className="underline" href="/privacy"><Trans>Privacy Policy</Trans></a>
                   </p>
                 </footer>
             </main>
