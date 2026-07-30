@@ -9,6 +9,7 @@ import {cn} from "@/lib/utils";
 import {useSetting} from "@/lib/services/settings/useSetting";
 import type {Venue} from "@/lib/model/venue.ts";
 import type {Opening} from "@/lib/model/opening.ts";
+import {useLingui} from "@lingui/react/macro";
 
 type VenueCarouselProps = {
     title: ReactNode;
@@ -21,6 +22,7 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
     const list = venues ?? [];
     if (list.length === 0) return null;
     const [open, setOpen] = React.useState(true)
+    const { t } = useLingui();
 
     return (
         <Collapsible open={open} onOpenChange={setOpen} className={className}>
@@ -40,8 +42,8 @@ export const VenueCarousel = memo(({ title, venues, onVenueClick, className }: V
                             ))}
                         </CarouselContent>
 
-                        <CarouselPrevious aria-label="Previous" />
-                        <CarouselNext aria-label="Next" />
+                        <CarouselPrevious aria-label={t`Previous`} />
+                        <CarouselNext aria-label={t`Next`} />
                     </Carousel>
                 </div>
             </CollapsibleContent>

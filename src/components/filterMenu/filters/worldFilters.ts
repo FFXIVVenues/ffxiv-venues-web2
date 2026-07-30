@@ -3,15 +3,16 @@ import {isDataCenter} from "./filterFunctions/isDataCenter.ts";
 import {isWorld} from "./filterFunctions/isWorld.ts";
 
 import type {FilterOption} from "@/components/filterMenu/filters/filterOption.ts";
+import {msg} from "@lingui/core/macro";
 
 const worldMek = Symbol("worldMek");
 
 export const worldFilters: FilterOption[] = [
   {
-    name: "North America",
+    name: msg`North America`,
     options: [
       {
-        name: "All North America",
+        name: msg`All North America`,
         mek: worldMek,
         filter: isRegion("na"),
       },
@@ -19,7 +20,7 @@ export const worldFilters: FilterOption[] = [
         name: "Aether",
         options: [
           {
-            name: "All Aether",
+            name: msg`All Aether`,
             mek: worldMek,
             filter: isDataCenter("Aether"),
           },
@@ -69,7 +70,7 @@ export const worldFilters: FilterOption[] = [
         name: "Crystal",
         options: [
           {
-            name: "All Crystal",
+            name: msg`All Crystal`,
             mek: worldMek,
             filter: isDataCenter("Crystal"),
           },
@@ -119,7 +120,7 @@ export const worldFilters: FilterOption[] = [
         name: "Primal",
         options: [
           {
-            name: "All Primal",
+            name: msg`All Primal`,
             mek: worldMek,
             filter: isDataCenter("Primal"),
           },
@@ -169,7 +170,7 @@ export const worldFilters: FilterOption[] = [
         name: "Dynamis",
         options: [
           {
-            name: "All Dynamis",
+            name: msg`All Dynamis`,
             mek: worldMek,
             filter: isDataCenter("Dynamis"),
           },
@@ -218,10 +219,10 @@ export const worldFilters: FilterOption[] = [
     ]
   },
   {
-    name: "Europe",
+    name: msg`Europe`,
     options: [
       {
-        name: "All Europe",
+        name: msg`All Europe`,
         mek: worldMek,
         filter: isRegion("eu"),
       },
@@ -229,7 +230,7 @@ export const worldFilters: FilterOption[] = [
         name: "Chaos",
         options: [
           {
-            name: "All Chaos",
+            name: msg`All Chaos`,
             mek: worldMek,
             filter: isDataCenter("Chaos"),
           },
@@ -279,7 +280,7 @@ export const worldFilters: FilterOption[] = [
         name: "Light",
         options: [
           {
-            name: "All Light",
+            name: msg`All Light`,
             mek: worldMek,
             filter: isDataCenter("Light"),
           },
@@ -328,10 +329,10 @@ export const worldFilters: FilterOption[] = [
     ]
   },
   {
-    name: "Oceania",
+    name: msg`Oceania`,
     options: [
       {
-        name: "All Oceania",
+        name: msg`All Oceania`,
         mek: worldMek,
         filter: isRegion("oc"),
       },
@@ -339,7 +340,7 @@ export const worldFilters: FilterOption[] = [
         name: "Materia",
         options: [
           {
-            name: "All Materia",
+            name: msg`All Materia`,
             mek: worldMek,
             filter: isDataCenter("Materia"),
           },

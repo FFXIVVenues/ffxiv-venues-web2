@@ -7,6 +7,7 @@ import {ChevronDown} from "lucide-react";
 import {cn} from "@/lib/utils/cn.ts";
 import type {FilterOption} from "@/components/filterMenu/filters/filterOption.ts";
 import {FilterMenuList} from "@/components/filterMenu/FilterMenuList.tsx";
+import {useLingui} from "@lingui/react";
 
 export type FilterSubMenuProps = {
     option: FilterOption;
@@ -23,6 +24,9 @@ export const FilterSubMenu = memo(({
     onFilterAdd,
     onFilterRemove
 }: FilterSubMenuProps) => {
+    const { _ } = useLingui();
+    const label = typeof option.name === "string" ? option.name : _(option.name);
+    const hintText = option.hint == null ? undefined : typeof option.hint === "string" ? option.hint : _(option.hint);
     return (
         <Collapsible>
             <CollapsibleTrigger
@@ -32,19 +36,19 @@ export const FilterSubMenu = memo(({
                     const content = (
                         <ButtonElement
                             {...props}
-                            aria-label={option.name}>
-                            {option.name}
+                            aria-label={label}>
+                            {label}
                             <ChevronDown
                                 className={cn(state.open ? 'rotate-180' : '', 'transition-transform text-sidebar-foreground/70')} />
                         </ButtonElement>
                     );
 
-                    if (option.hint) {
+                    if (hintText) {
                         return (
                             <Tooltip>
                                 <TooltipTrigger render={content} />
                                 <TooltipContent side="right" align="center">
-                                    {option.hint}
+                                    {hintText}
                                 </TooltipContent>
                             </Tooltip>
                         );

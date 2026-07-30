@@ -1,4 +1,5 @@
 import {toast} from "sonner";
+import { t } from "@lingui/core/macro";
 
 class VisitedService {
     private _visitedCache: string[] | null;
@@ -28,8 +29,8 @@ class VisitedService {
         visited.push(id);
         this._setVisited(visited);
 
-        toast.success("Venue marked as visited", {
-            description: "You can filter to venues you have or haven't visited later via the sidebar.",
+        toast.success(t`Venue marked as visited`, {
+            description: t`You can filter to venues you have or haven't visited later via the sidebar.`,
         })
 
         return visited;
@@ -39,8 +40,8 @@ class VisitedService {
         const visited = this.getVisited().filter(i => i !== id);
         this._setVisited(visited);
 
-        toast.success("Venue unmarked as visited", {
-            description: "You can filter to venues you have or haven't visited later via the sidebar.",
+        toast.success(t`Venue unmarked as visited`, {
+            description: t`You can filter to venues you have or haven't visited later via the sidebar.`,
         })
 
         return visited;

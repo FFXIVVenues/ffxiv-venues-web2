@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/shadcn/button.tsx"
 import { XIcon } from "lucide-react"
 import type {Ref, RefObject} from "react";
+import { Trans } from "@lingui/react/macro"
 
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />
@@ -78,7 +79,7 @@ function DialogContent({
           >
             <XIcon
             />
-            <span className="sr-only">Close</span>
+            <span className="sr-only"><Trans>Close</Trans></span>
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Popup>

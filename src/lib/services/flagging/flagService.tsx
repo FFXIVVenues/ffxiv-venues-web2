@@ -1,6 +1,7 @@
 import {request, useEnv} from "@/lib/utils";
 import { toast } from "sonner"
 import type {RetryContext} from "@/lib/utils/request.ts";
+import { t } from "@lingui/core/macro";
 
 export enum FlagCategory {
     VenueEmpty = "VenueEmpty",
@@ -23,8 +24,8 @@ class FlagService {
         const backOffOptions = {
             onRetry: (context: RetryContext) => {
                 const retry = Math.round(context.retryAfter / 1000);
-                toast.error("Failed to flag venue", {
-                    description: "Retrying in " + retry + " seconds.",
+                toast.error(t`Failed to flag venue`, {
+                    description: t`Retrying in ${retry} seconds.`,
                     duration: context.retryAfter
                 })
             },
@@ -34,8 +35,8 @@ class FlagService {
             throw response;
         }
 
-        toast.success("Flag accepted", {
-            description: "Your flag has been submitted for review. The team usually actions flags within 24 hours",
+        toast.success(t`Flag accepted`, {
+            description: t`Your flag has been submitted for review. The team usually actions flags within 24 hours.`,
         })
 
         return response;

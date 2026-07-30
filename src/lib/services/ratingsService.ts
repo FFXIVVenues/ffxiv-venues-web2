@@ -1,4 +1,5 @@
 import {toast} from "sonner";
+import { t } from "@lingui/core/macro";
 
 type Rating = {
     id: string;
@@ -32,8 +33,8 @@ class RatingsService {
         ratings.push({id, rating});
         this._setRatings(ratings);
 
-        toast.success("Venue rated", {
-            description: "You can filter to venues of a certain rating later via the sidebar.",
+        toast.success(t`Venue rated`, {
+            description: t`You can filter to venues of a certain rating later via the sidebar.`,
         })
 
         return ratings;
