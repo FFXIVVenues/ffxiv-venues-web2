@@ -11,7 +11,7 @@ const S = { m: "mx-2 w-auto -mt-1/2" };
 
 export const PrivacyPolicyPage = memo(() => {
   const { i18n } = useLingui();
-  const md = _md("markdown/privacy", i18n.locale);
+  const md = _md("legal/privacy", i18n.locale);
   const sections = extractSections(md);
   const effective = <FormattedDate date={new Date(2026, 3, 23)} format="effective" />;
 
