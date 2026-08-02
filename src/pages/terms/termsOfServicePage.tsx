@@ -11,7 +11,7 @@ const S = { m: "mx-2 w-auto -mt-1/2" };
 
 export const TermsOfServicePage = memo(() => {
   const { i18n } = useLingui();
-  const md = _md("markdown/terms", i18n.locale);
+  const md = _md("legal/terms", i18n.locale);
   const sections = extractSections(md);
   const effective = <FormattedDate date={new Date(2026, 5, 25)} format="effective" />;
 
