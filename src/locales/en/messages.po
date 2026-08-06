@@ -15,22 +15,26 @@ msgstr ""
 
 #. Date endings e.g 1st, 2nd, 3rd... 20th etc
 #. Date endings e.g 1st, 2nd, 3rd... 20th etc
+#. Date endings e.g 1st, 2nd, 3rd... 20th etc
+#. placeholder {0}: Math.abs(arg)
 #. placeholder {0}: date.getDate()
 #: src/components/dateString/dateText.tsx:19
-#: src/components/legal/formattedDate.tsx:7
+#: src/components/dateString/formattedDate.tsx:7
+#: src/components/dateString/recurringDayText.tsx:12
 msgid "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
 msgstr "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
 
-#. placeholder {0}: Math.abs(arg)
-#: src/components/dateString/recurringDayText.tsx:24
-msgid "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} last {day} of the month"
-msgstr "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} last {day} of the month"
+#. placeholder {0}: t(ordinal)
+#: src/components/dateString/recurringDayText.tsx:25
+msgid "{0} {day} of the month"
+msgstr "{0} {day} of the month"
 
-#: src/components/dateString/recurringDayText.tsx:21
-msgid "{arg, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} {day} of the month"
-msgstr "{arg, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} {day} of the month"
+#. placeholder {0}: t(ordinal)
+#: src/components/dateString/recurringDayText.tsx:28
+msgid "{0} last {day} of the month"
+msgstr "{0} last {day} of the month"
 
-#: src/components/dateString/recurringDayText.tsx:16
+#: src/components/dateString/recurringDayText.tsx:20
 msgid "{arg} weekly on {day}s"
 msgstr "{arg} weekly on {day}s"
 
@@ -160,7 +164,7 @@ msgstr "Bath house"
 msgid "Bingo"
 msgstr "Bingo"
 
-#: src/components/dateString/recurringDayText.tsx:15
+#: src/components/dateString/recurringDayText.tsx:19
 msgid "Biweekly on {day}s"
 msgstr "Biweekly on {day}s"
 
@@ -398,7 +402,7 @@ msgstr "Join via Veni!"
 msgid "Language"
 msgstr "Language"
 
-#: src/components/dateString/recurringDayText.tsx:23
+#: src/components/dateString/recurringDayText.tsx:27
 msgid "Last {day} of the month"
 msgstr "Last {day} of the month"
 
@@ -969,7 +973,7 @@ msgstr "Void"
 msgid "Website"
 msgstr "Website"
 
-#: src/components/dateString/recurringDayText.tsx:14
+#: src/components/dateString/recurringDayText.tsx:18
 msgid "Weekly on {day}s"
 msgstr "Weekly on {day}s"
 
