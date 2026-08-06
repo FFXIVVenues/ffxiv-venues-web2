@@ -1,6 +1,6 @@
 import {memo, type ReactElement} from "react";
 import {useLingui} from "@lingui/react/macro";
-import {selectOrdinal} from "@lingui/core/macro";
+import {selectOrdinal, msg} from "@lingui/core/macro";
 import {dtf, type DtfKey} from "@/lib/utils/dateFormat.ts";
 
 const today = new Date();
@@ -16,11 +16,11 @@ export const DateText = memo(({ date, short = false }: { date: Date, short?: boo
         daysUntil > 7 ? (short ? "dateFarShort" : "dateFar")
                 : (short ? "weekdayShort" : "weekdayLong");
 
-    const ordinal = t({
+    const ordinal = msg({
         message: `${selectOrdinal(date.getDate(), { one: "#st", two: "#nd", few: "#rd", other: "#th" })}`,
         comment: "Date endings e.g 1st, 2nd, 3rd... 20th etc",
     });
-    const display = dtf(i18n.locale, key).formatToParts(date).map(part => (part.type === "day" ? ordinal : part.value)).join("");
+    const display = dtf(i18n.locale, key).formatToParts(date).map(part => (part.type === "day" ? t(ordinal) : part.value)).join("");
 
     return <span>{display}</span>;
 });
