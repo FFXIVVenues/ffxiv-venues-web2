@@ -152,28 +152,28 @@ msgstr "All Primal"
 
 #: src/components/venueDrawer/venueDrawer.tsx:98
 msgid "All times are in <0>your</0> timezone: {utcOffset} {timeZone}"
-msgstr ""
+msgstr "All times are in <0>mew</0> timezone: {utcOffset} {timeZone}"
 
 #: src/pages/legal/privacyPolicyPage.tsx:27
 #: src/pages/terms/termsOfServicePage.tsx:28
 msgid "Applies to FFXIV Venues Site / API / Veni Ki / Ruby Ki"
-msgstr ""
+msgstr "Applies to FFXIV Venues Site / API / Veni Ki / Ruby Ki"
 
 #: src/components/filterMenu/filters/featureFilters.ts:14
 msgid "Artists"
-msgstr ""
+msgstr "Awtists"
 
 #: src/components/filterMenu/filters/featureFilters.ts:14
 msgid "Artists are present in the venue to offer various custom artwork."
-msgstr ""
+msgstr "Awtists are present in the venue to offer various custom awtwork."
 
 #: src/components/filterMenu/filters/featureFilters.ts:16
 msgid "Bards"
-msgstr ""
+msgstr "Bawds"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:21
 msgid "Bath house"
-msgstr ""
+msgstr "Bath houze"
 
 #: src/components/filterMenu/filters/gameFilters.ts:12
 msgid "Bingo"
