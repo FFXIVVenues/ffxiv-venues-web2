@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2026-08-29 16:35+0000\n"
-"Last-Translator: Oreo <1370248232793542667@id.ffxivvenues.com>\n"
+"Last-Translator: Kana Ki <236852510688542720@id.ffxivvenues.com>\n"
 "Language-Team: Miqo'te <https://translate.ffxivvenues.com/projects/webclient/"
 "ui/en-x-miqo/>\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -43,23 +43,23 @@ msgstr "{arg} weekly on {day}s"
 msgid "<0>Warning:</0> This venue has indicated they are openly NSFW and offer adult services. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
 msgstr ""
 "<0>Warning:</0> This venmew haz indicated they are openly NSFW and offurrs "
-"adult services nya! You must nyot visit this venue if mew are under 18 years "
-"of age or the legal age of consent in your country, and by visiting mew "
-"declare you are nyot. Be pawpared to verify your age."
+"adult surrvices nya! Mew must nyot visit this venmew if mew are under 18 "
+"years of age or the legal age of consent in your country, and by visiting "
+"mew declare mew are nyot. Be pawpared to verify your age."
 
 #: src/components/venueDrawer/venueNsfwText.tsx:25
 msgid "<0>Warning:</0> This venue has indicated they are openly NSFW. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
 msgstr ""
-"<0>Warning:</0> This venue has indicated they are openly NSFW, nya! You must "
-"nyot visit this venue if you are under 18 years of age or the legal age of "
-"consent in your country, and by visiting you declare you are nyot. Be "
-"pawpared to verify your age."
+"<0>Warning:</0> This venmew has indicated they are openly NSFW, nya! Mew "
+"must nyot visit this venmew if mew are under 18 years of age or the legal "
+"age of consent in your country, and by visiting mew declare mew are nyot. Be "
+"prrrepared to verify your age."
 
 #: src/components/venueDrawer/venueNsfwText.tsx:18
 msgid "<0>Warning:</0> This venue has indicated they offer adult services. You must not partake in these services if you are under 18 years of age or the legal age of consent in your country, and by partaking in these services you declare you are not. Be prepared to verify your age."
 msgstr ""
-"<0>Warning:</0> This venue has indicated they offurrs adult services nya. "
-"You must nyot pawtake in these services if mew are under 18 years of age or "
+"<0>Warning:</0> This venmew has indicated they offurrs adult surrvices nya. "
+"You must nyot pawtake in these surrvices if mew are under 18 years of age or "
 "the legal age of consent in your country, and by pawtaking in these "
 "surrrvices mew declare mew are nyot. Be pawpared to verify your age."
 
@@ -95,7 +95,7 @@ msgstr ""
 
 #: src/components/notesDialog/notesDialog.tsx:47
 msgid "Add a personal note for this venue."
-msgstr "Add a purrsonal note fur this venue."
+msgstr "Add a purrsonal note fur this venmew."
 
 #: src/components/venueDrawer/venueToolbar.tsx:166
 #: src/components/venueDrawer/venueToolbar.tsx:251
@@ -104,7 +104,7 @@ msgstr "Add note"
 
 #: src/pageLayoutss/defaultPageLayout.tsx:61
 msgid "Add your venue"
-msgstr "Add your venue"
+msgstr "Add your venmew"
 
 #: src/components/flagDialog/flagDialog.tsx:107
 msgid "Additional details"
@@ -165,7 +165,7 @@ msgstr "Awtists"
 
 #: src/components/filterMenu/filters/featureFilters.ts:14
 msgid "Artists are present in the venue to offer various custom artwork."
-msgstr "Arrrtists are prrre in the venue to offurrs various custom awtwork."
+msgstr "Arrrtists are prrre in the venmew to offurrs vawious custom awtwork."
 
 #: src/components/filterMenu/filters/featureFilters.ts:16
 msgid "Bards"
@@ -250,7 +250,7 @@ msgstr "Dancews"
 
 #: src/components/filterMenu/filters/featureFilters.ts:15
 msgid "Dancers populate the venue to hype the party and/or host customers."
-msgstr "Dancews pawpulate the venue to hype the pawty and/or host customerz."
+msgstr "Dancews pawpulate the venmew to hype the pawty and/or host customerz."
 
 #. Theme option
 #: src/components/settingsMenu/settingsDialog.tsx:48
@@ -323,7 +323,7 @@ msgstr ""
 
 #: src/components/flagDialog/flagDialog.tsx:56
 msgid "Flag a venue to the team for review."
-msgstr "Flag a venue to the team fur review."
+msgstr "Flag a venmew to the team fur review."
 
 #: src/components/flagDialog/flagDialog.tsx:113
 #: src/lib/services/flagging/flagService.tsx:38
@@ -351,36 +351,39 @@ msgid "Games"
 msgstr "Games"
 
 #: src/components/filterMenu/filters/featureFilters.ts:26
+#, fuzzy
 msgid "Giveaways"
-msgstr ""
+msgstr "Giveaways"
 
 #: src/components/hideDialog/hideDialog.tsx:19
 msgid "Hide this venue?"
-msgstr ""
+msgstr "Hide this venmew?"
 
 #: src/components/hideDialog/hideDialog.tsx:26
 #: src/components/venueDrawer/venueToolbar.tsx:173
 #: src/components/venueDrawer/venueToolbar.tsx:260
 #: src/components/venueDrawer/venueToolbar.tsx:264
 msgid "Hide venue"
-msgstr ""
+msgstr "Hide venmew"
 
 #: src/components/filterMenu/filters/featureFilters.ts:30
 msgid "IC RP encouraged"
-msgstr ""
+msgstr "IC RP encouwaged"
 
 #: src/components/filterMenu/filters/featureFilters.ts:31
 msgid "IC RP only"
-msgstr ""
+msgstr "IC RP onwy"
 
 #: src/components/createVenueModal/createVenueDialog.tsx:68
 msgid "If you have any questions or need help, just make a <0>Venue Ticket</0> in the discord."
 msgstr ""
+"If mew haz any qwuestions or need help, just make a <0>Venmew Ticket</0> in "
+"the discord."
 
 #: src/components/flagDialog/flagDialog.tsx:101
 #: src/components/flagDialog/flagDialog.tsx:102
 msgid "Inappropriate content"
-msgstr ""
+msgstr "Inappwopwiate content"
 
 #: src/components/flagDialog/flagDialog.tsx:98
 #: src/components/flagDialog/flagDialog.tsx:99
@@ -388,8 +391,9 @@ msgid "Incorrect information"
 msgstr "Incorrect infurrmation"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:14
+#, fuzzy
 msgid "Inn"
-msgstr ""
+msgstr "Inn"
 
 #: src/lib/services/favouritesService.ts:35
 msgid "It'll appear at the top of the index for you."
@@ -397,32 +401,34 @@ msgstr "It'll appear at the top of the index furr mew."
 
 #: src/lib/services/favouritesService.ts:46
 msgid "It'll no longer appear in your favourites."
-msgstr ""
+msgstr "It'll nyo longer appear in your favowites."
 
 #: src/components/createVenueModal/createVenueDialog.tsx:43
 #: src/pageLayoutss/defaultPageLayout.tsx:65
+#, fuzzy
 msgid "Join the discord!"
-msgstr ""
+msgstr "Join the discord!"
 
 #. Veni / Veni Ki is the FFXIV Venues Discord bot; keep the name as-is
 #: src/components/createVenueModal/createVenueDialog.tsx:40
 msgid "Join Veni's home; the FFXIV Venues Discord!"
-msgstr ""
+msgstr "Join Veni's home; the FFXIV Venmews Discord!"
 
 #. Veni / Veni Ki is the FFXIV Venues Discord bot; keep the name as-is
 #: src/components/createVenueModal/createVenueDialog.tsx:29
+#, fuzzy
 msgid "Join via Veni!"
-msgstr ""
+msgstr "Join via Veni!"
 
 #. Interface language selector
 #: src/components/settingsMenu/settingsDialog.tsx:56
 #: src/components/settingsMenu/settingsDialog.tsx:60
 msgid "Language"
-msgstr ""
+msgstr "Langwuage"
 
 #: src/components/dateString/recurringDayText.tsx:27
 msgid "Last {day} of the month"
-msgstr ""
+msgstr "Last {day} of the month"
 
 #. Drawer panel position
 #: src/components/settingsMenu/settingsDialog.tsx:100
@@ -735,7 +741,7 @@ msgstr ""
 #: src/components/createVenueModal/createVenueDialog.tsx:35
 msgid "The easiest way to get your venue listed is through <0>Veni Ki</0> <1>🥰</1> - our cute bot for managing your venue!"
 msgstr ""
-"The easiest way to get your venmew listed is through <0>Veni Ki</0> <1>🥰</"
+"The easiest way to get your venmew listed is thwough <0>Veni Ki</0> <1>🥰</"
 "1> - our cuwte bot fur managing your venmew!"
 
 #: src/components/filterMenu/filters/featureFilters.ts:11
@@ -770,13 +776,13 @@ msgstr ""
 #: src/components/filterMenu/filters/gameFilters.ts:13
 msgid "The venue holds a table for players who wish to gamble gil in a game of Roulette."
 msgstr ""
-"The venmew holds a table fur players who wish to gamble gil in a game of "
+"The venmew holds a table fur pwayers who wish to gamble gil in a game of "
 "Roulette."
 
 #: src/components/filterMenu/filters/gameFilters.ts:11
 msgid "The venue holds a table for players who wish to gamble gil in a game of Texas holdem."
 msgstr ""
-"The venmew holds a table fur players who wish to gamble gil in a game of "
+"The venmew holds a table fur pwayers who wish to gamble gil in a game of "
 "Texas holdem."
 
 #: src/components/filterMenu/filters/gameFilters.ts:12
@@ -824,13 +830,13 @@ msgstr ""
 #: src/components/filterMenu/filters/featureFilters.ts:31
 msgid "The venue offers an environment for players to role play as their characters only, and does not allow open interaction as themselves."
 msgstr ""
-"The venmew offurrs an enviwonment fur players to role pway as their "
+"The venmew offurrs an enviwonment fur pwayers to role pway as their "
 "chawacters only, and does not allow open intewaction as themselves."
 
 #: src/components/filterMenu/filters/featureFilters.ts:12
 msgid "The venue offers erotic role-play services in a consensual environment."
 msgstr ""
-"The venmew offurrs ewotic role-pway services in a consensual enviwonment."
+"The venmew offurrs ewotic role-pway surrvices in a consensual enviwonment."
 
 #: src/components/filterMenu/filters/featureFilters.ts:26
 msgid "The venue offers giveaways through various channels, in chat, twitch stream or discord."
@@ -853,17 +859,17 @@ msgstr ""
 #: src/components/filterMenu/filters/featureFilters.ts:20
 msgid "The venue offers Pillows who provide a safe, confidential space to promote an SFW companionship for a limited time."
 msgstr ""
-"The venmew offers Pillows who provide a safe, confidential space to "
-"prrromote an SFW companionship for a limited time."
+"The venmew offurrs Pillows who provide a safe, confidential space to "
+"prrromote an SFW companionship fur a limited time."
 
 #: src/components/filterMenu/filters/featureFilters.ts:22
 msgid "The venue offers the stage for a patron to perform to the audience."
-msgstr "The venmew offurrs the stage fur a patwon to purrform to the audience."
+msgstr "The venmew offurrs the stage fur a patwon to purrfurm to the audience."
 
 #: src/components/filterMenu/filters/featureFilters.ts:25
 msgid "The venue offers unique schedule performances, this could be SFW (theater, synch dancers, etc) or NSFW (erotic voyeur shows, live BDSM, etc)."
 msgstr ""
-"The venmew offurrs unique schedule perfurrmances, this could be SFW "
+"The venmew offurrs unique schedule purrfurrmances, this could be SFW "
 "(theater, sync dancers, etc) or NSFW (erotic voyeur shows, live BDSM, etc)."
 
 #: src/components/filterMenu/filters/featureFilters.ts:13
@@ -875,8 +881,8 @@ msgstr ""
 #: src/components/filterMenu/filters/featureFilters.ts:28
 msgid "The venue offers various perks through VIP tiers. This could include free drinks, gpose, gambling perk or more."
 msgstr ""
-"The venmew offurrs vawious perks thwough VIP tiers. This could include free "
-"drinks, gpose, gambwing perk or more."
+"The venmew offurrs vawious purrks thwough VIP tiers. This could include free "
+"drinks, gpose, gambwing purrk or more."
 
 #: src/components/settingsMenu/settingsDialog.tsx:32
 msgid "Theme"
@@ -1005,7 +1011,7 @@ msgstr "Venue unmawked as visited"
 
 #: src/components/venueCard/venueCardFull.tsx:118
 msgid "View Venue"
-msgstr "View venue"
+msgstr "View venmew"
 
 #: src/components/filterMenu/filters/featureFilters.ts:28
 msgid "VIP available"
@@ -1031,21 +1037,21 @@ msgstr "Weekwy on {day}s"
 
 #: src/components/notesDialog/notesDialog.tsx:52
 msgid "Write anything you want to remember about this venue!"
-msgstr "Wite anything mew want to wemember about this venue!"
+msgstr "Wite anything mew want to wemember about this venmew!"
 
 #: src/lib/services/ratingsService.ts:37
 msgid "You can filter to venues of a certain rating later via the sidebar."
-msgstr "Mew can filter to venues of a certain wating later via the sidebar."
+msgstr "Mew can filter to venmews of a certain wating later via the sidebar."
 
 #: src/lib/services/visitedService.ts:33
 #: src/lib/services/visitedService.ts:44
 msgid "You can filter to venues you have or haven't visited later via the sidebar."
 msgstr ""
-"Mew can filter to venues mew have or haven't visited later via the sidebar."
+"Mew can filter to venmews mew have or haven't visited later via the sidebar."
 
 #: src/components/flagDialog/flagDialog.tsx:115
 #: src/lib/services/flagging/flagService.tsx:39
 msgid "Your flag has been submitted for review. The team usually actions flags within 24 hours."
 msgstr ""
-"Your fwag has been submitted for weview. The team usually action fwags "
+"Your fwag has been submitted fur weview. The team usually action fwags "
 "within 24 hourz."
