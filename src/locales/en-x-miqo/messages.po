@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2026-08-29 16:35+0000\n"
-"Last-Translator: Kana Ki <236852510688542720@id.ffxivvenues.com>\n"
+"Last-Translator: Oreo <1370248232793542667@id.ffxivvenues.com>\n"
 "Language-Team: Miqo'te <https://translate.ffxivvenues.com/projects/webclient/"
 "ui/en-x-miqo/>\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -194,94 +194,94 @@ msgstr "Catfe"
 #: src/components/hideDialog/hideDialog.tsx:25
 #: src/components/notesDialog/notesDialog.tsx:66
 msgid "Cancel"
-msgstr ""
+msgstr "Cancew"
 
 #. Schedule layout option
 #: src/components/settingsMenu/settingsDialog.tsx:76
 msgid "Card"
-msgstr ""
+msgstr "Cawd"
 
 #: src/components/settingsMenu/settingsDialog.tsx:77
 msgid "Card View"
-msgstr ""
+msgstr "Cawd View"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:18
 msgid "Casino"
-msgstr ""
+msgstr "Cazino"
 
 #: src/components/flagDialog/flagDialog.tsx:65
 #: src/components/ui/shadcn/dialog.tsx:82
 #: src/components/ui/shadcn/sheet.tsx:70
 #: src/components/venueDrawer/venueDrawer.tsx:72
 msgid "Close"
-msgstr ""
+msgstr "Cloze"
 
 #: src/components/venueDrawer/venueSchedule.tsx:59
 msgid "Closed"
-msgstr ""
+msgstr "Clozed"
 
 #. Schedule layout option
 #: src/components/settingsMenu/settingsDialog.tsx:81
 msgid "Compact"
-msgstr ""
+msgstr "Compawct"
 
 #: src/components/settingsMenu/settingsDialog.tsx:83
 msgid "Compact View"
-msgstr ""
+msgstr "Compawct View"
 
 #: src/components/venueDrawer/venueToolbar.tsx:206
 #: src/components/venueDrawer/venueToolbar.tsx:210
 msgid "Copy lifestream command"
-msgstr ""
+msgstr "Copy lifestweam command"
 
 #: src/components/venueDrawer/venueToolbar.tsx:145
 #: src/components/venueDrawer/venueToolbar.tsx:197
 #: src/components/venueDrawer/venueToolbar.tsx:201
 msgid "Copy location"
-msgstr ""
+msgstr "Copy location"
 
 #: src/components/filterMenu/filters/featureFilters.ts:12
 msgid "Courtesans"
-msgstr ""
+msgstr "Couwtesanz"
 
 #: src/components/filterMenu/filters/featureFilters.ts:15
 msgid "Dancers"
-msgstr ""
+msgstr "Dancews"
 
 #: src/components/filterMenu/filters/featureFilters.ts:15
 msgid "Dancers populate the venue to hype the party and/or host customers."
-msgstr ""
+msgstr "Dancews pawpulate the venue to hype the pawty and/or host customerz."
 
 #. Theme option
 #: src/components/settingsMenu/settingsDialog.tsx:48
 msgid "Dark"
-msgstr ""
+msgstr "Dawk"
 
 #: src/components/settingsMenu/settingsDialog.tsx:49
 msgid "Dark Mode"
-msgstr ""
+msgstr "Dawk Mode"
 
 #: src/components/filterMenu/filters/gameFilters.ts:10
 msgid "Deathroll"
-msgstr ""
+msgstr "Deathwoll"
 
 #: src/components/notesDialog/notesDialog.tsx:61
 msgid "Delete Note"
-msgstr ""
+msgstr "Dewete Note"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:11
 msgid "Den"
-msgstr ""
+msgstr "Den"
 
 #: src/components/venueDrawer/venueToolbar.tsx:166
 #: src/components/venueDrawer/venueToolbar.tsx:251
 msgid "Edit note"
-msgstr ""
+msgstr "Edit note"
 
 #: src/pages/legal/privacyPolicyPage.tsx:33
 #: src/pages/terms/termsOfServicePage.tsx:34
 msgid "Effective {effective}"
-msgstr ""
+msgstr "Effewctive {effective}"
 
 #: src/components/filterMenu/filters/worldFilters.ts:222
 msgid "Europe"
@@ -308,44 +308,47 @@ msgstr "Favowite"
 
 #: src/components/filterMenu/filterMenu.tsx:77
 msgid "Features"
-msgstr ""
+msgstr "Featuwes"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:17
 msgid "Fight club"
-msgstr ""
+msgstr "Fight club"
 
 #: src/pageLayoutss/defaultPageLayout.tsx:83
 msgid "FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<0/>Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved."
 msgstr ""
+"FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<0/>"
+"Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights "
+"Reserved."
 
 #: src/components/flagDialog/flagDialog.tsx:56
 msgid "Flag a venue to the team for review."
-msgstr ""
+msgstr "Flag a venue to the team fur review."
 
 #: src/components/flagDialog/flagDialog.tsx:113
 #: src/lib/services/flagging/flagService.tsx:38
 msgid "Flag accepted"
-msgstr ""
+msgstr "Flag accepted"
 
 #: src/components/flagDialog/flagDialog.tsx:55
 #: src/components/venueDrawer/venueToolbar.tsx:176
 #: src/components/venueDrawer/venueToolbar.tsx:269
 #: src/components/venueDrawer/venueToolbar.tsx:273
 msgid "Flag venue"
-msgstr ""
+msgstr "Flag venmew"
 
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:93
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:110
 msgid "Future Openings"
-msgstr ""
+msgstr "Futuwe Openingz"
 
 #: src/components/filterMenu/filters/featureFilters.ts:13
 msgid "Gambling"
-msgstr ""
+msgstr "Gambling"
 
 #: src/components/filterMenu/filterMenu.tsx:83
 msgid "Games"
-msgstr ""
+msgstr "Games"
 
 #: src/components/filterMenu/filters/featureFilters.ts:26
 msgid "Giveaways"
@@ -1010,7 +1013,6 @@ msgstr "VIP avaiwable"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:12
 #: src/components/venueDrawer/venueToolbar.tsx:234
-#, fuzzy
 msgid "Visited"
 msgstr "Visited"
 
@@ -1020,7 +1022,6 @@ msgid "Void"
 msgstr "Venue built in the houzing void"
 
 #: src/components/venueDrawer/venueWebsiteButton.tsx:10
-#, fuzzy
 msgid "Website"
 msgstr "Website"
 
