@@ -8,7 +8,7 @@ msgstr ""
 "Language: en-x-miqo\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-08-23 16:51+0000\n"
+"PO-Revision-Date: 2026-08-29 16:35+0000\n"
 "Last-Translator: Oreo <1370248232793542667@id.ffxivvenues.com>\n"
 "Language-Team: Miqo'te <https://translate.ffxivvenues.com/projects/webclient/"
 "ui/en-x-miqo/>\n"
@@ -23,126 +23,132 @@ msgstr ""
 #: src/components/dateString/formattedDate.tsx:7
 #: src/components/dateString/recurringDayText.tsx:12
 msgid "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
-msgstr ""
+msgstr "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
 
 #. placeholder {0}: t(ordinal)
 #: src/components/dateString/recurringDayText.tsx:25
 msgid "{0} {day} of the month"
-msgstr ""
+msgstr "{0} {day} of the month"
 
 #. placeholder {0}: t(ordinal)
 #: src/components/dateString/recurringDayText.tsx:28
 msgid "{0} last {day} of the month"
-msgstr ""
+msgstr "{0} last {day} of the month"
 
 #: src/components/dateString/recurringDayText.tsx:20
 msgid "{arg} weekly on {day}s"
-msgstr ""
+msgstr "{arg} weekly on {day}s"
 
 #: src/components/venueDrawer/venueNsfwText.tsx:11
 msgid "<0>Warning:</0> This venue has indicated they are openly NSFW and offer adult services. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
 msgstr ""
-"<0>Nyarning:</0> This venue has indicated they are openly NSFW and offer "
-"adult services, nya! You must nyot visit this venue if you are under 18 "
-"years of age or the legal age of consent in your country, and by visiting "
-"you declare you are nyot. Be pawpared to verify your age."
+"<0>Warning:</0> This venue has indicated they are openly NSFW and offer "
+"adult services nya! You must nyot visit this venue if you are under 18 years "
+"of age or the legal age of consent in your country, and by visiting you "
+"declare you are nyot. Be pawpared to verify your age."
 
 #: src/components/venueDrawer/venueNsfwText.tsx:25
 msgid "<0>Warning:</0> This venue has indicated they are openly NSFW. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
 msgstr ""
-"<0>Nyarning:</0> This venue has indicated they are openly NSFW, nya! You "
-"must nyot visit this venue if you are under 18 years of age or the legal age "
-"of consent in your country, and by visiting you declare you are nyot. Be "
+"<0>Warning:</0> This venue has indicated they are openly NSFW, nya! You must "
+"nyot visit this venue if you are under 18 years of age or the legal age of "
+"consent in your country, and by visiting you declare you are nyot. Be "
 "pawpared to verify your age."
 
 #: src/components/venueDrawer/venueNsfwText.tsx:18
 msgid "<0>Warning:</0> This venue has indicated they offer adult services. You must not partake in these services if you are under 18 years of age or the legal age of consent in your country, and by partaking in these services you declare you are not. Be prepared to verify your age."
 msgstr ""
+"<0>Warning:</0> This venue has indicated they offer adult services nya. You "
+"must nyot partake in these services if you are under 18 years of age or the "
+"legal age of consent in your country, and by pawtaking in these services you "
+"declare you are nyot. Be pawpared to verify your age."
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:17
 msgid "1+ Stars"
-msgstr ""
+msgstr "1+ Meows"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:16
 msgid "2+ Stars"
-msgstr ""
+msgstr "2+ Meows"
 
 #: src/components/filterMenu/filters/featureFilters.ts:32
 msgid "24/7 open house"
-msgstr ""
+msgstr "24/7 open house"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:15
 msgid "3+ Stars"
-msgstr ""
+msgstr "3+ Meows"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:14
 msgid "4+ Stars"
-msgstr ""
+msgstr "4+ Meows"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:13
 msgid "5 Stars"
-msgstr ""
+msgstr "5 Meows"
 
 #: src/components/filterMenu/filters/featureFilters.ts:16
 msgid "A bard provides theme-based or general music to entertain guests with a selection of songs."
 msgstr ""
+"A bard purrvides theme-based or general mewsic to entertain guests with a "
+"selection of songs."
 
 #: src/components/notesDialog/notesDialog.tsx:47
 msgid "Add a personal note for this venue."
-msgstr ""
+msgstr "Add a purrsonal note for this venue."
 
 #: src/components/venueDrawer/venueToolbar.tsx:166
 #: src/components/venueDrawer/venueToolbar.tsx:251
 msgid "Add note"
-msgstr ""
+msgstr "Add note"
 
 #: src/pageLayoutss/defaultPageLayout.tsx:61
 msgid "Add your venue"
-msgstr ""
+msgstr "Add your venue"
 
 #: src/components/flagDialog/flagDialog.tsx:107
 msgid "Additional details"
-msgstr ""
+msgstr "Pawditional details"
 
 #: src/components/filterMenu/filters/worldFilters.ts:23
 msgid "All Aether"
-msgstr ""
+msgstr "All Aether"
 
 #: src/components/filterMenu/filters/worldFilters.ts:233
 msgid "All Chaos"
-msgstr ""
+msgstr "All Chaos"
 
 #: src/components/filterMenu/filters/worldFilters.ts:73
 msgid "All Crystal"
-msgstr ""
+msgstr "All Crystal"
 
 #: src/components/filterMenu/filters/worldFilters.ts:173
 msgid "All Dynamis"
-msgstr ""
+msgstr "All Dynamis"
 
 #: src/components/filterMenu/filters/worldFilters.ts:225
 msgid "All Europe"
-msgstr ""
+msgstr "All Europe"
 
 #: src/components/filterMenu/filters/worldFilters.ts:283
 msgid "All Light"
-msgstr ""
+msgstr "All Light"
 
 #: src/components/filterMenu/filters/worldFilters.ts:343
 msgid "All Materia"
-msgstr ""
+msgstr "All Materia"
 
 #: src/components/filterMenu/filters/worldFilters.ts:15
 msgid "All North America"
-msgstr ""
+msgstr "All North America"
 
 #: src/components/filterMenu/filters/worldFilters.ts:335
 msgid "All Oceania"
-msgstr ""
+msgstr "All Oceania"
 
 #: src/components/filterMenu/filters/worldFilters.ts:123
 msgid "All Primal"
-msgstr ""
+msgstr "All Primal"
 
 #: src/components/venueDrawer/venueDrawer.tsx:98
 msgid "All times are in <0>your</0> timezone: {utcOffset} {timeZone}"
