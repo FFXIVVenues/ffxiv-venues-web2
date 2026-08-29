@@ -8,8 +8,8 @@ msgstr ""
 "Language: en-x-miqo\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-08-23 16:51+0000\n"
-"Last-Translator: Oreo <1370248232793542667@id.ffxivvenues.com>\n"
+"PO-Revision-Date: 2026-08-29 16:35+0000\n"
+"Last-Translator: Kana Ki <236852510688542720@id.ffxivvenues.com>\n"
 "Language-Team: Miqo'te <https://translate.ffxivvenues.com/projects/webclient/"
 "ui/en-x-miqo/>\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -23,397 +23,412 @@ msgstr ""
 #: src/components/dateString/formattedDate.tsx:7
 #: src/components/dateString/recurringDayText.tsx:12
 msgid "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
-msgstr ""
+msgstr "{0, selectordinal, one {#st} two {#nd} few {#rd} other {#th}}"
 
 #. placeholder {0}: t(ordinal)
 #: src/components/dateString/recurringDayText.tsx:25
 msgid "{0} {day} of the month"
-msgstr ""
+msgstr "{0} {day} of the month"
 
 #. placeholder {0}: t(ordinal)
 #: src/components/dateString/recurringDayText.tsx:28
 msgid "{0} last {day} of the month"
-msgstr ""
+msgstr "{0} last {day} of the month"
 
 #: src/components/dateString/recurringDayText.tsx:20
 msgid "{arg} weekly on {day}s"
-msgstr ""
+msgstr "{arg} weekly on {day}s"
 
 #: src/components/venueDrawer/venueNsfwText.tsx:11
 msgid "<0>Warning:</0> This venue has indicated they are openly NSFW and offer adult services. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
 msgstr ""
-"<0>Nyarning:</0> This venue has indicated they are openly NSFW and offer "
-"adult services, nya! You must nyot visit this venue if you are under 18 "
+"<0>Warning:</0> This venmew haz indicated they are openly NSFW and offurrs "
+"adult surrvices nya! Mew must nyot visit this venmew if mew are under 18 "
 "years of age or the legal age of consent in your country, and by visiting "
-"you declare you are nyot. Be pawpared to verify your age."
+"mew declare mew are nyot. Be pawpared to verify your age."
 
 #: src/components/venueDrawer/venueNsfwText.tsx:25
 msgid "<0>Warning:</0> This venue has indicated they are openly NSFW. You must not visit this venue if you are under 18 years of age or the legal age of consent in your country, and by visiting you declare you are not. Be prepared to verify your age."
 msgstr ""
-"<0>Nyarning:</0> This venue has indicated they are openly NSFW, nya! You "
-"must nyot visit this venue if you are under 18 years of age or the legal age "
-"of consent in your country, and by visiting you declare you are nyot. Be "
-"pawpared to verify your age."
+"<0>Warning:</0> This venmew has indicated they are openly NSFW, nya! Mew "
+"must nyot visit this venmew if mew are under 18 years of age or the legal "
+"age of consent in your country, and by visiting mew declare mew are nyot. Be "
+"prrrepared to verify your age."
 
 #: src/components/venueDrawer/venueNsfwText.tsx:18
 msgid "<0>Warning:</0> This venue has indicated they offer adult services. You must not partake in these services if you are under 18 years of age or the legal age of consent in your country, and by partaking in these services you declare you are not. Be prepared to verify your age."
 msgstr ""
+"<0>Warning:</0> This venmew has indicated they offurrs adult surrvices nya. "
+"You must nyot pawtake in these surrvices if mew are under 18 years of age or "
+"the legal age of consent in your country, and by pawtaking in these "
+"surrrvices mew declare mew are nyot. Be pawpared to verify your age."
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:17
 msgid "1+ Stars"
-msgstr ""
+msgstr "1+ Meows"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:16
 msgid "2+ Stars"
-msgstr ""
+msgstr "2+ Meows"
 
 #: src/components/filterMenu/filters/featureFilters.ts:32
 msgid "24/7 open house"
-msgstr ""
+msgstr "24/7 open houze"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:15
 msgid "3+ Stars"
-msgstr ""
+msgstr "3+ Meows"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:14
 msgid "4+ Stars"
-msgstr ""
+msgstr "4+ Meows"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:13
 msgid "5 Stars"
-msgstr ""
+msgstr "5 Meows"
 
 #: src/components/filterMenu/filters/featureFilters.ts:16
 msgid "A bard provides theme-based or general music to entertain guests with a selection of songs."
 msgstr ""
+"A bard purrovides theme-based or general mewsic to entertain guests with a "
+"selection of songs."
 
 #: src/components/notesDialog/notesDialog.tsx:47
 msgid "Add a personal note for this venue."
-msgstr ""
+msgstr "Add a purrsonal note fur this venmew."
 
 #: src/components/venueDrawer/venueToolbar.tsx:166
 #: src/components/venueDrawer/venueToolbar.tsx:251
 msgid "Add note"
-msgstr ""
+msgstr "Add note"
 
 #: src/pageLayoutss/defaultPageLayout.tsx:61
 msgid "Add your venue"
-msgstr ""
+msgstr "Add your venmew"
 
 #: src/components/flagDialog/flagDialog.tsx:107
 msgid "Additional details"
-msgstr ""
+msgstr "Pawditional details"
 
 #: src/components/filterMenu/filters/worldFilters.ts:23
 msgid "All Aether"
-msgstr ""
+msgstr "All Aether"
 
 #: src/components/filterMenu/filters/worldFilters.ts:233
 msgid "All Chaos"
-msgstr ""
+msgstr "All Chaos"
 
 #: src/components/filterMenu/filters/worldFilters.ts:73
 msgid "All Crystal"
-msgstr ""
+msgstr "All Cwystal"
 
 #: src/components/filterMenu/filters/worldFilters.ts:173
 msgid "All Dynamis"
-msgstr ""
+msgstr "All Dynamis"
 
 #: src/components/filterMenu/filters/worldFilters.ts:225
 msgid "All Europe"
-msgstr ""
+msgstr "All Europe"
 
 #: src/components/filterMenu/filters/worldFilters.ts:283
 msgid "All Light"
-msgstr ""
+msgstr "All Light"
 
 #: src/components/filterMenu/filters/worldFilters.ts:343
 msgid "All Materia"
-msgstr ""
+msgstr "All Materia"
 
 #: src/components/filterMenu/filters/worldFilters.ts:15
 msgid "All North America"
-msgstr ""
+msgstr "All North America"
 
 #: src/components/filterMenu/filters/worldFilters.ts:335
 msgid "All Oceania"
-msgstr ""
+msgstr "All Oceania"
 
 #: src/components/filterMenu/filters/worldFilters.ts:123
 msgid "All Primal"
-msgstr ""
+msgstr "All Primal"
 
 #: src/components/venueDrawer/venueDrawer.tsx:98
 msgid "All times are in <0>your</0> timezone: {utcOffset} {timeZone}"
-msgstr ""
+msgstr "All times awe in <0>youw</0> timezone: {utcOffset} {timeZone}"
 
 #: src/pages/legal/privacyPolicyPage.tsx:27
 #: src/pages/terms/termsOfServicePage.tsx:28
 msgid "Applies to FFXIV Venues Site / API / Veni Ki / Ruby Ki"
-msgstr ""
+msgstr "Applies to FFXIV Venues Site / API / Veni Ki / Ruby Ki"
 
 #: src/components/filterMenu/filters/featureFilters.ts:14
 msgid "Artists"
-msgstr ""
+msgstr "Awtists"
 
 #: src/components/filterMenu/filters/featureFilters.ts:14
 msgid "Artists are present in the venue to offer various custom artwork."
-msgstr ""
+msgstr "Arrrtists are prrre in the venmew to offurrs vawious custom awtwork."
 
 #: src/components/filterMenu/filters/featureFilters.ts:16
 msgid "Bards"
-msgstr ""
+msgstr "Bawds"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:21
 msgid "Bath house"
-msgstr ""
+msgstr "Bath houze"
 
 #: src/components/filterMenu/filters/gameFilters.ts:12
 msgid "Bingo"
-msgstr ""
+msgstr "Bingo"
 
 #: src/components/dateString/recurringDayText.tsx:19
 msgid "Biweekly on {day}s"
-msgstr ""
+msgstr "Biweekwy on {day}s"
 
 #: src/components/filterMenu/filters/gameFilters.ts:9
 msgid "Blackjack"
-msgstr ""
+msgstr "Bwackjack"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:12
 msgid "Cafe"
-msgstr ""
+msgstr "Catfe"
 
 #: src/components/hideDialog/hideDialog.tsx:25
 #: src/components/notesDialog/notesDialog.tsx:66
 msgid "Cancel"
-msgstr ""
+msgstr "Cancew"
 
 #. Schedule layout option
 #: src/components/settingsMenu/settingsDialog.tsx:76
 msgid "Card"
-msgstr ""
+msgstr "Cawd"
 
 #: src/components/settingsMenu/settingsDialog.tsx:77
 msgid "Card View"
-msgstr ""
+msgstr "Cawd View"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:18
 msgid "Casino"
-msgstr ""
+msgstr "Cazino"
 
 #: src/components/flagDialog/flagDialog.tsx:65
 #: src/components/ui/shadcn/dialog.tsx:82
 #: src/components/ui/shadcn/sheet.tsx:70
 #: src/components/venueDrawer/venueDrawer.tsx:72
 msgid "Close"
-msgstr ""
+msgstr "Cloze"
 
 #: src/components/venueDrawer/venueSchedule.tsx:59
 msgid "Closed"
-msgstr ""
+msgstr "Clozed"
 
 #. Schedule layout option
 #: src/components/settingsMenu/settingsDialog.tsx:81
 msgid "Compact"
-msgstr ""
+msgstr "Compawct"
 
 #: src/components/settingsMenu/settingsDialog.tsx:83
 msgid "Compact View"
-msgstr ""
+msgstr "Compawct View"
 
 #: src/components/venueDrawer/venueToolbar.tsx:206
 #: src/components/venueDrawer/venueToolbar.tsx:210
 msgid "Copy lifestream command"
-msgstr ""
+msgstr "Copy lifestweam command"
 
 #: src/components/venueDrawer/venueToolbar.tsx:145
 #: src/components/venueDrawer/venueToolbar.tsx:197
 #: src/components/venueDrawer/venueToolbar.tsx:201
 msgid "Copy location"
-msgstr ""
+msgstr "Copy location"
 
 #: src/components/filterMenu/filters/featureFilters.ts:12
 msgid "Courtesans"
-msgstr ""
+msgstr "Couwtesanz"
 
 #: src/components/filterMenu/filters/featureFilters.ts:15
 msgid "Dancers"
-msgstr ""
+msgstr "Dancews"
 
 #: src/components/filterMenu/filters/featureFilters.ts:15
 msgid "Dancers populate the venue to hype the party and/or host customers."
-msgstr ""
+msgstr "Dancews pawpulate the venmew to hype the pawty and/or host customerz."
 
 #. Theme option
 #: src/components/settingsMenu/settingsDialog.tsx:48
 msgid "Dark"
-msgstr ""
+msgstr "Dawk"
 
 #: src/components/settingsMenu/settingsDialog.tsx:49
 msgid "Dark Mode"
-msgstr ""
+msgstr "Dawk Mode"
 
 #: src/components/filterMenu/filters/gameFilters.ts:10
 msgid "Deathroll"
-msgstr ""
+msgstr "Deathwoll"
 
 #: src/components/notesDialog/notesDialog.tsx:61
 msgid "Delete Note"
-msgstr ""
+msgstr "Dewete Note"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:11
 msgid "Den"
-msgstr ""
+msgstr "Den"
 
 #: src/components/venueDrawer/venueToolbar.tsx:166
 #: src/components/venueDrawer/venueToolbar.tsx:251
 msgid "Edit note"
-msgstr ""
+msgstr "Edit note"
 
 #: src/pages/legal/privacyPolicyPage.tsx:33
 #: src/pages/terms/termsOfServicePage.tsx:34
 msgid "Effective {effective}"
-msgstr ""
+msgstr "Effewctive {effective}"
 
 #: src/components/filterMenu/filters/worldFilters.ts:222
 msgid "Europe"
-msgstr ""
+msgstr "Euwope"
 
 #: src/lib/services/flagging/flagService.tsx:27
 msgid "Failed to flag venue"
-msgstr ""
+msgstr "Faiwed to fwag venyue"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:11
 msgid "Favorited"
-msgstr ""
+msgstr "Favowited"
 
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:84
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:101
 msgid "Favorites"
-msgstr ""
+msgstr "Favowites"
 
 #: src/components/venueDrawer/venueToolbar.tsx:158
 #: src/components/venueDrawer/venueToolbar.tsx:223
 #: src/components/venueDrawer/venueToolbar.tsx:229
 msgid "Favourite"
-msgstr ""
+msgstr "Favowite"
 
 #: src/components/filterMenu/filterMenu.tsx:77
 msgid "Features"
-msgstr ""
+msgstr "Featuwes"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:17
 msgid "Fight club"
-msgstr ""
+msgstr "Fight club"
 
 #: src/pageLayoutss/defaultPageLayout.tsx:83
 msgid "FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<0/>Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved."
 msgstr ""
+"FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<0/>"
+"Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights "
+"Reserved."
 
 #: src/components/flagDialog/flagDialog.tsx:56
 msgid "Flag a venue to the team for review."
-msgstr ""
+msgstr "Flag a venmew to the team fur review."
 
 #: src/components/flagDialog/flagDialog.tsx:113
 #: src/lib/services/flagging/flagService.tsx:38
 msgid "Flag accepted"
-msgstr ""
+msgstr "Flag accepted"
 
 #: src/components/flagDialog/flagDialog.tsx:55
 #: src/components/venueDrawer/venueToolbar.tsx:176
 #: src/components/venueDrawer/venueToolbar.tsx:269
 #: src/components/venueDrawer/venueToolbar.tsx:273
 msgid "Flag venue"
-msgstr ""
+msgstr "Flag venmew"
 
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:93
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:110
 msgid "Future Openings"
-msgstr ""
+msgstr "Futuwe Openingz"
 
 #: src/components/filterMenu/filters/featureFilters.ts:13
 msgid "Gambling"
-msgstr ""
+msgstr "Gambling"
 
 #: src/components/filterMenu/filterMenu.tsx:83
 msgid "Games"
-msgstr ""
+msgstr "Games"
 
 #: src/components/filterMenu/filters/featureFilters.ts:26
+#, fuzzy
 msgid "Giveaways"
-msgstr ""
+msgstr "Giveaways"
 
 #: src/components/hideDialog/hideDialog.tsx:19
 msgid "Hide this venue?"
-msgstr ""
+msgstr "Hide this venmew?"
 
 #: src/components/hideDialog/hideDialog.tsx:26
 #: src/components/venueDrawer/venueToolbar.tsx:173
 #: src/components/venueDrawer/venueToolbar.tsx:260
 #: src/components/venueDrawer/venueToolbar.tsx:264
 msgid "Hide venue"
-msgstr ""
+msgstr "Hide venmew"
 
 #: src/components/filterMenu/filters/featureFilters.ts:30
 msgid "IC RP encouraged"
-msgstr ""
+msgstr "IC RP encouwaged"
 
 #: src/components/filterMenu/filters/featureFilters.ts:31
 msgid "IC RP only"
-msgstr ""
+msgstr "IC RP onwy"
 
 #: src/components/createVenueModal/createVenueDialog.tsx:68
 msgid "If you have any questions or need help, just make a <0>Venue Ticket</0> in the discord."
 msgstr ""
+"If mew haz any qwuestions or need help, just make a <0>Venmew Ticket</0> in "
+"the discord."
 
 #: src/components/flagDialog/flagDialog.tsx:101
 #: src/components/flagDialog/flagDialog.tsx:102
 msgid "Inappropriate content"
-msgstr ""
+msgstr "Inappwopwiate content"
 
 #: src/components/flagDialog/flagDialog.tsx:98
 #: src/components/flagDialog/flagDialog.tsx:99
 msgid "Incorrect information"
-msgstr ""
+msgstr "Incorrect infurrmation"
 
 #: src/components/filterMenu/filters/sceneFilters.ts:14
+#, fuzzy
 msgid "Inn"
-msgstr ""
+msgstr "Inn"
 
 #: src/lib/services/favouritesService.ts:35
 msgid "It'll appear at the top of the index for you."
-msgstr ""
+msgstr "It'll appear at the top of the index furr mew."
 
 #: src/lib/services/favouritesService.ts:46
 msgid "It'll no longer appear in your favourites."
-msgstr ""
+msgstr "It'll nyo longer appear in your favowites."
 
 #: src/components/createVenueModal/createVenueDialog.tsx:43
 #: src/pageLayoutss/defaultPageLayout.tsx:65
+#, fuzzy
 msgid "Join the discord!"
-msgstr ""
+msgstr "Join the discord!"
 
 #. Veni / Veni Ki is the FFXIV Venues Discord bot; keep the name as-is
 #: src/components/createVenueModal/createVenueDialog.tsx:40
 msgid "Join Veni's home; the FFXIV Venues Discord!"
-msgstr ""
+msgstr "Join Veni's home; the FFXIV Venmews Discord!"
 
 #. Veni / Veni Ki is the FFXIV Venues Discord bot; keep the name as-is
 #: src/components/createVenueModal/createVenueDialog.tsx:29
+#, fuzzy
 msgid "Join via Veni!"
-msgstr ""
+msgstr "Join via Veni!"
 
 #. Interface language selector
 #: src/components/settingsMenu/settingsDialog.tsx:56
 #: src/components/settingsMenu/settingsDialog.tsx:60
 msgid "Language"
-msgstr ""
+msgstr "Langwuage"
 
 #: src/components/dateString/recurringDayText.tsx:27
 msgid "Last {day} of the month"
-msgstr ""
+msgstr "Last {day} of the month"
 
 #. Drawer panel position
 #: src/components/settingsMenu/settingsDialog.tsx:100
@@ -561,7 +576,7 @@ msgstr ""
 
 #: src/components/filterMenu/filters/featureFilters.ts:25
 msgid "Performances"
-msgstr ""
+msgstr "Perfurrmances"
 
 #: src/components/filterMenu/filters/featureFilters.ts:21
 msgid "Photography"
@@ -670,7 +685,7 @@ msgstr ""
 
 #: src/components/settingsMenu/settingsDialog.tsx:94
 msgid "Side for venue details"
-msgstr ""
+msgstr "Side fur venmew detaiws"
 
 #: src/pages/notFoundPage/notFoundPage.tsx:10
 msgid "Sorry, that page could not be found."
@@ -726,6 +741,8 @@ msgstr ""
 #: src/components/createVenueModal/createVenueDialog.tsx:35
 msgid "The easiest way to get your venue listed is through <0>Veni Ki</0> <1>🥰</1> - our cute bot for managing your venue!"
 msgstr ""
+"The easiest way to get your venmew listed is thwough <0>Veni Ki</0> <1>🥰</"
+"1> - our cuwte bot fur managing your venmew!"
 
 #: src/components/filterMenu/filters/featureFilters.ts:11
 msgid "The venue allows adult language, nudity or erotic content in the open."
@@ -742,22 +759,31 @@ msgstr ""
 #: src/components/filterMenu/filters/featureFilters.ts:30
 msgid "The venue encourages an environment for players to role play as their characters, though interacting as themselves is allowed."
 msgstr ""
+"The venmew encouwages an enviwonment fur pwayers to role pway as their "
+"characters, though intewacting as themselves is allowed."
 
 #: src/components/filterMenu/filters/featureFilters.ts:27
 msgid "The venue has a syncshell available for guests to join and see each other as they see themselves."
 msgstr ""
+"The venmew has a syncsheww avaiwable fur guests to join and see each other "
+"as they see themselves."
 
 #: src/components/filterMenu/filters/gameFilters.ts:9
 msgid "The venue holds a table for players who wish to gamble gil in a game of 21."
 msgstr ""
+"The venmew holds a table fur pwayers who wish to gamble gil in a game of 21."
 
 #: src/components/filterMenu/filters/gameFilters.ts:13
 msgid "The venue holds a table for players who wish to gamble gil in a game of Roulette."
 msgstr ""
+"The venmew holds a table fur pwayers who wish to gamble gil in a game of "
+"Roulette."
 
 #: src/components/filterMenu/filters/gameFilters.ts:11
 msgid "The venue holds a table for players who wish to gamble gil in a game of Texas holdem."
 msgstr ""
+"The venmew holds a table fur pwayers who wish to gamble gil in a game of "
+"Texas holdem."
 
 #: src/components/filterMenu/filters/gameFilters.ts:12
 msgid "The venue holds a venue wide bingo game, usually with prizes involved."
@@ -769,11 +795,13 @@ msgstr ""
 
 #: src/components/filterMenu/filters/featureFilters.ts:18
 msgid "The venue hosts a sync DJ who offers music via synchshells."
-msgstr ""
+msgstr "The venmew hosts a sync DJ who offurrs mewsic via synchshells."
 
 #: src/components/filterMenu/filters/featureFilters.ts:19
 msgid "The venue hosts a Tarot Reader who offers to read drawn cards and provide insights about the possible meaning they hold."
 msgstr ""
+"The venmew hosts a Tarot Weader who offurrs to read dwawn carrrds and "
+"prrrovide insights about the possible meaning they hold."
 
 #: src/components/filterMenu/filters/featureFilters.ts:21
 msgid "The venue hosts photographers who take venue snapshots or more complex gpose of patrons to display in the venue discord and create memories."
@@ -782,6 +810,8 @@ msgstr ""
 #: src/components/filterMenu/filters/featureFilters.ts:24
 msgid "The venue hosts stylists who offer a variety of glamour services, including hair styling, makeup, and wardrobe assistance."
 msgstr ""
+"The venmew hosts stylists who offurrs a variety of gwamour surrvices, "
+"including hair stywing, makeup, and wardwobe assistance."
 
 #: src/components/filterMenu/filters/featureFilters.ts:29
 msgid "The venue is a safe space focused on LGBTQIA+."
@@ -794,46 +824,65 @@ msgstr ""
 #: src/components/filterMenu/filters/gameFilters.ts:8
 msgid "The venue offers a game of Truth or Dare for whomever feels like joining. Sometimes in private alliance, sometimes venue wide."
 msgstr ""
+"The venmew offurrs a game of Twuth or Dawe fur whomever feels like joining. "
+"Sometimes in pwivate alliance, sometimes venmew wide."
 
 #: src/components/filterMenu/filters/featureFilters.ts:31
 msgid "The venue offers an environment for players to role play as their characters only, and does not allow open interaction as themselves."
 msgstr ""
+"The venmew offurrs an enviwonment fur pwayers to role pway as their "
+"chawacters only, and does not allow open intewaction as themselves."
 
 #: src/components/filterMenu/filters/featureFilters.ts:12
 msgid "The venue offers erotic role-play services in a consensual environment."
 msgstr ""
+"The venmew offurrs ewotic role-pway surrvices in a consensual enviwonment."
 
 #: src/components/filterMenu/filters/featureFilters.ts:26
 msgid "The venue offers giveaways through various channels, in chat, twitch stream or discord."
 msgstr ""
+"The venmew offurrs giveaways thwough vawious channels, in chat, twitch "
+"stweam or discowd."
 
 #: src/components/filterMenu/filters/gameFilters.ts:10
 msgid "The venue offers individual or competitive game of Deathroll usually with prizes involved."
 msgstr ""
+"The venmew offurrs individual or competitive game of Deathwoll usually with "
+"pwizes involved."
 
 #: src/components/filterMenu/filters/gameFilters.ts:7
 msgid "The venue offers individual or competitive games of Triple Triad via the game interface itself."
 msgstr ""
+"The venmew offurrs individual or competitive games of Twiple Twiad via the "
+"game interface itself."
 
 #: src/components/filterMenu/filters/featureFilters.ts:20
 msgid "The venue offers Pillows who provide a safe, confidential space to promote an SFW companionship for a limited time."
 msgstr ""
+"The venmew offurrs Pillows who provide a safe, confidential space to "
+"prrromote an SFW companionship fur a limited time."
 
 #: src/components/filterMenu/filters/featureFilters.ts:22
 msgid "The venue offers the stage for a patron to perform to the audience."
-msgstr ""
+msgstr "The venmew offurrs the stage fur a patwon to purrfurm to the audience."
 
 #: src/components/filterMenu/filters/featureFilters.ts:25
 msgid "The venue offers unique schedule performances, this could be SFW (theater, synch dancers, etc) or NSFW (erotic voyeur shows, live BDSM, etc)."
 msgstr ""
+"The venmew offurrs unique schedule purrfurrmances, this could be SFW "
+"(theater, sync dancers, etc) or NSFW (erotic voyeur shows, live BDSM, etc)."
 
 #: src/components/filterMenu/filters/featureFilters.ts:13
 msgid "The venue offers various games of chance with set amounts of gils and house rules."
 msgstr ""
+"The venmew offurrs vawious games of chance with set amounts of gils and "
+"houze wules."
 
 #: src/components/filterMenu/filters/featureFilters.ts:28
 msgid "The venue offers various perks through VIP tiers. This could include free drinks, gpose, gambling perk or more."
 msgstr ""
+"The venmew offurrs vawious purrks thwough VIP tiers. This could include free "
+"drinks, gpose, gambwing purrk or more."
 
 #: src/components/settingsMenu/settingsDialog.tsx:32
 msgid "Theme"
@@ -938,68 +987,71 @@ msgstr ""
 
 #: src/components/notesDialog/notesDialog.tsx:46
 msgid "Venue Note"
-msgstr ""
+msgstr "Venue nyote"
 
 #: src/components/venueDrawer/venueToolbar.tsx:247
 msgid "Venue Notes"
-msgstr ""
+msgstr "Venue nyotes"
 
 #: src/lib/services/ratingsService.ts:36
 msgid "Venue rated"
-msgstr ""
+msgstr "Venue wated"
 
 #: src/components/settingsMenu/settingsDialog.tsx:70
 msgid "Venue schedule layout"
-msgstr ""
+msgstr "Venue scheduwe wayout"
 
 #: src/lib/services/favouritesService.ts:45
 msgid "Venue unfavourited"
-msgstr ""
+msgstr "Venue unfavowited"
 
 #: src/lib/services/visitedService.ts:43
 msgid "Venue unmarked as visited"
-msgstr ""
+msgstr "Venue unmawked as visited"
 
 #: src/components/venueCard/venueCardFull.tsx:118
 msgid "View Venue"
-msgstr ""
+msgstr "View venmew"
 
 #: src/components/filterMenu/filters/featureFilters.ts:28
 msgid "VIP available"
-msgstr ""
+msgstr "VIP avaiwable"
 
 #: src/components/filterMenu/filters/ratingFilters.tsx:12
 #: src/components/venueDrawer/venueToolbar.tsx:234
 msgid "Visited"
-msgstr ""
+msgstr "Visited"
 
 #. Venue built in the housing void
 #: src/components/filterMenu/filters/featureFilters.ts:23
 msgid "Void"
-msgstr ""
+msgstr "Venue built in the houzing void"
 
 #: src/components/venueDrawer/venueWebsiteButton.tsx:10
 msgid "Website"
-msgstr ""
+msgstr "Website"
 
 #: src/components/dateString/recurringDayText.tsx:18
 msgid "Weekly on {day}s"
-msgstr ""
+msgstr "Weekwy on {day}s"
 
 #: src/components/notesDialog/notesDialog.tsx:52
 msgid "Write anything you want to remember about this venue!"
-msgstr ""
+msgstr "Wite anything mew want to wemember about this venmew!"
 
 #: src/lib/services/ratingsService.ts:37
 msgid "You can filter to venues of a certain rating later via the sidebar."
-msgstr ""
+msgstr "Mew can filter to venmews of a certain wating later via the sidebar."
 
 #: src/lib/services/visitedService.ts:33
 #: src/lib/services/visitedService.ts:44
 msgid "You can filter to venues you have or haven't visited later via the sidebar."
 msgstr ""
+"Mew can filter to venmews mew have or haven't visited later via the sidebar."
 
 #: src/components/flagDialog/flagDialog.tsx:115
 #: src/lib/services/flagging/flagService.tsx:39
 msgid "Your flag has been submitted for review. The team usually actions flags within 24 hours."
 msgstr ""
+"Your fwag has been submitted fur weview. The team usually action fwags "
+"within 24 hourz."
