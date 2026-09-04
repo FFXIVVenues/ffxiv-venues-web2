@@ -8,7 +8,7 @@ msgstr ""
 "Language: en-x-miqo\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-09-04 17:35+0000\n"
+"PO-Revision-Date: 2026-09-05 01:19+0000\n"
 "Last-Translator: Oreo <1370248232793542667@id.ffxivvenues.com>\n"
 "Language-Team: Miqo'te <https://translate.ffxivvenues.com/projects/webclient/"
 "ui/en-x-miqo/>\n"
@@ -340,7 +340,7 @@ msgstr "Fwag venmew"
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:93
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:110
 msgid "Future Openings"
-msgstr "Futuwe Openingz"
+msgstr "Futurre Openingz"
 
 #: src/components/filterMenu/filters/featureFilters.ts:13
 msgid "Gambling"
@@ -936,7 +936,7 @@ msgstr "Toggle Sidebaw"
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:90
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:107
 msgid "Tomorrow ({day})"
-msgstr "Tomowwow ({day})"
+msgstr "Tomorrrrow ({day})"
 
 #: src/components/filterMenu/filters/gameFilters.ts:7
 msgid "Triple triad"
@@ -971,7 +971,7 @@ msgstr "Unmeowed"
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:94
 #: src/pages/venueDirectoryPage/venueDirectoryPage.tsx:111
 msgid "Unscheduled"
-msgstr "Unscheduwed"
+msgstr "Unscheduled"
 
 #: src/components/settingsMenu/settingsDialog.tsx:44
 msgid "Use System Theme"
