@@ -6,6 +6,7 @@ import { lingui } from "@lingui/vite-plugin";
 
 export default defineConfig({
   root: "src",
+  envDir: __dirname,
   resolve: { alias: { "@": resolve(__dirname, "src") } },
   build: { outDir: "../dist" },
   plugins: [
