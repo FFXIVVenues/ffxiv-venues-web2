@@ -11,7 +11,7 @@ export const locales = {
 
 export type Locale = keyof typeof locales;
 export const defaultLocale: Locale = "en";
-export const availableLocales: Locale[] = ["en"];
+export const availableLocales: Locale[] = ["en", "en-x-miqo"];
 
 export const isAvailableLocale = (value: string): value is Locale => (availableLocales as readonly string[]).includes(value);
 
