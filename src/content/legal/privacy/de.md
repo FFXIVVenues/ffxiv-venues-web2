@@ -1,163 +1,199 @@
-## 1. Who we are
+## 1. Wer wir sind
 
-1.1 FFXIV Venues is a community-run platform that allows Final Fantasy XIV
-players to discover and list in-game venues. The service is operated as a
-non-commercial community project, accessible at [ffxivvenues.com](/).
+1.1 FFXIV Venues ist eine von der Community betriebene Plattform, die Spielern
+von Final Fantasy XIV dabei hilft, spielinterne Veranstaltungen und
+Veranstaltungsorte zu entdecken. Unser Service wird werbefrei als community
+Projekt betrieben und ist erreichbar unter [ffxivvenues.com](/).
 
-1.2 For any privacy-related enquiries, please [contact the team via a
-ticket](https://discord.com/channels/942536163959406632/1188579990271434883) in
-the [FFXIV Venues discord](https://discord.gg/gTP65VYcMj)
+1.2 Für Anfragen bezüglich Privatsphäre und verwandter Themen, bitte
+[kontaktiere das Team mit einem
+Ticket](https://discord.com/channels/942536163959406632/1188579990271434883) im
+[FFXIV Venues discord](https://discord.gg/gTP65VYcMj)
 
-## 2. What this policy covers
+## 2. Was diese Richtlinie abdeckt
 
-2.1 This policy explains what personal data FFXIV Venues collects, why it is
-collected, how it is stored and protected, and the rights in relation to that
-data. This policy applies to the following categories of user:
+2.1 Diese Richtlinie erläutert, welche personenbezogenen Daten FFXIV Venues
+erhebt und zu welchen Zwecken diese verarbeitet werden. Darüber hinaus wird
+beschrieben, wie diese Daten gespeichert und geschützt werden und welche Rechte
+Nutzer in Bezug auf ihre personenbezogenen Daten haben. Diese Richtlinie gilt
+für die folgenden Nutzerkategorien:
 
-- 2.1.1 Visitors who browse our sites.
-- 2.1.2 Consumers of our API.
-- 2.1.3 Venue owners who use our Discord bot, Veni Ki, to create and manage
-  venue listings.
-- 2.1.4 Users of our Discord bot, Ruby Ki, to use utility features such as
-  anonymous posting.
-- 2.1.5 Any user who submits a venue flag for moderation purposes.
+- 2.1.1 Besucher unserer Website.
+- 2.1.2 Nutzer unserer API.
+- 2.1.3 Betreiber von Venues oder Veranstaltungen, die unseren Discord Bot Veni
+  Ki verwenden, um Einträge für ihre Venues/Veranstaltungen zu erstellen und zu
+  verwalten.
+- 2.1.4 Nutzer, die unseren Discord-Bot Ruby Ki verwenden, um beispielsweise
+  anonymisierte Beiträge zu verfassen.
+- 2.1.5 Nutzer, die eine Veranstaltung oder Venue aus Moderationsgründen melden.
 
-## 3. Data we collect and why
+## 3. Daten die wir erheben und waurm
 
-### 3.1 Site visitors
+### 3.1 Website-Besucher
 
-### 3.1.1 General browsing (and API usage)
+### 3.1.1 Allgemeine Nutzung der Website (und API)
 
-3.1.1.1 An account or login is not required to browse venue listings. Personal
-data is not deliberately collected for basic browsing; however, some limited
-technical data may be processed as a necessary consequence of operating the
-service.
+3.1.1.1 Für das Durchsuchen von Venue-Einträgen ist weder ein Benutzerkonto noch
+eine Anmeldung erforderlich. Bei der allgemeinen Nutzung werden personenbezogene
+Daten nicht gezielt erhoben. Allerdings können in begrenztem Umfang technische
+Daten verarbeitet werden, soweit dies für den Betrieb des Dienstes erforderlich
+ist.
 
-3.1.1.2 IP address and request data (for example, timestamps and request urls)
-may be processed in server logs, and Cloudflare systems for network security,
-DDoS protection, troubleshooting, and performance monitoring. This data is not
-used to identify individuals.
+3.1.1.2 IP-Adressen und Anfragedaten, wie beispielsweise Zeitstempel und
+aufgerufene URLs, können in Serverprotokollen sowie durch die Systeme von
+Cloudflare verarbeitet werden. Diese Verarbeitung dient der Netzwerksicherheit,
+dem Schutz vor DDoS-Angriffen, der Fehlerbehebung und der Überwachung der
+Systemleistung. Diese Daten werden nicht dazu verwendet, einzelne Personen zu
+identifizieren.
 
-3.1.1.3 Our lawful basis (where UK GDPR or EU GDPR applies) is legitimate
-interests in service performance and security.
+3.1.1.3 Soweit die UK GDPR oder die EU-DSGVO Anwendung findet, erfolgt die
+Verarbeitung auf Grundlage unserer berechtigten Interessen an der sicheren und
+zuverlässigen Bereitstellung unseres Dienstes.
 
-### 3.1.2 Device-side features
+### 3.1.2 Geräteseitige Funktionen
 
-3.1.2.1 The site includes optional features such as rating a venue, marking it
-as a favourite, or adding personal notes. These features are stored entirely in
-the browser's local storage and are never transmitted to the servers. This data
-cannot be accessed by FFXIV Venues.
+3.1.2.1 Diese Website bietet optionale Funktionen, wie das Bewerten einer Venue
+oder Veranstaltung, das Markieren von Favoriten sowie das Hinzufügen
+persönlicher Notizen. Die dabei entstehenden Daten werden ausschließlich lokal
+im Browser des Nutzers gespeichert und nicht an die Server von FFXIV Venues
+übermittelt. FFXIV Venues hat keinen Zugriff auf diese Daten und kann deren
+Inhalte nicht einsehen.
 
-### 3.1.3 Site moderation (venue flags)
+### 3.1.3 Moderation der Website (Meldung von Venues/Veranstaltungen)
 
-3.1.3.1 Any user, including anonymous visitors, may submit a flag on a venue to
-report inaccurate information or inappropriate content. When a flag is
-submitted, we collect the following:
+3.1.3.1 Jeder Nutzer, einschließlich anonymer Besucher, kann eine Venue melden,
+um auf fehlerhafte Informationen oder unangemessene Inhalte hinzuweisen. Bei
+einer solchen Meldung erheben wir die folgenden Daten:
 
-- 3.1.3.1.1 The flag type, selected from a predefined list.
-- 3.1.3.1.2 An optional free-text description provided by the user.
-- 3.1.3.1.3 A derived identifier: the IP address is irreversibly hashed and
-  truncated before being stored. Original IP addresses cannot be reconstructed
-  from this value. It is used only to correlate flags from the same source in
-  order to detect spam or coordinated abuse, and cannot be used for individual
-  identification.
+- 3.1.3.1.1 Der Grund der Meldung, ausgewählt aus einer vordefinierten Liste.
+- 3.1.3.1.2 Eine optionale Textbeschreibung, die vom Nutzer bereitgestellt wird.
+- 3.1.3.1.3 Eine abgeleitete Kennung: Die IP-Adresse wird vor der Speicherung
+  irreversibel mit einer Hashfunktion verarbeitet und gekürzt. Die ursprüngliche
+  IP-Adresse kann aus diesem Wert nicht rekonstruiert werden. Die Kennung wird
+  ausschließlich dazu verwendet, Meldungen aus derselben Quelle miteinander in
+  Verbindung zu bringen, um Spam oder koordinierten Missbrauch zu erkennen. Sie
+  kann nicht zur Identifizierung einzelner Personen verwendet werden.
 
-3.1.3.2 Our lawful basis (where UK GDPR or EU GDPR applies) is legitimate
-interests in abuse prevention and data accuracy.
+3.1.3.2 Soweit die UK GDPR oder die EU-DSGVO Anwendung findet, erfolgt die
+Verarbeitung auf Grundlage unserer berechtigten Interessen an der Verhinderung
+von Missbrauch und der Gewährleistung der Richtigkeit unserer Daten.
 
-### 3.2 Veni Ki (venue owners)
+### 3.2 Veni Ki (Venue-Besitzer)
 
-3.2.1 When a venue listing is created or managed using the Discord bot, Veni Ki,
-the following data is collected in order to provide and maintain that listing:
+3.2.1 Wenn ein Venue-Eintrag über unseren Discord-Bot Veni Ki erstellt oder
+verwaltet wird, erheben wir die folgenden Daten, um diesen Eintrag
+bereitzustellen und zu verwalten:
 
-- 3.2.1.1 The user's Discord ID, used to associate the user with the venue and
-  to verify ownership for edits or deletion.
-- 3.2.1.2 The venue listing details provided, including (for example) venue
-  name, location, description, schedule, and any other completed fields.
+- 3.2.1.1 Die Discord-ID des Nutzers. Diese wird verwendet, um den Nutzer der
+  jeweiligen Venue zuzuordnen und die Inhaberschaft bei Änderungen oder der
+  Löschung des Eintrags zu überprüfen.
+- 3.2.1.2 Die bereitgestellten Angaben zur Venue, darunter beispielsweise der
+  Name, der Standort, die Beschreibung, Veranstaltungszeiten sowie alle weiteren
+  ausgefüllten Felder.
 
-3.2.2 The information submitted is displayed back during the creation
-confirmation process, allowing for review of the stored data before it is saved.
+3.2.2 Die eingegebenen Informationen werden während des Bestätigungsvorgangs
+noch einmal angezeigt, sodass die Angaben vor der endgültigen Speicherung
+überprüft werden können.
 
-3.2.3 Our lawful basis (where UK GDPR or EU GDPR applies) is:
+3.2.3 Soweit die UK GDPR oder die EU-DSGVO Anwendung findet, gelten die
+folgenden Rechtsgrundlagen:
 
-- 3.2.3.1 The provision of service - taking steps at the user's request to
-  create and maintain the venue listing.
-- 3.2.3.2 Legitimate interests - contributing to community statistics (see
-  section 3.4).
+- 3.2.3.1 Bereitstellung des Dienstes – Durchführung der vom Nutzer
+  angeforderten Schritte zur Erstellung und Verwaltung des Venue-Eintrags.
+- 3.2.3.2 Berechtigte Interessen - Beitrag zur Erstellung von
+  Community-Statistiken (siehe Abschnitt 3.4).
 
 ### 3.3 Ruby Ki
 
-3.3.1 Ruby Ki is a Discord bot providing utility functions for the FFXIV Venues
-community, including message anchoring, anonymity features, and minigames.
+3.3.1 Ruby Ki ist ein Discord Bot, der verschiedene Funktionen für die FFXIV
+Venues Community bereitstellt. Dazu gehören unter anderem das Verankern von
+Nachrichten, Funktionen für anonyme Beiträge sowie Minispiele.
 
-3.3.2 If the Ruby Ki anonymity feature is used to post messages, the following
-data is collected and stored for moderation and safety purposes:
+3.3.2 Wird die Anonymitätsfunktion von Ruby Ki zum Veröffentlichen von
+Nachrichten verwendet, werden zu Moderations- und Sicherheitszwecken die
+folgenden Daten erhoben und gespeichert:
 
-- 3.3.2.1 The user's Discord ID.
-- 3.3.2.2 The ID of the message(s) sent via the service.
+- 3.3.2.1 Die Discord-ID des Nutzers.
+- 3.3.2.2 Die IDs der über den Dienst gesendeten Nachrichten.
 
-3.3.3 This data is used solely to allow moderators to identify the source of
-messages in the event of a policy violation. It is not exposed to the public or
-other users. Access is restricted to community moderators and engineers for the
-purposes of moderation and service maintenance.
+3.3.3 Diese Daten werden ausschließlich dazu verwendet, Moderatoren im Falle
+eines Verstoßes gegen die geltenden Richtlinien die Identifizierung des
+Absenders einer Nachricht zu ermöglichen. Die Daten sind weder öffentlich noch
+für andere Nutzer einsehbar. Der Zugriff ist auf Community-Moderatoren und
+Entwickler beschränkt und erfolgt ausschließlich zu Moderationszwecken sowie zur
+Wartung des Dienstes.
 
-3.3.4 Our lawful basis (where UK GDPR or EU GDPR applies) is legitimate
-interests in maintaining a safe community environment and preventing abuse.
+3.3.4 Soweit die UK GDPR oder die EU-DSGVO Anwendung findet, erfolgt die
+Verarbeitung auf Grundlage unserer berechtigten Interessen an der
+Aufrechterhaltung eines sicheren Community-Umfelds und der Verhinderung von
+Missbrauch.
 
-### 3.4 Statistics dashboard
+### 3.4 Statistik-Dashboard
 
-3.4.1 FFXIV Venues operates a statistics dashboard at
-[stats.ffxivvenues.com](https://stats.ffxivvenues.com/) as an additional
-processing purpose for the venue profile data described in section 3.2. The
-dashboard presents both aggregate statistics and individual views; all data
-surfaced is the same as is publicly accessible via the main site.
+3.4.1 FFXIV Venues betreibt unter
+[stats.ffxivvenues.com](https://stats.ffxivvenues.com/) ein Statistik-Dashboard
+als zusätzlichen Verarbeitungszweck für die in Abschnitt 3.2 beschriebenen Daten
+der Venue-Profile. Das Dashboard stellt sowohl zusammengefasste Statistiken als
+auch Einzelansichten bereit. Sämtliche dort dargestellten Daten entsprechen den
+Informationen, die bereits über die Hauptseite öffentlich zugänglich sind.
 
-3.4.2 Access is open to anyone who requests it via a Discord role. No additional
-personal data is collected or stored as a result of accessing the dashboard.
+3.4.2 Der Zugriff steht allen Nutzern offen, die diesen über eine entsprechende
+Discord-Rolle anfordern. Durch den Zugriff auf das Dashboard werden keine
+zusätzlichen personenbezogenen Daten erhoben oder gespeichert.
 
-3.4.3 Our lawful basis (where UK GDPR or EU GDPR applies) is the provision of
-service:
+3.4.3 Soweit die UK GDPR oder die EU-DSGVO Anwendung findet, erfolgt die
+Verarbeitung auf Grundlage der Bereitstellung des Dienstes:
 
-- 3.4.3.1 Providing open statistics and trends on the venue market.
-- 3.4.3.2 Aiding decisions on service improvements.
+- 3.4.3.1 Bereitstellung öffentlich zugänglicher Statistiken und Einblicke in
+  aktuelle Entwicklungen des Venue-Marktes.
+- 3.4.3.2 Unterstützung bei Entscheidungen zur Verbesserung des Dienstes.
 
-### 3.5 Staging site
+### 3.5 Staging-Website
 
-3.5.1 A separate version of the website is maintained at
-[ffxivvenues.dev](https://ffxivvenues.dev/) to test new features and
-improvements before they are released to the main site.
+3.5.1 Unter [ffxivvenues.dev](https://ffxivvenues.dev/) wird eine separate
+Version der Website betrieben, die dazu dient, neue Funktionen und
+Verbesserungen zu testen, bevor diese auf der Hauptseite veröffentlicht werden.
 
-3.5.2 In accessing this site, IP address and request data (for example,
-timestamps and request urls) may be processed in server logs, and Cloudflare
-systems for network security, DDoS protection, troubleshooting, and performance
-monitoring. This data is not used to identify individuals.
+3.5.2 Beim Zugriff auf diese Website können IP-Adressen und Anfragedaten, wie
+beispielsweise Zeitstempel und aufgerufene URLs, in Serverprotokollen sowie
+durch die Systeme von Cloudflare verarbeitet werden. Diese Verarbeitung dient
+der Netzwerksicherheit, dem Schutz vor DDoS-Angriffen, der Fehlerbehebung und
+der Überwachung der Systemleistung. Diese Daten werden nicht dazu verwendet,
+einzelne Personen zu identifizieren.
 
-3.5.3 This staging site uses a copy of the live data to ensure that new updates
-work correctly and accurately with real-world information. To ensure isolation
-the data on the staging site is disconnected from your Discord account. This
-means that actions performed on the staging site will not affect your live data
-or result in messages being sent to you.
+3.5.3 Die Staging-Website verwendet eine Kopie der Live-Daten, um
+sicherzustellen, dass neue Funktionen und Änderungen unter realistischen
+Bedingungen korrekt und zuverlässig funktionieren. Zur Trennung von der
+Produktivumgebung sind die Daten auf der Staging-Website nicht mit dem
+jeweiligen Discord-Konto verknüpft. Dadurch haben auf der Staging-Website
+ausgeführte Aktionen keine Auswirkungen auf die Live-Daten und führen auch nicht
+dazu, dass Nachrichten an den Nutzer gesendet werden.
 
-3.5.5 Our lawful basis (where UK GDPR or EU GDPR applies) is provision of
-service - ensuring service updates are stable, performant, and accurate.
+3.5.5 Soweit die UK GDPR oder die EU-DSGVO Anwendung findet, erfolgt die
+Verarbeitung auf Grundlage der Bereitstellung des Dienstes - insbesondere zur
+Sicherstellung, dass Aktualisierungen stabil, leistungsfähig und zuverlässig
+funktionieren.
 
-### 3.6 Support tickets (Ticket Tool)
+### 3.6 Support-Tickets (Ticket Tool)
 
-3.6.1 If a support ticket is opened in the Discord server, the information
-provided within that ticket is collected and stored via Ticket Tool. This is
-used to respond to the enquiry, manage community escalations, and maintain an
-audit record of changes made by request.
+3.6.1 Wird auf dem Discord-Server ein Support-Ticket eröffnet, werden die darin
+bereitgestellten Informationen über das Ticket Tool erhoben und gespeichert.
+Diese Daten werden verwendet, um die jeweilige Anfrage zu bearbeiten,
+Eskalationen innerhalb der Community zu verwalten und Änderungen, die auf
+Anfrage vorgenommen wurden, nachvollziehbar zu dokumentieren.
 
-3.6.2 The data collected includes:
+3.6.2 Die erhobenen Daten umfassen:
 
-- 3.6.2.1 The user's Discord ID.
-- 3.6.2.2 The content of messages, including any information shared in the
-  ticket.
-- 3.6.2.3 Timestamps and ticket status history.
+- 3.6.2.1 Die Discord ID des Nutzers.
+- 3.6.2.2 Den Inhalt der Nachrichten, sowie jede Information, die mit dem Ticket
+  geteilt wurden.
+- 3.6.2.3 Zeitstempel und Ticketstatus.
 
-3.6.3 Our lawful basis (where UK GDPR or EU GDPR applies) is:
+3.6.3 Soweit die UK GDPR oder die EU-DSGVO Anwendung findet, gelten die
+folgenden Rechtsgrundlagen:
 
-- 3.6.3.1 The provision of service - responding to the request or enquiry.
+- 3.6.3.1 Bereitstellung des Dienstes – Bearbeitung und Beantwortung der
+  Anfrage.
 - 3.6.3.2 Legitimate interests - maintaining an audit record of escalations and
   venue changes.
 
