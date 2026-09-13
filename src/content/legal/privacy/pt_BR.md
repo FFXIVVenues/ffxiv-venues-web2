@@ -1,21 +1,24 @@
-## 1. Who we are
+## 1. Quem nós somos
 
-1.1 FFXIV Venues is a community-run platform that allows Final Fantasy XIV
-players to discover and list in-game venues. The service is operated as a
-non-commercial community project, accessible at [ffxivvenues.com](/).
+1.1 O FFXIV Venues é uma plataforma administrada pela comunidade que permite aos
+jogadores de Final Fantasy XIV descobrir e cadastrar estabelecimentos dentro do
+jogo. O serviço é mantido como um projeto comunitário sem fins lucrativos e pode
+ser acessado em [ffxivvenues.com](/).
 
-1.2 For any privacy-related enquiries, please [contact the team via a
-ticket](https://discord.com/channels/942536163959406632/1188579990271434883) in
-the [FFXIV Venues discord](https://discord.gg/gTP65VYcMj)
+1.2 Para qualquer dúvida relacionada à privacidade, entre em [contato com a
+equipe por meio de um
+ticket](https://discord.com/channels/942536163959406632/1188579990271434883) no
+[Discord do FFXIV Venues](https://discord.gg/gTP65VYcMj)
 
-## 2. What this policy covers
+## 2. O que esta Política de Privacidade abrange
 
-2.1 This policy explains what personal data FFXIV Venues collects, why it is
-collected, how it is stored and protected, and the rights in relation to that
-data. This policy applies to the following categories of user:
+2.1 Esta Política de Privacidade explica quais dados pessoais o FFXIV Venues
+coleta, por que eles são coletados, como são armazenados e protegidos e quais
+direitos se aplicam a esses dados. Esta política se aplica às seguintes
+categorias de usuários:
 
-- 2.1.1 Visitors who browse our sites.
-- 2.1.2 Consumers of our API.
+- 2.1.1 Visitantes que acessam nossos sites.
+- 2.1.2 Usuários de nossa API.
 - 2.1.3 Venue owners who use our Discord bot, Veni Ki, to create and manage
   venue listings.
 - 2.1.4 Users of our Discord bot, Ruby Ki, to use utility features such as
