@@ -1,4 +1,4 @@
-## 1. Who we are
+## 1. Wer wir sind
 
 1.1 FFXIV Venues is a community-run platform that allows Final Fantasy XIV
 players to discover and list in-game venues. It is operated as a non-commercial
