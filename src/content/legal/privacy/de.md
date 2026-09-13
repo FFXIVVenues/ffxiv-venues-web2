@@ -100,7 +100,7 @@ folgenden Rechtsgrundlagen:
 
 - 3.2.3.1 Bereitstellung des Dienstes – Durchführung der vom Nutzer
   angeforderten Schritte zur Erstellung und Verwaltung des Venue-Eintrags.
-- 3.2.3.2 Berechtigte Interessen – Beitrag zur Erstellung von
+- 3.2.3.2 Berechtigte Interessen - Beitrag zur Erstellung von
   Community-Statistiken (siehe Abschnitt 3.4).
 
 ### 3.3 Ruby Ki
@@ -170,7 +170,7 @@ ausgeführte Aktionen keine Auswirkungen auf die Live-Daten und führen auch nic
 dazu, dass Nachrichten an den Nutzer gesendet werden.
 
 3.5.5 Soweit die UK GDPR oder die EU-DSGVO Anwendung findet, erfolgt die
-Verarbeitung auf Grundlage der Bereitstellung des Dienstes – insbesondere zur
+Verarbeitung auf Grundlage der Bereitstellung des Dienstes - insbesondere zur
 Sicherstellung, dass Aktualisierungen stabil, leistungsfähig und zuverlässig
 funktionieren.
 
