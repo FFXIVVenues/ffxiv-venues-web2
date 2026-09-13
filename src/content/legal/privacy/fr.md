@@ -17,8 +17,8 @@ data. This policy applies to the following categories of user:
 
 - 2.1.1 Visitors who browse our sites.
 - 2.1.2 Consumers of our API.
-- 2.1.3 Venue owners who use our Discord bot, Veni Ki, to create and manage
-  venue listings.
+- 2.1.3 Les propriétaires de salles qui utilisent notre bot Discord, Veni Ki,
+  pour créer et gérer les annonces d'établissements.
 - 2.1.4 Users of our Discord bot, Ruby Ki, to use utility features such as
   anonymous posting.
 - 2.1.5 Any user who submits a venue flag for moderation purposes.
