@@ -19,69 +19,76 @@ categorias de usuários:
 
 - 2.1.1 Visitantes que acessam nossos sites.
 - 2.1.2 Usuários de nossa API.
-- 2.1.3 Venue owners who use our Discord bot, Veni Ki, to create and manage
-  venue listings.
-- 2.1.4 Users of our Discord bot, Ruby Ki, to use utility features such as
-  anonymous posting.
-- 2.1.5 Any user who submits a venue flag for moderation purposes.
+- 2.1.3 Proprietários de estabelecimentos que utilizam nosso bot do Discord,
+  Veni Ki, para criar e gerenciar cadastros de estabelecimentos.
+- 2.1.4 Usuários do nosso bot do Discord, Ruby Ki, que utilizam recursos como
+  publicações anônimas.
+- 2.1.5 Qualquer usuário que reporte um estabelecimento para fins de moderação.
 
-## 3. Data we collect and why
+## 3. Dados que coletamos e por que
 
-### 3.1 Site visitors
+### 3.1 Visitantes do site
 
-### 3.1.1 General browsing (and API usage)
+### 3.1.1 Navegação geral (e uso da API)
 
-3.1.1.1 An account or login is not required to browse venue listings. Personal
-data is not deliberately collected for basic browsing; however, some limited
-technical data may be processed as a necessary consequence of operating the
-service.
+3.1.1.1 Não é necessário possuir uma conta ou realizar login para acessar os
+registros de estabelecimentos. Dados pessoais não são coletados intencionalmente
+durante a navegação básica; no entanto, alguns dados técnicos limitados podem
+ser processados como consequência necessária para o funcionamento do serviço.
 
-3.1.1.2 IP address and request data (for example, timestamps and request urls)
-may be processed in server logs, and Cloudflare systems for network security,
-DDoS protection, troubleshooting, and performance monitoring. This data is not
-used to identify individuals.
+3.1.1.2 O endereço IP e os dados das requisições (por exemplo, horários e URL's
+das requisições) podem ser processados nos logs do servidor e nos sistemas do
+Cloudflare para fins de segurança da rede, proteção contra ataques DDoS,
+diagnóstico de problemas e monitoramento de desempenho. Esses dados não são
+utilizados para identificar usuários.
 
-3.1.1.3 Our lawful basis (where UK GDPR or EU GDPR applies) is legitimate
-interests in service performance and security.
+3.1.1.3 Nos casos em que o GDPR do Reino Unido ou o GDPR da União Europeia sejam
+aplicáveis, esse tratamento tem como base legal o legítimo interesse na
+segurança e no desempenho do serviço.
 
-### 3.1.2 Device-side features
+### 3.1.2 Funcionalidades executadas no dispositivo
 
-3.1.2.1 The site includes optional features such as rating a venue, marking it
-as a favourite, or adding personal notes. These features are stored entirely in
-the browser's local storage and are never transmitted to the servers. This data
-cannot be accessed by FFXIV Venues.
+3.1.2.1 O site possui funcionalidades opcionais, como avaliar um
+estabelecimento, marcá-lo como favorito ou adicionar anotações pessoais. Essas
+informações são armazenadas localmente no navegador e nunca são transmitidas aos
+servidores. Esses dados não podem ser acessados pelo FFXIV Venues.
 
-### 3.1.3 Site moderation (venue flags)
+### 3.1.3 Moderação do site (estabelecimentos reportados)
 
-3.1.3.1 Any user, including anonymous visitors, may submit a flag on a venue to
-report inaccurate information or inappropriate content. When a flag is
-submitted, we collect the following:
+3.1.3.1 Qualquer usuário, incluindo visitantes anônimos, pode enviar uma
+denúncia sobre um estabelecimento para reportar informações incorretas ou
+conteúdo impróprio. Quando uma denúncia é enviada, coletamos os seguintes dados:
 
-- 3.1.3.1.1 The flag type, selected from a predefined list.
-- 3.1.3.1.2 An optional free-text description provided by the user.
-- 3.1.3.1.3 A derived identifier: the IP address is irreversibly hashed and
-  truncated before being stored. Original IP addresses cannot be reconstructed
-  from this value. It is used only to correlate flags from the same source in
-  order to detect spam or coordinated abuse, and cannot be used for individual
-  identification.
+- 3.1.3.1.1 O tipo da denúncia, selecionado a partir de uma lista predefinida.
+- 3.1.3.1.2 Uma descrição opcional em texto, fornecida pelo usuário.
+- 3.1.3.1.3 Um identificador derivado: o IP é submetido a um processo
+  irreversível de hash e de truncamento antes do armazenamento. O IP original
+  não pode ser reconstruído a partir dele. Esse identificador é utilizado
+  exclusivamente para correlacionar denúncias provenientes da mesma origem, a
+  fim de detectar spam ou abusos coordenados, e não pode ser utilizado para
+  identificar individualmente um usuário.
 
-3.1.3.2 Our lawful basis (where UK GDPR or EU GDPR applies) is legitimate
-interests in abuse prevention and data accuracy.
+3.1.3.2 Nos casos em que o GDPR do Reino Unido ou o GDPR da União Europeia sejam
+aplicáveis, esse tratamento tem como base legal o legítimo interesse na
+prevenção de abusos e na precisão dos dados.
 
-### 3.2 Veni Ki (venue owners)
+### 3.2 Veni Ki (proprietários de estabelecimentos)
 
-3.2.1 When a venue listing is created or managed using the Discord bot, Veni Ki,
-the following data is collected in order to provide and maintain that listing:
+3.2.1 Quando um registro de estabelecimento é criado ou gerenciado por meio da
+Veni Ki, nosso bot do Discord, os seguintes dados são coletados para
+disponibilizar e manter esse registro:
 
-- 3.2.1.1 The user's Discord ID, used to associate the user with the venue and
-  to verify ownership for edits or deletion.
-- 3.2.1.2 The venue listing details provided, including (for example) venue
-  name, location, description, schedule, and any other completed fields.
+- 3.2.1.1 O ID do Discord do usuário, utilizado para associá-lo ao
+  estabelecimento e verificar sua titularidade para fins de edição ou exclusão.
+- 3.2.1.2 Os dados fornecidos no registro do estabelecimento, incluindo, por
+  exemplo, nome, localização, descrição, horários de funcionamento e quaisquer
+  outros campos preenchidos.
 
-3.2.2 The information submitted is displayed back during the creation
-confirmation process, allowing for review of the stored data before it is saved.
+3.2.2 As informações fornecidas são reexibidas durante o processo de confirmação
+da criação, permitindo a revisão dos dados antes de serem armazenados.
 
-3.2.3 Our lawful basis (where UK GDPR or EU GDPR applies) is:
+3.2.3 Nos casos em que o GDPR do Reino Unido ou o GDPR da União Europeia sejam
+aplicáveis, esse tratamento tem como base legal:
 
 - 3.2.3.1 The provision of service - taking steps at the user's request to
   create and maintain the venue listing.
