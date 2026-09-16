@@ -1,4 +1,4 @@
-## 1. Qui sommes-nous
+## 1. Qui es-tu
 
 1.1 FFXIV Venues est une plateforme gérée par la communaté qui prendre des Final
 Fantasy XIV de découvrent et répertoiré lieux dans le jeu. Le service est gére
