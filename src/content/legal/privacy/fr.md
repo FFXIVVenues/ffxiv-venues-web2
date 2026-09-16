@@ -1,14 +1,15 @@
-## 1. Who we are
+## 1. Qui sommes-nous
 
-1.1 FFXIV Venues is a community-run platform that allows Final Fantasy XIV
-players to discover and list in-game venues. The service is operated as a
-non-commercial community project, accessible at [ffxivvenues.com](/).
+1.1 FFXIV Venues est une plateforme gérée par la communaté qui prendre des Final
+Fantasy XIV de découvrent et répertoiré lieux dans le jeu. Le service est gére
+comme un projet communautaire non commercial, accessible à [ffxivvenues.com](/).
 
-1.2 For any privacy-related enquiries, please [contact the team via a
-ticket](https://discord.com/channels/942536163959406632/1188579990271434883) in
-the [FFXIV Venues discord](https://discord.gg/gTP65VYcMj)
+1.2 Pour les questions relatives à la vie privée, merci de [contacter l'équipe
+via un
+ticket](https://discord.com/channels/942536163959406632/1188579990271434883)
+dans le [FFXIV Venues Discord](https://discord.gg/gTP65VYcMj)
 
-## 2. What this policy covers
+## 2. Ce que couvre cette police
 
 2.1 This policy explains what personal data FFXIV Venues collects, why it is
 collected, how it is stored and protected, and the rights in relation to that
