@@ -1,9 +1,10 @@
-## 1. Who we are
+## 1. Qui es-tu
 
-1.1 FFXIV Venues is a community-run platform that allows Final Fantasy XIV
-players to discover and list in-game venues. It is operated as a non-commercial
-community project, provided free of charge for community use, and is accessible
-at [ffxivvenues.com](/).
+1.1 FFXIV Venues est une plateforme gérée par la communauté qui permet aux
+joueurs de Final Fantasy XIV de découvrir et de répertorier des lieux de
+rencontre en jeu. Elle est exploitée en tant que projet communautaire à but non
+lucratif, mise gratuitement à la disposition de la communauté et accessible à
+l'adresse [ffxivvenues.com](/).
 
 1.2 These terms are an agreement between you and the operators of FFXIV Venues
 (“we”, “us”, “our”).
