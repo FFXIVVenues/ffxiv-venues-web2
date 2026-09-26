@@ -17,6 +17,9 @@ import {type ReactNode, type SubmitEventHandler, useState} from "react";
 import {districts, features, games, scenes, worlds} from "@/lib/model/venueOptions.ts";
 import {Switch} from "@/components/ui/shadcn/switch.tsx";
 import {TagPicker} from "@/pages/createVenuePage/tagPicker.tsx";
+import {InputGroup, InputGroupAddon, InputGroupInput} from "@/components/ui/shadcn/input-group.tsx";
+import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
+import {Globe, ImageUp} from "lucide-react";
 
 export const CreateVenuePage = () => {
     const {t} = useLingui();
@@ -144,6 +147,34 @@ export const CreateVenuePage = () => {
                         </FieldGroup>
                     </FieldSet>
 
+                    {/* Venue Discord/Site */}
+                    <FieldSet>
+                        <FieldLegend><Trans>Your links</Trans></FieldLegend>
+                        <FieldGroup>
+                            <Field>
+                                <FieldLabel htmlFor="venue-discord"><Trans>Discord invite</Trans></FieldLabel>
+                                <InputGroup>
+                                    <InputGroupAddon><DiscordFillIcon className="size-4" strokeWidth={0} fill="currentColor" /></InputGroupAddon>
+                                    <InputGroupInput id="venue-discord" name="discord" type="url" placeholder="https://discord.gg/..." />
+                                </InputGroup>
+                            </Field>
+                            <Field>
+                                <FieldLabel htmlFor="venue-website"><Trans>Website</Trans></FieldLabel>
+                                <InputGroup>
+                                    <InputGroupAddon><Globe className="size-4" /></InputGroupAddon>
+                                    <InputGroupInput id="venue-website" name="website" type="url" placeholder="https://..." />
+                                </InputGroup>
+                            </Field>
+                        </FieldGroup>
+                    </FieldSet>
+
+                    {/* Venue Banner */}
+                    <FieldSet>
+                        <FieldGroup>
+                            <BannerPicker />
+                        </FieldGroup>
+                    </FieldSet>
+
                     <Button type="submit" className="w-fit"><Trans>Create venue</Trans></Button>
                 </form>
             </div>
@@ -167,3 +198,27 @@ const Selector = ({id, placeholder, children, ...props}: {
         <SelectContent alignItemWithTrigger={false}>{children}</SelectContent>
     </Select>;
 
+const BannerPicker = () => {
+    const {t} = useLingui();
+    const [preview, setPreview] = useState<string | null>(null);
+
+    const choose = (file: File | undefined) => {
+        if (preview) URL.revokeObjectURL(preview);
+        setPreview(file ? URL.createObjectURL(file) : null);
+    };
+
+    return <Field>
+        <FieldLabel htmlFor="venue-banner"><Trans>Banner image</Trans></FieldLabel>
+        <label htmlFor="venue-banner" className="flex aspect-[2/1] w-full cursor-pointer items-center justify-center overflow-hidden rounded-md border border-dashed border-input bg-input/30 text-muted-foreground transition-colors hover:border-ring hover:text-foreground">
+            {preview
+                ? <img src={preview} alt={t`Banner preview`} className="h-full w-full object-cover" />
+                : <span className="flex flex-col items-center gap-2 text-sm font-medium">
+                    <ImageUp className="size-7" />
+                    <Trans>Click to choose an image</Trans>
+                </span>
+            }
+        </label>
+        <input id="venue-banner" name="banner" type="file" accept="image/*" className="sr-only" onChange={e => choose(e.target.files?.[0])} />
+        <FieldDescription><Trans>Any image works; banners are 600x300 and I'll handle the scaling and cropping for you <span aria-hidden="true">❤️</span></Trans></FieldDescription>
+    </Field>;
+}
