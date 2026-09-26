@@ -14,8 +14,9 @@ import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Trans, useLingui} from "@lingui/react/macro";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/shadcn/select.tsx";
 import {type ReactNode, type SubmitEventHandler, useState} from "react";
-import {districts, worlds} from "@/lib/model/venueOptions.ts";
+import {districts, features, games, scenes, worlds} from "@/lib/model/venueOptions.ts";
 import {Switch} from "@/components/ui/shadcn/switch.tsx";
+import {TagPicker} from "@/pages/createVenuePage/tagPicker.tsx";
 
 export const CreateVenuePage = () => {
     const {t} = useLingui();
@@ -33,6 +34,7 @@ export const CreateVenuePage = () => {
         <DefaultPageLayout.Page>
             <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
                 <form className="flex flex-col gap-8" onSubmit={submit}>
+                    {/* Venue Info */}
                     <FieldSet>
                         <FieldLegend><Trans>The basics</Trans></FieldLegend>
                         <FieldGroup>
@@ -42,11 +44,12 @@ export const CreateVenuePage = () => {
                             </Field>
                             <Field>
                                 <FieldLabel htmlFor="venue-description"><Trans>Description</Trans></FieldLabel>
-                                <Textarea id="venue-description" name="description" rows={5} placeholder={t`Give players something to read when they click your venue...`} />
+                                <Textarea id="venue-description" name="description" rows={5} placeholder={t`Give guests something to read when they click your venue...`} />
                             </Field>
                         </FieldGroup>
                     </FieldSet>
 
+                    {/* Location */}
                     <FieldSet>
                         <FieldLegend><Trans>Where to find you</Trans></FieldLegend>
                         <FieldGroup>
@@ -109,6 +112,35 @@ export const CreateVenuePage = () => {
                                     <FieldDescription><Trans>Is your apartment in the ward's subdivision?</Trans></FieldDescription>
                                 </FieldContent>
                             </Field>}
+                        </FieldGroup>
+                    </FieldSet>
+
+                    {/* Venue Tags */}
+                    <FieldSet>
+                        <FieldLegend><Trans>The vibe</Trans></FieldLegend>
+                        <FieldGroup>
+                            <Field orientation="horizontal">
+                                <Switch id="venue-sfw" name="sfw" />
+                                <FieldContent>
+                                    <FieldLabel htmlFor="venue-sfw"><Trans>SFW on entry</Trans></FieldLabel>
+                                    <FieldDescription><Trans>On means no nudity or erotic content out in the open</Trans></FieldDescription>
+                                </FieldContent>
+                            </Field>
+                            <Field>
+                                <FieldLabel><Trans>Scenes</Trans></FieldLabel>
+                                <TagPicker options={scenes} max={2} placeholder={t`Search scenes...`} />
+                                <FieldDescription><Trans>Pick up to 2 that fit best <span aria-hidden="true">🙂</span></Trans></FieldDescription>
+                            </Field>
+                            <Field>
+                                <FieldLabel><Trans>Features</Trans></FieldLabel>
+                                <TagPicker options={features} placeholder={t`Search features...`} />
+                                <FieldDescription><Trans>Tap everything your venue offers <span aria-hidden="true">😊</span></Trans></FieldDescription>
+                            </Field>
+                            <Field>
+                                <FieldLabel><Trans>Games</Trans></FieldLabel>
+                                <TagPicker options={games} placeholder={t`Search games...`} />
+                                <FieldDescription><Trans>Anything guests can join in on.</Trans></FieldDescription>
+                            </Field>
                         </FieldGroup>
                     </FieldSet>
 
