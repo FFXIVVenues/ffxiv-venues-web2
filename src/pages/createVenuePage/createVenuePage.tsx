@@ -13,7 +13,7 @@ import {Textarea} from "@/components/ui/shadcn/textarea.tsx";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Trans, useLingui} from "@lingui/react/macro";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/shadcn/select.tsx";
-import {type ReactNode, useState} from "react";
+import {type ReactNode, type SubmitEventHandler, useState} from "react";
 import {districts, worlds} from "@/lib/model/venueOptions.ts";
 import {Switch} from "@/components/ui/shadcn/switch.tsx";
 
@@ -23,7 +23,7 @@ export const CreateVenuePage = () => {
     const [dataCenter, setDataCenter] = useState<string | null>(null);
     const locationTypes = {House: t`House`, Apartment: t`Apartment`, Room: t`Room`};
 
-    const submit = (e: React.FormEvent<HTMLFormElement>) => {
+    const submit: SubmitEventHandler<HTMLFormElement> = e => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
         data.forEach((value, key) => console.log(key, value));
