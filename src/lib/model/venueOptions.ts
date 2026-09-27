@@ -1,7 +1,7 @@
 import {msg} from "@lingui/core/macro";
 import type {MessageDescriptor} from "@lingui/core";
 
-export const districts = ["The Mist", "The Lavender Beds", "The Goblet", "Shirogane", "Empyreum"];
+export const districts = ["Mist", "Lavender Beds", "Goblet", "Shirogane", "Empyreum"];
 
 export const worlds: Record<string, string[]> = {
     Aether: ["Adamantoise", "Cactuar", "Faerie", "Gilgamesh", "Jenova", "Midgardsormr", "Sargatanas", "Siren"],
@@ -61,4 +61,20 @@ export const games: Record<string, MessageDescriptor> = {
     "texas holdem": msg`Texas holdem`,
     "bingo": msg`Bingo`,
     "roulette": msg`Roulette`,
+};
+
+export const timeZones: Record<string, MessageDescriptor> = {
+    "America/New_York": msg`Eastern Standard Time (EST)`,
+    "America/Chicago": msg`Central Standard Time (CST)`,
+    "America/Denver": msg`Mountain Standard Time (MST)`,
+    "America/Los_Angeles": msg`Pacific Standard Time (PST)`,
+    "America/Halifax": msg`Atlantic Standard Time (AST)`,
+    "UTC": msg`Server Time (UTC)`,
+    "Europe/London": msg`Greenwich Mean Time (GMT)`,
+    "Europe/Budapest": msg`Central European Time (CEST)`,
+    "Europe/Chisinau": msg`Eastern European Time (EEST)`,
+    "Asia/Hong_Kong": msg`Hong Kong Time (HKT)`,
+    "Australia/Perth": msg`Australian Western Time (AWST)`,
+    "Australia/Adelaide": msg`Australian Central Time (ACST)`,
+    "Australia/Sydney": msg`Australian Eastern Time (AEST)`,
 };
