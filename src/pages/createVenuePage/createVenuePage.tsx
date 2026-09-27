@@ -12,14 +12,16 @@ import {Input} from "@/components/ui/shadcn/input.tsx";
 import {Textarea} from "@/components/ui/shadcn/textarea.tsx";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Trans, useLingui} from "@lingui/react/macro";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/shadcn/select.tsx";
-import {type ReactNode, type SubmitEventHandler, useState} from "react";
+import {SelectItem} from "@/components/ui/shadcn/select.tsx";
+import {type SubmitEventHandler, useState} from "react";
 import {districts, features, games, scenes, worlds} from "@/lib/model/venueOptions.ts";
 import {Switch} from "@/components/ui/shadcn/switch.tsx";
 import {TagPicker} from "@/pages/createVenuePage/tagPicker.tsx";
 import {InputGroup, InputGroupAddon, InputGroupInput} from "@/components/ui/shadcn/input-group.tsx";
 import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
 import {Globe, ImageUp} from "lucide-react";
+import {ScheduleBuilder} from "@/pages/createVenuePage/scheduleBuilder.tsx";
+import {Selector} from "@/pages/createVenuePage/selector.tsx";
 
 export const CreateVenuePage = () => {
     const {t} = useLingui();
@@ -168,6 +170,14 @@ export const CreateVenuePage = () => {
                         </FieldGroup>
                     </FieldSet>
 
+                    {/* Venue Schedule */}
+                    <FieldSet>
+                        <FieldLegend><Trans>Opening hours</Trans></FieldLegend>
+                        <FieldGroup>
+                            <ScheduleBuilder />
+                        </FieldGroup>
+                    </FieldSet>
+
                     {/* Venue Banner */}
                     <FieldSet>
                         <FieldGroup>
@@ -181,22 +191,6 @@ export const CreateVenuePage = () => {
         </DefaultPageLayout.Page>
     </DefaultPageLayout>;
 };
-
-const Selector = ({id, placeholder, children, ...props}: {
-    id: string;
-    name: string;
-    placeholder?: string;
-    required?: boolean;
-    disabled?: boolean;
-    items?: Record<string, string>;
-    value?: string | null;
-    onValueChange?: (value: string | null) => void;
-    children: ReactNode;
-}) =>
-    <Select {...props}>
-        <SelectTrigger id={id} className="w-full"><SelectValue placeholder={placeholder} /></SelectTrigger>
-        <SelectContent alignItemWithTrigger={false}>{children}</SelectContent>
-    </Select>;
 
 const BannerPicker = () => {
     const {t} = useLingui();
