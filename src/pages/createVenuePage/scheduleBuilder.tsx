@@ -4,7 +4,6 @@ import {IntervalType} from "@/lib/model/intervalType.ts";
 import type {MessageDescriptor} from "@lingui/core";
 import {Day} from "@/lib/model/day.ts";
 import type {TimeDto} from "@/lib/services/venues/dtos/timeDto.ts";
-import type {ScheduleDto} from "@/lib/services/venues/dtos/scheduleDto.ts";
 import {Trans, useLingui} from "@lingui/react/macro";
 import {useState} from "react";
 import {Field, FieldDescription, FieldLabel} from "@/components/ui/shadcn/field";
@@ -59,18 +58,17 @@ const midnightIn = (calendarDate: string, timeZone: string) => {
     return new Date(`${calendarDate}T00:00:00${offsetOf(roughMidnight, timeZone)}`).toISOString();
 };
 
-const toTime = (time: string, timeZone: string, nextDay: boolean): TimeDto => ({
+const toTime = (time: string, timeZone: string): Omit<TimeDto, "nextDay"> => ({
     hour: Number(time.slice(0, 2)),
     minute: Number(time.slice(3, 5)),
     timeZone,
-    nextDay
 });
 
-const toSchedule = (slots: Slot[], timeZone: string): ScheduleDto[] => slots.map(slot => ({
+const toSchedule = (slots: Slot[], timeZone: string) => slots.map(slot => ({
     day: slot.day,
     commencing: slot.repeat === "biweekly" ? midnightIn(slot.commencing, timeZone) : undefined,
-    start: toTime(slot.open, timeZone, false),
-    end: toTime(slot.close, timeZone, slot.close < slot.open),
+    start: toTime(slot.open, timeZone),
+    end: toTime(slot.close, timeZone),
     interval: repeats[slot.repeat].interval,
 }));
 
@@ -133,23 +131,31 @@ const SlotRow = ({slot, onChange, onRemove}: {
 
     return <div className="col-span-full grid grid-cols-subgrid items-center gap-y-2 rounded-md bg-muted/40 p-2">
         <label htmlFor={`repeat-${slot.id}`} className="sr-only"><Trans>Repeats</Trans></label>
-        <Selector id={`repeat-${slot.id}`} items={repeatLabels} value={slot.repeat} onValueChange={v => onChange({repeat: v as Repeat})}>
-            {Object.entries(repeatLabels).map(([key, label]) => <SelectItem key={key} value={key}>{label}</SelectItem>)}
-        </Selector>
+        <div className="max-sm:col-span-2 sm:contents">
+            <Selector id={`repeat-${slot.id}`} items={repeatLabels} value={slot.repeat} onValueChange={v => onChange({repeat: v as Repeat})}>
+                {Object.entries(repeatLabels).map(([key, label]) => <SelectItem key={key} value={key}>{label}</SelectItem>)}
+            </Selector>
+        </div>
+
         <label htmlFor={`day-${slot.id}`} className="sr-only"><Trans>Day</Trans></label>
-        <Selector id={`day-${slot.id}`} items={dayLabels} value={String(slot.day)} onValueChange={v => changeDay(Number(v))}>
-            {Object.entries(dayLabels).map(([day, label]) => <SelectItem key={day} value={day}>{label}</SelectItem>)}
-        </Selector>
-        <div className="col-span-2 flex items-center gap-2 sm:contents">
+        <div className="max-sm:col-span-2 sm:contents">
+            <Selector id={`day-${slot.id}`} items={dayLabels} value={String(slot.day)} onValueChange={v => changeDay(Number(v))}>
+                {Object.entries(dayLabels).map(([day, label]) => <SelectItem key={day} value={day}>{label}</SelectItem>)}
+            </Selector>
+        </div>
+
+        <div className="col-span-full flex items-center gap-2 sm:contents">
             <label htmlFor={`open-${slot.id}`} className="sr-only"><Trans>Opens</Trans></label>
             <Input id={`open-${slot.id}`} type="time" required value={slot.open} className="sm:w-auto" onChange={e => onChange({open: e.target.value})} />
             <span aria-hidden="true" className="sm:hidden">–</span>
             <label htmlFor={`close-${slot.id}`} className="sr-only"><Trans>Closes</Trans></label>
             <Input id={`close-${slot.id}`} type="time" required value={slot.close} className="sm:w-auto" onChange={e => onChange({close: e.target.value})} />
         </div>
+
         <Button type="button" variant="ghost" size="icon" aria-label={t`Remove time`} onClick={onRemove} className="max-sm:col-start-3 max-sm:row-start-1">
             <X className="size-4" />
         </Button>
+
         {slot.repeat === "biweekly" && <div className="col-span-full sm:col-span-4 flex items-center gap-2">
             <label htmlFor={`start-${slot.id}`} className="text-sm"><Trans>Starting</Trans></label>
             <Selector id={`start-${slot.id}`} items={startDates} value={slot.commencing} onValueChange={v => onChange({commencing: v ?? ""})}>

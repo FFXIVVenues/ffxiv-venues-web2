@@ -22,6 +22,35 @@ import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
 import {Globe, ImageUp} from "lucide-react";
 import {ScheduleBuilder} from "@/pages/createVenuePage/scheduleBuilder.tsx";
 import {Selector} from "@/pages/createVenuePage/selector.tsx";
+import type {VenueDto} from "@/lib/services/venues/dtos/venueDto.ts";
+import type {LocationDto} from "@/lib/services/venues/dtos/locationDto.ts";
+
+type NewVenue = Pick<VenueDto, "name" | "description" | "website" | "discord" | "sfw" | "tags" | "schedule"> & {location: Omit<LocationDto, "shard" | "override">};
+
+const toNewVenue = (data: FormData): NewVenue => {
+    const text = (key: string) => String(data.get(key) ?? "").trim();
+    const plot = Number(data.get("plot"));
+
+    return {
+        name: text("name"),
+        description: text("description").split(/\n\s*\n/).map(paragraph => paragraph.trim()).filter(Boolean),
+        location: {
+            dataCenter: text("dataCenter"),
+            world: text("world"),
+            district: text("district"),
+            ward: Number(data.get("ward")),
+            plot,
+            apartment: Number(data.get("apartment")),
+            room: Number(data.get("room")),
+            subdivision: plot ? plot > 30 : data.has("subdivision"),
+        },
+        website: text("website") || undefined,
+        discord: text("discord") || undefined,
+        sfw: data.has("sfw"),
+        tags: data.getAll("tags").map(String),
+        schedule: JSON.parse(text("schedule") || "[]"),
+    };
+};
 
 export const CreateVenuePage = () => {
     const {t} = useLingui();
@@ -32,12 +61,12 @@ export const CreateVenuePage = () => {
     const submit: SubmitEventHandler<HTMLFormElement> = e => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
-        data.forEach((value, key) => console.log(key, value));
+        console.log(toNewVenue(data));
     };
 
     return <DefaultPageLayout title={t`Create a venue`}>
         <DefaultPageLayout.Page>
-            <div className="max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
                 <form className="flex flex-col gap-8" onSubmit={submit}>
                     {/* Venue Info */}
                     <FieldSet>
