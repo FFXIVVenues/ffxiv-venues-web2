@@ -24,6 +24,8 @@ import {ScheduleBuilder} from "@/pages/createVenuePage/scheduleBuilder.tsx";
 import {Selector} from "@/pages/createVenuePage/selector.tsx";
 import type {VenueDto} from "@/lib/services/venues/dtos/venueDto.ts";
 import type {LocationDto} from "@/lib/services/venues/dtos/locationDto.ts";
+import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/shadcn/avatar.tsx";
+import veni from "@/assets/veni.webp";
 
 type NewVenue = Pick<VenueDto, "name" | "description" | "website" | "discord" | "sfw" | "tags" | "schedule"> & {location: Omit<LocationDto, "shard" | "override">};
 
@@ -85,6 +87,17 @@ export const CreateVenuePage = () => {
     return <DefaultPageLayout title={t`Create a venue`}>
         <DefaultPageLayout.Page>
             <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+                <div className="flex items-center gap-3 mb-8">
+                    <Avatar>
+                        <AvatarImage src={veni} alt="Veni Ki" />
+                        <AvatarFallback>VK</AvatarFallback>
+                    </Avatar>
+                    <div>
+                        <h1 className="text-xl font-medium"><Trans>Let's create your venue! <span aria-hidden="true">❤️</span></Trans></h1>
+                        <p className="text-sm text-muted-foreground"><Trans>Fill this in and I'll get your venue listed</Trans></p>
+                    </div>
+                </div>
+
                 <form className="flex flex-col gap-8" onSubmit={submit}>
                     {/* Venue Info */}
                     <FieldSet>
@@ -107,26 +120,21 @@ export const CreateVenuePage = () => {
                         <FieldGroup>
                             <Field>
                                 <FieldLabel htmlFor="venue-type"><Trans>Property type</Trans></FieldLabel>
-                                <Selector id="venue-type" name="venueType" items={locationTypes}
-                                          value={locationType} onValueChange={setLocationType}>
-                                    {Object.entries(locationTypes).map(([value, label]) =>
-                                        <SelectItem key={value} value={value}>{label}</SelectItem>)}
+                                <Selector id="venue-type" name="venueType" items={locationTypes} value={locationType} onValueChange={setLocationType}>
+                                    {Object.entries(locationTypes).map(([value, label]) => <SelectItem key={value} value={value}>{label}</SelectItem>)}
                                 </Selector>
                             </Field>
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Field>
                                     <FieldLabel htmlFor="venue-dc"><Trans>Data center</Trans></FieldLabel>
-                                    <Selector id="venue-dc" name="dataCenter" required placeholder={t`Select`}
-                                              value={dataCenter} onValueChange={setDataCenter}>
-                                        {Object.keys(worlds).map(dc =>
-                                            <SelectItem key={dc} value={dc}>{dc}</SelectItem>)}
+                                    <Selector id="venue-dc" name="dataCenter" required placeholder={t`Select`} value={dataCenter} onValueChange={setDataCenter}>
+                                        {Object.keys(worlds).map(dc => <SelectItem key={dc} value={dc}>{dc}</SelectItem>)}
                                     </Selector>
                                 </Field>
                                 <Field>
                                     <FieldLabel htmlFor="venue-world"><Trans>World</Trans></FieldLabel>
-                                    <Selector key={dataCenter} id="venue-world" name="world" required
-                                              disabled={!dataCenter} placeholder={t`Select`}>
+                                    <Selector key={dataCenter} id="venue-world" name="world" required disabled={!dataCenter} placeholder={t`Select`}>
                                         {(worlds[dataCenter ?? ""] ?? []).map(w => <SelectItem key={w} value={w}>{w}</SelectItem>)}
                                     </Selector>
                                 </Field>
