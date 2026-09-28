@@ -21,6 +21,7 @@ const monthly = (n: number): IntervalDto => ({intervalType: IntervalType.EveryXt
 const repeats = {
     "weekly": {label: msg`Weekly`, interval: weeks(1)},
     "biweekly": {label: msg`Every 2 weeks`, interval: weeks(2)},
+    "triweekly": {label: msg`Every 3 weeks`, interval: weeks(3)},
     "1st": {label: msg`Monthly, 1st`, interval: monthly(1)},
     "2nd": {label: msg`Monthly, 2nd`, interval: monthly(2)},
     "3rd": {label: msg`Monthly, 3rd`, interval: monthly(3)},
@@ -32,6 +33,11 @@ const repeats = {
 } satisfies Record<string, {label: MessageDescriptor; interval: IntervalDto}>;
 
 type Repeat = keyof typeof repeats;
+const needsStartDate = (repeat: Repeat) => {
+    const {intervalType, intervalArgument} = repeats[repeat].interval;
+    return intervalType === IntervalType.EveryXWeeks && intervalArgument > 1;
+};
+
 type Slot = {id: number; day: Day; open: string; close: string; repeat: Repeat; commencing: string};
 
 let nextSlotId = 0;
@@ -42,7 +48,7 @@ const nextDate = (day: Day) => {
     return date;
 };
 
-const biweeklyStartDates = (day: Day) => [0, 1, 2].map(week => {
+const upcomingDates = (day: Day) => [0, 1, 2].map(week => {
     const date = nextDate(day);
     date.setDate(date.getDate() + week * 7);
     return date;
@@ -66,7 +72,7 @@ const toTime = (time: string, timeZone: string): Omit<TimeDto, "nextDay"> => ({
 
 const toSchedule = (slots: Slot[], timeZone: string) => slots.map(slot => ({
     day: slot.day,
-    commencing: slot.repeat === "biweekly" ? midnightIn(slot.commencing, timeZone) : undefined,
+    commencing: needsStartDate(slot.repeat) ? midnightIn(slot.commencing, timeZone) : undefined,
     start: toTime(slot.open, timeZone),
     end: toTime(slot.close, timeZone),
     interval: repeats[slot.repeat].interval,
@@ -125,7 +131,7 @@ const SlotRow = ({slot, onChange, onRemove}: {
 }) => {
     const {t, i18n} = useLingui();
     const repeatLabels = Object.fromEntries(Object.entries(repeats).map(([key, {label}]) => [key, i18n._(label)]));
-    const startDates = Object.fromEntries(biweeklyStartDates(slot.day).map(date => [toCalendarDate(date), i18n.date(date, {weekday: "long", day: "numeric", month: "long"})]));
+    const startDates = Object.fromEntries(upcomingDates(slot.day).map(date => [toCalendarDate(date), i18n.date(date, {weekday: "long", day: "numeric", month: "long"})]));
     const dayLabels = Object.fromEntries(dayNames.map((name, day) => [day, i18n._(name)]));
     const changeDay = (day: Day) => onChange({day, commencing: toCalendarDate(nextDate(day))});
 
@@ -156,7 +162,7 @@ const SlotRow = ({slot, onChange, onRemove}: {
             <X className="size-4" />
         </Button>
 
-        {slot.repeat === "biweekly" && <div className="col-span-full sm:col-span-4 flex items-center gap-2">
+        {needsStartDate(slot.repeat) && <div className="col-span-full sm:col-span-4 flex items-center gap-2">
             <label htmlFor={`start-${slot.id}`} className="text-sm"><Trans>Starting</Trans></label>
             <Selector id={`start-${slot.id}`} items={startDates} value={slot.commencing} onValueChange={v => onChange({commencing: v ?? ""})}>
                 {Object.entries(startDates).map(([iso, label]) => <SelectItem key={iso} value={iso}>{label}</SelectItem>)}

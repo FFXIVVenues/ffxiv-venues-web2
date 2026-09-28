@@ -14,7 +14,7 @@ import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Trans, useLingui} from "@lingui/react/macro";
 import {SelectItem} from "@/components/ui/shadcn/select.tsx";
 import {type SubmitEventHandler, useState} from "react";
-import {districts, features, games, scenes, worlds} from "@/lib/model/venueOptions.ts";
+import {districts, features, games, scenes, tagDescriptions, worlds} from "@/lib/model/venueOptions.ts";
 import {Switch} from "@/components/ui/shadcn/switch.tsx";
 import {TagPicker} from "@/pages/createVenuePage/tagPicker.tsx";
 import {InputGroup, InputGroupAddon, InputGroupInput} from "@/components/ui/shadcn/input-group.tsx";
@@ -193,12 +193,12 @@ export const CreateVenuePage = () => {
                             </Field>
                             <Field>
                                 <FieldLabel><Trans>Features</Trans></FieldLabel>
-                                <TagPicker options={features} placeholder={t`Search features...`} />
+                                <TagPicker options={features} descriptions={tagDescriptions} placeholder={t`Search features...`} />
                                 <FieldDescription><Trans>Tap everything your venue offers <span aria-hidden="true">😊</span></Trans></FieldDescription>
                             </Field>
                             <Field>
                                 <FieldLabel><Trans>Games</Trans></FieldLabel>
-                                <TagPicker options={games} placeholder={t`Search games...`} />
+                                <TagPicker options={games} descriptions={tagDescriptions} placeholder={t`Search games...`} />
                                 <FieldDescription><Trans>Anything guests can join in on.</Trans></FieldDescription>
                             </Field>
                         </FieldGroup>

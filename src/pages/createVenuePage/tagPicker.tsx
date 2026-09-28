@@ -9,8 +9,9 @@ import {
 } from "@/components/ui/shadcn/combobox.tsx";
 import {useState} from "react";
 
-export const TagPicker = ({options, max, placeholder}: {
+export const TagPicker = ({options, descriptions, max, placeholder}: {
     options: Record<string, MessageDescriptor>;
+    descriptions?: Record<string, MessageDescriptor>;
     max?: number;
     placeholder: string;
 }) => {
@@ -34,7 +35,15 @@ export const TagPicker = ({options, max, placeholder}: {
         <ComboboxContent anchor={anchor}>
             <ComboboxEmpty><Trans>No matches</Trans></ComboboxEmpty>
             <ComboboxList>
-                {(tag: string) => <ComboboxItem key={tag} value={tag}>{label(tag)}</ComboboxItem>}
+                {(tag: string) => {
+                    const description = descriptions?.[tag];
+                    return <ComboboxItem key={tag} value={tag}>
+                        <div className="flex flex-col">
+                            <span>{label(tag)}</span>
+                            {description && <span className="text-xs text-muted-foreground">{i18n._(description)}</span>}
+                        </div>
+                    </ComboboxItem>;
+                }}
             </ComboboxList>
         </ComboboxContent>
     </Combobox>;
