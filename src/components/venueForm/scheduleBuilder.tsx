@@ -6,12 +6,12 @@ import {Day} from "@/lib/model/day.ts";
 import type {TimeDto} from "@/lib/services/venues/dtos/timeDto.ts";
 import {Trans, useLingui} from "@lingui/react/macro";
 import {useState} from "react";
-import {Field, FieldDescription, FieldLabel} from "@/components/ui/shadcn/field";
-import {Selector} from "@/pages/createVenuePage/selector.tsx";
+import {Field, FieldDescription, FieldLabel} from "@/components/ui/shadcn/field.tsx";
+import {Selector} from "@/components/venueForm/selector.tsx";
 import {SelectItem} from "@/components/ui/shadcn/select.tsx";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Plus, X} from "lucide-react";
-import {Input} from "@/components/ui/shadcn/input";
+import {Input} from "@/components/ui/shadcn/input.tsx";
 import {timeZones} from "@/lib/model/venueOptions.ts";
 
 const dayNames = [msg`Monday`, msg`Tuesday`, msg`Wednesday`, msg`Thursday`, msg`Friday`, msg`Saturday`, msg`Sunday`];
