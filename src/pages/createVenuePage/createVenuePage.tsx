@@ -52,16 +52,34 @@ const toNewVenue = (data: FormData): NewVenue => {
     };
 };
 
+const toBanner = async (file: File) => {
+    const image = await createImageBitmap(file);
+    const scale = Math.max(600 / image.width, 300 / image.height);
+    const cropWidth = 600 / scale;
+    const cropHeight = 300 / scale;
+    const banner = await createImageBitmap(image, (image.width - cropWidth) / 2, (image.height - cropHeight) / 2, cropWidth, cropHeight, {resizeWidth: 600, resizeHeight: 300, resizeQuality: "high"});
+
+    const canvas = new OffscreenCanvas(600, 300);
+    canvas.getContext("2d")!.drawImage(banner, 0, 0, 600, 300);
+    return canvas.convertToBlob({type: "image/webp", quality: 1});
+};
+
 export const CreateVenuePage = () => {
     const {t} = useLingui();
     const [locationType, setLocationType] = useState<string | null>("House");
     const [dataCenter, setDataCenter] = useState<string | null>(null);
     const locationTypes = {House: t`House`, Apartment: t`Apartment`, Room: t`Room`};
 
-    const submit: SubmitEventHandler<HTMLFormElement> = e => {
+    const submit: SubmitEventHandler<HTMLFormElement> = async e => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
-        console.log(toNewVenue(data));
+        console.log(toNewVenue(data)); // Venue Object
+
+        const file = data.get("banner");
+        if (file instanceof File && file.size > 0) {
+            const banner = await toBanner(file);
+            console.log(banner.type, Math.round(banner.size / 1024) + " KB"); // Banner Image
+        }
     };
 
     return <DefaultPageLayout title={t`Create a venue`}>
