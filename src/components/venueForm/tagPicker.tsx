@@ -9,15 +9,16 @@ import {
 } from "@/components/ui/shadcn/combobox.tsx";
 import {useState} from "react";
 
-export const TagPicker = ({options, descriptions, max, placeholder}: {
+export const TagPicker = ({options, descriptions, initialTags, max, placeholder}: {
     options: Record<string, MessageDescriptor>;
     descriptions?: Record<string, MessageDescriptor>;
+    initialTags?: string[];
     max?: number;
     placeholder: string;
 }) => {
     const {i18n} = useLingui();
     const anchor = useComboboxAnchor();
-    const [tags, setTags] = useState<string[]>([]);
+    const [tags, setTags] = useState(() => (initialTags ?? []).filter(tag => Object.hasOwn(options, tag)));
     const label = (tag: string) => {
         const message = options[tag];
         return message ? i18n._(message) : tag;

@@ -13,6 +13,7 @@ import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Plus, X} from "lucide-react";
 import {Input} from "@/components/ui/shadcn/input.tsx";
 import {timeZones} from "@/lib/model/venueOptions.ts";
+import type {ScheduleDto} from "@/lib/services/venues/dtos/scheduleDto.ts";
 
 const dayNames = [msg`Monday`, msg`Tuesday`, msg`Wednesday`, msg`Thursday`, msg`Friday`, msg`Saturday`, msg`Sunday`];
 const weeks = (n: number): IntervalDto => ({intervalType: IntervalType.EveryXWeeks, intervalArgument: n});
@@ -56,6 +57,25 @@ const upcomingDates = (day: Day) => [0, 1, 2].map(week => {
 
 const toCalendarDate = (date: Date) => date.toLocaleDateString("en-CA");
 
+const toClock = ({hour, minute}: {hour: number; minute: number}) =>
+    `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+
+const repeatFor = (interval: IntervalDto) => (Object.keys(repeats) as Repeat[]).find(key =>
+    repeats[key].interval.intervalType === interval.intervalType
+    && repeats[key].interval.intervalArgument === interval.intervalArgument);
+
+const calendarDateIn = (instant: string, timeZone: string) => new Date(instant).toLocaleDateString("en-CA", {timeZone});
+const weeksBetween = (from: string, to: string) => Math.round((Date.parse(to) - Date.parse(from)) / (7 * 86_400_000));
+
+const nextOpeningDate = (commencing: string, timeZone: string, day: Day, everyWeeks: number) => {
+    const stored = calendarDateIn(commencing, timeZone);
+    const next = nextDate(day);
+    if (stored > toCalendarDate(next)) return stored;
+    const weeksSince = weeksBetween(stored, toCalendarDate(next));
+    next.setDate(next.getDate() + ((everyWeeks - weeksSince % everyWeeks) % everyWeeks) * 7);
+    return toCalendarDate(next);
+};
+
 const offsetOf = (date: Date, timeZone: string) => new Intl.DateTimeFormat("en-US", {timeZone, timeZoneName: "longOffset"}).format(date).split("GMT")[1] || "+00:00";
 
 const midnightIn = (calendarDate: string, timeZone: string) => {
@@ -78,12 +98,27 @@ const toSchedule = (slots: Slot[], timeZone: string) => slots.map(slot => ({
     interval: repeats[slot.repeat].interval,
 }));
 
-export const ScheduleBuilder = () => {
+const toSlot = (schedule: ScheduleDto): Slot => {
+    const repeat = repeatFor(schedule.interval) ?? "weekly";
+    return {
+        id: nextSlotId++,
+        day: schedule.day,
+        open: toClock(schedule.start),
+        close: schedule.end ? toClock(schedule.end) : "",
+        repeat,
+        commencing: needsStartDate(repeat) && schedule.commencing
+            ? nextOpeningDate(schedule.commencing, schedule.start.timeZone, schedule.day, repeats[repeat].interval.intervalArgument)
+            : toCalendarDate(nextDate(schedule.day)),
+    };
+};
+
+export const ScheduleBuilder = ({initialSchedule}: {initialSchedule?: ScheduleDto[]}) => {
     const {t, i18n} = useLingui();
     const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const [timeZone, setTimeZone] = useState<string | null>(browserTimeZone in timeZones ? browserTimeZone : null);
+    const startZone = initialSchedule?.[0]?.start.timeZone ?? browserTimeZone;
+    const [timeZone, setTimeZone] = useState<string | null>(startZone in timeZones ? startZone : null);
     const timeZoneLabels = Object.fromEntries(Object.entries(timeZones).map(([zone, label]) => [zone, i18n._(label)]));
-    const [slots, setSlots] = useState<Slot[]>([]);
+    const [slots, setSlots] = useState(() => (initialSchedule ?? []).map(toSlot));
 
     const add = () => setSlots([...slots, {
         id: nextSlotId++,

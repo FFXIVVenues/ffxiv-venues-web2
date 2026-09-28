@@ -10,6 +10,7 @@ export const Selector = ({id, placeholder, children, ...props}: {
     items?: Record<string, string>;
     value?: string | null;
     onValueChange?: (value: string | null) => void;
+    defaultValue?: string;
     children: ReactNode;
 }) =>
     <Select {...props}>
