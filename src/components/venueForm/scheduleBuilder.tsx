@@ -8,14 +8,16 @@ import {Trans, useLingui} from "@lingui/react/macro";
 import {useState} from "react";
 import {Field, FieldDescription, FieldLabel} from "@/components/ui/shadcn/field.tsx";
 import {Selector} from "@/components/venueForm/selector.tsx";
-import {SelectItem} from "@/components/ui/shadcn/select.tsx";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Plus, X} from "lucide-react";
 import {Input} from "@/components/ui/shadcn/input.tsx";
 import {timeZones} from "@/lib/model/venueOptions.ts";
 import type {ScheduleDto} from "@/lib/services/venues/dtos/scheduleDto.ts";
 
-const dayNames = [msg`Monday`, msg`Tuesday`, msg`Wednesday`, msg`Thursday`, msg`Friday`, msg`Saturday`, msg`Sunday`];
+const dayNames: Record<Day, MessageDescriptor> = {
+    [Day.Monday]: msg`Monday`, [Day.Tuesday]: msg`Tuesday`, [Day.Wednesday]: msg`Wednesday`, [Day.Thursday]: msg`Thursday`,
+    [Day.Friday]: msg`Friday`, [Day.Saturday]: msg`Saturday`, [Day.Sunday]: msg`Sunday`,
+};
 const weeks = (n: number): IntervalDto => ({intervalType: IntervalType.EveryXWeeks, intervalArgument: n});
 const monthly = (n: number): IntervalDto => ({intervalType: IntervalType.EveryXthDayOfTheMonth, intervalArgument: n});
 
@@ -32,6 +34,8 @@ const repeats = {
     "3rd last": {label: msg`Monthly, 3rd last`, interval: monthly(-3)},
     "4th last": {label: msg`Monthly, 4th last`, interval: monthly(-4)},
 } satisfies Record<string, {label: MessageDescriptor; interval: IntervalDto}>;
+
+const repeatLabels = Object.fromEntries(Object.entries(repeats).map(([key, {label}]) => [key, label]));
 
 type Repeat = keyof typeof repeats;
 const needsStartDate = (repeat: Repeat) => {
@@ -113,11 +117,10 @@ const toSlot = (schedule: ScheduleDto): Slot => {
 };
 
 export const ScheduleBuilder = ({initialSchedule}: {initialSchedule?: ScheduleDto[]}) => {
-    const {t, i18n} = useLingui();
+    const {t} = useLingui();
     const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const startZone = initialSchedule?.[0]?.start.timeZone ?? browserTimeZone;
     const [timeZone, setTimeZone] = useState<string | null>(startZone in timeZones ? startZone : null);
-    const timeZoneLabels = Object.fromEntries(Object.entries(timeZones).map(([zone, label]) => [zone, i18n._(label)]));
     const [slots, setSlots] = useState(() => (initialSchedule ?? []).map(toSlot));
 
     const add = () => setSlots([...slots, {
@@ -135,9 +138,7 @@ export const ScheduleBuilder = ({initialSchedule}: {initialSchedule?: ScheduleDt
     return <>
         <Field>
             <FieldLabel htmlFor="venue-timezone"><Trans>Time zone</Trans></FieldLabel>
-            <Selector id="venue-timezone" items={timeZoneLabels} value={timeZone} onValueChange={setTimeZone} placeholder={t`Select`} required={slots.length > 0}>
-                {Object.entries(timeZoneLabels).map(([zone, label]) => <SelectItem key={zone} value={zone}>{label}</SelectItem>)}
-            </Selector>
+            <Selector id="venue-timezone" options={timeZones} value={timeZone} onValueChange={setTimeZone} placeholder={t`Select`} required={slots.length > 0} />
             <FieldDescription><Trans>All your opening times are in this zone.</Trans></FieldDescription>
         </Field>
 
@@ -165,32 +166,17 @@ const SlotRow = ({slot, onChange, onRemove}: {
     onRemove: () => void;
 }) => {
     const {t, i18n} = useLingui();
-    const repeatLabels = Object.fromEntries(Object.entries(repeats).map(([key, {label}]) => [key, i18n._(label)]));
     const startDates = Object.fromEntries(upcomingDates(slot.day).map(date => [toCalendarDate(date), i18n.date(date, {weekday: "long", day: "numeric", month: "long"})]));
-    const dayLabels = Object.fromEntries(dayNames.map((name, day) => [day, i18n._(name)]));
     const changeDay = (day: Day) => onChange({day, commencing: toCalendarDate(nextDate(day))});
 
     return <div className="col-span-full grid grid-cols-subgrid items-center gap-y-2 rounded-md bg-muted/40 p-2">
-        <label htmlFor={`repeat-${slot.id}`} className="sr-only"><Trans>Repeats</Trans></label>
-        <div className="max-sm:col-span-2 sm:contents">
-            <Selector id={`repeat-${slot.id}`} items={repeatLabels} value={slot.repeat} onValueChange={v => onChange({repeat: v as Repeat})}>
-                {Object.entries(repeatLabels).map(([key, label]) => <SelectItem key={key} value={key}>{label}</SelectItem>)}
-            </Selector>
-        </div>
-
-        <label htmlFor={`day-${slot.id}`} className="sr-only"><Trans>Day</Trans></label>
-        <div className="max-sm:col-span-2 sm:contents">
-            <Selector id={`day-${slot.id}`} items={dayLabels} value={String(slot.day)} onValueChange={v => changeDay(Number(v))}>
-                {Object.entries(dayLabels).map(([day, label]) => <SelectItem key={day} value={day}>{label}</SelectItem>)}
-            </Selector>
-        </div>
+        <Selector aria-label={t`Repeats`} className="max-sm:col-span-2" options={repeatLabels} value={slot.repeat} onValueChange={v => onChange({repeat: v as Repeat})} />
+        <Selector aria-label={t`Day`} className="max-sm:col-span-2" options={dayNames} value={String(slot.day)} onValueChange={v => changeDay(Number(v))} />
 
         <div className="col-span-full flex items-center gap-2 sm:contents">
-            <label htmlFor={`open-${slot.id}`} className="sr-only"><Trans>Opens</Trans></label>
-            <Input id={`open-${slot.id}`} type="time" required value={slot.open} className="sm:w-auto" onChange={e => onChange({open: e.target.value})} />
+            <Input aria-label={t`Opens`} type="time" required value={slot.open} className="sm:w-auto" onChange={e => onChange({open: e.target.value})} />
             <span aria-hidden="true" className="sm:hidden">–</span>
-            <label htmlFor={`close-${slot.id}`} className="sr-only"><Trans>Closes</Trans></label>
-            <Input id={`close-${slot.id}`} type="time" required value={slot.close} className="sm:w-auto" onChange={e => onChange({close: e.target.value})} />
+            <Input aria-label={t`Closes`} type="time" required value={slot.close} className="sm:w-auto" onChange={e => onChange({close: e.target.value})} />
         </div>
 
         <Button type="button" variant="ghost" size="icon" aria-label={t`Remove time`} onClick={onRemove} className="max-sm:col-start-3 max-sm:row-start-1">
@@ -199,9 +185,7 @@ const SlotRow = ({slot, onChange, onRemove}: {
 
         {needsStartDate(slot.repeat) && <div className="col-span-full sm:col-span-4 flex items-center gap-2">
             <label htmlFor={`start-${slot.id}`} className="text-sm"><Trans>Starting</Trans></label>
-            <Selector id={`start-${slot.id}`} items={startDates} value={slot.commencing} onValueChange={v => onChange({commencing: v ?? ""})}>
-                {Object.entries(startDates).map(([iso, label]) => <SelectItem key={iso} value={iso}>{label}</SelectItem>)}
-            </Selector>
+            <Selector id={`start-${slot.id}`} options={startDates} value={slot.commencing} onValueChange={v => onChange({commencing: v ?? ""})} />
         </div>}
     </div>;
 };

@@ -16,7 +16,6 @@ import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Input} from "@/components/ui/shadcn/input.tsx";
 import {Textarea} from "@/components/ui/shadcn/textarea.tsx";
 import {Selector} from "@/components/venueForm/selector.tsx";
-import {SelectItem} from "@/components/ui/shadcn/select.tsx";
 import {districts, features, games, scenes, tagDescriptions, worlds} from "@/lib/model/venueOptions.ts";
 import {Switch} from "@/components/ui/shadcn/switch.tsx";
 import {TagPicker} from "@/components/venueForm/tagPicker.tsx";
@@ -134,29 +133,21 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
             <FieldGroup>
                 <Field>
                     <FieldLabel htmlFor="venue-type"><Trans>Property type</Trans></FieldLabel>
-                    <Selector id="venue-type" name="venueType" items={locationTypes} value={locationType} onValueChange={setLocationType}>
-                        {Object.entries(locationTypes).map(([value, label]) => <SelectItem key={value} value={value}>{label}</SelectItem>)}
-                    </Selector>
+                    <Selector id="venue-type" name="venueType" options={locationTypes} value={locationType} onValueChange={setLocationType} />
                 </Field>
 
                 <div className="flex flex-col sm:flex-row gap-4">
                     <Field>
                         <FieldLabel htmlFor="venue-dc"><Trans>Data center</Trans></FieldLabel>
-                        <Selector id="venue-dc" name="dataCenter" required placeholder={t`Select`} value={dataCenter} onValueChange={setDataCenter}>
-                            {Object.keys(worlds).map(dc => <SelectItem key={dc} value={dc}>{dc}</SelectItem>)}
-                        </Selector>
+                        <Selector id="venue-dc" name="dataCenter" required placeholder={t`Select`} options={Object.keys(worlds)} value={dataCenter} onValueChange={setDataCenter} />
                     </Field>
                     <Field>
                         <FieldLabel htmlFor="venue-world"><Trans>World</Trans></FieldLabel>
-                        <Selector key={dataCenter} id="venue-world" name="world" required disabled={!dataCenter} defaultValue={dataCenter === location?.dataCenter ? location?.world : undefined} placeholder={t`Select`}>
-                            {(worlds[dataCenter ?? ""] ?? []).map(w => <SelectItem key={w} value={w}>{w}</SelectItem>)}
-                        </Selector>
+                        <Selector key={dataCenter} id="venue-world" name="world" required disabled={!dataCenter} defaultValue={dataCenter === location?.dataCenter ? location?.world : undefined} placeholder={t`Select`} options={worlds[dataCenter ?? ""] ?? []} />
                     </Field>
                     <Field>
                         <FieldLabel htmlFor="venue-district"><Trans>Housing district</Trans></FieldLabel>
-                        <Selector id="venue-district" name="district" required defaultValue={location?.district} placeholder={t`Select`}>
-                            {districts.map(d => <SelectItem key={d} value={d}>{d}</SelectItem>)}
-                        </Selector>
+                        <Selector id="venue-district" name="district" required defaultValue={location?.district} placeholder={t`Select`} options={districts} />
                     </Field>
                 </div>
 
