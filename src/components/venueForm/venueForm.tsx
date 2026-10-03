@@ -2,7 +2,7 @@ import type {VenueDto} from "@/lib/services/venues/dtos/venueDto.ts";
 import {Trans, useLingui} from "@lingui/react/macro";
 import {type ReactNode, type SubmitEventHandler, useState} from "react";
 import {Field, FieldContent, FieldDescription, FieldGroup, FieldLabel, FieldLegend, FieldSet} from "@/components/ui/shadcn/field.tsx";
-import {Globe} from "lucide-react";
+import {Globe, X} from "lucide-react";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Input} from "@/components/ui/shadcn/input.tsx";
 import {Textarea} from "@/components/ui/shadcn/textarea.tsx";
@@ -15,6 +15,7 @@ import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
 import {ScheduleBuilder} from "@/components/venueForm/scheduleBuilder.tsx";
 import {BannerPicker} from "@/components/venueForm/bannerPicker.tsx";
 import {type NewVenue, toDraft, toVenue, type VenueDraft} from "@/components/venueForm/venueDraft.ts";
+import {Badge} from "@/components/ui/shadcn/badge.tsx";
 
 const toBanner = async (file: File) => {
     const image = await createImageBitmap(file);
@@ -36,6 +37,11 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
     const {t} = useLingui();
     const [draft, setDraft] = useState(() => toDraft(venue));
     const set = (changes: Partial<VenueDraft>) => setDraft(draft => ({...draft, ...changes}));
+
+    const isOffered = (tag: string) => [scenes, features, games].some(options => tag in options);
+    const legacyTags = draft.tags.filter(tag => !isOffered(tag));
+    const removeTag = (tag: string) => set({tags: draft.tags.filter(other => other !== tag)});
+
     const locationTypes = {House: t`House`, Apartment: t`Apartment`, Room: t`Room`, Other: t({message: `Other`, comment: `Property type: a location that isn't a house, apartment or room`})};
 
     const submit: SubmitEventHandler<HTMLFormElement> = async e => {
@@ -142,6 +148,19 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
                     <TagPicker options={games} descriptions={tagDescriptions} placeholder={t`Search games...`} value={draft.tags} onChange={tags => set({tags})} />
                     <FieldDescription><Trans>Anything guests can join in on.</Trans></FieldDescription>
                 </Field>
+
+                {legacyTags.length > 0 && <Field>
+                    <FieldLabel><Trans>Legacy tags</Trans></FieldLabel>
+                    <div className="flex flex-wrap gap-2">
+                        {legacyTags.map(tag => <Badge key={tag} variant="secondary" className="gap-1 pr-0.5">
+                            {tag}
+                            <Button type="button" variant="ghost" size="icon-xs" aria-label={t`Remove ${tag}`} onClick={() => removeTag(tag)}>
+                                <X />
+                            </Button>
+                        </Badge>)}
+                    </div>
+                    <FieldDescription><Trans>These tags aren't offered anymore, so you can only remove them.</Trans></FieldDescription>
+                </Field>}
             </FieldGroup>
         </FieldSet>
 
