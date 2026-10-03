@@ -22,32 +22,7 @@ import {InputGroup, InputGroupAddon, InputGroupInput} from "@/components/ui/shad
 import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
 import {ScheduleBuilder} from "@/components/venueForm/scheduleBuilder.tsx";
 import {BannerPicker} from "@/components/venueForm/bannerPicker.tsx";
-import type {NewVenue} from "@/components/venueForm/venueDraft.ts";
-
-const toNewVenue = (data: FormData): NewVenue => {
-    const text = (key: string) => String(data.get(key) ?? "").trim();
-    const plot = Number(data.get("plot"));
-
-    return {
-        name: text("name"),
-        description: text("description").split(/\n\s*\n/).map(paragraph => paragraph.trim()).filter(Boolean),
-        location: {
-            dataCenter: text("dataCenter"),
-            world: text("world"),
-            district: text("district"),
-            ward: Number(data.get("ward")),
-            plot,
-            apartment: Number(data.get("apartment")),
-            room: Number(data.get("room")),
-            subdivision: plot ? plot > 30 : data.has("subdivision"),
-        },
-        website: text("website") || undefined,
-        discord: text("discord") || undefined,
-        sfw: data.has("sfw"),
-        tags: data.getAll("tags").map(String),
-        schedule: JSON.parse(text("schedule") || "[]"),
-    };
-};
+import {type NewVenue, toDraft, toVenue, type VenueDraft} from "@/components/venueForm/venueDraft.ts";
 
 const toBanner = async (file: File) => {
     const image = await createImageBitmap(file);
@@ -67,21 +42,13 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
     onSubmit: (venue: NewVenue, banner: Blob | null) => void;
 }) => {
     const {t} = useLingui();
-    const location = venue?.location;
-    const [locationType, setLocationType] = useState<string | null>(location?.apartment ? "Apartment" : location?.room ? "Room" : "House");
-    const [dataCenter, setDataCenter] = useState<string | null>(location?.dataCenter ?? null);
+    const [draft, setDraft] = useState(() => toDraft(venue));
+    const set = (changes: Partial<VenueDraft>) => setDraft(draft => ({...draft, ...changes}));
     const locationTypes = {House: t`House`, Apartment: t`Apartment`, Room: t`Room`};
-
-    const venueTags = (venue?.tags ?? []).filter(Boolean);
-    const isOffered = (tag: string) => [scenes, features, games].some(options => tag in options);
-    const legacyTags = venueTags.filter(tag => !isOffered(tag));
 
     const submit: SubmitEventHandler<HTMLFormElement> = async e => {
         e.preventDefault();
-        const data = new FormData(e.currentTarget);
-        const file = data.get("banner");
-        const banner = file instanceof File && file.size > 0 ? await toBanner(file) : null;
-        onSubmit(toNewVenue(data), banner);
+        onSubmit(toVenue(draft), draft.banner ? await toBanner(draft.banner) : null);
     };
 
     return <form className="flex flex-col gap-8" onSubmit={submit}>
@@ -90,11 +57,11 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
             <FieldGroup>
                 <Field>
                     <FieldLabel htmlFor="venue-name"><Trans>Venue name</Trans></FieldLabel>
-                    <Input id="venue-name" name="name" required defaultValue={venue?.name} placeholder={t`What's your venue called?`} />
+                    <Input id="venue-name" required value={draft.name} onChange={e => set({name: e.target.value})} placeholder={t`What's your venue called?`} />
                 </Field>
                 <Field>
                     <FieldLabel htmlFor="venue-description"><Trans>Description</Trans></FieldLabel>
-                    <Textarea id="venue-description" name="description" rows={5} defaultValue={venue?.description.join("\n\n")} placeholder={t`Give guests something to read when they click your venue...`} />
+                    <Textarea id="venue-description" rows={5} value={draft.description} onChange={e => set({description: e.target.value})} placeholder={t`Give guests something to read when they click your venue...`} />
                 </Field>
             </FieldGroup>
         </FieldSet>
@@ -104,45 +71,45 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
             <FieldGroup>
                 <Field>
                     <FieldLabel htmlFor="venue-type"><Trans>Property type</Trans></FieldLabel>
-                    <Selector id="venue-type" name="venueType" options={locationTypes} value={locationType} onValueChange={setLocationType} />
+                    <Selector id="venue-type" options={locationTypes} value={draft.locationType} onValueChange={type => set({locationType: type as VenueDraft["locationType"]})} />
                 </Field>
 
                 <div className="flex flex-col sm:flex-row gap-4">
                     <Field>
                         <FieldLabel htmlFor="venue-dc"><Trans>Data center</Trans></FieldLabel>
-                        <Selector id="venue-dc" name="dataCenter" required placeholder={t`Select`} options={Object.keys(worlds)} value={dataCenter} onValueChange={setDataCenter} />
+                        <Selector id="venue-dc" required placeholder={t`Select`} options={Object.keys(worlds)} value={draft.dataCenter || null} onValueChange={dataCenter => set({dataCenter: dataCenter ?? "", world: ""})} />
                     </Field>
                     <Field>
                         <FieldLabel htmlFor="venue-world"><Trans>World</Trans></FieldLabel>
-                        <Selector key={dataCenter} id="venue-world" name="world" required disabled={!dataCenter} defaultValue={dataCenter === location?.dataCenter ? location?.world : undefined} placeholder={t`Select`} options={worlds[dataCenter ?? ""] ?? []} />
+                        <Selector id="venue-world" required disabled={!draft.dataCenter} placeholder={t`Select`} options={worlds[draft.dataCenter] ?? []} value={draft.world || null} onValueChange={world => set({world: world ?? ""})} />
                     </Field>
                     <Field>
                         <FieldLabel htmlFor="venue-district"><Trans>Housing district</Trans></FieldLabel>
-                        <Selector id="venue-district" name="district" required defaultValue={location?.district} placeholder={t`Select`} options={districts} />
+                        <Selector id="venue-district" required placeholder={t`Select`} options={districts} value={draft.district || null} onValueChange={district => set({district: district ?? ""})} />
                     </Field>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
                     <Field>
                         <FieldLabel htmlFor="venue-ward"><Trans>Ward</Trans></FieldLabel>
-                        <Input id="venue-ward" name="ward" type="number" min={1} max={30} placeholder="1-30" required defaultValue={location?.ward} />
+                        <Input id="venue-ward" type="number" min={1} max={30} placeholder="1-30" required value={draft.ward || ""} onChange={e => set({ward: Number(e.target.value)})} />
                     </Field>
-                    {locationType !== "Apartment" && <Field>
+                    {draft.locationType !== "Apartment" && <Field>
                         <FieldLabel htmlFor="venue-plot"><Trans>Plot</Trans></FieldLabel>
-                        <Input id="venue-plot" name="plot" type="number" min={1} max={60} placeholder="1-60" required defaultValue={location?.plot || undefined} />
+                        <Input id="venue-plot" type="number" min={1} max={60} placeholder="1-60" required value={draft.plot || ""} onChange={e => set({plot: Number(e.target.value)})} />
                     </Field>}
-                    {locationType === "Apartment" && <Field>
+                    {draft.locationType === "Apartment" && <Field>
                         <FieldLabel htmlFor="venue-apartment"><Trans>Apartment number</Trans></FieldLabel>
-                        <Input id="venue-apartment" name="apartment" type="number" min={1} max={90} placeholder="1-90" required defaultValue={location?.apartment || undefined} />
+                        <Input id="venue-apartment" type="number" min={1} max={90} placeholder="1-90" required value={draft.apartment || ""} onChange={e => set({apartment: Number(e.target.value)})} />
                     </Field>}
-                    {locationType === "Room" && <Field>
+                    {draft.locationType === "Room" && <Field>
                         <FieldLabel htmlFor="venue-room"><Trans>Room number</Trans></FieldLabel>
-                        <Input id="venue-room" name="room" type="number" min={1} max={512} placeholder="1-512" required defaultValue={location?.room || undefined} />
+                        <Input id="venue-room" type="number" min={1} max={512} placeholder="1-512" required value={draft.room || ""} onChange={e => set({room: Number(e.target.value)})} />
                     </Field>}
                 </div>
 
-                {locationType === "Apartment" && <Field orientation="horizontal">
-                    <Switch id="venue-subdivision" name="subdivision" defaultChecked={location?.subdivision} />
+                {draft.locationType === "Apartment" && <Field orientation="horizontal">
+                    <Switch id="venue-subdivision" checked={draft.subdivision} onCheckedChange={subdivision => set({subdivision})} />
                     <FieldContent>
                         <FieldLabel htmlFor="venue-subdivision"><Trans>Subdivision</Trans></FieldLabel>
                         <FieldDescription><Trans>Is your apartment in the ward's subdivision?</Trans></FieldDescription>
@@ -155,7 +122,7 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
             <FieldLegend><Trans>The vibe</Trans></FieldLegend>
             <FieldGroup>
                 <Field orientation="horizontal">
-                    <Switch id="venue-sfw" name="sfw" defaultChecked={venue?.sfw} />
+                    <Switch id="venue-sfw" checked={draft.sfw} onCheckedChange={sfw => set({sfw})} />
                     <FieldContent>
                         <FieldLabel htmlFor="venue-sfw"><Trans>SFW on entry</Trans></FieldLabel>
                         <FieldDescription><Trans>On means no nudity or erotic content out in the open</Trans></FieldDescription>
@@ -163,22 +130,21 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
                 </Field>
                 <Field>
                     <FieldLabel><Trans>Scenes</Trans></FieldLabel>
-                    <TagPicker options={scenes} max={2} placeholder={t`Search scenes...`} initialTags={venueTags} />
+                    <TagPicker options={scenes} max={2} placeholder={t`Search scenes...`} value={draft.tags} onChange={tags => set({tags})} />
                     <FieldDescription><Trans>Pick up to 2 that fit best <span aria-hidden="true">🙂</span></Trans></FieldDescription>
                 </Field>
                 <Field>
                     <FieldLabel><Trans>Features</Trans></FieldLabel>
-                    <TagPicker options={features} descriptions={tagDescriptions} placeholder={t`Search features...`} initialTags={venueTags} />
+                    <TagPicker options={features} descriptions={tagDescriptions} placeholder={t`Search features...`} value={draft.tags} onChange={tags => set({tags})} />
                     <FieldDescription><Trans>Tap everything your venue offers <span aria-hidden="true">😊</span></Trans></FieldDescription>
                 </Field>
                 <Field>
                     <FieldLabel><Trans>Games</Trans></FieldLabel>
-                    <TagPicker options={games} descriptions={tagDescriptions} placeholder={t`Search games...`} initialTags={venueTags} />
+                    <TagPicker options={games} descriptions={tagDescriptions} placeholder={t`Search games...`} value={draft.tags} onChange={tags => set({tags})} />
                     <FieldDescription><Trans>Anything guests can join in on.</Trans></FieldDescription>
                 </Field>
             </FieldGroup>
         </FieldSet>
-        {legacyTags.map(tag => <input key={tag} type="hidden" name="tags" value={tag} />)}
 
         <FieldSet>
             <FieldLegend><Trans>Your links</Trans></FieldLegend>
@@ -187,14 +153,14 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
                     <FieldLabel htmlFor="venue-discord"><Trans>Discord invite</Trans></FieldLabel>
                     <InputGroup>
                         <InputGroupAddon><DiscordFillIcon className="size-4" strokeWidth={0} fill="currentColor" /></InputGroupAddon>
-                        <InputGroupInput id="venue-discord" name="discord" type="url" defaultValue={venue?.discord ?? undefined} placeholder="https://discord.gg/..." />
+                        <InputGroupInput id="venue-discord" type="url" value={draft.discord} onChange={e => set({discord: e.target.value})} placeholder="https://discord.gg/..." />
                     </InputGroup>
                 </Field>
                 <Field>
                     <FieldLabel htmlFor="venue-website"><Trans>Website</Trans></FieldLabel>
                     <InputGroup>
                         <InputGroupAddon><Globe className="size-4" /></InputGroupAddon>
-                        <InputGroupInput id="venue-website" name="website" type="url" defaultValue={venue?.website ?? undefined} placeholder="https://..." />
+                        <InputGroupInput id="venue-website" type="url" value={draft.website} onChange={e => set({website: e.target.value})} placeholder="https://..." />
                     </InputGroup>
                 </Field>
             </FieldGroup>
@@ -203,13 +169,13 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
         <FieldSet>
             <FieldLegend><Trans>Opening hours</Trans></FieldLegend>
             <FieldGroup>
-                <ScheduleBuilder initialSchedule={venue?.schedule} />
+                <ScheduleBuilder slots={draft.slots} timeZone={draft.timeZone} onChange={set} />
             </FieldGroup>
         </FieldSet>
 
         <FieldSet>
             <FieldGroup>
-                <BannerPicker current={venue?.bannerUri ?? undefined} />
+                <BannerPicker current={venue?.bannerUri ?? undefined} value={draft.banner} onChange={banner => set({banner})} />
             </FieldGroup>
         </FieldSet>
         <Button type="submit" className="w-fit">{submitLabel}</Button>

@@ -7,13 +7,11 @@ export const Selector = ({id, label, placeholder, options, className, ...props}:
     id?: string;
     label?: string;
     className?: string;
-    name?: string;
     placeholder?: string;
     required?: boolean;
     disabled?: boolean;
     value?: string | null;
     onValueChange?: (value: string | null) => void;
-    defaultValue?: string;
     options: string[] | Record<string, string | MessageDescriptor>;
 }) => {
     const {i18n} = useLingui();
