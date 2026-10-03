@@ -11,7 +11,7 @@ import {
     FieldLegend,
     FieldSet
 } from "@/components/ui/shadcn/field.tsx";
-import {Globe, ImageUp} from "lucide-react";
+import {Globe} from "lucide-react";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Input} from "@/components/ui/shadcn/input.tsx";
 import {Textarea} from "@/components/ui/shadcn/textarea.tsx";
@@ -22,6 +22,7 @@ import {TagPicker} from "@/components/venueForm/tagPicker.tsx";
 import {InputGroup, InputGroupAddon, InputGroupInput} from "@/components/ui/shadcn/input-group.tsx";
 import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
 import {ScheduleBuilder} from "@/components/venueForm/scheduleBuilder.tsx";
+import {BannerPicker} from "@/components/venueForm/bannerPicker.tsx";
 
 export type NewVenue = Pick<VenueDto, "name" | "description" | "website" | "discord" | "sfw" | "tags" | "schedule"> & {location: Omit<LocationDto, "shard" | "override">};
 
@@ -62,33 +63,6 @@ const toBanner = async (file: File) => {
     return canvas.convertToBlob({type: "image/webp", quality: 1});
 };
 
-const BannerPicker = ({current}: {current?: string}) => {
-    const {t} = useLingui();
-    const [preview, setPreview] = useState<string | null>(null);
-
-    const choose = (file: File | undefined) => {
-        if (preview) URL.revokeObjectURL(preview);
-        setPreview(file ? URL.createObjectURL(file) : null);
-    };
-
-    const shown = preview ?? current;
-
-    return <Field>
-        <FieldLabel htmlFor="venue-banner"><Trans>Banner image</Trans></FieldLabel>
-        <label htmlFor="venue-banner" className="flex aspect-[2/1] w-full cursor-pointer items-center justify-center overflow-hidden rounded-md border border-dashed border-input bg-input/30 text-muted-foreground transition-colors hover:border-ring hover:text-foreground">
-            {shown
-                ? <img src={shown} alt={t`Banner preview`} className="h-full w-full object-cover" />
-                : <span className="flex flex-col items-center gap-2 text-sm font-medium">
-                    <ImageUp className="size-7" />
-                    <Trans>Click to choose an image</Trans>
-                </span>
-            }
-        </label>
-        <input id="venue-banner" name="banner" type="file" accept="image/*" className="sr-only" onChange={e => choose(e.target.files?.[0])} />
-        <FieldDescription><Trans>Any image works; banners are 600x300 and I'll handle the scaling and cropping for you <span aria-hidden="true">❤️</span></Trans></FieldDescription>
-    </Field>;
-};
-
 export const VenueForm = ({venue, submitLabel, onSubmit}: {
     venue?: VenueDto;
     submitLabel: ReactNode;
@@ -101,7 +75,7 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
     const locationTypes = {House: t`House`, Apartment: t`Apartment`, Room: t`Room`};
 
     const venueTags = (venue?.tags ?? []).filter(Boolean);
-    const isOffered = (tag: string) => [scenes, features, games].some(options => Object.hasOwn(options, tag));
+    const isOffered = (tag: string) => [scenes, features, games].some(options => tag in options);
     const legacyTags = venueTags.filter(tag => !isOffered(tag));
 
     const submit: SubmitEventHandler<HTMLFormElement> = async e => {
@@ -127,7 +101,6 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
             </FieldGroup>
         </FieldSet>
 
-        {/* Location */}
         <FieldSet>
             <FieldLegend><Trans>Where to find you</Trans></FieldLegend>
             <FieldGroup>
@@ -180,7 +153,6 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
             </FieldGroup>
         </FieldSet>
 
-        {/* Venue Tags */}
         <FieldSet>
             <FieldLegend><Trans>The vibe</Trans></FieldLegend>
             <FieldGroup>
@@ -210,7 +182,6 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
         </FieldSet>
         {legacyTags.map(tag => <input key={tag} type="hidden" name="tags" value={tag} />)}
 
-        {/* Venue Discord/Site */}
         <FieldSet>
             <FieldLegend><Trans>Your links</Trans></FieldLegend>
             <FieldGroup>
@@ -231,7 +202,6 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
             </FieldGroup>
         </FieldSet>
 
-        {/* Venue Schedule */}
         <FieldSet>
             <FieldLegend><Trans>Opening hours</Trans></FieldLegend>
             <FieldGroup>
@@ -239,7 +209,6 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
             </FieldGroup>
         </FieldSet>
 
-        {/* Venue Banner */}
         <FieldSet>
             <FieldGroup>
                 <BannerPicker current={venue?.bannerUri ?? undefined} />

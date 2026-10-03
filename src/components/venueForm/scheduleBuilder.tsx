@@ -1,120 +1,15 @@
-import {msg} from "@lingui/core/macro";
-import type {IntervalDto} from "@/lib/services/venues/dtos/intervalDto.ts";
-import {IntervalType} from "@/lib/model/intervalType.ts";
-import type {MessageDescriptor} from "@lingui/core";
-import {Day} from "@/lib/model/day.ts";
-import type {TimeDto} from "@/lib/services/venues/dtos/timeDto.ts";
 import {Trans, useLingui} from "@lingui/react/macro";
 import {useState} from "react";
-import {Field, FieldDescription, FieldLabel} from "@/components/ui/shadcn/field.tsx";
-import {Selector} from "@/components/venueForm/selector.tsx";
-import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Plus, X} from "lucide-react";
+import {Field, FieldDescription, FieldLabel} from "@/components/ui/shadcn/field.tsx";
+import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Input} from "@/components/ui/shadcn/input.tsx";
+import {Selector} from "@/components/venueForm/selector.tsx";
+import {Day} from "@/lib/model/day.ts";
 import {timeZones} from "@/lib/model/venueOptions.ts";
 import type {ScheduleDto} from "@/lib/services/venues/dtos/scheduleDto.ts";
-
-const dayNames: Record<Day, MessageDescriptor> = {
-    [Day.Monday]: msg`Monday`, [Day.Tuesday]: msg`Tuesday`, [Day.Wednesday]: msg`Wednesday`, [Day.Thursday]: msg`Thursday`,
-    [Day.Friday]: msg`Friday`, [Day.Saturday]: msg`Saturday`, [Day.Sunday]: msg`Sunday`,
-};
-const weeks = (n: number): IntervalDto => ({intervalType: IntervalType.EveryXWeeks, intervalArgument: n});
-const monthly = (n: number): IntervalDto => ({intervalType: IntervalType.EveryXthDayOfTheMonth, intervalArgument: n});
-
-const repeats = {
-    "weekly": {label: msg`Weekly`, interval: weeks(1)},
-    "biweekly": {label: msg`Every 2 weeks`, interval: weeks(2)},
-    "triweekly": {label: msg`Every 3 weeks`, interval: weeks(3)},
-    "1st": {label: msg`Monthly, 1st`, interval: monthly(1)},
-    "2nd": {label: msg`Monthly, 2nd`, interval: monthly(2)},
-    "3rd": {label: msg`Monthly, 3rd`, interval: monthly(3)},
-    "4th": {label: msg`Monthly, 4th`, interval: monthly(4)},
-    "last": {label: msg({message: `Monthly, last`, comment: `Last occurrence of a weekday in the month`}), interval: monthly(-1)},
-    "2nd last": {label: msg`Monthly, 2nd last`, interval: monthly(-2)},
-    "3rd last": {label: msg`Monthly, 3rd last`, interval: monthly(-3)},
-    "4th last": {label: msg`Monthly, 4th last`, interval: monthly(-4)},
-} satisfies Record<string, {label: MessageDescriptor; interval: IntervalDto}>;
-
-const repeatLabels = Object.fromEntries(Object.entries(repeats).map(([key, {label}]) => [key, label]));
-
-type Repeat = keyof typeof repeats;
-const needsStartDate = (repeat: Repeat) => {
-    const {intervalType, intervalArgument} = repeats[repeat].interval;
-    return intervalType === IntervalType.EveryXWeeks && intervalArgument > 1;
-};
-
-type Slot = {id: number; day: Day; open: string; close: string; repeat: Repeat; commencing: string};
-
-let nextSlotId = 0;
-
-const nextDate = (day: Day) => {
-    const date = new Date();
-    while ((date.getDay() + 6) % 7 !== day) date.setDate(date.getDate() + 1);
-    return date;
-};
-
-const upcomingDates = (day: Day) => [0, 1, 2].map(week => {
-    const date = nextDate(day);
-    date.setDate(date.getDate() + week * 7);
-    return date;
-});
-
-const toCalendarDate = (date: Date) => date.toLocaleDateString("en-CA");
-
-const toClock = ({hour, minute}: {hour: number; minute: number}) =>
-    `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
-
-const repeatFor = (interval: IntervalDto) => (Object.keys(repeats) as Repeat[]).find(key =>
-    repeats[key].interval.intervalType === interval.intervalType
-    && repeats[key].interval.intervalArgument === interval.intervalArgument);
-
-const calendarDateIn = (instant: string, timeZone: string) => new Date(instant).toLocaleDateString("en-CA", {timeZone});
-const weeksBetween = (from: string, to: string) => Math.round((Date.parse(to) - Date.parse(from)) / (7 * 86_400_000));
-
-const nextOpeningDate = (commencing: string, timeZone: string, day: Day, everyWeeks: number) => {
-    const stored = calendarDateIn(commencing, timeZone);
-    const next = nextDate(day);
-    if (stored > toCalendarDate(next)) return stored;
-    const weeksSince = weeksBetween(stored, toCalendarDate(next));
-    next.setDate(next.getDate() + ((everyWeeks - weeksSince % everyWeeks) % everyWeeks) * 7);
-    return toCalendarDate(next);
-};
-
-const offsetOf = (date: Date, timeZone: string) => new Intl.DateTimeFormat("en-US", {timeZone, timeZoneName: "longOffset"}).format(date).split("GMT")[1] || "+00:00";
-
-const midnightIn = (calendarDate: string, timeZone: string) => {
-    const utcMidnight = new Date(`${calendarDate}T00:00:00Z`);
-    const roughMidnight = new Date(`${calendarDate}T00:00:00${offsetOf(utcMidnight, timeZone)}`);
-    return new Date(`${calendarDate}T00:00:00${offsetOf(roughMidnight, timeZone)}`).toISOString();
-};
-
-const toTime = (time: string, timeZone: string): Omit<TimeDto, "nextDay"> => ({
-    hour: Number(time.slice(0, 2)),
-    minute: Number(time.slice(3, 5)),
-    timeZone,
-});
-
-const toSchedule = (slots: Slot[], timeZone: string) => slots.map(slot => ({
-    day: slot.day,
-    commencing: needsStartDate(slot.repeat) ? midnightIn(slot.commencing, timeZone) : undefined,
-    start: toTime(slot.open, timeZone),
-    end: toTime(slot.close, timeZone),
-    interval: repeats[slot.repeat].interval,
-}));
-
-const toSlot = (schedule: ScheduleDto): Slot => {
-    const repeat = repeatFor(schedule.interval) ?? "weekly";
-    return {
-        id: nextSlotId++,
-        day: schedule.day,
-        open: toClock(schedule.start),
-        close: schedule.end ? toClock(schedule.end) : "",
-        repeat,
-        commencing: needsStartDate(repeat) && schedule.commencing
-            ? nextOpeningDate(schedule.commencing, schedule.start.timeZone, schedule.day, repeats[repeat].interval.intervalArgument)
-            : toCalendarDate(nextDate(schedule.day)),
-    };
-};
+import {toCalendarDate, upcomingDates} from "@/lib/utils/dates.ts";
+import {dayNames, firstStartDate, needsStartDate, newSlot, type Repeat, repeatLabels, type Slot, toSchedule, toSlot} from "@/components/venueForm/scheduleSlots.ts";
 
 export const ScheduleBuilder = ({initialSchedule}: {initialSchedule?: ScheduleDto[]}) => {
     const {t} = useLingui();
@@ -123,15 +18,7 @@ export const ScheduleBuilder = ({initialSchedule}: {initialSchedule?: ScheduleDt
     const [timeZone, setTimeZone] = useState<string | null>(startZone in timeZones ? startZone : null);
     const [slots, setSlots] = useState(() => (initialSchedule ?? []).map(toSlot));
 
-    const add = () => setSlots([...slots, {
-        id: nextSlotId++,
-        day: Day.Monday,
-        open: "",
-        close: "",
-        repeat: "weekly",
-        commencing: toCalendarDate(nextDate(Day.Monday)),
-    }]);
-
+    const add = () => setSlots([...slots, newSlot(Day.Monday)]);
     const update = (id: number, changes: Partial<Slot>) => setSlots(slots.map(slot => slot.id === id ? {...slot, ...changes} : slot));
     const remove = (id: number) => setSlots(slots.filter(slot => slot.id !== id));
 
@@ -167,11 +54,10 @@ const SlotRow = ({slot, onChange, onRemove}: {
 }) => {
     const {t, i18n} = useLingui();
     const startDates = Object.fromEntries(upcomingDates(slot.day).map(date => [toCalendarDate(date), i18n.date(date, {weekday: "long", day: "numeric", month: "long"})]));
-    const changeDay = (day: Day) => onChange({day, commencing: toCalendarDate(nextDate(day))});
 
     return <div className="col-span-full grid grid-cols-subgrid items-center gap-y-2 rounded-md bg-muted/40 p-2">
-        <Selector aria-label={t`Repeats`} className="max-sm:col-span-2" options={repeatLabels} value={slot.repeat} onValueChange={v => onChange({repeat: v as Repeat})} />
-        <Selector aria-label={t`Day`} className="max-sm:col-span-2" options={dayNames} value={String(slot.day)} onValueChange={v => changeDay(Number(v))} />
+        <Selector label={t`Repeats`} className="max-sm:col-span-2" options={repeatLabels} value={slot.repeat} onValueChange={v => onChange({repeat: v as Repeat})} />
+        <Selector label={t`Day`} className="max-sm:col-span-2" options={dayNames} value={String(slot.day)} onValueChange={v => onChange({day: Number(v), commencing: firstStartDate(Number(v))})} />
 
         <div className="col-span-full flex items-center gap-2 sm:contents">
             <Input aria-label={t`Opens`} type="time" required value={slot.open} className="sm:w-auto" onChange={e => onChange({open: e.target.value})} />

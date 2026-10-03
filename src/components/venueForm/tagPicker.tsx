@@ -18,11 +18,8 @@ export const TagPicker = ({options, descriptions, initialTags, max, placeholder}
 }) => {
     const {i18n} = useLingui();
     const anchor = useComboboxAnchor();
-    const [tags, setTags] = useState(() => (initialTags ?? []).filter(tag => Object.hasOwn(options, tag)));
-    const label = (tag: string) => {
-        const message = options[tag];
-        return message ? i18n._(message) : tag;
-    };
+    const [tags, setTags] = useState(() => (initialTags ?? []).filter(tag => tag in options));
+    const label = (tag: string) => i18n._(options[tag]!);
 
     return <Combobox multiple name="tags" items={Object.keys(options)} itemToStringLabel={label} value={tags} onValueChange={v => setTags(max ? v.slice(0, max) : v)}>
         <ComboboxChips ref={anchor}>
