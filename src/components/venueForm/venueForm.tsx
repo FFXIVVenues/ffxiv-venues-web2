@@ -1,15 +1,7 @@
 import type {VenueDto} from "@/lib/services/venues/dtos/venueDto.ts";
 import {Trans, useLingui} from "@lingui/react/macro";
 import {type ReactNode, type SubmitEventHandler, useState} from "react";
-import {
-    Field,
-    FieldContent,
-    FieldDescription,
-    FieldGroup,
-    FieldLabel,
-    FieldLegend,
-    FieldSet
-} from "@/components/ui/shadcn/field.tsx";
+import {Field, FieldContent, FieldDescription, FieldGroup, FieldLabel, FieldLegend, FieldSet} from "@/components/ui/shadcn/field.tsx";
 import {Globe} from "lucide-react";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Input} from "@/components/ui/shadcn/input.tsx";
@@ -44,7 +36,7 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
     const {t} = useLingui();
     const [draft, setDraft] = useState(() => toDraft(venue));
     const set = (changes: Partial<VenueDraft>) => setDraft(draft => ({...draft, ...changes}));
-    const locationTypes = {House: t`House`, Apartment: t`Apartment`, Room: t`Room`};
+    const locationTypes = {House: t`House`, Apartment: t`Apartment`, Room: t`Room`, Other: t({message: `Other`, comment: `Property type: a location that isn't a house, apartment or room`})};
 
     const submit: SubmitEventHandler<HTMLFormElement> = async e => {
         e.preventDefault();
@@ -74,39 +66,46 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
                     <Selector id="venue-type" options={locationTypes} value={draft.locationType} onValueChange={type => set({locationType: type as VenueDraft["locationType"]})} />
                 </Field>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                    <Field>
-                        <FieldLabel htmlFor="venue-dc"><Trans>Data center</Trans></FieldLabel>
-                        <Selector id="venue-dc" required placeholder={t`Select`} options={Object.keys(worlds)} value={draft.dataCenter || null} onValueChange={dataCenter => set({dataCenter: dataCenter ?? "", world: ""})} />
-                    </Field>
-                    <Field>
-                        <FieldLabel htmlFor="venue-world"><Trans>World</Trans></FieldLabel>
-                        <Selector id="venue-world" required disabled={!draft.dataCenter} placeholder={t`Select`} options={worlds[draft.dataCenter] ?? []} value={draft.world || null} onValueChange={world => set({world: world ?? ""})} />
-                    </Field>
-                    <Field>
-                        <FieldLabel htmlFor="venue-district"><Trans>Housing district</Trans></FieldLabel>
-                        <Selector id="venue-district" required placeholder={t`Select`} options={districts} value={draft.district || null} onValueChange={district => set({district: district ?? ""})} />
-                    </Field>
-                </div>
+                {draft.locationType !== "Other" && <>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <Field>
+                            <FieldLabel htmlFor="venue-dc"><Trans>Data center</Trans></FieldLabel>
+                            <Selector id="venue-dc" required placeholder={t`Select`} options={Object.keys(worlds)} value={draft.dataCenter || null} onValueChange={dataCenter => set({dataCenter: dataCenter ?? "", world: ""})} />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="venue-world"><Trans>World</Trans></FieldLabel>
+                            <Selector id="venue-world" required disabled={!draft.dataCenter} placeholder={t`Select`} options={worlds[draft.dataCenter] ?? []} value={draft.world || null} onValueChange={world => set({world: world ?? ""})} />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="venue-district"><Trans>Housing district</Trans></FieldLabel>
+                            <Selector id="venue-district" required placeholder={t`Select`} options={districts} value={draft.district || null} onValueChange={district => set({district: district ?? ""})} />
+                        </Field>
+                    </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                    <Field>
-                        <FieldLabel htmlFor="venue-ward"><Trans>Ward</Trans></FieldLabel>
-                        <Input id="venue-ward" type="number" min={1} max={30} placeholder="1-30" required value={draft.ward || ""} onChange={e => set({ward: Number(e.target.value)})} />
-                    </Field>
-                    {draft.locationType !== "Apartment" && <Field>
-                        <FieldLabel htmlFor="venue-plot"><Trans>Plot</Trans></FieldLabel>
-                        <Input id="venue-plot" type="number" min={1} max={60} placeholder="1-60" required value={draft.plot || ""} onChange={e => set({plot: Number(e.target.value)})} />
-                    </Field>}
-                    {draft.locationType === "Apartment" && <Field>
-                        <FieldLabel htmlFor="venue-apartment"><Trans>Apartment number</Trans></FieldLabel>
-                        <Input id="venue-apartment" type="number" min={1} max={90} placeholder="1-90" required value={draft.apartment || ""} onChange={e => set({apartment: Number(e.target.value)})} />
-                    </Field>}
-                    {draft.locationType === "Room" && <Field>
-                        <FieldLabel htmlFor="venue-room"><Trans>Room number</Trans></FieldLabel>
-                        <Input id="venue-room" type="number" min={1} max={512} placeholder="1-512" required value={draft.room || ""} onChange={e => set({room: Number(e.target.value)})} />
-                    </Field>}
-                </div>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <Field>
+                            <FieldLabel htmlFor="venue-ward"><Trans>Ward</Trans></FieldLabel>
+                            <Input id="venue-ward" type="number" min={1} max={30} placeholder="1-30" required value={draft.ward || ""} onChange={e => set({ward: Number(e.target.value)})} />
+                        </Field>
+                        {draft.locationType !== "Apartment" && <Field>
+                            <FieldLabel htmlFor="venue-plot"><Trans>Plot</Trans></FieldLabel>
+                            <Input id="venue-plot" type="number" min={1} max={60} placeholder="1-60" required value={draft.plot || ""} onChange={e => set({plot: Number(e.target.value)})} />
+                        </Field>}
+                        {draft.locationType === "Apartment" && <Field>
+                            <FieldLabel htmlFor="venue-apartment"><Trans>Apartment number</Trans></FieldLabel>
+                            <Input id="venue-apartment" type="number" min={1} max={90} placeholder="1-90" required value={draft.apartment || ""} onChange={e => set({apartment: Number(e.target.value)})} />
+                        </Field>}
+                        {draft.locationType === "Room" && <Field>
+                            <FieldLabel htmlFor="venue-room"><Trans>Room number</Trans></FieldLabel>
+                            <Input id="venue-room" type="number" min={1} max={512} placeholder="1-512" required value={draft.room || ""} onChange={e => set({room: Number(e.target.value)})} />
+                        </Field>}
+                    </div>
+                </>}
+
+                {draft.locationType === "Other" && <Field>
+                    <FieldLabel htmlFor="venue-override"><Trans>Location</Trans></FieldLabel>
+                    <Input id="venue-override" required value={draft.override} onChange={e => set({override: e.target.value})} placeholder={t`Where can guests find you?`} />
+                </Field>}
 
                 {draft.locationType === "Apartment" && <Field orientation="horizontal">
                     <Switch id="venue-subdivision" checked={draft.subdivision} onCheckedChange={subdivision => set({subdivision})} />

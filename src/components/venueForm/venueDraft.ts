@@ -6,7 +6,8 @@ import type {LocationDto} from "@/lib/services/venues/dtos/locationDto.ts";
 export type VenueDraft = {
     name: string;
     description: string;
-    locationType: "House" | "Apartment" | "Room";
+    locationType: "House" | "Apartment" | "Room" | "Other";
+    override: string;
     dataCenter: string;
     world: string;
     district: string;
@@ -25,7 +26,7 @@ export type VenueDraft = {
 };
 
 export type NewVenue = Pick<VenueDto, "name" | "description" | "website" | "discord" | "sfw" | "tags">
-    & {location: Omit<LocationDto, "shard" | "override">; schedule: ReturnType<typeof toSchedule>};
+    & {location: Omit<LocationDto, "shard" | "override"> & {override: string | null}; schedule: ReturnType<typeof toSchedule>};
 
 export function toDraft(venue?: VenueDto): VenueDraft {
     const location = venue?.location;
@@ -34,7 +35,8 @@ export function toDraft(venue?: VenueDto): VenueDraft {
     return {
         name: venue?.name ?? "",
         description: venue?.description.join("\n\n") ?? "",
-        locationType: location?.apartment ? "Apartment" : location?.room ? "Room" : "House",
+        locationType: location?.override ? "Other" : location?.apartment ? "Apartment" : location?.room ? "Room" : "House",
+        override: location?.override ?? "",
         dataCenter: location?.dataCenter ?? "",
         world: location?.world ?? "",
         district: location?.district ?? "",
@@ -54,20 +56,23 @@ export function toDraft(venue?: VenueDto): VenueDraft {
 }
 
 export function toVenue(draft: VenueDraft): NewVenue {
-    const onPlot = draft.locationType !== "Apartment";
+    const other = draft.locationType === "Other";
+    const onPlot = !other && draft.locationType !== "Apartment";
+
 
     return {
         name: draft.name.trim(),
         description: draft.description.split(/\n\s*\n/).map(paragraph => paragraph.trim()).filter(Boolean),
         location: {
-            dataCenter: draft.dataCenter,
-            world: draft.world,
-            district: draft.district,
-            ward: draft.ward,
+            dataCenter: other ? "" : draft.dataCenter,
+            world: other ? "" : draft.world,
+            district: other ? "" : draft.district,
+            ward: other ? 0 : draft.ward,
             plot: onPlot ? draft.plot : 0,
             apartment: draft.locationType === "Apartment" ? draft.apartment : 0,
             room: draft.locationType === "Room" ? draft.room : 0,
-            subdivision: onPlot ? draft.plot > 30 : draft.subdivision,
+            subdivision: onPlot ? draft.plot > 30 : draft.locationType === "Apartment" && draft.subdivision,
+            override: other ? draft.override.trim() : null,
         },
         website: draft.website.trim() || undefined,
         discord: draft.discord.trim() || undefined,
