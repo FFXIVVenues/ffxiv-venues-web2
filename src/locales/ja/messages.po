@@ -8,7 +8,7 @@ msgstr ""
 "Language: ja\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-09-18 11:36+0000\n"
+"PO-Revision-Date: 2026-10-03 16:35+0000\n"
 "Last-Translator: Kana Ki <236852510688542720@id.ffxivvenues.com>\n"
 "Language-Team: Japanese <https://translate.ffxivvenues.com/projects/"
 "webclient/ui/ja/>\n"
@@ -33,7 +33,7 @@ msgstr "毎月第{0}{day}"
 #. placeholder {0}: t(ordinal)
 #: src/components/dateString/recurringDayText.tsx:28
 msgid "{0} last {day} of the month"
-msgstr ""
+msgstr "毎月最後から{0}番目の{day}"
 
 #: src/components/dateString/recurringDayText.tsx:20
 msgid "{arg} weekly on {day}s"
