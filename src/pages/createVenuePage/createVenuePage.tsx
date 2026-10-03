@@ -1,7 +1,8 @@
 import {Trans, useLingui} from "@lingui/react/macro";
-import {type NewVenue, VenueForm} from "@/components/venueForm/venueForm.tsx";
+import {VenueForm} from "@/components/venueForm/venueForm.tsx";
 import {VeniHeader} from "@/components/venueForm/veniHeader.tsx";
 import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
+import type {NewVenue} from "@/components/venueForm/venueDraft.ts";
 
 export const CreateVenuePage = () => {
     const {t} = useLingui();

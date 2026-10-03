@@ -1,5 +1,4 @@
 import type {VenueDto} from "@/lib/services/venues/dtos/venueDto.ts";
-import type {LocationDto} from "@/lib/services/venues/dtos/locationDto.ts";
 import {Trans, useLingui} from "@lingui/react/macro";
 import {type ReactNode, type SubmitEventHandler, useState} from "react";
 import {
@@ -23,8 +22,7 @@ import {InputGroup, InputGroupAddon, InputGroupInput} from "@/components/ui/shad
 import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
 import {ScheduleBuilder} from "@/components/venueForm/scheduleBuilder.tsx";
 import {BannerPicker} from "@/components/venueForm/bannerPicker.tsx";
-
-export type NewVenue = Pick<VenueDto, "name" | "description" | "website" | "discord" | "sfw" | "tags" | "schedule"> & {location: Omit<LocationDto, "shard" | "override">};
+import type {NewVenue} from "@/components/venueForm/venueDraft.ts";
 
 const toNewVenue = (data: FormData): NewVenue => {
     const text = (key: string) => String(data.get(key) ?? "").trim();

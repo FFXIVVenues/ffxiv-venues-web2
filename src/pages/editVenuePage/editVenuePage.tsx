@@ -5,8 +5,9 @@ import {useEffect, useState} from "react";
 import type {VenueDto} from "@/lib/services/venues/dtos/venueDto.ts";
 import {venueService} from "@/lib/services/venues/venueService.ts";
 import {NotFoundPage} from "@/pages/notFoundPage/notFoundPage.tsx";
-import {type NewVenue, VenueForm} from "@/components/venueForm/venueForm.tsx";
+import {VenueForm} from "@/components/venueForm/venueForm.tsx";
 import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
+import type {NewVenue} from "@/components/venueForm/venueDraft.ts";
 
 export const EditVenuePage = () => {
     const {t} = useLingui();
