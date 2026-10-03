@@ -14,6 +14,7 @@ import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Plus, Settings} from "lucide-react";
 import {Toaster} from "@/components/ui/shadcn/sonner.tsx";
 import { Trans } from "@lingui/react/macro";
+import {useUser} from "@/lib/services/useUser.ts";
 
 type DefaultLayoutProps = {
     children: ReactNode;
@@ -37,20 +38,30 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
     const [settingsOpen, setSettingsOpen] = useState(false);
     const [createVenueOpen, setCreateVenueOpen] = useState( false);
     const sidebarDefault = useSetting('sidebar');
+    const user = useUser();
 
     return <>
         <title>{title ? title : 'FFXIV Venues'}</title>
         <Toaster />
         <TooltipProvider delay={600}>
           <SidebarProvider defaultOpen={sidebarDefault}>
-            <Sidebar variant="floating">
-              <SidebarHeader>
-                  <h1>
-                    <a href="/">
-                      <img src={logoLight} alt="FFXIV Venues" className="hidden dark:block mx-auto p-2"/>
-                      <img src={logoDark} alt="FFXIV Venues" className="block dark:hidden mx-auto p-2"/>
-                    </a>
-                  </h1>
+            <Sidebar variant="floating" >
+              <SidebarHeader className="p-0">
+                <h1 className="px-1 pt-1">
+                  <a href="/">
+                    <img src={logoLight} alt="FFXIV Venues" className="hidden dark:block mx-auto p-2"/>
+                    <img src={logoDark} alt="FFXIV Venues" className="block dark:hidden mx-auto p-2"/>
+                  </a>
+                </h1>
+                { user &&
+                  <div className="flex border-y py-3 px-4 items-center mb-2">
+                    <img src={user.avatarUrl} alt="" className="rounded-full size-10 mr-4" />
+                    <div className="flex flex-col">
+                      <div className="">{user.nickname}</div>
+                      <small className="text-muted-foreground -mt-0.5">{user.username}</small>
+                    </div>
+                  </div>
+                }
               </SidebarHeader>
               <SidebarContent className="px-2">
                   {sidebarContent}
@@ -75,7 +86,7 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
             </Sidebar>
 
             <main className="flex-1 px-2 py-4 overflow-x-hidden">
-                <SidebarTrigger size="icon-lg" className="fixed -ml-[1rem] top-16 z-10 bg-sidebar rounded-tl-none rounded-bl-none border border-l-0 border-sidebar-border w-10 pl-1" />
+                <SidebarTrigger size="icon-lg" className="fixed -ml-[1rem] top-25 z-10 bg-sidebar rounded-tl-none rounded-bl-none border border-l-0 border-sidebar-border w-10 pl-1" />
                 {pageContent}
                 <footer className="text-center text-sm text-muted-foreground mt-16 mb-8 mx-12">
                   <hr className="my-8"/>
