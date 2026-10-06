@@ -2,11 +2,12 @@ import {Trans, useLingui} from "@lingui/react/macro";
 import {VeniHeader} from "@/components/venueForm/veniHeader.tsx";
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
-import type {VenueDto} from "@/lib/services/venues/dtos/venueDto.ts";
-import {venueService} from "@/lib/services/venues/venueService.ts";
+import type {VenueDto, VenueRequestDto} from "@/lib/services/venues2/dtos/venueDto.ts";
+import {getVenue} from "@/lib/services/venues2/getVenue.ts";
 import {NotFoundPage} from "@/pages/notFoundPage/notFoundPage.tsx";
-import {type NewVenue, VenueForm} from "@/components/venueForm/venueForm.tsx";
+import {VenueForm} from "@/components/venueForm/venueForm.tsx";
 import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
+
 
 export const EditVenuePage = () => {
     const {t} = useLingui();
@@ -15,17 +16,14 @@ export const EditVenuePage = () => {
 
     useEffect(() => {
         setVenue("loading");
-        venueService.getVenueDto(venueId)
+        getVenue(venueId)
             .then(loaded => setVenue(loaded ?? "missing"))
             .catch(() => setVenue("missing"));
     }, [venueId]);
 
     if (venue === "missing") return <NotFoundPage />;
 
-    const save = (changes: NewVenue, banner: Blob | null) => {
-        if (venue === "loading") return;
-        console.log({...venue, ...changes, location: {...venue.location, ...changes.location}}, banner);
-    };
+    const save = (changes: VenueRequestDto, banner: Blob | null) => console.log(changes, banner);
 
     return <DefaultPageLayout title={t`Edit venue`}>
         <DefaultPageLayout.Page>

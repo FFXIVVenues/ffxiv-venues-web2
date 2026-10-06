@@ -89,11 +89,11 @@ msgstr ""
 msgid "Add note"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:120
+#: src/components/venueForm/scheduleBuilder.tsx:42
 msgid "Add time"
 msgstr ""
 
-#: src/pageLayoutss/defaultPageLayout.tsx:61
+#: src/pageLayoutss/defaultPageLayout.tsx:72
 msgid "Add your venue"
 msgstr ""
 
@@ -145,23 +145,23 @@ msgstr ""
 msgid "All times are in <0>your</0> timezone: {utcOffset} {timeZone}"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:106
+#: src/components/venueForm/scheduleBuilder.tsx:28
 msgid "All your opening times are in this zone."
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:87
+#: src/components/venueForm/bannerPicker.tsx:29
 msgid "Any image works; banners are 600x300 and I'll handle the scaling and cropping for you <0>❤️</0>"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:208
+#: src/components/venueForm/venueForm.tsx:149
 msgid "Anything guests can join in on."
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:98
+#: src/components/venueForm/venueForm.tsx:45
 msgid "Apartment"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:165
+#: src/components/venueForm/venueForm.tsx:101
 msgid "Apartment number"
 msgstr ""
 
@@ -196,11 +196,11 @@ msgstr ""
 msgid "Australian Western Time (AWST)"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:76
+#: src/components/venueForm/bannerPicker.tsx:18
 msgid "Banner image"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:79
+#: src/components/venueForm/bannerPicker.tsx:21
 msgid "Banner preview"
 msgstr ""
 
@@ -264,7 +264,11 @@ msgstr ""
 msgid "Central Standard Time (CST)"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:82
+#: src/pages/editVenuePage/editVenuePage.tsx:34
+msgid "Change anything you like and I'll save it for you"
+msgstr ""
+
+#: src/components/venueForm/bannerPicker.tsx:24
 msgid "Click to choose an image"
 msgstr ""
 
@@ -279,8 +283,8 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:114
-#: src/components/venueForm/scheduleBuilder.tsx:157
+#: src/components/venueForm/scheduleBuilder.tsx:36
+#: src/components/venueForm/scheduleBuilder.tsx:62
 msgid "Closes"
 msgstr ""
 
@@ -313,7 +317,7 @@ msgstr ""
 msgid "Create a venue"
 msgstr ""
 
-#: src/pages/createVenuePage/createVenuePage.tsx:24
+#: src/pages/createVenuePage/createVenuePage.tsx:15
 msgid "Create venue"
 msgstr ""
 
@@ -336,12 +340,12 @@ msgstr ""
 msgid "Dark Mode"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:136
+#: src/components/venueForm/venueForm.tsx:78
 msgid "Data center"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:112
-#: src/components/venueForm/scheduleBuilder.tsx:146
+#: src/components/venueForm/scheduleBuilder.tsx:34
+#: src/components/venueForm/scheduleBuilder.tsx:57
 msgid "Day"
 msgstr ""
 
@@ -359,11 +363,11 @@ msgstr ""
 msgid "Den"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:117
+#: src/components/venueForm/venueForm.tsx:61
 msgid "Description"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:218
+#: src/components/venueForm/venueForm.tsx:171
 msgid "Discord invite"
 msgstr ""
 
@@ -384,6 +388,10 @@ msgstr ""
 msgid "Edit note"
 msgstr ""
 
+#: src/pages/editVenuePage/editVenuePage.tsx:31
+msgid "Edit venue"
+msgstr ""
+
 #: src/pages/legal/privacyPolicyPage.tsx:33
 #: src/pages/terms/termsOfServicePage.tsx:34
 msgid "Effective {effective}"
@@ -393,11 +401,11 @@ msgstr ""
 msgid "Europe"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:23
+#: src/components/venueForm/scheduleSlots.ts:20
 msgid "Every 2 weeks"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:24
+#: src/components/venueForm/scheduleSlots.ts:21
 msgid "Every 3 weeks"
 msgstr ""
 
@@ -421,8 +429,12 @@ msgid "Favourite"
 msgstr ""
 
 #: src/components/filterMenu/filterMenu.tsx:77
-#: src/components/venueForm/venueForm.tsx:201
+#: src/components/venueForm/venueForm.tsx:142
 msgid "Features"
+msgstr ""
+
+#: src/pages/editVenuePage/editVenuePage.tsx:36
+msgid "Fetching your venue..."
 msgstr ""
 
 #: src/components/filterMenu/filters/sceneFilters.ts:17
@@ -433,11 +445,11 @@ msgstr ""
 msgid "Fightclub"
 msgstr ""
 
-#: src/pages/createVenuePage/createVenuePage.tsx:21
+#: src/pages/createVenuePage/createVenuePage.tsx:14
 msgid "Fill this in and I'll get your venue listed"
 msgstr ""
 
-#: src/pageLayoutss/defaultPageLayout.tsx:83
+#: src/pageLayoutss/defaultPageLayout.tsx:94
 msgid "FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.<0/>Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved."
 msgstr ""
 
@@ -461,7 +473,7 @@ msgstr ""
 msgid "Food"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:17
+#: src/components/venueForm/scheduleSlots.ts:12
 msgid "Friday"
 msgstr ""
 
@@ -476,11 +488,11 @@ msgid "Gambling"
 msgstr ""
 
 #: src/components/filterMenu/filterMenu.tsx:83
-#: src/components/venueForm/venueForm.tsx:206
+#: src/components/venueForm/venueForm.tsx:147
 msgid "Games"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:118
+#: src/components/venueForm/venueForm.tsx:62
 msgid "Give guests something to read when they click your venue..."
 msgstr ""
 
@@ -508,11 +520,11 @@ msgstr ""
 msgid "Hong Kong Time (HKT)"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:98
+#: src/components/venueForm/venueForm.tsx:45
 msgid "House"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:148
+#: src/components/venueForm/venueForm.tsx:86
 msgid "Housing district"
 msgstr ""
 
@@ -545,7 +557,7 @@ msgstr ""
 msgid "Inn"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:178
+#: src/components/venueForm/venueForm.tsx:120
 msgid "Is your apartment in the ward's subdivision?"
 msgstr ""
 
@@ -558,7 +570,7 @@ msgid "It'll no longer appear in your favourites."
 msgstr ""
 
 #: src/components/createVenueModal/createVenueDialog.tsx:43
-#: src/pageLayoutss/defaultPageLayout.tsx:65
+#: src/pageLayoutss/defaultPageLayout.tsx:76
 msgid "Join the discord!"
 msgstr ""
 
@@ -588,8 +600,16 @@ msgstr ""
 msgid "Left"
 msgstr ""
 
-#: src/pages/createVenuePage/createVenuePage.tsx:20
+#: src/components/venueForm/venueForm.tsx:153
+msgid "Legacy tags"
+msgstr ""
+
+#: src/pages/createVenuePage/createVenuePage.tsx:14
 msgid "Let's create your venue! <0>❤️</0>"
+msgstr ""
+
+#: src/pages/editVenuePage/editVenuePage.tsx:34
+msgid "Let's update your venue! <0>❤️</0>"
 msgstr ""
 
 #: src/components/filterMenu/filters/featureFilters.ts:29
@@ -617,6 +637,10 @@ msgstr ""
 
 #: src/components/ui/shadcn/spinner.tsx:8
 msgid "Loading"
+msgstr ""
+
+#: src/components/venueForm/venueForm.tsx:112
+msgid "Location"
 msgstr ""
 
 #: src/components/venueDrawer/venueToolbar.tsx:66
@@ -651,40 +675,40 @@ msgstr ""
 msgid "Meet Veni Ki!"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:17
+#: src/components/venueForm/scheduleSlots.ts:11
 msgid "Monday"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:25
+#: src/components/venueForm/scheduleSlots.ts:22
 msgid "Monthly, 1st"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:26
+#: src/components/venueForm/scheduleSlots.ts:23
 msgid "Monthly, 2nd"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:30
+#: src/components/venueForm/scheduleSlots.ts:27
 msgid "Monthly, 2nd last"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:27
+#: src/components/venueForm/scheduleSlots.ts:24
 msgid "Monthly, 3rd"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:31
+#: src/components/venueForm/scheduleSlots.ts:28
 msgid "Monthly, 3rd last"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:28
+#: src/components/venueForm/scheduleSlots.ts:25
 msgid "Monthly, 4th"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:32
+#: src/components/venueForm/scheduleSlots.ts:29
 msgid "Monthly, 4th last"
 msgstr ""
 
 #. Last occurrence of a weekday in the month
-#: src/components/venueForm/scheduleBuilder.tsx:29
+#: src/components/venueForm/scheduleSlots.ts:26
 msgid "Monthly, last"
 msgstr ""
 
@@ -719,7 +743,7 @@ msgstr ""
 msgid "Nightclub"
 msgstr ""
 
-#: src/components/venueForm/tagPicker.tsx:36
+#: src/components/venueForm/tagPicker.tsx:40
 msgid "No matches"
 msgstr ""
 
@@ -752,7 +776,7 @@ msgstr ""
 msgid "Oceania"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:192
+#: src/components/venueForm/venueForm.tsx:133
 msgid "On means no nudity or erotic content out in the open"
 msgstr ""
 
@@ -782,18 +806,20 @@ msgstr ""
 msgid "Open until {closingTime}"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:236
+#: src/components/venueForm/venueForm.tsx:188
 msgid "Opening hours"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:113
-#: src/components/venueForm/scheduleBuilder.tsx:154
+#: src/components/venueForm/scheduleBuilder.tsx:35
+#: src/components/venueForm/scheduleBuilder.tsx:60
 msgid "Opens"
 msgstr ""
 
+#. Property type: a location that isn't a house, apartment or room
 #. Venue type: none of the listed categories
 #. Venue type: none of the listed categories
 #: src/components/filterMenu/filters/sceneFilters.ts:22
+#: src/components/venueForm/venueForm.tsx:45
 #: src/lib/model/venueOptions.ts:29
 msgid "Other"
 msgstr ""
@@ -819,7 +845,7 @@ msgstr ""
 msgid "Photography"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:198
+#: src/components/venueForm/venueForm.tsx:139
 msgid "Pick up to 2 that fit best <0>🙂</0>"
 msgstr ""
 
@@ -828,7 +854,7 @@ msgstr ""
 msgid "Pillow talk"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:161
+#: src/components/venueForm/venueForm.tsx:97
 msgid "Plot"
 msgstr ""
 
@@ -840,12 +866,12 @@ msgstr ""
 msgid "Previous slide"
 msgstr ""
 
-#: src/pageLayoutss/defaultPageLayout.tsx:90
+#: src/pageLayoutss/defaultPageLayout.tsx:101
 #: src/pages/legal/privacyPolicyPage.tsx:26
 msgid "Privacy Policy"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:128
+#: src/components/venueForm/venueForm.tsx:71
 msgid "Property type"
 msgstr ""
 
@@ -861,12 +887,16 @@ msgstr ""
 msgid "Regions"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:161
+#: src/components/venueForm/venueForm.tsx:157
+msgid "Remove {tag}"
+msgstr ""
+
+#: src/components/venueForm/scheduleBuilder.tsx:65
 msgid "Remove time"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:111
-#: src/components/venueForm/scheduleBuilder.tsx:139
+#: src/components/venueForm/scheduleBuilder.tsx:33
+#: src/components/venueForm/scheduleBuilder.tsx:56
 msgid "Repeats"
 msgstr ""
 
@@ -885,11 +915,11 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:98
+#: src/components/venueForm/venueForm.tsx:45
 msgid "Room"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:169
+#: src/components/venueForm/venueForm.tsx:105
 msgid "Room number"
 msgstr ""
 
@@ -898,7 +928,7 @@ msgstr ""
 msgid "Roulette"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:17
+#: src/components/venueForm/scheduleSlots.ts:12
 msgid "Saturday"
 msgstr ""
 
@@ -906,8 +936,12 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: src/pages/editVenuePage/editVenuePage.tsx:37
+msgid "Save changes"
+msgstr ""
+
 #: src/components/filterMenu/filterMenu.tsx:71
-#: src/components/venueForm/venueForm.tsx:196
+#: src/components/venueForm/venueForm.tsx:137
 msgid "Scenes"
 msgstr ""
 
@@ -920,15 +954,15 @@ msgstr ""
 msgid "Schedule amendments"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:202
+#: src/components/venueForm/venueForm.tsx:143
 msgid "Search features..."
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:207
+#: src/components/venueForm/venueForm.tsx:148
 msgid "Search games..."
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:197
+#: src/components/venueForm/venueForm.tsx:138
 msgid "Search scenes..."
 msgstr ""
 
@@ -937,10 +971,10 @@ msgstr ""
 msgid "Search venues"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:103
-#: src/components/venueForm/venueForm.tsx:137
-#: src/components/venueForm/venueForm.tsx:143
-#: src/components/venueForm/venueForm.tsx:149
+#: src/components/venueForm/scheduleBuilder.tsx:27
+#: src/components/venueForm/venueForm.tsx:79
+#: src/components/venueForm/venueForm.tsx:83
+#: src/components/venueForm/venueForm.tsx:87
 msgid "Select"
 msgstr ""
 
@@ -955,12 +989,12 @@ msgid "Server Time (UTC)"
 msgstr ""
 
 #: src/components/settingsMenu/settingsDialog.tsx:28
-#: src/pageLayoutss/defaultPageLayout.tsx:69
+#: src/pageLayoutss/defaultPageLayout.tsx:80
 msgid "Settings"
 msgstr ""
 
 #: src/components/filterMenu/filters/featureFilters.ts:10
-#: src/components/venueForm/venueForm.tsx:191
+#: src/components/venueForm/venueForm.tsx:132
 msgid "SFW on entry"
 msgstr ""
 
@@ -994,7 +1028,7 @@ msgstr ""
 msgid "Sorry, we couldn't get you venues. :("
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:166
+#: src/components/venueForm/scheduleBuilder.tsx:70
 msgid "Starting"
 msgstr ""
 
@@ -1003,7 +1037,7 @@ msgstr ""
 msgid "Stylists"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:177
+#: src/components/venueForm/venueForm.tsx:119
 msgid "Subdivision"
 msgstr ""
 
@@ -1015,7 +1049,7 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:17
+#: src/components/venueForm/scheduleSlots.ts:12
 msgid "Sunday"
 msgstr ""
 
@@ -1034,7 +1068,7 @@ msgstr ""
 msgid "System"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:203
+#: src/components/venueForm/venueForm.tsx:144
 msgid "Tap everything your venue offers <0>😊</0>"
 msgstr ""
 
@@ -1048,7 +1082,7 @@ msgstr ""
 msgid "Tavern"
 msgstr ""
 
-#: src/pageLayoutss/defaultPageLayout.tsx:90
+#: src/pageLayoutss/defaultPageLayout.tsx:101
 #: src/pages/terms/termsOfServicePage.tsx:27
 msgid "Terms of Service"
 msgstr ""
@@ -1058,7 +1092,7 @@ msgstr ""
 msgid "Texas holdem"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:110
+#: src/components/venueForm/venueForm.tsx:54
 msgid "The basics"
 msgstr ""
 
@@ -1216,7 +1250,7 @@ msgstr ""
 msgid "The venue offers various perks through VIP tiers. This could include free drinks, gpose, gambling perk or more."
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:186
+#: src/components/venueForm/venueForm.tsx:127
 msgid "The vibe"
 msgstr ""
 
@@ -1232,15 +1266,19 @@ msgstr ""
 msgid "There are no venues to show :/"
 msgstr ""
 
+#: src/components/venueForm/venueForm.tsx:162
+msgid "These tags aren't offered anymore, so you can only remove them."
+msgstr ""
+
 #: src/components/hideDialog/hideDialog.tsx:21
 msgid "This venue will no longer appear in your results. You can unhide it by selecting show hidden venues from the settings page at any time."
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:17
+#: src/components/venueForm/scheduleSlots.ts:11
 msgid "Thursday"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:102
+#: src/components/venueForm/scheduleBuilder.tsx:26
 msgid "Time zone"
 msgstr ""
 
@@ -1279,7 +1317,7 @@ msgstr ""
 msgid "Truth or dare"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:17
+#: src/components/venueForm/scheduleSlots.ts:11
 msgid "Tuesday"
 msgstr ""
 
@@ -1336,7 +1374,7 @@ msgstr ""
 msgid "Venue marked as visited"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:113
+#: src/components/venueForm/venueForm.tsx:57
 msgid "Venue name"
 msgstr ""
 
@@ -1385,20 +1423,20 @@ msgstr ""
 msgid "Void"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:157
+#: src/components/venueForm/venueForm.tsx:93
 msgid "Ward"
 msgstr ""
 
 #: src/components/venueDrawer/venueWebsiteButton.tsx:10
-#: src/components/venueForm/venueForm.tsx:225
+#: src/components/venueForm/venueForm.tsx:178
 msgid "Website"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:17
+#: src/components/venueForm/scheduleSlots.ts:11
 msgid "Wednesday"
 msgstr ""
 
-#: src/components/venueForm/scheduleBuilder.tsx:22
+#: src/components/venueForm/scheduleSlots.ts:19
 msgid "Weekly"
 msgstr ""
 
@@ -1406,15 +1444,19 @@ msgstr ""
 msgid "Weekly on {day}s"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:114
+#: src/components/venueForm/venueForm.tsx:58
 msgid "What's your venue called?"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:125
+#: src/components/venueForm/venueForm.tsx:113
+msgid "Where can guests find you?"
+msgstr ""
+
+#: src/components/venueForm/venueForm.tsx:68
 msgid "Where to find you"
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:142
+#: src/components/venueForm/venueForm.tsx:82
 msgid "World"
 msgstr ""
 
@@ -1436,6 +1478,6 @@ msgstr ""
 msgid "Your flag has been submitted for review. The team usually actions flags within 24 hours."
 msgstr ""
 
-#: src/components/venueForm/venueForm.tsx:215
+#: src/components/venueForm/venueForm.tsx:168
 msgid "Your links"
 msgstr ""

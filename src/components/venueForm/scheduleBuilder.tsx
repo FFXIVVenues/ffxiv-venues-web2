@@ -1,5 +1,4 @@
 import {Trans, useLingui} from "@lingui/react/macro";
-import {useState} from "react";
 import {Plus, X} from "lucide-react";
 import {Field, FieldDescription, FieldLabel} from "@/components/ui/shadcn/field.tsx";
 import {Button} from "@/components/ui/shadcn/button.tsx";
@@ -7,16 +6,16 @@ import {Input} from "@/components/ui/shadcn/input.tsx";
 import {Selector} from "@/components/venueForm/selector.tsx";
 import {Day} from "@/lib/model/day.ts";
 import {timeZones} from "@/lib/model/venueOptions.ts";
-import type {ScheduleDto} from "@/lib/services/venues/dtos/scheduleDto.ts";
 import {toCalendarDate, upcomingDates} from "@/lib/utils/dates.ts";
-import {dayNames, firstStartDate, needsStartDate, newSlot, type Repeat, repeatLabels, type Slot, toSchedule, toSlot} from "@/components/venueForm/scheduleSlots.ts";
+import {dayNames, firstStartDate, needsStartDate, newSlot, type Repeat, repeatLabels, type Slot} from "@/components/venueForm/scheduleSlots.ts";
 
-export const ScheduleBuilder = ({initialSchedule}: {initialSchedule?: ScheduleDto[]}) => {
+export const ScheduleBuilder = ({slots, timeZone, onChange}: {
+    slots: Slot[];
+    timeZone: string | null;
+    onChange: (changes: {slots?: Slot[]; timeZone?: string | null}) => void;
+}) => {
     const {t} = useLingui();
-    const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const startZone = initialSchedule?.[0]?.start.timeZone ?? browserTimeZone;
-    const [timeZone, setTimeZone] = useState<string | null>(startZone in timeZones ? startZone : null);
-    const [slots, setSlots] = useState(() => (initialSchedule ?? []).map(toSlot));
+    const setSlots = (slots: Slot[]) => onChange({slots});
 
     const add = () => setSlots([...slots, newSlot(Day.Monday)]);
     const update = (id: number, changes: Partial<Slot>) => setSlots(slots.map(slot => slot.id === id ? {...slot, ...changes} : slot));
@@ -25,7 +24,7 @@ export const ScheduleBuilder = ({initialSchedule}: {initialSchedule?: ScheduleDt
     return <>
         <Field>
             <FieldLabel htmlFor="venue-timezone"><Trans>Time zone</Trans></FieldLabel>
-            <Selector id="venue-timezone" options={timeZones} value={timeZone} onValueChange={setTimeZone} placeholder={t`Select`} required={slots.length > 0} />
+            <Selector id="venue-timezone" options={timeZones} value={timeZone} onValueChange={timeZone => onChange({timeZone})} placeholder={t`Select`} required={slots.length > 0} />
             <FieldDescription><Trans>All your opening times are in this zone.</Trans></FieldDescription>
         </Field>
 
@@ -42,8 +41,6 @@ export const ScheduleBuilder = ({initialSchedule}: {initialSchedule?: ScheduleDt
         <Button type="button" variant="outline" size="sm" className="w-fit" onClick={add}>
             <Plus className="size-4" /> <Trans>Add time</Trans>
         </Button>
-
-        <input type="hidden" name="schedule" value={JSON.stringify(toSchedule(slots, timeZone ?? "UTC"))} />
     </>;
 };
 

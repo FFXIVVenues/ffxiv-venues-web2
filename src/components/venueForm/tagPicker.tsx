@@ -3,30 +3,36 @@ import {Trans, useLingui} from "@lingui/react/macro";
 import {
     Combobox,
     ComboboxChip,
-    ComboboxChips, ComboboxChipsInput, ComboboxContent, ComboboxEmpty, ComboboxItem, ComboboxList,
+    ComboboxChips,
+    ComboboxChipsInput,
+    ComboboxContent,
+    ComboboxEmpty,
+    ComboboxItem,
+    ComboboxList,
     ComboboxValue,
     useComboboxAnchor
 } from "@/components/ui/shadcn/combobox.tsx";
-import {useState} from "react";
 
-export const TagPicker = ({options, descriptions, initialTags, max, placeholder}: {
+export const TagPicker = ({options, descriptions, max, placeholder, value, onChange}: {
     options: Record<string, MessageDescriptor>;
     descriptions?: Record<string, MessageDescriptor>;
-    initialTags?: string[];
     max?: number;
     placeholder: string;
+    value: string[];
+    onChange: (tags: string[]) => void;
 }) => {
     const {i18n} = useLingui();
     const anchor = useComboboxAnchor();
-    const [tags, setTags] = useState(() => (initialTags ?? []).filter(tag => tag in options));
+    const selected = value.filter(tag => tag in options);
+    const choose = (picked: string[]) => onChange([...value.filter(tag => !(tag in options)), ...(max ? picked.slice(0, max) : picked)]);
     const label = (tag: string) => i18n._(options[tag]!);
 
-    return <Combobox multiple name="tags" items={Object.keys(options)} itemToStringLabel={label} value={tags} onValueChange={v => setTags(max ? v.slice(0, max) : v)}>
+    return <Combobox multiple items={Object.keys(options)} itemToStringLabel={label} value={selected} onValueChange={choose}>
         <ComboboxChips ref={anchor}>
             <ComboboxValue>
-               {(selected: string[]) => <>
-                   {selected.map(tag => <ComboboxChip key={tag}>{label(tag)}</ComboboxChip>)}
-                   <ComboboxChipsInput placeholder={selected.length ? "" : placeholder} />
+               {(chips: string[]) => <>
+                   {chips.map(tag => <ComboboxChip key={tag}>{label(tag)}</ComboboxChip>)}
+                   <ComboboxChipsInput placeholder={chips.length ? "" : placeholder} />
                </>}
             </ComboboxValue>
         </ComboboxChips>

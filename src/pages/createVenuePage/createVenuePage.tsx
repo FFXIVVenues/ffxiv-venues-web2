@@ -1,11 +1,12 @@
 import {Trans, useLingui} from "@lingui/react/macro";
-import {type NewVenue, VenueForm} from "@/components/venueForm/venueForm.tsx";
+import {VenueForm} from "@/components/venueForm/venueForm.tsx";
 import {VeniHeader} from "@/components/venueForm/veniHeader.tsx";
 import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
+import type {VenueRequestDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 
 export const CreateVenuePage = () => {
     const {t} = useLingui();
-    const create = (venue: NewVenue, banner: Blob | null) => console.log(venue, banner);
+    const create = (venue: VenueRequestDto, banner: Blob | null) => console.log(venue, banner);
 
     return <DefaultPageLayout title={t`Create a venue`}>
         <DefaultPageLayout.Page>
