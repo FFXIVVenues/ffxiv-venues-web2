@@ -11,12 +11,13 @@ dans le [FFXIV Venues Discord](https://discord.gg/gTP65VYcMj)
 
 ## 2. Ce que couvre cette police
 
-2.1 This policy explains what personal data FFXIV Venues collects, why it is
-collected, how it is stored and protected, and the rights in relation to that
-data. This policy applies to the following categories of user:
+2.1 La politique explique quelles données à caractère personnel FFXIV Venues
+collecte, pourquoi elles sont collectées, comment elles sont conservées et
+protégées, ainsi que les droits relatifs à ces données. Cette politique
+s'applique aux catégories d'utilisateurs suivantes :
 
-- 2.1.1 Visitors who browse our sites.
-- 2.1.2 Consumers of our API.
+- 2.1.1 Les visiteurs qui naviguent sur nos sites.
+- 2.1.2 Les consommateurs de notre API.
 - 2.1.3 Les propriétaires de salles qui utilisent notre bot Discord, Veni Ki,
   pour créer et gérer les annonces d'établissements.
 - 2.1.4 Users of our Discord bot, Ruby Ki, to use utility features such as
