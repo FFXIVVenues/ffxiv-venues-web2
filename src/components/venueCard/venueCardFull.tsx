@@ -8,7 +8,7 @@ import {DateText} from "@/components/dateString/dateText.tsx";
 import type {Opening} from "@/lib/model/opening.ts";
 import defaultBanner from "@/assets/default-banner.webp";
 import {CheckIcon, EyeOffIcon, HeartIcon, Pencil, StarIcon} from "lucide-react";
-import {favouritesService} from "@/lib/services/favouritesService.ts";
+import {favouritesService} from "@/lib/services/favorites/favoritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
 import {Lazy} from "@/components/ui/shadcn/lazy.tsx";

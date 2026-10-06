@@ -1,4 +1,4 @@
-import {favouritesService} from "@/lib/services/favouritesService.ts";
+import {favouritesService} from "@/lib/services/favorites/favoritesService.ts";
 import {visitedService} from "@/lib/services/visitedService.ts";
 import {ratingsService} from "@/lib/services/ratingsService.ts";
 import {CheckIcon, HeartIcon, StarIcon} from "lucide-react";

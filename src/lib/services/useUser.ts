@@ -1,5 +1,5 @@
 import {request, useEnv} from "@/lib/utils";
-import type {User} from "@/lib/model/user.ts";
+import {type User} from "@/lib/model/user.ts";
 import {useEffect, useState} from "react";
 
 export const useUser = () => {
@@ -10,8 +10,15 @@ export const useUser = () => {
     request(whoami, { credentials: 'include' })
       .then(response => response.json() as Promise<User>)
       .then(setUser)
-      .catch();
+      .catch(_ => setUser(NoUser));
   }, [])
 
   return user;
+}
+
+export const NoUser : User = {
+  userId: 0,
+  username: "nouser",
+  nickname: "No user",
+  avatarUrl: null
 }

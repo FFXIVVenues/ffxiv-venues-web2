@@ -1,7 +1,7 @@
 import {toast} from "sonner";
 import { t } from "@lingui/core/macro";
 
-class FavouritesService {
+class FavoritesService {
 
     private _favouritesCache: string[] | null;
     private _observers: (() => void)[];
@@ -61,6 +61,6 @@ class FavouritesService {
     }
 }
 
-const favouritesService = new FavouritesService();
+const favouritesService = new FavoritesService();
 
 export { favouritesService }

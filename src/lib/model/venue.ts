@@ -1,6 +1,6 @@
 import type { VenueDto } from "../services/venues/dtos/venueDto.ts";
 
-import { favouritesService } from "../services/favouritesService.ts";
+import { favouritesService } from "@/lib/services/favorites/favoritesService.ts";
 import { visitedService } from "../services/visitedService.ts";
 
 import { Location } from "./location.ts";
@@ -28,7 +28,7 @@ class Venue {
     constructor(venueDto: VenueDto) {
         this.id = venueDto.id;
         this.name = venueDto.name;
-        this.bannerUri = venueDto.bannerUri;
+        this.bannerUri = venueDto.bannerUri || venueDto.banner;
         this.description = venueDto.description;
         this.website = venueDto.website;
         this.discord = venueDto.discord;
@@ -38,8 +38,8 @@ class Venue {
 
         this.added = new Date(venueDto.added);
         this.location = new Location(venueDto.location);
-        this.schedule = venueDto.schedule.map(o => new Schedule(o));
-        this.scheduleOverrides = venueDto.scheduleOverrides.map(o => new ScheduleOverride(o));
+        this.schedule = venueDto.schedule?.map(o => new Schedule(o));
+        this.scheduleOverrides = venueDto.scheduleOverrides?.map(o => new ScheduleOverride(o));
         this.resolution = venueDto.resolution ? new Opening(venueDto.resolution) : undefined;
     }
 

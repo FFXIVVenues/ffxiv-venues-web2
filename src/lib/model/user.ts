@@ -2,5 +2,5 @@ export type User = {
   userId: number,
   username: string,
   nickname: string,
-  avatarUrl: string
+  avatarUrl: string | null
 }

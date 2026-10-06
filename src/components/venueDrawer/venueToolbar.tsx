@@ -9,7 +9,7 @@ import {NotesDialog} from "@/components/notesDialog/notesDialog.tsx";
 import type {Venue} from "@/lib/model/venue.ts";
 import Rating from "@/components/ui/shadcn/rating.tsx";
 import {toast} from "sonner";
-import {useFavourite} from "@/lib/services/useFavourite.ts";
+import {isFavorite} from "@/lib/services/favorites/isFavorite.ts";
 import {useVisited} from "@/lib/services/useVisited.ts";
 import {useRating} from "@/lib/services/useRating.ts";
 import {useNote} from "@/lib/services/notes/useNote.ts";
@@ -49,7 +49,7 @@ type VenueToolbarActionsProps = {
 }
 
 const VenueToolbar = memo(({ venue, className, onDialogOpen, container }: VenueToolbarProps) => {
-  const [favourited, setFavourited] = useFavourite(venue.id);
+  const [favourited, setFavourited] = isFavorite(venue.id);
   const [visited, setVisited] = useVisited(venue.id);
   const [rating, setRating] = useRating(venue.id);
   const [hidden, toggleHidden] = useHide(venue.id);

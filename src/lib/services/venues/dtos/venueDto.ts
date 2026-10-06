@@ -8,6 +8,7 @@ export interface VenueDto {
     id: string;
     name: string;
     bannerUri?: string;
+    banner?: string; // Odata V2 version
     added: string; // ISODateString
     description: string[];
     location: LocationDto;
