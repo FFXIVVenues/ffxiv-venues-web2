@@ -1,4 +1,4 @@
-import type {VenueDto} from "@/lib/services/venues/dtos/venueDto.ts";
+import type {VenueDto, VenueRequestDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 import {Trans, useLingui} from "@lingui/react/macro";
 import {type ReactNode, type SubmitEventHandler, useState} from "react";
 import {Field, FieldContent, FieldDescription, FieldGroup, FieldLabel, FieldLegend, FieldSet} from "@/components/ui/shadcn/field.tsx";
@@ -14,7 +14,7 @@ import {InputGroup, InputGroupAddon, InputGroupInput} from "@/components/ui/shad
 import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
 import {ScheduleBuilder} from "@/components/venueForm/scheduleBuilder.tsx";
 import {BannerPicker} from "@/components/venueForm/bannerPicker.tsx";
-import {type NewVenue, toDraft, toVenue, type VenueDraft} from "@/components/venueForm/venueDraft.ts";
+import {toDraft, toVenue, type VenueDraft} from "@/components/venueForm/venueDraft.ts";
 import {Badge} from "@/components/ui/shadcn/badge.tsx";
 
 const toBanner = async (file: File) => {
@@ -32,7 +32,7 @@ const toBanner = async (file: File) => {
 export const VenueForm = ({venue, submitLabel, onSubmit}: {
     venue?: VenueDto;
     submitLabel: ReactNode;
-    onSubmit: (venue: NewVenue, banner: Blob | null) => void;
+    onSubmit: (venue: VenueRequestDto, banner: Blob | null) => void;
 }) => {
     const {t} = useLingui();
     const [draft, setDraft] = useState(() => toDraft(venue));
@@ -193,7 +193,7 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
 
         <FieldSet>
             <FieldGroup>
-                <BannerPicker current={venue?.bannerUri ?? undefined} value={draft.banner} onChange={banner => set({banner})} />
+                <BannerPicker current={venue?.Banner ?? undefined} value={draft.banner} onChange={banner => set({banner})} />
             </FieldGroup>
         </FieldSet>
         <Button type="submit" className="w-fit">{submitLabel}</Button>
