@@ -2,16 +2,16 @@ import type {LocationDto} from "./locationDto.ts";
 import type {ScheduleDto} from "./scheduleDto.ts";
 
 export interface VenueDto {
-    Id: string;
-    Name: string | null;
-    Banner: string | null;
-    Description: string[];
-    Website: string | null;
-    Discord: string | null;
-    Sfw: boolean;
-    Tags: string[];
-    Location: LocationDto | null;
-    Schedule: ScheduleDto[];
+    id: string;
+    name: string | null;
+    banner: string | null;
+    description: string[];
+    website: string | null;
+    discord: string | null;
+    sfw: boolean;
+    tags: string[];
+    location: LocationDto | null;
+    schedule: ScheduleDto[];
 }
 
-export type VenueRequestDto = Omit<VenueDto, "Id" | "Banner">;
+export type VenueRequestDto = Omit<VenueDto, "id" | "banner">;

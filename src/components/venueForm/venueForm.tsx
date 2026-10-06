@@ -32,7 +32,7 @@ const toBanner = async (file: File) => {
 export const VenueForm = ({venue, submitLabel, onSubmit}: {
     venue?: VenueDto;
     submitLabel: ReactNode;
-    onSubmit: (venue: VenueRequestDto, banner: Blob | null) => void;
+    onSubmit: (venue: VenueRequestDto, banner: Blob | null) => Promise<void>;
 }) => {
     const {t} = useLingui();
     const [draft, setDraft] = useState(() => toDraft(venue));
@@ -44,9 +44,15 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
 
     const locationTypes = {House: t`House`, Apartment: t`Apartment`, Room: t`Room`, Other: t({message: `Other`, comment: `Property type: a location that isn't a house, apartment or room`})};
 
+    const [saving, setSaving] = useState(false);
     const submit: SubmitEventHandler<HTMLFormElement> = async e => {
         e.preventDefault();
-        onSubmit(toVenue(draft), draft.banner ? await toBanner(draft.banner) : null);
+        setSaving(true);
+        try {
+            await onSubmit(toVenue(draft), draft.banner ? await toBanner(draft.banner) : null);
+        } finally {
+            setSaving(false);
+        }
     };
 
     return <form className="flex flex-col gap-8" onSubmit={submit}>
@@ -193,9 +199,9 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
 
         <FieldSet>
             <FieldGroup>
-                <BannerPicker current={venue?.Banner ?? undefined} value={draft.banner} onChange={banner => set({banner})} />
+                <BannerPicker current={venue?.banner ?? undefined} value={draft.banner} onChange={banner => set({banner})} />
             </FieldGroup>
         </FieldSet>
-        <Button type="submit" className="w-fit">{submitLabel}</Button>
+        <Button type="submit" disabled={saving} className="w-fit">{submitLabel}</Button>
     </form>;
 };

@@ -9,9 +9,9 @@ export const dayNames: Record<Day, MessageDescriptor> = {
     [Day.Friday]: msg`Friday`, [Day.Saturday]: msg`Saturday`, [Day.Sunday]: msg`Sunday`,
 };
 
-type Interval = Pick<ScheduleDto, "IntervalType" | "IntervalArgument">;
-const weeks = (n: number): Interval => ({IntervalType: "EveryXWeeks", IntervalArgument: n});
-const monthly = (n: number): Interval => ({IntervalType: "EveryXthDayOfTheMonth", IntervalArgument: n});
+type Interval = Pick<ScheduleDto, "intervalType" | "intervalArgument">;
+const weeks = (n: number): Interval => ({intervalType: "EveryXWeeks", intervalArgument: n});
+const monthly = (n: number): Interval => ({intervalType: "EveryXthDayOfTheMonth", intervalArgument: n});
 
 const repeats = {
     "weekly": {label: msg`Weekly`, interval: weeks(1)},
@@ -32,8 +32,8 @@ export type Repeat = keyof typeof repeats;
 export const repeatLabels = Object.fromEntries(Object.entries(repeats).map(([key, {label}]) => [key, label]));
 
 export const needsStartDate = (repeat: Repeat) => {
-    const {IntervalType, IntervalArgument} = repeats[repeat].interval;
-    return IntervalType === "EveryXWeeks" && IntervalArgument > 1;
+    const {intervalType, intervalArgument} = repeats[repeat].interval;
+    return intervalType === "EveryXWeeks" && intervalArgument > 1;
 };
 
 export type Slot = {id: number; day: Day; open: string; close: string; repeat: Repeat; commencing: string};
@@ -45,32 +45,32 @@ export const firstStartDate = (day: Day) => toCalendarDate(nextDate(day));
 export const newSlot = (day: Day): Slot => ({id: nextSlotId++, day, open: "", close: "", repeat: "weekly", commencing: firstStartDate(day)});
 
 const repeatFor = (schedule: ScheduleDto) => (Object.keys(repeats) as Repeat[]).find(key =>
-    repeats[key].interval.IntervalType === schedule.IntervalType && repeats[key].interval.IntervalArgument === schedule.IntervalArgument);
+    repeats[key].interval.intervalType === schedule.intervalType && repeats[key].interval.intervalArgument === schedule.intervalArgument);
 
 const toClock = (hour: number, minute: number) => `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
 
 export const toSlot = (schedule: ScheduleDto): Slot => {
-    const day = Day[schedule.Day];
+    const day = Day[schedule.day];
     const slot = newSlot(day);
     const repeat = repeatFor(schedule) ?? "weekly";
     return {
         ...slot,
-        open: toClock(schedule.StartHour, schedule.StartMinute),
-        close: schedule.EndHour === null ? "" : toClock(schedule.EndHour, schedule.EndMinute ?? 0),
+        open: toClock(schedule.startHour, schedule.startMinute),
+        close: schedule.endHour === null ? "" : toClock(schedule.endHour, schedule.endMinute ?? 0),
         repeat,
-        commencing: needsStartDate(repeat) && schedule.Commencing
-            ? nextOpeningDate(schedule.Commencing, schedule.TimeZone ?? "UTC", day, repeats[repeat].interval.IntervalArgument)
+        commencing: needsStartDate(repeat) && schedule.commencing
+            ? nextOpeningDate(schedule.commencing, schedule.timeZone ?? "UTC", day, repeats[repeat].interval.intervalArgument)
             : slot.commencing,
     };
 };
 
 export const toSchedule = (slots: Slot[], timeZone: string): ScheduleDto[] => slots.map(slot => ({
-    Day: Day[slot.day] as keyof typeof Day,
-    StartHour: Number(slot.open.slice(0, 2)),
-    StartMinute: Number(slot.open.slice(3, 5)),
-    EndHour: Number(slot.close.slice(0, 2)),
-    EndMinute: Number(slot.close.slice(3, 5)),
-    TimeZone: timeZone,
+    day: Day[slot.day] as keyof typeof Day,
+    startHour: Number(slot.open.slice(0, 2)),
+    startMinute: Number(slot.open.slice(3, 5)),
+    endHour: Number(slot.close.slice(0, 2)),
+    endMinute: Number(slot.close.slice(3, 5)),
+    timeZone,
     ...repeats[slot.repeat].interval,
-    Commencing: needsStartDate(slot.repeat) ? midnightIn(slot.commencing, timeZone) : null,
+    commencing: needsStartDate(slot.repeat) ? midnightIn(slot.commencing, timeZone) : null,
 }));

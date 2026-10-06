@@ -2,13 +2,13 @@ import type {Day} from "@/lib/model/day.ts";
 import type {IntervalType} from "@/lib/model/intervalType.ts";
 
 export interface ScheduleDto {
-    Day: keyof typeof Day;
-    StartHour: number;
-    StartMinute: number;
-    EndHour: number | null;
-    EndMinute: number | null;
-    TimeZone: string | null;
-    IntervalType: keyof typeof IntervalType;
-    IntervalArgument: number;
-    Commencing: string | null;
+    day: keyof typeof Day;
+    startHour: number;
+    startMinute: number;
+    endHour: number | null;
+    endMinute: number | null;
+    timeZone: string | null;
+    intervalType: keyof typeof IntervalType;
+    intervalArgument: number;
+    commencing: string | null;
 }

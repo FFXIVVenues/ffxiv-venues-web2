@@ -7,6 +7,10 @@ import {getVenue} from "@/lib/services/venues2/getVenue.ts";
 import {NotFoundPage} from "@/pages/notFoundPage/notFoundPage.tsx";
 import {VenueForm} from "@/components/venueForm/venueForm.tsx";
 import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
+import {updateVenue} from "@/lib/services/venues2/updateVenue.ts";
+import {toast} from "sonner";
+import {saveError} from "@/components/venueForm/saveError.ts";
+import {toDraft, toVenue} from "@/components/venueForm/venueDraft.ts";
 
 
 export const EditVenuePage = () => {
@@ -23,7 +27,17 @@ export const EditVenuePage = () => {
 
     if (venue === "missing") return <NotFoundPage />;
 
-    const save = (changes: VenueRequestDto, banner: Blob | null) => console.log(changes, banner);
+    const save = async (next: VenueRequestDto) => {
+        const original = toVenue(toDraft(venue as VenueDto));
+        const changes = Object.fromEntries(Object.entries(next).filter(([key, value]) =>
+            JSON.stringify(value) !== JSON.stringify(original[key as keyof VenueRequestDto])));
+        try {
+            await updateVenue(venueId, changes);
+            toast.success(t`Saved! Your changes are live.`);
+        } catch (error) {
+            toast.error(saveError(error));
+        }
+    };
 
     return <DefaultPageLayout title={t`Edit venue`}>
         <DefaultPageLayout.Page>
