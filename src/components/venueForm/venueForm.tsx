@@ -13,9 +13,11 @@ import {TagPicker} from "@/components/venueForm/tagPicker.tsx";
 import {InputGroup, InputGroupAddon, InputGroupInput} from "@/components/ui/shadcn/input-group.tsx";
 import {DiscordField} from "@/components/venueForm/discordField.tsx";
 import {ScheduleBuilder} from "@/components/venueForm/scheduleBuilder.tsx";
-import {BannerPicker, toBanner} from "@/components/venueForm/bannerPicker.tsx";
+import {BannerPicker} from "@/components/venueForm/bannerPicker.tsx";
 import {toDraft, toVenue, type VenueDraft} from "@/components/venueForm/venueDraft.ts";
 import {Badge} from "@/components/ui/shadcn/badge.tsx";
+import {toast} from "sonner";
+import {saveError} from "@/components/venueForm/saveError.ts";
 
 export const VenueForm = ({venue, submitLabel, onSubmit}: {
     venue?: VenueDto;
@@ -33,11 +35,15 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
     const locationTypes = {House: t`House`, Apartment: t`Apartment`, Room: t`Room`, Other: t({message: `Other`, comment: `Property type: a location that isn't a house, apartment or room`})};
 
     const [saving, setSaving] = useState(false);
+    const [savedBanner, setSavedBanner] = useState<Blob | null>(null);
     const submit: SubmitEventHandler<HTMLFormElement> = async e => {
         e.preventDefault();
         setSaving(true);
         try {
-            await onSubmit(toVenue(draft), draft.banner ? await toBanner(draft.banner) : null);
+            await onSubmit(toVenue(draft), draft.banner === savedBanner ? null : draft.banner);
+            setSavedBanner(draft.banner);
+        } catch (error) {
+            toast.error(saveError(error));
         } finally {
             setSaving(false);
         }

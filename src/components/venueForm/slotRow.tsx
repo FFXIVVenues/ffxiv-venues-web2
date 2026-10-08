@@ -1,17 +1,25 @@
 import {Trans, useLingui} from "@lingui/react/macro";
 import {X} from "lucide-react";
+import type {MessageDescriptor} from "@lingui/core";
+import {useEffect, useRef} from "react";
 import {Button} from "@/components/ui/shadcn/button.tsx";
+import {FieldError} from "@/components/ui/shadcn/field.tsx";
 import {Input} from "@/components/ui/shadcn/input.tsx";
 import {Selector} from "@/components/venueForm/selector.tsx";
 import {toCalendarDate, upcomingDates} from "@/lib/utils/dates.ts";
 import {dayNames, firstStartDate, needsStartDate, type Repeat, repeatLabels, type Slot} from "@/components/venueForm/scheduleSlots.ts";
 
-export const SlotRow = ({slot, onChange, onRemove}: {
+export const SlotRow = ({slot, error, onChange, onRemove}: {
     slot: Slot;
+    error: MessageDescriptor | null;
     onChange: (changes: Partial<Slot>) => void;
     onRemove: () => void;
 }) => {
     const {t, i18n} = useLingui();
+    const close = useRef<HTMLInputElement>(null);
+    const message = error ? i18n._(error) : "";
+
+    useEffect(() => close.current?.setCustomValidity(message), [message]);
 
     const setDay = (value: string | null) => {
         const day = Number(value);
@@ -28,7 +36,7 @@ export const SlotRow = ({slot, onChange, onRemove}: {
         <div className="col-span-full flex items-center gap-2 sm:contents">
             <Input aria-label={t`Opens`} type="time" required value={slot.open} className="sm:w-auto" onChange={e => onChange({open: e.target.value})} />
             <span aria-hidden="true" className="sm:hidden">–</span>
-            <Input aria-label={t`Closes`} type="time" required value={slot.close} className="sm:w-auto" onChange={e => onChange({close: e.target.value})} />
+            <Input ref={close} aria-label={t`Closes`} type="time" required aria-invalid={!!error} value={slot.close} className="sm:w-auto" onChange={e => onChange({close: e.target.value})} />
         </div>
 
         <Button type="button" variant="ghost" size="icon" aria-label={t`Remove time`} onClick={onRemove} className="max-sm:col-start-3 max-sm:row-start-1">
@@ -39,5 +47,7 @@ export const SlotRow = ({slot, onChange, onRemove}: {
             <label htmlFor={`start-${slot.id}`} className="text-sm"><Trans>Starting</Trans></label>
             <Selector id={`start-${slot.id}`} options={startDates} value={slot.commencing} onValueChange={v => onChange({commencing: v ?? ""})} />
         </div>}
+
+        {error && <FieldError className="col-span-full">{message}</FieldError>}
     </div>;
 };

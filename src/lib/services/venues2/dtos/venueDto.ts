@@ -13,6 +13,7 @@ export interface VenueDto {
     location: LocationDto | null;
     schedule: ScheduleDto[];
     approved: boolean;
+    managers: string[];
 }
 
-export type VenueRequestDto = Omit<VenueDto, "id" | "banner">;
+export type VenueRequestDto = Omit<VenueDto, "id" | "banner" | "approved" | "managers">;

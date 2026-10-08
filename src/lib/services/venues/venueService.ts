@@ -31,13 +31,6 @@ class VenueService {
         return venues.find(v => v.id === id);
     }
 
-    async getVenueDto(id: string): Promise<VenueDto | undefined> {
-        const response = await request(useEnv("FFXIV_VENUES_API_ROOT") + `/v1.0/venue/${id}`);
-        if (response.status === 404) return undefined;
-        if (!response.ok) throw response;
-        return response.json();
-    }
-
     async getVenueSchedule(filters?: VenueFilter[], showHidden?: boolean): Promise<VenueSchedule> {
         const venueViewModels: VenueSchedule = {
             favourites: [],

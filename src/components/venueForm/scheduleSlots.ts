@@ -49,6 +49,19 @@ const repeatFor = (schedule: ScheduleDto) => (Object.keys(repeats) as Repeat[]).
 
 const toClock = (hour: number, minute: number) => `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
 
+const toMinutes = (clock: string) => Number(clock.slice(0, 2)) * 60 + Number(clock.slice(3, 5));
+
+const isSameSlot = (a: Slot, b: Slot) => a.day === b.day && a.repeat === b.repeat && a.open === b.open && a.close === b.close && (!needsStartDate(a.repeat) || a.commencing === b.commencing);
+
+export const slotError = (slot: Slot, slots: Slot[]): MessageDescriptor | null => {
+    if (!slot.open || !slot.close) return null;
+    const length = (toMinutes(slot.close) - toMinutes(slot.open) + 1440) % 1440;
+    if (length === 0) return msg`Opening and closing times can't be the same.`;
+    if (length > 7 * 60) return msg`Aaaah, that's a long opening, max is 7 hours.`;
+    if (slots.slice(0, slots.indexOf(slot)).some(other => isSameSlot(other, slot))) return msg`You've already added this time.`;
+    return null;
+};
+
 export const toSlot = (schedule: ScheduleDto): Slot => {
     const day = Day[schedule.day];
     const slot = newSlot(day);
