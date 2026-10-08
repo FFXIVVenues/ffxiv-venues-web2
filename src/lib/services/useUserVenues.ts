@@ -8,7 +8,7 @@ type ODataResponse<T> = {
   value: T;
 }
 
-export const useUserVenues = (userId?: number) => {
+export const useUserVenues = (userId?: string) => {
   const [ usersVenues, setUsersVenues ] = useState<Venue[] | null>(null);
 
   useEffect(() => {

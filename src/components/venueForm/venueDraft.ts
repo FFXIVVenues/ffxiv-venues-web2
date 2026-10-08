@@ -21,7 +21,7 @@ export type VenueDraft = {
     discord: string;
     timeZone: string | null;
     slots: Slot[];
-    banner: File | null;
+    banner: Blob | null;
 };
 
 export function toDraft(venue?: VenueDto): VenueDraft {

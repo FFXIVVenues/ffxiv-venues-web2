@@ -1,9 +1,9 @@
 import {Trans, useLingui} from "@lingui/react/macro";
-import {useEffect, useMemo} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {ImageUp} from "lucide-react";
-import {Field, FieldDescription, FieldLabel} from "@/components/ui/shadcn/field.tsx";
+import {Field, FieldDescription, FieldError, FieldLabel} from "@/components/ui/shadcn/field.tsx";
 
-export const toBanner = async (file: File) => {
+const toBanner = async (file: File) => {
     const image = await createImageBitmap(file);
     const scale = Math.max(600 / image.width, 300 / image.height);
     const cropWidth = 600 / scale;
@@ -17,16 +17,25 @@ export const toBanner = async (file: File) => {
 
 export const BannerPicker = ({current, value, onChange}: {
     current?: string;
-    value: File | null;
-    onChange: (file: File | null) => void;
+    value: Blob | null;
+    onChange: (banner: Blob) => void;
 }) => {
     const {t} = useLingui();
+    const [unreadable, setUnreadable] = useState(false);
     const preview = useMemo(() => value && URL.createObjectURL(value), [value]);
     useEffect(() => () => { if (preview) URL.revokeObjectURL(preview); }, [preview]);
 
+    const pick = (file: File | undefined) => {
+        if (!file) return;
+        toBanner(file).then(banner => {
+            setUnreadable(false);
+            onChange(banner);
+        }, () => setUnreadable(true));
+    };
+
     const shown = preview ?? current;
 
-    return <Field>
+    return <Field data-invalid={unreadable}>
         <FieldLabel htmlFor="venue-banner"><Trans>Banner image</Trans></FieldLabel>
         <label htmlFor="venue-banner" className="flex aspect-2/1 w-full cursor-pointer items-center justify-center overflow-hidden rounded-md border border-dashed border-input bg-input/30 text-muted-foreground transition-colors hover:border-ring hover:text-foreground">
             {shown
@@ -37,7 +46,8 @@ export const BannerPicker = ({current, value, onChange}: {
                 </span>
             }
         </label>
-        <input id="venue-banner" type="file" accept="image/*" className="sr-only" onChange={e => onChange(e.target.files?.[0] ?? null)} />
+        <input id="venue-banner" type="file" accept="image/*" className="sr-only" onChange={e => pick(e.target.files?.[0])} />
         <FieldDescription><Trans>Any image works; banners are 600x300 and I'll handle the scaling and cropping for you <span aria-hidden="true">❤️</span></Trans></FieldDescription>
+        {unreadable && <FieldError><Trans>I couldn't read that image. Try a PNG, JPEG or WebP.</Trans></FieldError>}
     </Field>;
 };
