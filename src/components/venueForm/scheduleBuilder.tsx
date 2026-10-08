@@ -5,7 +5,7 @@ import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Selector} from "@/components/venueForm/selector.tsx";
 import {Day} from "@/lib/model/day.ts";
 import {timeZones} from "@/lib/model/venueOptions.ts";
-import {newSlot, type Slot} from "@/components/venueForm/scheduleSlots.ts";
+import {newSlot, type Slot, slotError} from "@/components/venueForm/scheduleSlots.ts";
 import {SlotRow} from "@/components/venueForm/slotRow.tsx";
 
 export const ScheduleBuilder = ({slots, timeZone, onChange}: {
@@ -34,7 +34,7 @@ export const ScheduleBuilder = ({slots, timeZone, onChange}: {
                 <span><Trans>Opens</Trans></span>
                 <span><Trans>Closes</Trans></span>
             </div>
-            {slots.map(slot => <SlotRow key={slot.id} slot={slot} onChange={changes => update(slot.id, changes)} onRemove={() => remove(slot.id)} />)}
+            {slots.map(slot => <SlotRow key={slot.id} slot={slot} error={slotError(slot, slots)} onChange={changes => update(slot.id, changes)} onRemove={() => remove(slot.id)} />)}
         </div>}
 
         <Button type="button" variant="outline" size="sm" className="w-fit" onClick={add}>
