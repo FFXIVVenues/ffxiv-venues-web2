@@ -17,7 +17,7 @@ export const useUser = () => {
 }
 
 export const NoUser : User = {
-  userId: 0,
+  userId: "0",
   username: "nouser",
   nickname: "No user",
   avatarUrl: null

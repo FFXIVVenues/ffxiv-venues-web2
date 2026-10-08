@@ -1,22 +1,21 @@
 import {request, useEnv} from "@/lib/utils";
 import {useEffect, useState} from "react";
-import type {VenueDto} from "@/lib/services/venues/dtos/venueDto.ts";
-import {Venue} from "@/lib/model/venue.ts";
+import type {VenueDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 
 type ODataResponse<T> = {
   "@odata.context": string;
   value: T;
 }
 
-export const useUserVenues = (userId?: number) => {
-  const [ usersVenues, setUsersVenues ] = useState<Venue[] | null>(null);
+export const useManagersVenues = (userId?: string) => {
+  const [ usersVenues, setUsersVenues ] = useState<VenueDto[] | null>(null);
 
   useEffect(() => {
     if (userId == null) return;
     const usersVenuesUri = useEnv("FFXIV_VENUES_API_ROOT") + `/odata/venues?$filter=managers/any(m: m eq '${userId}')`;
     request(usersVenuesUri, { credentials: 'include' })
       .then(response => response.json() as Promise<ODataResponse<VenueDto[]>>)
-      .then(venues => venues.value.map(v => new Venue(v)))
+      .then(venues => venues.value)
       .then(setUsersVenues)
       .catch();
   }, [ userId ])

@@ -1,6 +1,6 @@
 export type User = {
-  userId: number,
+  userId: string,
   username: string,
   nickname: string,
-  avatarUrl: string | null
+  avatarUrl: string | undefined
 }
