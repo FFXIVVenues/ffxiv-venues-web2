@@ -11,6 +11,7 @@ import {updateVenue} from "@/lib/services/venues2/updateVenue.ts";
 import {toast} from "sonner";
 import {saveError} from "@/components/venueForm/saveError.ts";
 import {toDraft, toVenue} from "@/components/venueForm/venueDraft.ts";
+import {uploadBanner} from "@/lib/services/venues2/uploadBanner.ts";
 
 
 export const EditVenuePage = () => {
@@ -27,12 +28,13 @@ export const EditVenuePage = () => {
 
     if (venue === "missing") return <NotFoundPage />;
 
-    const save = async (next: VenueRequestDto) => {
+    const save = async (next: VenueRequestDto, banner: Blob | null) => {
         const original = toVenue(toDraft(venue as VenueDto));
         const changes = Object.fromEntries(Object.entries(next).filter(([key, value]) =>
             JSON.stringify(value) !== JSON.stringify(original[key as keyof VenueRequestDto])));
         try {
             await updateVenue(venueId, changes);
+            if (banner) await uploadBanner(venueId, banner);
             toast.success(t`Saved! Your changes are live.`);
         } catch (error) {
             toast.error(saveError(error));

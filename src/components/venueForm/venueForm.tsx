@@ -11,23 +11,11 @@ import {districts, features, games, scenes, tagDescriptions, worlds} from "@/lib
 import {Switch} from "@/components/ui/shadcn/switch.tsx";
 import {TagPicker} from "@/components/venueForm/tagPicker.tsx";
 import {InputGroup, InputGroupAddon, InputGroupInput} from "@/components/ui/shadcn/input-group.tsx";
-import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
+import {DiscordField} from "@/components/venueForm/discordField.tsx";
 import {ScheduleBuilder} from "@/components/venueForm/scheduleBuilder.tsx";
-import {BannerPicker} from "@/components/venueForm/bannerPicker.tsx";
+import {BannerPicker, toBanner} from "@/components/venueForm/bannerPicker.tsx";
 import {toDraft, toVenue, type VenueDraft} from "@/components/venueForm/venueDraft.ts";
 import {Badge} from "@/components/ui/shadcn/badge.tsx";
-
-const toBanner = async (file: File) => {
-    const image = await createImageBitmap(file);
-    const scale = Math.max(600 / image.width, 300 / image.height);
-    const cropWidth = 600 / scale;
-    const cropHeight = 300 / scale;
-    const banner = await createImageBitmap(image, (image.width - cropWidth) / 2, (image.height - cropHeight) / 2, cropWidth, cropHeight, {resizeWidth: 600, resizeHeight: 300, resizeQuality: "high"});
-
-    const canvas = new OffscreenCanvas(600, 300);
-    canvas.getContext("2d")!.drawImage(banner, 0, 0, 600, 300);
-    return canvas.convertToBlob({type: "image/webp", quality: 1});
-};
 
 export const VenueForm = ({venue, submitLabel, onSubmit}: {
     venue?: VenueDto;
@@ -173,13 +161,7 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
         <FieldSet>
             <FieldLegend><Trans>Your links</Trans></FieldLegend>
             <FieldGroup>
-                <Field>
-                    <FieldLabel htmlFor="venue-discord"><Trans>Discord invite</Trans></FieldLabel>
-                    <InputGroup>
-                        <InputGroupAddon><DiscordFillIcon className="size-4" strokeWidth={0} fill="currentColor" /></InputGroupAddon>
-                        <InputGroupInput id="venue-discord" type="url" value={draft.discord} onChange={e => set({discord: e.target.value})} placeholder="https://discord.gg/..." />
-                    </InputGroup>
-                </Field>
+                <DiscordField value={draft.discord} onChange={discord => set({discord})} />
                 <Field>
                     <FieldLabel htmlFor="venue-website"><Trans>Website</Trans></FieldLabel>
                     <InputGroup>
@@ -197,11 +179,7 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
             </FieldGroup>
         </FieldSet>
 
-        <FieldSet>
-            <FieldGroup>
-                <BannerPicker current={venue?.banner ?? undefined} value={draft.banner} onChange={banner => set({banner})} />
-            </FieldGroup>
-        </FieldSet>
+        <BannerPicker current={venue?.banner ?? undefined} value={draft.banner} onChange={banner => set({banner})} />
         <Button type="submit" disabled={saving} className="w-fit">{submitLabel}</Button>
     </form>;
 };

@@ -5,6 +5,7 @@ import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
 import type {VenueRequestDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 import {useState} from "react";
 import {createVenue} from "@/lib/services/venues2/createVenue.ts";
+import {uploadBanner} from "@/lib/services/venues2/uploadBanner.ts";
 import {toast} from "sonner";
 import {saveError} from "@/components/venueForm/saveError.ts";
 
@@ -12,13 +13,16 @@ export const CreateVenuePage = () => {
     const {t} = useLingui();
     const [created, setCreated] = useState(false);
 
-    const create = async (venue: VenueRequestDto) => {
+    const create = async (venue: VenueRequestDto, banner: Blob | null) => {
+        let id: string;
         try {
-            await createVenue(venue);
+            id = (await createVenue(venue)).id;
             setCreated(true);
         } catch (error) {
             toast.error(saveError(error));
+            return;
         }
+        if (banner) await uploadBanner(id, banner).catch(() => toast.error(t`Your venue was created, but the banner didn't upload. You can add it when you edit your venue.`));
     };
 
     return <DefaultPageLayout title={t`Create a venue`}>
