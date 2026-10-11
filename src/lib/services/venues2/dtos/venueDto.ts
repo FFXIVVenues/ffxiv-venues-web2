@@ -3,7 +3,7 @@ import type {ScheduleDto} from "./scheduleDto.ts";
 
 export interface VenueDto {
     id: string;
-    name: string | null;
+    name: string;
     banner: string | null;
     description: string[];
     website: string | null;

@@ -1,5 +1,5 @@
 import {request, useEnv} from "@/lib/utils";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import type {VenueDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 
 type ODataResponse<T> = {
@@ -7,9 +7,9 @@ type ODataResponse<T> = {
   value: T;
 }
 
-export const useManagersVenues = (userId?: string) => {
+export const useManagersVenues = (userId?: string): [ VenueDto[]|null, () => void ] => {
   const [ usersVenues, setUsersVenues ] = useState<VenueDto[] | null>(null);
-
+  const [ refresh, setRefresh ] = useState<boolean>(false);
   useEffect(() => {
     if (userId == null) return;
     const usersVenuesUri = useEnv("FFXIV_VENUES_API_ROOT") + `/odata/venues?$filter=managers/any(m: m eq '${userId}')`;
@@ -17,8 +17,8 @@ export const useManagersVenues = (userId?: string) => {
       .then(response => response.json() as Promise<ODataResponse<VenueDto[]>>)
       .then(venues => venues.value)
       .then(setUsersVenues)
-      .catch();
-  }, [ userId ])
+      .catch(console.error);
+  }, [ userId, refresh ]);
 
-  return usersVenues;
+  return [ usersVenues, () => setRefresh(!refresh) ];
 }
