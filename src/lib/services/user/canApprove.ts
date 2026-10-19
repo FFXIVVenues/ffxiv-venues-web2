@@ -8,7 +8,7 @@ export const canApprove = (venue: VenueDto) : Nullable<boolean> => {
   const user = useUser();
   const authorization = useAuthorization();
 
-  if (user == null)
+  if (user == null || venue == null)
     return null;
 
   if (user == NoUser)

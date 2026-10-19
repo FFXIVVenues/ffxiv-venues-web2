@@ -8,7 +8,7 @@ export const canEditManagers = (venue: Nullable<VenueDto>) : Nullable<boolean> =
   const user = useUser();
   const authorization = useAuthorization();
 
-  if (venue == null || user == null)
+  if (user == null || venue == null)
     return null;
 
   if (user == NoUser)
