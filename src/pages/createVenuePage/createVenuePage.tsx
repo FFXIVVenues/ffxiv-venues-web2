@@ -9,7 +9,7 @@ import {createVenue} from "@/lib/services/venues2/createVenue.ts";
 import {uploadBanner} from "@/lib/services/venues2/uploadBanner.ts";
 import {toast} from "sonner";
 import {LoginPrompt} from "@/components/venueForm/loginPrompt.tsx";
-import {NoUser, useUser} from "@/lib/services/useUser.ts";
+import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
 
 export const CreateVenuePage = () => {
     const {t} = useLingui();

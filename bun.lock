@@ -1,6 +1,5 @@
 {
   "lockfileVersion": 1,
-  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "ffxivvenues-webclient2",
@@ -14,6 +13,7 @@
         "embla-carousel-react": "^8.6.0",
         "lucide-react": "^0.577.0",
         "next-themes": "^0.4.6",
+        "odata-v4-inmemory": "^0.1.7",
         "react": "^19.2.4",
         "react-dom": "^19.2.4",
         "react-intersection-observer": "^10.0.3",
@@ -984,6 +984,10 @@
     "object-inspect": ["object-inspect@1.13.4", "", {}, "sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew=="],
 
     "object-treeify": ["object-treeify@1.1.33", "", {}, "sha512-EFVjAYfzWqWsBMRHPMAXLCDIJnpMhdWAqR7xG6M6a2cs6PMFpl/+Z20w9zDW4vkxOFfddegBKq9Rehd0bxWE7A=="],
+
+    "odata-v4-inmemory": ["odata-v4-inmemory@0.1.7", "", { "dependencies": { "odata-v4-parser": "^0.1.9" } }, "sha512-YwrApqQFN9429tLZgeFY4ZqivlSKGbwWI2M2N4v8b7j3adRdvrniDC5ZdRZ8ILGiA6CnT+hwi4yQnMCHhKUs8A=="],
+
+    "odata-v4-parser": ["odata-v4-parser@0.1.29", "", {}, "sha512-7ZsqxcMbGAqKSBme0+lul7g9K52RadGYU3WvYwDdduJNfnduSL59w4OEskvEzWHZMcPRqPnD9XtuO7Rpl+B3jA=="],
 
     "on-finished": ["on-finished@2.4.1", "", { "dependencies": { "ee-first": "1.1.1" } }, "sha512-oVlzkg3ENAhCk2zdv7IJwd/QUD4z2RxRwpkcGY8psCVcCYZNq4wYnVWALHM+brtuJjePWiYF/ClmuDr8Ch5+kg=="],
 

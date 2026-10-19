@@ -12,7 +12,8 @@ import {toast} from "sonner";
 import {toDraft, toVenue} from "@/components/venueForm/venueDraft.ts";
 import {uploadBanner} from "@/lib/services/venues2/uploadBanner.ts";
 import {LoginPrompt} from "@/components/venueForm/loginPrompt.tsx";
-import {NoUser, useUser} from "@/lib/services/useUser.ts";
+import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
+import {canEditManagers} from "@/lib/services/user/canEditManagers.ts";
 
 
 export const EditVenuePage = () => {
@@ -20,6 +21,8 @@ export const EditVenuePage = () => {
     const {venueId = ""} = useParams();
     const user = useUser();
     const [venue, setVenue] = useState<VenueDto | "loading" | "missing">("loading");
+    const showManagersControl =
+      canEditManagers(venue != "loading" && venue != "missing" ? venue : null) ?? false;
 
     useEffect(() => {
         setVenue("loading");
@@ -49,7 +52,7 @@ export const EditVenuePage = () => {
                     ? <LoginPrompt />
                     : !venue.managers.includes(user.userId)
                     ? <p className="text-muted-foreground"><Trans>You don't manage this venue, so I can't let you edit it. If you think you should, ask one of its managers to add you.</Trans></p>
-                    : <VenueForm venue={venue} submitLabel={<Trans>Save changes</Trans>} onSubmit={save} />}
+                    : <VenueForm venue={venue} showManagersControl={showManagersControl} submitLabel={<Trans>Save changes</Trans>} onSubmit={save} />}
             </div>
         </DefaultPageLayout.Page>
     </DefaultPageLayout>;

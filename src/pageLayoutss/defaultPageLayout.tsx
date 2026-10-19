@@ -14,7 +14,7 @@ import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Plus, Settings} from "lucide-react";
 import {Toaster} from "@/components/ui/shadcn/sonner.tsx";
 import { Trans } from "@lingui/react/macro";
-import {useUser} from "@/lib/services/useUser.ts";
+import {useUser} from "@/lib/services/user/useUser.ts";
 
 type DefaultLayoutProps = {
     children: ReactNode;

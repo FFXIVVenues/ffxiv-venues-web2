@@ -19,10 +19,11 @@ import {Badge} from "@/components/ui/shadcn/badge.tsx";
 import {toast} from "sonner";
 import {saveError} from "@/components/venueForm/saveError.ts";
 
-export const VenueForm = ({venue, submitLabel, onSubmit}: {
-    venue?: VenueDto;
-    submitLabel: ReactNode;
-    onSubmit: (venue: VenueRequestDto, banner: Blob | null) => Promise<void>;
+export const VenueForm = ({venue, submitLabel, onSubmit, showManagersControl}: {
+  venue?: VenueDto,
+  submitLabel: ReactNode,
+  onSubmit: (venue: VenueRequestDto, banner: Blob | null) => Promise<void>,
+  showManagersControl?: boolean
 }) => {
     const {t} = useLingui();
     const [draft, setDraft] = useState(() => toDraft(venue));
@@ -186,6 +187,13 @@ export const VenueForm = ({venue, submitLabel, onSubmit}: {
         </FieldSet>
 
         <BannerPicker current={venue?.banner ?? undefined} value={draft.banner} onChange={banner => set({banner})} />
+
+        {showManagersControl && (
+            <FieldSet className="text-red-600 font-bold">
+                MANAGER CONTROLS HERE
+            </FieldSet>
+        )}
+
         <Button type="submit" disabled={saving} className="w-fit">{submitLabel}</Button>
     </form>;
 };

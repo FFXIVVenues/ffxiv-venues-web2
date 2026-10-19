@@ -1,7 +1,7 @@
 import type {VenueDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 
 import React, {type ChangeEvent, memo, useCallback, useState} from 'react';
-import {NoUser, useUser} from "@/lib/services/useUser.ts";
+import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
 import {useManagersVenues} from "@/lib/services/venues2/useManagersVenues.ts";
 import {useNavigate} from "react-router";
 import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
