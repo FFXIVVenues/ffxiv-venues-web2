@@ -1,6 +1,6 @@
 import {Trans, useLingui} from "@lingui/react/macro";
 import {VeniHeader} from "@/components/venueForm/veniHeader.tsx";
-import {useParams} from "react-router";
+import {useNavigate, useParams} from "react-router";
 import {useEffect, useState} from "react";
 import type {VenueDto, VenueRequestDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 import {getVenue} from "@/lib/services/venues2/getVenue.ts";
@@ -14,12 +14,15 @@ import {uploadBanner} from "@/lib/services/venues2/uploadBanner.ts";
 import {LoginPrompt} from "@/components/venueForm/loginPrompt.tsx";
 import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
 import {canEditManagers} from "@/lib/services/user/canEditManagers.ts";
+import {ArrowLeft} from "lucide-react";
+import {Button} from "@/components/ui/shadcn/button.tsx";
 
 
 export const EditVenuePage = () => {
     const {t} = useLingui();
     const {venueId = ""} = useParams();
     const user = useUser();
+    const navigate = useNavigate();
     const [venue, setVenue] = useState<VenueDto | "loading" | "missing">("loading");
     const showManagersControl =
       canEditManagers(venue != "loading" && venue != "missing" ? venue : null) ?? false;
@@ -43,6 +46,12 @@ export const EditVenuePage = () => {
     };
 
     return <DefaultPageLayout title={t`Edit venue`}>
+        <DefaultPageLayout.Panel>
+            <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4" onClick={() => navigate(`/venue/manage`)}>
+                <ArrowLeft className="size-4"/>
+                <span className="mt-0.5"><Trans>Back to my venues</Trans></span>
+            </Button>
+        </DefaultPageLayout.Panel>
         <DefaultPageLayout.Page>
             <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
                 <VeniHeader title={<Trans>Let's update your venue! <span aria-hidden="true">❤️</span></Trans>} subtitle={<Trans>Change anything you like and I'll save it for you</Trans>} />

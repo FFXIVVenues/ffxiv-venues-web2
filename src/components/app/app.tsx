@@ -6,6 +6,7 @@ import {TermsOfServicePage} from "@/pages/terms/termsOfServicePage.tsx";
 import {CreateVenuePage} from "@/pages/createVenuePage/createVenuePage.tsx";
 import {EditVenuePage} from "@/pages/editVenuePage/editVenuePage.tsx";
 import {ManageVenuesPage} from "@/pages/manageVenuesPage/manageVenuesPage.tsx";
+import {VenueOpeningsPage} from "@/pages/venueOpeningsPage/venueOpeningsPage.tsx";
 
 export const App = () =>
     <BrowserRouter>
@@ -13,6 +14,7 @@ export const App = () =>
           <Route index element={<VenueDirectoryPage />} />
           <Route path="/venue/:venueId" element={<VenueDirectoryPage />} />
           <Route path="/venue/:venueId/edit" element={<EditVenuePage />} />
+          <Route path="/venue/:venueId/openings" element={<VenueOpeningsPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsOfServicePage />} />
           <Route path="/venue/create" element={<CreateVenuePage />} />

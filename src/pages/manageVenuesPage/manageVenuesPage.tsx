@@ -5,7 +5,7 @@ import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
 import {useManagersVenues} from "@/lib/services/venues2/useManagersVenues.ts";
 import {useNavigate} from "react-router";
 import {DefaultPageLayout} from "@/pageLayouts/defaultPageLayout.tsx";
-import {Plus, Trash} from "lucide-react";
+import {CalendarClock, CalendarX, Plus, Trash} from "lucide-react";
 import {Trans} from "@lingui/react/macro";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {deleteVenue} from "@/lib/services/venues2/deleteVenue.ts";
@@ -27,6 +27,10 @@ export const ManageVenuesPage = memo(() => {
     () => navigate(`/venue/create`), [navigate]);
   const onEditClickCallback = useCallback(
     (venue: VenueDto) => navigate(`/venue/${venue.id}/edit`), [navigate]);
+  const onOpeningsClickCallback = useCallback(
+    (venue: VenueDto) => navigate(`/venue/${venue.id}/openings`), [navigate]);
+  const onClosuresClickCallback = useCallback(
+    (_venue: VenueDto) => {}, []);
   const onDeleteClickCallback = useCallback(
     async (venue: VenueDto) => {
       await deleteVenue(venue.id);
@@ -65,7 +69,7 @@ export const ManageVenuesPage = memo(() => {
             </div>
             <div className="flex flex-wrap gap-8 content-between flex-wrap align-middle justify-left">
               {usersVenues.map((venue) =>
-                <ManagersVenueCard key={venue.id} venue={venue} onEditClick={onEditClickCallback} onDeleteClick={onDeleteClickCallback} />)}
+                <ManagersVenueCard key={venue.id} venue={venue} onEditClick={onEditClickCallback} onOpeningsClick={onOpeningsClickCallback} onClosuresClick={onClosuresClickCallback} onDeleteClick={onDeleteClickCallback} />)}
               <Card className="w-[350px] aspect-7/8 flex flex-row items-center justify-center text-2xl text-muted-foreground cursor-pointer md:hidden" onClick={onCreateClickCallback}>
                 <div className="flex flex-col align-middle items-center text-center">
                   <Plus className="size-12 mb-4" />
@@ -84,12 +88,16 @@ type ManagersVenueCardProps = {
   venue: VenueDto;
   className?: string;
   onEditClick: (venue: VenueDto) => void;
+  onOpeningsClick: (venue: VenueDto) => void;
+  onClosuresClick: (venue: VenueDto) => void;
   onDeleteClick: (venue: VenueDto) => void;
 }
 
-const ManagersVenueCard = memo(({ venue, onEditClick, onDeleteClick, className } : ManagersVenueCardProps) => {
+const ManagersVenueCard = memo(({ venue, onEditClick, onOpeningsClick, onClosuresClick, onDeleteClick, className } : ManagersVenueCardProps) => {
   const [ confirmDelete, setConfirmDelete ] = useState<boolean>(false);
   const onEditClickCallback = useCallback(() => onEditClick(venue), [venue, onEditClick]);
+  const onOpeningsClickCallback = useCallback(() => onOpeningsClick(venue), [venue, onOpeningsClick]);
+  const onClosuresClickCallback = useCallback(() => onClosuresClick(venue), [venue, onClosuresClick]);
   const onDeleteClickCallback = useCallback(() => setConfirmDelete(true), []);
   const onDeleteConfirmCallback = useCallback(() => { setConfirmDelete(false); onDeleteClick(venue); }, [venue, onDeleteClick]);
   const onDeleteConfirmCancel = useCallback(() => setConfirmDelete(false), []);
@@ -116,9 +124,15 @@ const ManagersVenueCard = memo(({ venue, onEditClick, onDeleteClick, className }
             </Badge>
           }
         </CardContent>
-        <CardFooter className="pb-6 border-t flex gap-2">
-          <Button variant="default" className="flex-1 cursor-pointer" onClick={onEditClickCallback}><Trans>Edit Venue</Trans></Button>
-          <Button variant="destructive" className="px-3 cursor-pointer" onClick={onDeleteClickCallback}><Trash  /><span className="sr-only"><Trans>Delete venue</Trans></span></Button>
+        <CardFooter className="pb-6 border-t flex flex-col gap-2">
+          <div className="flex gap-2 w-full">
+            <Button variant="default" className="flex-1 cursor-pointer" onClick={onOpeningsClickCallback}><CalendarClock /><Trans>Openings</Trans></Button>
+            <Button variant="default" className="flex-1 cursor-pointer" onClick={onClosuresClickCallback}><CalendarX /><Trans>Closures</Trans></Button>
+          </div>
+          <div className="flex gap-2 w-full">
+            <Button variant="default" className="flex-1 cursor-pointer" onClick={onEditClickCallback}><Trans>Edit Venue</Trans></Button>
+            <Button variant="destructive" className="px-3 cursor-pointer" onClick={onDeleteClickCallback}><Trash  /><span className="sr-only"><Trans>Delete venue</Trans></span></Button>
+          </div>
         </CardFooter>
       </Card>
 
