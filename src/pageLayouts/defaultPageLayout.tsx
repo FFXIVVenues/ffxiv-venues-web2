@@ -27,7 +27,7 @@ type CompoundComponent<P = {}> = FC<P> & {
     Page: FC<{ children?: ReactNode }>;
 };
 
-export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({children, title, className}) => {
+export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({children, title}) => {
     const compounds = Children.toArray(children);
     const sidebarContent = compounds.find(
         (c): c is ReactElement => isValidElement(c) && c.type === DefaultPageLayout.Panel

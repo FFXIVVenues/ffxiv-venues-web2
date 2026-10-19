@@ -6,7 +6,7 @@ import type {VenueDto, VenueRequestDto} from "@/lib/services/venues2/dtos/venueD
 import {getVenue} from "@/lib/services/venues2/getVenue.ts";
 import {NotFoundPage} from "@/pages/notFoundPage/notFoundPage.tsx";
 import {VenueForm} from "@/components/venueForm/venueForm.tsx";
-import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
+import {DefaultPageLayout} from "@/pageLayouts/defaultPageLayout.tsx";
 import {updateVenue} from "@/lib/services/venues2/updateVenue.ts";
 import {toast} from "sonner";
 import {toDraft, toVenue} from "@/components/venueForm/venueDraft.ts";

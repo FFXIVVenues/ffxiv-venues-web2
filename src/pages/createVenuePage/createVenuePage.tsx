@@ -1,7 +1,7 @@
 import {Trans, useLingui} from "@lingui/react/macro";
 import {VenueForm} from "@/components/venueForm/venueForm.tsx";
 import {VeniHeader} from "@/components/venueForm/veniHeader.tsx";
-import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
+import {DefaultPageLayout} from "@/pageLayouts/defaultPageLayout.tsx";
 import type {VenueRequestDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 import {useState} from "react";
 import {Link} from "react-router";

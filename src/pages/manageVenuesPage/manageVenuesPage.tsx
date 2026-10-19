@@ -4,7 +4,7 @@ import React, {type ChangeEvent, memo, useCallback, useState} from 'react';
 import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
 import {useManagersVenues} from "@/lib/services/venues2/useManagersVenues.ts";
 import {useNavigate} from "react-router";
-import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
+import {DefaultPageLayout} from "@/pageLayouts/defaultPageLayout.tsx";
 import {Plus, Trash} from "lucide-react";
 import {Trans} from "@lingui/react/macro";
 import {Button} from "@/components/ui/shadcn/button.tsx";

@@ -1,6 +1,6 @@
 import {memo} from "react";
 import {useLingui} from "@lingui/react";
-import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
+import {DefaultPageLayout} from "@/pageLayouts/defaultPageLayout.tsx";
 import {SidebarMenuButton} from "@/components/ui/shadcn/sidebar.tsx";
 import {MdDocument, extractSections} from "@/components/markdown/MdDocument.tsx";
 import {Trans} from "@lingui/react/macro";

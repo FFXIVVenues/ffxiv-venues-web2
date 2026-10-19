@@ -1,4 +1,4 @@
-import {DefaultPageLayout} from "@/pageLayoutss/defaultPageLayout.tsx";
+import {DefaultPageLayout} from "@/pageLayouts/defaultPageLayout.tsx";
 import {Trans, useLingui} from "@lingui/react/macro";
 
 export const NotFoundPage = () => {
