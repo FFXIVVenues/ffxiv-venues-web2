@@ -30,7 +30,7 @@ export const ManageVenuesPage = memo(() => {
   const onOpeningsClickCallback = useCallback(
     (venue: VenueDto) => navigate(`/venue/${venue.id}/openings`), [navigate]);
   const onClosuresClickCallback = useCallback(
-    (_venue: VenueDto) => {}, []);
+    (venue: VenueDto) => navigate(`/venue/${venue.id}/closures`), [navigate]);
   const onDeleteClickCallback = useCallback(
     async (venue: VenueDto) => {
       await deleteVenue(venue.id);
