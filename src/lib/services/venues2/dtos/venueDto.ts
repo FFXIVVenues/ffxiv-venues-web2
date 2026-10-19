@@ -18,4 +18,4 @@ export interface VenueDto {
     managers: string[];
 }
 
-export type VenueRequestDto = Omit<VenueDto, "id" | "banner" | "approved" | "managers">;
+export type VenueRequestDto = Omit<VenueDto, "id" | "banner" | "approved">;

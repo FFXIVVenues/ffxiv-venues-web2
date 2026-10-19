@@ -19,6 +19,7 @@ export type VenueDraft = {
     tags: string[];
     website: string;
     discord: string;
+    managers: string[];
     timeZone: string | null;
     slots: Slot[];
     banner: Blob | null;
@@ -45,6 +46,7 @@ export function toDraft(venue?: VenueDto): VenueDraft {
         tags: (venue?.tags ?? []).filter(Boolean),
         website: venue?.website ?? "",
         discord: venue?.discord ?? "",
+        managers: venue?.managers ?? [],
         timeZone: zone in timeZones ? zone : null,
         slots: (venue?.schedule ?? []).map(toSlot),
         banner: null,
@@ -71,6 +73,7 @@ export function toVenue(draft: VenueDraft): VenueRequestDto {
         },
         website: draft.website.trim() || null,
         discord: draft.discord.trim() || null,
+        managers: draft.managers,
         sfw: draft.sfw,
         tags: draft.tags,
         schedule: toSchedule(draft.slots, draft.timeZone ?? "UTC"),
