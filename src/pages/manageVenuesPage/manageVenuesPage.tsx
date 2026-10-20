@@ -39,10 +39,6 @@ export const ManageVenuesPage = memo(() => {
 
   return <DefaultPageLayout>
     <DefaultPageLayout.Panel>
-      <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4" onClick={onCreateClickCallback}>
-        <Plus className="size-4"/>
-        <span className="mt-0.5"><Trans>Create venue</Trans></span>
-      </Button>
     </DefaultPageLayout.Panel>
     <DefaultPageLayout.Page>
       {user === null
