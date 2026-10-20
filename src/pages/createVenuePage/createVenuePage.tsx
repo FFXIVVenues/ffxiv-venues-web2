@@ -4,16 +4,19 @@ import {VeniHeader} from "@/components/venueForm/veniHeader.tsx";
 import {DefaultPageLayout} from "@/pageLayouts/defaultPageLayout.tsx";
 import type {VenueRequestDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 import {useState} from "react";
-import {Link} from "react-router";
+import {Link, useNavigate} from "react-router";
 import {createVenue} from "@/lib/services/venues2/createVenue.ts";
 import {uploadBanner} from "@/lib/services/venues2/uploadBanner.ts";
 import {toast} from "sonner";
 import {LoginPrompt} from "@/components/venueForm/loginPrompt.tsx";
 import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
+import {ArrowLeft} from "lucide-react";
+import {Button} from "@/components/ui/shadcn/button.tsx";
 
 export const CreateVenuePage = () => {
     const {t} = useLingui();
     const user = useUser();
+    const navigate = useNavigate();
     const [created, setCreated] = useState(false);
 
     const create = async (venue: VenueRequestDto, banner: Blob | null) => {
@@ -23,6 +26,12 @@ export const CreateVenuePage = () => {
     };
 
     return <DefaultPageLayout title={t`Create a venue`}>
+        <DefaultPageLayout.Panel>
+            <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4" onClick={() => navigate(`/venue/manage`)}>
+                <ArrowLeft className="size-4"/>
+                <span className="mt-0.5"><Trans>Back to my venues</Trans></span>
+            </Button>
+        </DefaultPageLayout.Panel>
         <DefaultPageLayout.Page>
             <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
                 <VeniHeader title={<Trans>Let's create your venue! <span aria-hidden="true">❤️</span></Trans>} subtitle={<Trans>Fill this in and I'll get your venue listed</Trans>} />
