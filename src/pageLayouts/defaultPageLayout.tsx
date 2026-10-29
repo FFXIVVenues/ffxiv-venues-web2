@@ -19,13 +19,14 @@ import {useSetting} from "@/lib/services/settings/useSetting";
 import {CreateVenueDialog} from "@/components/createVenueModal/createVenueDialog.tsx";
 import {DiscordFillIcon} from "@/components/icons/discord-fill-icon.tsx";
 import {Button} from "@/components/ui/shadcn/button.tsx";
-import {ChevronDown, Plus, Settings, SquarePen} from "lucide-react";
+import {ChevronDown, Plus, Settings, ShieldUser, SquarePen} from "lucide-react";
 import {Toaster} from "@/components/ui/shadcn/sonner.tsx";
 import {Trans} from "@lingui/react/macro";
 import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
 import {useNavigate} from "react-router";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/shadcn/collapsible.tsx";
 import {usePersistedState} from "@/lib/utils/hooks/usePersistedState.ts";
+import {hasAnAuthorization} from "@/lib/services/user/hasAnAuthorization.ts";
 
 type DefaultLayoutProps = {
   children: ReactNode;
@@ -49,12 +50,14 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
   );
   const onCreateClickCallback = useCallback(() => navigate(`/venue/create`), [navigate]);
   const onManageClickCallback = useCallback(() => navigate(`/venue/manage`), [navigate]);
+  const onAdminClickCallback = useCallback(() => navigate(`/venue/admin`), [navigate]);
 
   const [userPanelExpanded, setUserPanelExpanded] = usePersistedState("user-panel-extended", false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [createVenueOpen, setCreateVenueOpen] = useState(false);
   const sidebarDefault = useSetting('sidebar');
   const user = useUser();
+  const hasAuthorization = hasAnAuthorization();
 
   return <>
     <title>{title ? title : 'FFXIV Venues'}</title>
@@ -91,8 +94,16 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
                   <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4"
                           onClick={onManageClickCallback}>
                     <SquarePen className="size-4"/>
-                    <span className="mt-0.5"><Trans>Manage venues</Trans></span>
+                    <span className="mt-0.5"><Trans>Manage my venues</Trans></span>
                   </Button>
+
+                  { hasAuthorization &&
+                    <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4"
+                            onClick={onAdminClickCallback}>
+                      <ShieldUser className="size-4" />
+                      <span className="mt-0.5"><Trans>Admin venues</Trans></span>
+                    </Button>
+                  }
                 </CollapsibleContent>
               </Collapsible>
             }
