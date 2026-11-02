@@ -1,7 +1,7 @@
 import type {VenueDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 
 import React, {type ChangeEvent, memo, useCallback, useState} from 'react';
-import {CalendarClock, CalendarX, Plus, Trash} from "lucide-react";
+import {CalendarClock, CalendarX, DoorClosed, DoorOpen, Eye, Pen, Plus, Trash} from "lucide-react";
 import {Trans} from "@lingui/react/macro";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/shadcn/card.tsx";
@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/shadcn/alert-dialog.tsx";
 import {Input} from "@/components/ui/shadcn/input.tsx";
 import type {Nullable} from "@/lib/utils/nullable.ts";
+import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/shadcn/tooltip.tsx";
 
 type VenueManagementCardProps = {
   venue: VenueDto;
@@ -29,8 +30,8 @@ type VenueManagementCardProps = {
 export const VenueManagementCard = memo(({ venue, onEditClick, onOpenClick, onCloseClick, onDeleteClick, className }: VenueManagementCardProps) => {
   const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
   const onEditClickCallback = useCallback(() => onEditClick && onEditClick(venue), [venue, onEditClick]);
-  const onOpeningsClickCallback = useCallback(() => onOpenClick && onOpenClick(venue), [venue, onOpenClick]);
-  const onClosuresClickCallback = useCallback(() => onCloseClick && onCloseClick(venue), [venue, onCloseClick]);
+  const onOpenClickCallback = useCallback(() => onOpenClick && onOpenClick(venue), [venue, onOpenClick]);
+  const onCloseClickCallback = useCallback(() => onCloseClick && onCloseClick(venue), [venue, onCloseClick]);
   const onDeleteClickCallback = useCallback(() => setConfirmDelete(true), []);
   const onDeleteConfirmCallback = useCallback(() => {
     setConfirmDelete(false);
@@ -60,16 +61,62 @@ export const VenueManagementCard = memo(({ venue, onEditClick, onOpenClick, onCl
           </Badge>
         }
       </CardContent>
-      <CardFooter className="pb-6 border-t flex flex-col gap-2">
-        <div className="flex gap-2 w-full">
-          { onOpenClick && <Button variant="secondary" className="flex-1 cursor-pointer"
-                  onClick={onOpeningsClickCallback}><Trans>Open</Trans></Button> }
-          { onCloseClick && <Button variant="secondary" className="flex-1 cursor-pointer"
-                  onClick={onClosuresClickCallback}><Trans>Close</Trans></Button> }
-          { onEditClick && <Button variant="secondary" className="flex-1 cursor-pointer"
-                 onClick={onEditClickCallback}><Trans>Edit</Trans></Button> }
-          { onDeleteClick && <Button variant="secondary" className="px-3 cursor-pointer"
-                 onClick={onDeleteClickCallback}><Trash/><span className="sr-only"><Trans>Delete venue</Trans></span></Button>}
+      <CardFooter className="p-4! border-t flex flex-col gap-2">
+        <div className="flex gap-2">
+          { onOpenClick &&
+            <Tooltip>
+              <TooltipTrigger onClick={onOpenClickCallback} render={(props) =>
+                <Button variant="secondary" className="flex-1 cursor-pointer" {...props}>
+                  <Eye /><span className="sr-only"><Trans comment="Refers to opening the venue">View venue</Trans></span>
+                </Button> } />
+              <TooltipContent side="top" className="bg-muted text-muted-foreground">
+                <Trans>View venue</Trans>
+              </TooltipContent>
+            </Tooltip> }
+
+          { onOpenClick &&
+            <Tooltip>
+              <TooltipTrigger onClick={onOpenClickCallback} render={(props) =>
+                <Button variant="secondary" className="flex-1 cursor-pointer" {...props}>
+                  <DoorOpen /><span className="sr-only"><Trans comment="Open as in Open the venue doors for visiting">Open venue</Trans></span>
+                </Button> } />
+              <TooltipContent side="top" className="bg-muted text-muted-foreground">
+                <Trans>Open venue</Trans>
+              </TooltipContent>
+            </Tooltip> }
+
+          { onCloseClick &&
+            <Tooltip>
+              <TooltipTrigger onClick={onCloseClickCallback} render={(props) =>
+                <Button variant="secondary" className="flex-1 cursor-pointer" {...props}>
+                  <DoorClosed /><span className="sr-only"><Trans comment="Close as in Close the venue doors - no longer open for service">Close venue</Trans></span>
+                </Button> } />
+              <TooltipContent side="top" className="bg-muted text-muted-foreground">
+                <Trans>Close venue</Trans>
+              </TooltipContent>
+            </Tooltip> }
+
+          { onEditClick &&
+            <Tooltip>
+              <TooltipTrigger onClick={onEditClickCallback} render={(props) =>
+                <Button variant="secondary" className="flex-1 cursor-pointer" {...props}>
+                  <Pen /><span className="sr-only"><Trans>Edit venue</Trans></span>
+                </Button> } />
+              <TooltipContent side="top" className="bg-muted text-muted-foreground">
+                <Trans>Edit venue</Trans>
+              </TooltipContent>
+            </Tooltip> }
+
+          { onDeleteClick &&
+            <Tooltip>
+              <TooltipTrigger onClick={onDeleteClickCallback} render={(props) =>
+                <Button variant="secondary" className="flex-1 cursor-pointer" {...props}>
+                  <Trash /><span className="sr-only"><Trans>Delete venue</Trans></span>
+                </Button> } />
+              <TooltipContent side="top" className="bg-muted text-muted-foreground">
+                <Trans>Delete venue</Trans>
+              </TooltipContent>
+            </Tooltip> }
         </div>
       </CardFooter>
     </Card>

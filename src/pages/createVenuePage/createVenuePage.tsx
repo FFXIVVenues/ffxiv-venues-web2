@@ -9,9 +9,10 @@ import {createVenue} from "@/lib/services/venues2/createVenue.ts";
 import {uploadBanner} from "@/lib/services/venues2/uploadBanner.ts";
 import {toast} from "sonner";
 import {LoginPrompt} from "@/components/venueForm/loginPrompt.tsx";
-import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
+import {useUser} from "@/lib/services/user/hooks/useUser.ts";
 import {ArrowLeft} from "lucide-react";
 import {Button} from "@/components/ui/shadcn/button.tsx";
+import {NoUser} from "@/lib/services/user/macros/getUser.ts";
 
 export const CreateVenuePage = () => {
     const {t} = useLingui();

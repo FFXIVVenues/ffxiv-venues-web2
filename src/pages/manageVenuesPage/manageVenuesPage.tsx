@@ -1,7 +1,7 @@
 import type {VenueDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 
 import React, {memo, useCallback} from 'react';
-import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
+import {useUser} from "@/lib/services/user/hooks/useUser.ts";
 import {useUsersVenues} from "@/lib/services/venues2/useUsersVenues.ts";
 import {useNavigate} from "react-router";
 import {DefaultPageLayout} from "@/pageLayouts/defaultPageLayout.tsx";
@@ -11,24 +11,18 @@ import {Button} from "@/components/ui/shadcn/button.tsx";
 import {deleteVenue} from "@/lib/services/venues2/deleteVenue.ts";
 import {Card} from "@/components/ui/shadcn/card.tsx";
 import {VenueManagementCard} from "@/components/venueCard/venueManagementCard.tsx";
+import {NoUser} from "@/lib/services/user/macros/getUser.ts";
 
 export const ManageVenuesPage = memo(() => {
   const navigate = useNavigate();
   const user = useUser();
   const [ usersVenues, refreshUsersVenues ] = useUsersVenues(user?.userId);
-  const onCreateClickCallback = useCallback(
-    () => navigate(`/venue/create`), [navigate]);
-  const onEditClickCallback = useCallback(
-    (venue: VenueDto) => navigate(`/venue/${venue.id}/edit`), [navigate]);
-  const onOpeningsClickCallback = useCallback(
-    (venue: VenueDto) => navigate(`/venue/${venue.id}/openings`), [navigate]);
-  const onClosuresClickCallback = useCallback(
-    (venue: VenueDto) => navigate(`/venue/${venue.id}/closures`), [navigate]);
-  const onDeleteClickCallback = useCallback(
-    async (venue: VenueDto) => {
-      await deleteVenue(venue.id);
-      refreshUsersVenues();
-    }, []);
+
+  const onCreateClickCallback = useCallback(() => navigate(`/venue/create`), [navigate]);
+  const onEditClickCallback = useCallback((venue: VenueDto) => navigate(`/venue/${venue.id}/edit`), [navigate]);
+  const onOpeningsClickCallback = useCallback((venue: VenueDto) => navigate(`/venue/${venue.id}/openings`), [navigate]);
+  const onClosuresClickCallback = useCallback((venue: VenueDto) => navigate(`/venue/${venue.id}/closures`), [navigate]);
+  const onDeleteClickCallback = useCallback(async (venue: VenueDto) => { await deleteVenue(venue.id); refreshUsersVenues(); }, []);
 
   if (user === NoUser) {
     navigate(`/`);

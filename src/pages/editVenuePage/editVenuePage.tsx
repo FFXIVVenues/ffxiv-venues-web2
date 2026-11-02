@@ -1,6 +1,6 @@
 import {Trans, useLingui} from "@lingui/react/macro";
 import {VeniHeader} from "@/components/venueForm/veniHeader.tsx";
-import {useNavigate, useParams} from "react-router";
+import {Navigate, useNavigate, useParams} from "react-router";
 import {useEffect, useState} from "react";
 import type {VenueDto, VenueRequestDto} from "@/lib/services/venues2/dtos/venueDto.ts";
 import {getVenue} from "@/lib/services/venues2/getVenue.ts";
@@ -12,11 +12,12 @@ import {toast} from "sonner";
 import {toDraft, toVenue} from "@/components/venueForm/venueDraft.ts";
 import {uploadBanner} from "@/lib/services/venues2/uploadBanner.ts";
 import {LoginPrompt} from "@/components/venueForm/loginPrompt.tsx";
-import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
-import {canEditManagers} from "@/lib/services/user/canEditManagers.ts";
+import {useUser} from "@/lib/services/user/hooks/useUser.ts";
+import {useCanEditManagers} from "@/lib/services/user/hooks/useCanEditManagers.ts";
 import {ArrowLeft} from "lucide-react";
 import {Button} from "@/components/ui/shadcn/button.tsx";
-import {canEdit} from "@/lib/services/user/canEdit.ts";
+import {useCanEdit} from "@/lib/services/user/hooks/useCanEdit.ts";
+import {NoUser} from "@/lib/services/user/macros/getUser.ts";
 
 
 export const EditVenuePage = () => {
@@ -26,8 +27,8 @@ export const EditVenuePage = () => {
     const navigate = useNavigate();
     const [venue, setVenue] = useState<VenueDto | "loading" | "missing">("loading");
     const loaded = venue != "loading" && venue != "missing" ? venue : null;
-    const allowedToEdit = canEdit(loaded as VenueDto);
-    const showManagersControl = canEditManagers(loaded) ?? false;
+    const canEdit = useCanEdit(loaded as VenueDto);
+    const canEditManagers = useCanEditManagers(loaded) ?? false;
 
     useEffect(() => {
         setVenue("loading");
@@ -36,7 +37,8 @@ export const EditVenuePage = () => {
             .catch(() => setVenue("missing"));
     }, [venueId]);
 
-    if (venue === "missing") return <NotFoundPage />;
+    if (venue === "missing")
+        return <NotFoundPage />;
 
     const save = async (next: VenueRequestDto, banner: Blob | null) => {
         const original = toVenue(toDraft(venue as VenueDto));
@@ -61,9 +63,9 @@ export const EditVenuePage = () => {
                     ? <p className="text-sm text-muted-foreground"><Trans>Fetching your venue...</Trans></p>
                     : user === NoUser
                     ? <LoginPrompt />
-                    : !allowedToEdit
-                    ? <p className="text-muted-foreground"><Trans>You don't manage this venue, so I can't let you edit it. If you think you should, ask one of its managers to add you.</Trans></p>
-                    : <VenueForm venue={venue} showManagersControl={showManagersControl} submitLabel={<Trans>Save changes</Trans>} onSubmit={save} />}
+                    : !canEdit && !canEditManagers
+                    ? <Navigate to="/" />
+                    : <VenueForm venue={venue} showManagersControl={canEditManagers} submitLabel={<Trans>Save changes</Trans>} onSubmit={save} />}
             </div>
         </DefaultPageLayout.Page>
     </DefaultPageLayout>;

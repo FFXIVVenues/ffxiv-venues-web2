@@ -5,11 +5,12 @@ import {NotFoundPage} from "@/pages/notFoundPage/notFoundPage.tsx";
 import {DefaultPageLayout} from "@/pageLayouts/defaultPageLayout.tsx";
 import {VeniHeader} from "@/components/venueForm/veniHeader.tsx";
 import {LoginPrompt} from "@/components/venueForm/loginPrompt.tsx";
-import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
+import {useUser} from "@/lib/services/user/hooks/useUser.ts";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {useScheduleOverrides} from "@/components/scheduleOverrides/useScheduleOverrides.ts";
 import {OverrideForm} from "@/components/scheduleOverrides/overrideForm.tsx";
 import {OverridesTable} from "@/components/scheduleOverrides/overridesTable.tsx";
+import {NoUser} from "@/lib/services/user/macros/getUser.ts";
 
 export const VenueClosuresPage = () => {
     const {t} = useLingui();

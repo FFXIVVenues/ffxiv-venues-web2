@@ -6,7 +6,7 @@ import {InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput} from "@/
 import {Item, ItemActions, ItemContent, ItemDescription, ItemGroup, ItemMedia, ItemTitle} from "@/components/ui/shadcn/item.tsx";
 import {Button} from "@/components/ui/shadcn/button.tsx";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/shadcn/avatar.tsx";
-import {getDiscordUser} from "@/lib/services/user/getDiscordUser.ts";
+import {getDiscordUser} from "@/lib/services/user/macros/getDiscordUser.ts";
 import type {User} from "@/lib/services/user/dtos/user.ts";
 
 const discordIdPattern = /^(?:<@!?)?(\d{17,20})>?$/;

@@ -22,11 +22,12 @@ import {Button} from "@/components/ui/shadcn/button.tsx";
 import {ChevronDown, Plus, Settings, ShieldUser, SquarePen} from "lucide-react";
 import {Toaster} from "@/components/ui/shadcn/sonner.tsx";
 import {Trans} from "@lingui/react/macro";
-import {NoUser, useUser} from "@/lib/services/user/useUser.ts";
+import {useUser} from "@/lib/services/user/hooks/useUser.ts";
 import {useNavigate} from "react-router";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/shadcn/collapsible.tsx";
 import {usePersistedState} from "@/lib/utils/hooks/usePersistedState.ts";
-import {hasAnAuthorization} from "@/lib/services/user/hasAnAuthorization.ts";
+import {useIsStaff} from "@/lib/services/user/hooks/useIsStaff.ts";
+import {NoUser} from "@/lib/services/user/macros/getUser.ts";
 
 type DefaultLayoutProps = {
   children: ReactNode;
@@ -40,7 +41,7 @@ type CompoundComponent<P = {}> = FC<P> & {
 };
 
 export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({children, title}) => {
-  const navigate = useNavigate();
+
   const compounds = Children.toArray(children);
   const sidebarContent = compounds.find(
     (c): c is ReactElement => isValidElement(c) && c.type === DefaultPageLayout.Panel
@@ -48,16 +49,12 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
   const pageContent = compounds.find(
     (c): c is ReactElement => isValidElement(c) && c.type === DefaultPageLayout.Page
   );
-  const onCreateClickCallback = useCallback(() => navigate(`/venue/create`), [navigate]);
-  const onManageClickCallback = useCallback(() => navigate(`/venue/manage`), [navigate]);
-  const onAdminClickCallback = useCallback(() => navigate(`/venue/admin`), [navigate]);
 
-  const [userPanelExpanded, setUserPanelExpanded] = usePersistedState("user-panel-extended", false);
+
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [createVenueOpen, setCreateVenueOpen] = useState(false);
   const sidebarDefault = useSetting('sidebar');
   const user = useUser();
-  const hasAuthorization = hasAnAuthorization();
 
   return <>
     <title>{title ? title : 'FFXIV Venues'}</title>
@@ -68,57 +65,21 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
           <SidebarHeader className="p-0">
             <h1 className="px-2 pt-2">
               <a href="/">
-                <img src={logoLight} alt="FFXIV Venues" className="hidden dark:block mx-auto p-2"/>
-                <img src={logoDark} alt="FFXIV Venues" className="block dark:hidden mx-auto p-2"/>
+                <FfxivVenuesLogo />
               </a>
             </h1>
-            {user && user != NoUser &&
-              <Collapsible open={userPanelExpanded} onOpenChange={setUserPanelExpanded} className="flex flex-col group border-y py-3 px-2 mb-3">
-                <CollapsibleTrigger className="w-full cursor-pointer group-data-open:mb-4">
-                  <div className="flex items-center px-2 text-left w-full">
-                    <img className="rounded-full size-10 mr-4" src={user.avatarUrl} alt="" />
-                    <div className="flex-1 flex flex-col">
-                      <div className="">{user.nickname}</div>
-                      <small className="text-muted-foreground -mt-0.5">{user.username}</small>
-                    </div>
-                    <ChevronDown className="size-5 group-data-open:rotate-180" />
-                  </div>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4"
-                          onClick={onCreateClickCallback}>
-                    <Plus className="size-4"/>
-                    <span className="mt-0.5"><Trans>Create venue</Trans></span>
-                  </Button>
-
-                  <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4"
-                          onClick={onManageClickCallback}>
-                    <SquarePen className="size-4"/>
-                    <span className="mt-0.5"><Trans>Manage my venues</Trans></span>
-                  </Button>
-
-                  { hasAuthorization &&
-                    <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4"
-                            onClick={onAdminClickCallback}>
-                      <ShieldUser className="size-4" />
-                      <span className="mt-0.5"><Trans>Admin venues</Trans></span>
-                    </Button>
-                  }
-                </CollapsibleContent>
-              </Collapsible>
-            }
+            <UserPanel />
           </SidebarHeader>
           <SidebarContent className="px-2">
             {sidebarContent}
           </SidebarContent>
           <SidebarFooter>
-            {(!user || user != NoUser) &&
+            {(!user || user == NoUser) &&
               <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4"
                       onClick={() => setCreateVenueOpen(true)}>
                 <Plus className="size-4"/>
                 <span className="mt-0.5"><Trans>Add your venue</Trans></span>
-              </Button>
-            }
+              </Button> }
             <Button nativeButton={false} variant="ghost"
                     render={<a href="https://discord.gg/gTP65VYcMj" rel="noopener noreferrer" target="_blank"></a>}
                     className="cursor-pointer w-full justify-start items-center gap-2 py-4">
@@ -139,20 +100,12 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
         <main className="flex-1 px-2 py-4 overflow-x-hidden">
           <SidebarTrigger size="icon-lg"
                           className="fixed -ml-[1rem] top-25 z-10 bg-sidebar rounded-tl-none rounded-bl-none border border-l-0 border-sidebar-border w-10 pl-1"/>
+
           {pageContent}
+
           <footer className="text-center text-sm text-muted-foreground mt-16 mb-8 mx-12">
             <hr className="my-8"/>
-            <p className="mb-4">
-              <Trans>
-                FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.
-                <br/>
-                Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved.
-              </Trans>
-            </p>
-            <p>
-              FFXIV Venues | <a className="underline" href="/terms"><Trans>Terms of Service</Trans></a> | <a
-              className="underline" href="/privacy"><Trans>Privacy Policy</Trans></a>
-            </p>
+            <Footer />
           </footer>
         </main>
 
@@ -163,3 +116,70 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
 
 DefaultPageLayout.Panel = ({children}) => <>{children}</>;
 DefaultPageLayout.Page = ({children}) => <div className="min-w-0">{children}</div>;
+
+const FfxivVenuesLogo = () => <>
+  <img src={logoLight} alt="FFXIV Venues" className="hidden dark:block mx-auto p-2"/>
+  <img src={logoDark} alt="FFXIV Venues" className="block dark:hidden mx-auto p-2"/>
+</>
+
+const UserPanel = ({}) => {
+  const navigate = useNavigate();
+  const onCreateClickCallback = useCallback(() => navigate(`/venue/create`), [navigate]);
+  const onManageClickCallback = useCallback(() => navigate(`/venue/manage`), [navigate]);
+  const onAdminClickCallback = useCallback(() => navigate(`/staff/venues`), [navigate]);
+  const [userPanelExpanded, setUserPanelExpanded] = usePersistedState("user-panel-extended", false);
+
+  const isStaff = useIsStaff();
+  const user = useUser();
+
+  if (!user || user == NoUser)
+    return <></>
+
+  return <Collapsible open={userPanelExpanded} onOpenChange={setUserPanelExpanded} className="flex flex-col group border-y py-3 px-2 mb-3">
+    <CollapsibleTrigger className="w-full cursor-pointer group-data-open:mb-4">
+      <div className="flex items-center px-2 text-left w-full">
+        <img className="rounded-full size-10 mr-4" src={user.avatarUrl} alt="" />
+        <div className="flex-1 flex flex-col">
+          <div className="">{user.nickname}</div>
+          <small className="text-muted-foreground -mt-0.5">{user.username}</small>
+        </div>
+        <ChevronDown className="size-5 group-data-open:rotate-180" />
+      </div>
+    </CollapsibleTrigger>
+    <CollapsibleContent>
+      <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4"
+              onClick={onCreateClickCallback}>
+        <Plus className="size-4"/>
+        <span className="mt-0.5"><Trans>Create venue</Trans></span>
+      </Button>
+
+      <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4"
+              onClick={onManageClickCallback}>
+        <SquarePen className="size-4"/>
+        <span className="mt-0.5"><Trans>Manage my venues</Trans></span>
+      </Button>
+
+      { isStaff &&
+        <Button variant="ghost" className="cursor-pointer w-full justify-start items-center gap-2 py-4"
+                onClick={onAdminClickCallback}>
+          <ShieldUser className="size-4" />
+          <span className="mt-0.5"><Trans>Manage all venues</Trans></span>
+        </Button>
+      }
+    </CollapsibleContent>
+  </Collapsible>
+}
+
+const Footer = () => <>
+  <p className="mb-4">
+    <Trans>
+      FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd.
+      <br/>
+      Any FFXIV material used on this site is © SQUARE ENIX CO., LTD. All Rights Reserved.
+    </Trans>
+  </p>
+  <p>
+    FFXIV Venues | <a className="underline" href="/terms"><Trans>Terms of Service</Trans></a> | <a
+    className="underline" href="/privacy"><Trans>Privacy Policy</Trans></a>
+  </p>
+</>
