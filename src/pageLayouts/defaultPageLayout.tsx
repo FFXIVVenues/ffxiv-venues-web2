@@ -9,6 +9,8 @@ import React, {
 } from "react";
 import logoLight from "@/assets/logo-light-300.webp";
 import logoDark from "@/assets/logo-dark-300.webp";
+import staffLogoLight from "@/assets/staff-logo-light-300.webp";
+import staffLogoDark from "@/assets/staff-logo-dark-300.webp";
 import {
   Sidebar, SidebarContent, SidebarFooter,
   SidebarHeader, SidebarProvider, SidebarRail, SidebarTrigger
@@ -28,6 +30,7 @@ import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/
 import {usePersistedState} from "@/lib/utils/hooks/usePersistedState.ts";
 import {useIsStaff} from "@/lib/services/user/hooks/useIsStaff.ts";
 import {NoUser} from "@/lib/services/user/macros/getUser.ts";
+import {isStaff} from "@/lib/services/user/macros/isStaff.ts";
 
 type DefaultLayoutProps = {
   children: ReactNode;
@@ -117,10 +120,19 @@ export const DefaultPageLayout: CompoundComponent<DefaultLayoutProps> = ({childr
 DefaultPageLayout.Panel = ({children}) => <>{children}</>;
 DefaultPageLayout.Page = ({children}) => <div className="min-w-0">{children}</div>;
 
-const FfxivVenuesLogo = () => <>
-  <img src={logoLight} alt="FFXIV Venues" className="hidden dark:block mx-auto p-2"/>
-  <img src={logoDark} alt="FFXIV Venues" className="block dark:hidden mx-auto p-2"/>
-</>
+const FfxivVenuesLogo = () => {
+  const isStaff = useIsStaff();
+  if (isStaff)
+    return <>
+      <img src={staffLogoLight} alt="FFXIV Venues" className="hidden dark:block mx-auto p-2"/>
+      <img src={staffLogoDark} alt="FFXIV Venues" className="block dark:hidden mx-auto p-2"/>
+    </>
+
+  return <>
+    <img src={logoLight} alt="FFXIV Venues" className="hidden dark:block mx-auto p-2"/>
+    <img src={logoDark} alt="FFXIV Venues" className="block dark:hidden mx-auto p-2"/>
+  </>
+}
 
 const UserPanel = ({}) => {
   const navigate = useNavigate();
