@@ -13,17 +13,13 @@ const discordIdPattern = /^(?:<@!?)?(\d{17,20})>?$/;
 
 type Lookup = User | "checking" | "unknown" | "failed";
 
-const ManagerCard = ({id, onRemove}: {id: string; onRemove: () => void}) => {
+const ManagerCard = ({id, venueId, onRemove}: {id: string; venueId: string; onRemove?: () => void}) => {
     const {t} = useLingui();
     const [lookup, setLookup] = useState<Lookup>("checking");
 
     useEffect(() => {
-        const abort = new AbortController();
-        getDiscordUser(id, abort.signal).then(
-            user => setLookup(user ?? "unknown"),
-            () => !abort.signal.aborted && setLookup("failed"));
-        return () => abort.abort();
-    }, [id]);
+        getDiscordUser(venueId, id).then(user => setLookup(user ?? "unknown"), () => setLookup("failed"));
+    }, [id, venueId]);
 
     const found = typeof lookup === "object" ? lookup : null;
     const name = found?.nickname ?? id;
@@ -40,15 +36,15 @@ const ManagerCard = ({id, onRemove}: {id: string; onRemove: () => void}) => {
             {found && <ItemDescription>{found.username} ({id})</ItemDescription>}
             {lookup === "unknown" && <ItemDescription className="text-destructive"><Trans>Not found on Discord</Trans></ItemDescription>}
         </ItemContent>
-        <ItemActions>
+        {onRemove && <ItemActions>
             <Button type="button" variant="ghost" size="icon-sm" aria-label={t`Remove ${name}`} onClick={onRemove}>
                 <X />
             </Button>
-        </ItemActions>
+        </ItemActions>}
     </Item>;
 };
 
-export const ManagersField = ({value, onChange}: {value: string[]; onChange: (value: string[]) => void}) => {
+export const ManagersField = ({venueId, editable, value, onChange}: {venueId: string; editable: boolean; value: string[]; onChange: (value: string[]) => void}) => {
     const {t} = useLingui();
     const input = useRef<HTMLInputElement>(null);
     const [entry, setEntry] = useState("");
@@ -60,7 +56,7 @@ export const ManagersField = ({value, onChange}: {value: string[]; onChange: (va
         if (!id || checking) return;
         if (value.includes(id)) return setEntry("");
         setChecking(true);
-        const found = await getDiscordUser(id).catch(() => "failed");
+        const found = await getDiscordUser(venueId, id).catch(() => "failed");
         setChecking(false);
         if (found === null) return setUnknownId(id);
         onChange([...value, id]);
@@ -84,17 +80,19 @@ export const ManagersField = ({value, onChange}: {value: string[]; onChange: (va
     useEffect(() => input.current?.setCustomValidity(problem), [problem]);
 
     return <Field data-invalid={!!shown}>
-        <FieldLabel htmlFor="venue-managers"><Trans>Discord user ID</Trans></FieldLabel>
-        <FieldDescription><Trans>Managers can edit and delete this venue. Check the username under the name before you add someone. Display names can be anything, but usernames are unique.</Trans></FieldDescription>
-        <InputGroup>
-            <InputGroupInput ref={input} id="venue-managers" value={entry} onChange={e => setEntry(e.target.value)} onKeyDown={addOnEnter} readOnly={checking} placeholder="1234567891011121314" />
-            <InputGroupAddon align="inline-end">
-                <InputGroupButton disabled={!id || checking} onClick={add}><Trans>Add</Trans></InputGroupButton>
-            </InputGroupAddon>
-        </InputGroup>
-        <FieldError>{shown}</FieldError>
+        {editable ? <>
+            <FieldLabel htmlFor="venue-managers"><Trans>Discord user ID</Trans></FieldLabel>
+            <FieldDescription><Trans>Managers can edit and delete this venue. Check the username under the name before you add someone. Display names can be anything, but usernames are unique.</Trans></FieldDescription>
+            <InputGroup>
+                <InputGroupInput ref={input} id="venue-managers" value={entry} onChange={e => setEntry(e.target.value)} onKeyDown={addOnEnter} readOnly={checking} placeholder="1234567891011121314" />
+                <InputGroupAddon align="inline-end">
+                    <InputGroupButton disabled={!id || checking} onClick={add}><Trans>Add</Trans></InputGroupButton>
+                </InputGroupAddon>
+            </InputGroup>
+            <FieldError>{shown}</FieldError>
+        </> : <FieldDescription><Trans>These people can edit and delete this venue. To change managers, ask FFXIV Venues staff.</Trans></FieldDescription>}
         {value.length > 0 && <ItemGroup>
-            {value.map(manager => <ManagerCard key={manager} id={manager} onRemove={() => remove(manager)} />)}
+            {value.map(manager => <ManagerCard key={manager} id={manager} venueId={venueId} onRemove={editable ? () => remove(manager) : undefined} />)}
         </ItemGroup>}
     </Field>;
 };

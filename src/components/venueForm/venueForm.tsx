@@ -20,11 +20,12 @@ import {toast} from "sonner";
 import {saveError} from "@/components/venueForm/saveError.ts";
 import {ManagersField} from "@/components/venueForm/managersField.tsx";
 
-export const VenueForm = ({venue, submitLabel, onSubmit, showManagersControl}: {
+export const VenueForm = ({venue, submitLabel, onSubmit, showManagersControl, managersEditable}: {
     venue?: VenueDto,
     submitLabel: ReactNode,
     onSubmit: (venue: VenueRequestDto, banner: Blob | null) => Promise<void>,
-    showManagersControl?: boolean
+    showManagersControl?: boolean,
+    managersEditable?: boolean
 }) => {
     const {t} = useLingui();
     const [draft, setDraft] = useState(() => toDraft(venue));
@@ -189,10 +190,10 @@ export const VenueForm = ({venue, submitLabel, onSubmit, showManagersControl}: {
 
         <BannerPicker current={venue?.banner ?? undefined} value={draft.banner} onChange={banner => set({banner})} />
 
-        {showManagersControl && <FieldSet>
+        {showManagersControl && venue && <FieldSet>
             <FieldLegend><Trans>Managers</Trans></FieldLegend>
             <FieldGroup>
-                <ManagersField value={draft.managers} onChange={managers => set({managers})} />
+                <ManagersField venueId={venue.id} editable={managersEditable ?? false} value={draft.managers} onChange={managers => set({managers})} />
             </FieldGroup>
         </FieldSet>}
 

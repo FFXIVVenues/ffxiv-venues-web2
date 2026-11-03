@@ -29,6 +29,7 @@ export const EditVenuePage = () => {
     const loaded = venue != "loading" && venue != "missing" ? venue : null;
     const canEdit = useCanEdit(loaded as VenueDto);
     const canEditManagers = useCanEditManagers(loaded) ?? false;
+    const isManager = !!user && !!loaded?.managers.includes(user.userId);
 
     useEffect(() => {
         setVenue("loading");
@@ -65,7 +66,7 @@ export const EditVenuePage = () => {
                     ? <LoginPrompt />
                     : !canEdit && !canEditManagers
                     ? <Navigate to="/" />
-                    : <VenueForm venue={venue} showManagersControl={canEditManagers} submitLabel={<Trans>Save changes</Trans>} onSubmit={save} />}
+                    : <VenueForm venue={venue} showManagersControl={canEditManagers || isManager} managersEditable={canEditManagers} submitLabel={<Trans>Save changes</Trans>} onSubmit={save} />}
             </div>
         </DefaultPageLayout.Page>
     </DefaultPageLayout>;
