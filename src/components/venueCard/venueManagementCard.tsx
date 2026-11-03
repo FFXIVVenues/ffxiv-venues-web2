@@ -21,16 +21,18 @@ import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/shadcn/to
 type VenueManagementCardProps = {
   venue: VenueDto;
   className?: string;
+  onViewClick: Nullable<(venue: VenueDto) => void>;
   onEditClick: Nullable<(venue: VenueDto) => void>;
   onOpenClick: Nullable<(venue: VenueDto) => void>;
   onCloseClick: Nullable<(venue: VenueDto) => void>;
   onDeleteClick: Nullable<(venue: VenueDto) => void>;
 }
 
-export const VenueManagementCard = memo(({ venue, onEditClick, onOpenClick, onCloseClick, onDeleteClick, className }: VenueManagementCardProps) => {
+export const VenueManagementCard = memo(({ venue, onViewClick, onEditClick, onOpenClick, onCloseClick, onDeleteClick, className }: VenueManagementCardProps) => {
   const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
-  const onEditClickCallback = useCallback(() => onEditClick && onEditClick(venue), [venue, onEditClick]);
+  const onViewClickCallback = useCallback(() => onViewClick && onViewClick(venue), [venue, onViewClick]);
   const onOpenClickCallback = useCallback(() => onOpenClick && onOpenClick(venue), [venue, onOpenClick]);
+  const onEditClickCallback = useCallback(() => onEditClick && onEditClick(venue), [venue, onEditClick]);
   const onCloseClickCallback = useCallback(() => onCloseClick && onCloseClick(venue), [venue, onCloseClick]);
   const onDeleteClickCallback = useCallback(() => setConfirmDelete(true), []);
   const onDeleteConfirmCallback = useCallback(() => {
@@ -63,9 +65,9 @@ export const VenueManagementCard = memo(({ venue, onEditClick, onOpenClick, onCl
       </CardContent>
       <CardFooter className="p-4! border-t flex flex-col gap-2">
         <div className="flex gap-2">
-          { onOpenClick &&
+          { onViewClick &&
             <Tooltip>
-              <TooltipTrigger onClick={onOpenClickCallback} render={(props) =>
+              <TooltipTrigger onClick={onViewClickCallback} render={(props) =>
                 <Button variant="secondary" className="flex-1 cursor-pointer" {...props}>
                   <Eye /><span className="sr-only"><Trans comment="Refers to opening the venue">View venue</Trans></span>
                 </Button> } />

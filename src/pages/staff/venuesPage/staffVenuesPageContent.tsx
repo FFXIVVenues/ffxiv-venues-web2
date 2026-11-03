@@ -24,6 +24,7 @@ export const StaffVenuesPageContent = ({search}: { search: string }) => {
     getVenues(filter).then(setVenues);
   }, [ search, authorization.edit, authorization.editManagers, authorization.editApproval, authorization.delete ]);
 
+  const onViewClickCallback = useCallback((venue: VenueDto) => navigate(`/venue/${venue.id}`), [navigate]);
   const onEditClickCallback = useCallback((venue: VenueDto) => navigate(`/venue/${venue.id}/edit`), [navigate]);
   const onOpenClickCallback = useCallback((venue: VenueDto) => navigate(`/venue/${venue.id}/openings`), [navigate]);
   const onCloseClickCallback = useCallback((venue: VenueDto) => navigate(`/venue/${venue.id}/closures`), [navigate]);
@@ -45,11 +46,12 @@ export const StaffVenuesPageContent = ({search}: { search: string }) => {
         const hasDelete = canDelete(venue, user, authorization);
 
         return <VenueManagementCard key={venue.id} venue={venue}
+                                    onViewClick={onViewClickCallback}
                                     onEditClick={hasEdit || hasEditManagers ? onEditClickCallback : null}
                                     onOpenClick={hasEdit ? onOpenClickCallback : null}
                                     onCloseClick={hasEdit ? onCloseClickCallback : null}
                                     onDeleteClick={hasDelete ? onDeleteClickCallback : null}/>
-      })}
+        })}
     </div>
   </div>
 }
